@@ -1,0 +1,34 @@
+
+Model name: lp
+                x1       x2       x3       x4       x5 
+Maximize       300      500     -140      -80     -125 
+r_1              1        2       -1        0        0 <=      170
+r_2              1        1        0       -1        0 <=      150
+r_3              0        3        0        0       -1 <=      180
+Type          Real     Real     Real     Real     Real 
+upbo       Infinite Infinite      30       30       30 
+lowbo            0        0        0        0        0 
+
+Value of objective function: 51400
+
+Actual values of the variables:
+x1                   160
+x2                   20
+x3                   30
+x4                   30
+x5                   0
+
+Actual values of the constraints:
+r_1                  170
+r_2                  150
+r_3                  60
+
+Dual values with from - till limits:
+r_1                       200       150      210
+r_2                       100       110      170
+r_3                         0   -1e+024   1e+024
+x1                          0   -1e+024   1e+024
+x2                          0   -1e+024   1e+024
+x3                        -60        10       70
+x4                        -20       -10       50
+x5                          0   -1e+024   1e+024

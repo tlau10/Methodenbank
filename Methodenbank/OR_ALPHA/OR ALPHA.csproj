@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BD7DDFB6-25E0-4ECE-BBF8-E67F60F338B8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OrAlpha</RootNamespace>
+    <AssemblyName>OR ALPHA</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Methodendatenbank\OR_ALPHA\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>de-DE</TargetCulture>
+    <ProductName>OR-Alpha</ProductName>
+    <PublisherName>ORAlpha-Systems</PublisherName>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\OR_ALPHA.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\OR_ALPHA.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6ABBBA3DEEC3D7C6DB89F498694228BE51C11548</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>OR_ALPHA_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>OrAlpha.Main.App.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationIcon>12.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Build|x86'">
+    <OutputPath>bin\x86\Build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Build|x64'">
+    <OutputPath>bin\x64\Build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\OR_ALPHA.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main\DomainVisualOR\Chapter.cs" />
+    <Compile Include="Main\DomainVisualOR\ChapterContainer.cs" />
+    <Compile Include="Main\DomainVisualOR\IElement.cs" />
+    <Compile Include="Main\DomainVisualOR\VisualORBase.cs" />
+    <Compile Include="Main\DomainMethodenbank\AdminUser.cs" />
+    <Compile Include="Main\DomainMethodenbank\Category.cs" />
+    <Compile Include="Main\DomainMethodenbank\CategoryContainer.cs" />
+    <Compile Include="Main\DomainMethodenbank\IMethodbaseElement.cs" />
+    <Compile Include="Main\DomainMethodenbank\Method.cs" />
+    <Compile Include="Main\DomainMethodenbank\Methodbase.cs" />
+    <Compile Include="Main\DomainMethodenbank\NativeMethod.cs" />
+    <Compile Include="Main\DomainMethodenbank\WebMethod.cs" />
+    <Compile Include="Main\Repository\IMethodRepository.cs" />
+    <Compile Include="Main\Repository\MethodRepositoryImpl.cs" />
+    <Compile Include="Main\Service\MethodService.cs" />
+    <Compile Include="Main\Service\VisualORService.cs" />
+    <Compile Include="Main\Util\ScriptManager.cs" />
+    <Compile Include="Main\Util\Sha256Util.cs" />
+    <Compile Include="Main\View\Administration\AdminFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\AdminFrame.Designer.cs">
+      <DependentUpon>AdminFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\AdminPasswordFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\AdminPasswordFrame.Designer.cs">
+      <DependentUpon>AdminPasswordFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\Category\CategoryAdminFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\Category\CategoryAdminFrame.Designer.cs">
+      <DependentUpon>CategoryAdminFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\Category\CreateCategoryFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\Category\CreateCategoryFrame.Designer.cs">
+      <DependentUpon>CreateCategoryFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\ChangePasswordFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\ChangePasswordFrame.Designer.cs">
+      <DependentUpon>ChangePasswordFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\DeployChangesFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\DeployChangesFrame.Designer.cs">
+      <DependentUpon>DeployChangesFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\Method\CreateMethodFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\Method\CreateMethodFrame.Designer.cs">
+      <DependentUpon>CreateMethodFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\Category\DeleteCategoryFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\Category\DeleteCategoryFrame.Designer.cs">
+      <DependentUpon>DeleteCategoryFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\Method\DeleteMethodFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\Method\DeleteMethodFrame.Designer.cs">
+      <DependentUpon>DeleteMethodFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\Method\MethodAdminFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\Method\MethodAdminFrame.Designer.cs">
+      <DependentUpon>MethodAdminFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\TemplateFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\TemplateFrame.Designer.cs">
+      <DependentUpon>TemplateFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\Category\UpdateCategoryFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\Category\UpdateCategoryFrame.Designer.cs">
+      <DependentUpon>UpdateCategoryFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Administration\Method\UpdateMethodFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Administration\Method\UpdateMethodFrame.Designer.cs">
+      <DependentUpon>UpdateMethodFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\Solveroutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\Solveroutput.Designer.cs">
+      <DependentUpon>Solveroutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\SetPlaceholderHtmlFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\SetPlaceholderHtmlFrame.Designer.cs">
+      <DependentUpon>SetPlaceholderHtmlFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\OrAlphaMainFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\OrAlphaMainFrame.Designer.cs">
+      <DependentUpon>OrAlphaMainFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\SetHtmlPathFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\SetHtmlPathFrame.Designer.cs">
+      <DependentUpon>SetHtmlPathFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\View\InfoBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\InfoBox.Designer.cs">
+      <DependentUpon>InfoBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\App\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Main\View\SetXmlConfigurationFileFrame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\View\SetXmlConfigurationFileFrame.Designer.cs">
+      <DependentUpon>SetXmlConfigurationFileFrame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="Main\View\Administration\AdminFrame.resx">
+      <DependentUpon>AdminFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\AdminPasswordFrame.resx">
+      <DependentUpon>AdminPasswordFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\Category\CategoryAdminFrame.resx">
+      <DependentUpon>CategoryAdminFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\Category\CreateCategoryFrame.resx">
+      <DependentUpon>CreateCategoryFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\ChangePasswordFrame.resx">
+      <DependentUpon>ChangePasswordFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\DeployChangesFrame.resx">
+      <DependentUpon>DeployChangesFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\Method\CreateMethodFrame.resx">
+      <DependentUpon>CreateMethodFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\Category\DeleteCategoryFrame.resx">
+      <DependentUpon>DeleteCategoryFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\Method\DeleteMethodFrame.resx">
+      <DependentUpon>DeleteMethodFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\Method\MethodAdminFrame.resx">
+      <DependentUpon>MethodAdminFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\TemplateFrame.resx">
+      <DependentUpon>TemplateFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\Category\UpdateCategoryFrame.resx">
+      <DependentUpon>UpdateCategoryFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Administration\Method\UpdateMethodFrame.resx">
+      <DependentUpon>UpdateMethodFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\Solveroutput.resx">
+      <DependentUpon>Solveroutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\SetPlaceholderHtmlFrame.resx">
+      <DependentUpon>SetPlaceholderHtmlFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\OrAlphaMainFrame.resx">
+      <DependentUpon>OrAlphaMainFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\SetHtmlPathFrame.resx">
+      <DependentUpon>SetHtmlPathFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\View\InfoBox.resx">
+      <DependentUpon>InfoBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Main\View\SetXmlConfigurationFileFrame.resx">
+      <DependentUpon>SetXmlConfigurationFileFrame.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="12.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 und x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
