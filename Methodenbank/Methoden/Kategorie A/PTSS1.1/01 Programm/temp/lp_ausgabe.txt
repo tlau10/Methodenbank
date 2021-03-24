@@ -1,0 +1,6 @@
+Value of objective function:                3
+x0_1                     1
+x0_2                     0
+x1_2                     0
+x1_3                     1
+x2_1                     0

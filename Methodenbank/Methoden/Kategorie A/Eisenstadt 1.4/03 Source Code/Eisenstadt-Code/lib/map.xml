@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 2.0//EN"
+                     "http://java.sun.com/products/javahelp/map_2_0.dtd">
+
+<map version="1.0">
+	<mapID target="FrontPage" url="FrontPage.html"/>
+
+	<mapID target="1" url="Einstieg.html"/>
+	<mapID target="1.1" url="Einstieg/Beschreibung.html"/>
+	<mapID target="1.2" url="Einstieg/Installation und Start.html"/>
+	
+	<mapID target="2" url="Oberflaeche.html"/>
+	<mapID target="2.1" url="Oberflaeche/Menueleiste.html"/>
+	<mapID target="2.2" url="Oberflaeche/Symbolleiste.html"/>
+	<mapID target="2.3" url="Oberflaeche/Kontextmenue.html"/>
+	<mapID target="2.4" url="Oberflaeche/Eingaben.html"/>
+	<mapID target="2.4.1" url="Oberflaeche/Eingaben/Anlegen von Zielen.html"/>
+	<mapID target="2.4.2" url="Oberflaeche/Eingaben/Einfuegen von Strassen.html"/>
+	<mapID target="2.5" url="Oberflaeche/Laden und Speichern.html"/>
+	<mapID target="2.6" url="Oberflaeche/Ausgabe der Ergebnisse.html"/>
+	<mapID target="2.6.1" url="Oberflaeche/Ausgabe der Ergebnisse/Kundenspezifische Anpassungen.html"/>
+	<mapID target="2.6.2" url="Oberflaeche/Ausgabe der Ergebnisse/Ergebnis Information.html"/>
+	<mapID target="2.6.3" url="Oberflaeche/Ausgabe der Ergebnisse/Farbliche Anpassung.html"/>
+	<mapID target="2.7" url="Oberflaeche/Optimierung.html"/>
+	<mapID target="2.8" url="Oberflaeche/Simulation.html"/>
+	<mapID target="2.8.1" url="Oberflaeche/Simulation/Umbenennen von Bushaltestellen.html"/>
+	<mapID target="2.8.2" url="Oberflaeche/Simulation/Definition von Buslinien.html"/>
+	<mapID target="2.8.3" url="Oberflaeche/Simulation/Einstellungen zu Buslinien.html"/>
+	<mapID target="2.8.4" url="Oberflaeche/Simulation/Einstellungen zur Simulation.html"/>
+	<mapID target="2.8.5" url="Oberflaeche/Simulation/Simulations Reports.html"/>
+	
+	<mapID target="3" url="Anforderungen.html"/>
+	
+	<mapID target="4" url="Einschraenkungen.html"/>
+	<mapID target="4.1" url="Einschraenkungen/Anzahl der Ziele.html"/>
+	<mapID target="4.2" url="Einschraenkungen/UndoRedo.html"/>
+	<mapID target="4.3" url="Einschraenkungen/Verbinden der Haltestellen zu Buslinien.html"/>
+</map>

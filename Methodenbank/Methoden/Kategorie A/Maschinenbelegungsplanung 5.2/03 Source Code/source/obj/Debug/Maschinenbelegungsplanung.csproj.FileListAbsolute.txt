@@ -1,0 +1,123 @@
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.config
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.pdb
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.pdb
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\MagicLibrary.DLL
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\ZedGraph.dll
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csprojResolveAssemblyReference.cache
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.AboutForm.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form2.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Forms.Graphics1.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.InputForm.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form1.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.PreferencesForm.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.ResultForm.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csproj.GenerateResource.Cache
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.manifest
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.application
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe.manifest
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.application
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.config
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.pdb
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.config
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.pdb
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csprojResolveAssemblyReference.cache
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.AboutForm.resources
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form2.resources
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Forms.Graphics1.resources
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.InputForm.resources
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form1.resources
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.PreferencesForm.resources
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.ResultForm.resources
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csproj.GenerateResource.Cache
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.manifest
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.application
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.pdb
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\MagicLibrary.DLL
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\ZedGraph.dll
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe.manifest
+C:\Users\Tobias\Dropbox\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.application
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.config
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.pdb
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.manifest
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.application
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.pdb
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\MagicLibrary.DLL
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\ZedGraph.dll
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csprojResolveAssemblyReference.cache
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.AboutForm.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form2.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Forms.Graphics1.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.InputForm.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form1.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.PreferencesForm.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.ResultForm.resources
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csproj.GenerateResource.Cache
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe.manifest
+X:\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.application
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.config
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.pdb
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.manifest
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.application
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.pdb
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\MagicLibrary.DLL
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\ZedGraph.dll
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csprojResolveAssemblyReference.cache
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.AboutForm.resources
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form2.resources
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Forms.Graphics1.resources
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.InputForm.resources
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form1.resources
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.PreferencesForm.resources
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.ResultForm.resources
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csproj.GenerateResource.Cache
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe.manifest
+C:\Users\Padi\Dropbox\_Studium\7. Semester (SS15)\ANLO\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.application
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.config
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.pdb
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.AboutForm.resources
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form2.resources
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Forms.Graphics1.resources
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.InputForm.resources
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form1.resources
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.PreferencesForm.resources
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.ResultForm.resources
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csproj.GenerateResource.Cache
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.manifest
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.application
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.pdb
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\MagicLibrary.DLL
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\bin\Debug\ZedGraph.dll
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe.manifest
+C:\Users\Admin\Desktop\Maschinenbelegungsplan_neu\Projekt\02 Maschinenbelegungsplanung 5.0\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.application
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.config
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe.manifest
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.application
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.exe
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\bin\Debug\Maschinenbelegungsplanung.pdb
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\bin\Debug\MagicLibrary.DLL
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\bin\Debug\ZedGraph.dll
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csprojResolveAssemblyReference.cache
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.AboutForm.resources
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form2.resources
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Forms.Graphics1.resources
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.InputForm.resources
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.Form1.resources
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.PreferencesForm.resources
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.ResultForm.resources
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.csproj.GenerateResource.Cache
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe.manifest
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.application
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.exe
+E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Maschinenbelegungsplanung 5.2\03 Source Code\source\obj\Debug\Maschinenbelegungsplanung.pdb

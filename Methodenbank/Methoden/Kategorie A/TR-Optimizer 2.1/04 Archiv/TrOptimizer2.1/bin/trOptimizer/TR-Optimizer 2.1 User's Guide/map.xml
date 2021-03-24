@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 2.0//EN"
+                     "http://java.sun.com/products/javahelp/map_2_0.dtd">
+
+<map version="1.0">
+	<mapID target="(7) Installationshinweise" url="(7) Installationshinweise.html"/>
+	<mapID target="Allgemeine Projekterfahrungen" url="(8) Projektaufwand und Erfahrungen/(8.1) Allgemeine Projekterfahrungen.html"/>
+	<mapID target="Anforderungs-Analyse" url="(4) Planung der Verbesserungsmaßnahmen/(4.1) Anforderungs-Analyse.html"/>
+	<mapID target="Aufgabenstellung" url="(3) LP-Ansatz/(3.1) Aufgabenstellung.html"/>
+	<mapID target="Aufstellen des Transportmodells" url="(3) LP-Ansatz/(3.2) Lösung/(3.2.1) Aufstellen des Transportmodells.html"/>
+	<mapID target="Ausblick" url="(9) Ausblick.html"/>
+	<mapID target="Benutzerschnittstellen" url="(2) Die bisherige Version/(2.2) Benutzerschnittstellen.html"/>
+	<mapID target="Benutzerschnittstellen1" url="(6) Resultat/(6.3) Benutzerschnittstellen.html"/>
+	<mapID target="Bestimmen der Zielfunktion" url="(3) LP-Ansatz/(3.2) Lösung/(3.2.3) Bestimmen der Zielfunktion.html"/>
+	<mapID target="Einfügen der Restriktionen zur Bestimmung des Transporters" url="(3) LP-Ansatz/(3.2) Lösung/(3.2.2) Einfügen der Restriktionen zur Bestimmung des Transporters.html"/>
+	<mapID target="Einleitung" url="(1) Einleitung.html"/>
+	<mapID target="FrontPage" url="FrontPage.html"/>
+	<mapID target="Geänderte Klassen" url="(6) Resultat/(6.1) Geänderte Klassen.html"/>
+	<mapID target="Ist-Analyse" url="(2) Die bisherige Version/(2.1) Ist-Analyse.html"/>
+	<mapID target="Nachteile" url="(2) Die bisherige Version/(2.3) Nachteile.html"/>
+	<mapID target="Neue Features" url="(6) Resultat/(6.2) Neue Features.html"/>
+	<mapID target="Projektaufwand" url="(8) Projektaufwand und Erfahrungen/(8.2) Projektaufwand.html"/>
+	<mapID target="Projektverlauf" url="(5) Projektverlauf.html"/>
+	<mapID target="Projektziel" url="(4) Planung der Verbesserungsmaßnahmen/(4.2) Projektziel.html"/>
+	<mapID target="Die bisherige Version" url="Die bisherige Version.html"/>
+</map>

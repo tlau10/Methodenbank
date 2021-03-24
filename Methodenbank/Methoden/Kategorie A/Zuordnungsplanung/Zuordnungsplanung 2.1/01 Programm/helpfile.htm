@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Programmbeschreibung zur Methode Zuordnungsplanung 2.0</title>
+
+  <!-- Bootstrap -->
+
+  <link rel="stylesheet" href="helpfile-Dateien/css/bootstrap.css">
+  <link rel="stylesheet" href="helpfile-Dateien/css/bootstrap.min.css">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+  crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  	<script src="helpfile-Dateien/js/bootstrap.min.js"></script>
+	<script href="helpfile-Dateien/js/bootstrap.js"></script>
+
+  <div class="firstContent col-md-1"></div>
+
+  <div class="firstContent col-md-10">
+
+    <div id="ueberblick" class="jumbotron firstJumb">
+      <h1>Bedienungsanleitung und Methodenbeschreibung</h1>
+      <div class="innerJumbotron">
+        <p>Methodenname: Zuordnungsplanung 2.0</p>
+        </br>
+
+        <p>Häufig stellt sich das Problem, wie das Personal am ressourcenschonensten zugeordnet werden soll.
+			Um dieses Problem zu lösen, bietet sich dieses Tool besonders gut an.
+		</p>
+        </br>
+
+        <p>Die in Java implementierte Software verwendet neben den Solvern LP und MOPS auch einen selbst entwickelten Enumerationsalgorithmus,
+          um die optimale Lösung zu jedem Zuordnungsproblem zu finden. Die Lösungszeiten werden bei der Lösung immer mit
+          ausgegeben. So kann auch die Performance der unterschiedlichen Solver bzw. Algorithmen ermittelt werden. Außerdem
+          ist das Programm so gestaltet, dass auch beliebige andere Zuordnungsprobleme tabellarisch beschrieben und gelöst
+          werden können.</p>
+        </br>
+		
+		<p>Das Tool wurde einfach gehalten, um dem Nutzer eine intuitive Anwendung zu bieten.
+		Dennoch sind alle wichtigen Funktionen, die man für eine effiziente Zuordnung benötigt, vorhanden.
+		</p>
+        </br>
+
+        <p>Die Beispieldaten beinhalten verschiedene Personendaten, die zur Testung der Software zur Verfügung stehen.
+		Dabei kann der erste Einblick in die Methode erhalten werden. 
+		Die folgenden Beispiele sind jeweils als CSV-Dateien downloadbar. 
+		</p>
+		
+		
+      </div>
+      <!--  ENDE   <div class="innerJumbotron"> -->
+    </div>
+ <hr class="ueberschrift_hr" class="featurette-divider">
+    <div class="dropdown-leiste">
+      <!-- Single button -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Oberfläche <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#hauptmenue">Hauptmenüleiste</a></li>
+          <li><a href="#symbolleiste">Symbolleiste</a></li>
+          <li><a href="#matrix">Eingabematrix</a></li>
+          <li><a href="#status">Statusleiste</a></li>
+        </ul>
+      </div>
+
+      <!-- Single button -->
+      <div class="btn-group btnBeispiel">
+        <button type="button" class="btn btn-info dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Beispiele <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#beispiel_eins">Neuverteilung von Stellen</a></li>
+          <li><a href="#beispiel_zwei">Besetzung von Stellen mit neuen Bewerbern</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--Ende class="dropdown leiste"-->
+
+     
+     
+     
+     
+      <hr class="ueberschrift_hr" class="featurette-divider">
+
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Oberfläche <!--<span class="text-muted">It'll blow your mind.</span>--></h2>
+        <p class="lead">Die Programmoberfläche ist in vier Bereiche aufgeteilt.</p>
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+          <div class="btn-group" role="group">
+            <a href="#hauptmenue"><button type="button" class="btn btn-default">Hauptmenüleiste</button></a>
+          </div>
+          <div class="btn-group" role="group">
+            <a href="#symbolleiste"><button type="button" class="btn btn-default">Symbolleiste</button></a>
+          </div>
+          <div class="btn-group" role="group">
+            <a href="#matrix"><button type="button" class="btn btn-default">Eingabematrix</button></a>
+          </div>
+          <div class="btn-group" role="group">
+            <a href="#status"><button type="button" class="btn btn-default">Statusleiste</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image002.jpg" alt="Oberfläche Zuordnungsplanung">
+      </div>
+    </div>
+
+    <hr class="trennung" class="featurette-divider">
+
+     <div id="hauptmenue" class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Hauptmenüleiste <span class="text-muted"></span></h2>
+        <p class="lead"></p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image004.jpg" alt="Hauptmenüleiste">
+      </div>
+    </div>
+    
+    <div id="hauptmenue_zwei" class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">1. Hauptmenüleiste <span class="text-muted">Datei</span></h2>
+        <p class="lead"> 
+          <ol>
+            <li>1 Neu</p><p>Es wird eine 3x3 Matrix für ein Zuordnungsproblem im Personalbereich angelegt.</p></li>
+            <li>2 Öffnen</p><p>Es kann eine vorhandene Datei vom Typ *.csv geöffnet werden. Besitzt diese kein gültiges *.csv Format, so wird eine Fehlermeldung ausgegeben.</p></li>
+            <li>3 Speichern</p><p>Das aktuelle Zuordungsproblem wird im *.csv Format gespeichert.</p></li>        
+            <li>4 Speichern unter...</p><p>Das aktuelle Zuordnungsproblem wird nach Selektion des entsprechenden Ordners im *.csv Format gespeichert.</p></li>   
+            <li>5 Beenden</p><p>Das Programm wird beendet, nachdem abgefragt wurde, ob das aktuelle Problem bereits bespeichert ist.</p></li>                         
+          </ol>
+        </p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image006.jpg" alt="Hauptmenüleiste Datei">
+      </div>
+    </div>
+
+
+     <div id="hauptmenue_drei" class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading">2. Hauptmenüleiste <span class="text-muted">Solver</span></h2>
+        <p class="lead">In diesem Menü kann der zu verwendender Solver gewählt werden. Nach der Auswahl wird dies durch ein Häkchen im Menu sowie durch eine Meldung in der Statuszeile bestätigt.</p>
+        <ol>
+            <li>1 Solver LP-Solve</p><p>Zur Lösung des Zuordnungsproblems wird nach Selektion dieser Dialogoption der Solver LP-Solve verwendet. </p></li>
+            <li>2 Solver MOPS</p><p>Zur Lösung des Zuordnungsproblems wird nach Selektion dieser Dialogoption der Solver MOPS verwendet. </p></li>
+            <li>3 Solver Enumeration</p><p>Zur Lösung des Zuordnungsproblems wird nach Selektion dieser Dialogoption der von den Autoren der Software entwickelte Enumerationsalgorithmus verwendet.</p></li>                               
+          </ol>
+      </div>
+      <div class="col-md-5 col-md-pull-7">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image008.jpg" alt="Hauptmenüleiste Solver">
+      </div>
+    </div>
+
+       <div id="hauptmenue_vier" class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">3. Hauptmenüleiste <span class="text-muted">?</span></h2>
+        <p class="lead"> 
+          <ol>
+            <li>1 Hilfe</p><p>Das Hilfe-Fenster wird geöffnet.</p></li>
+            <li>2 Info</p><p>Ein Fenster mit Hinweisen zu der Programmversion und den Autoren wird geöffnet.</p></li>
+            <img src="helpfile-Dateien/image012.jpg" alt="Hauptmenüleiste Fragezeichenfunktion Info">                    
+          </ol>
+        </p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image006.jpg" alt="Hauptmenüleiste Datei">
+      </div>
+    </div>
+
+
+    <hr class="trennung" class="featurette-divider">
+
+    <div id="symbolleiste" class="row featurette">
+      <div class="col-md-5">
+        <h2 class="featurette-heading">Symbolleiste <span class="text-muted"></span></h2>
+        <p class="lead"></p>
+      </div>
+      <div class="col-md-7">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image014.jpg" alt="Symbolleiste">
+      </div>
+    </div>
+
+
+    
+    <div id="symbolleiste_zwei" class="row featurette">
+      <div class="col-md-8">
+        <h2 class="featurette-heading">Symbolleiste <span class="text-muted">Icons</span></h2>
+        <p class="lead">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Button</th>
+                <th>Button-Typ</th>
+                <th>Icon</th>
+                <th>Beschreibung</th>
+              </tr>
+             </thead> 
+             <tbody>
+               <tr>
+                <th scope="row">1</th><td>Neu</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image016.jpg"></td>
+                 <td><p>Es wird eine 3*3 Matrix für ein Zuordnungsproblem im Personalbereich angelegt.</p></td>
+               </tr>
+                <tr>
+                <th scope="row">2</th><td>Öffnen</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image018.jpg"></td>
+                 <td><p>Es kann eine vorhandene Datei vom Typ *.csv geöffnet werden. Besitzt diese kein gültiges *.csv Format, so wird eine Fehlermeldung ausgegeben.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">3</th><td>Speichern</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image020.jpg"></td>
+                 <td><p>Das aktuelle Zuordungsproblem wird im *.csv Format gespeichert.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">4</th><td>Solver LP wählen</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image022.jpg"></td>
+                 <td><p>Zur Lösung des Zuordnungsproblems wird nach Selektion dieser Dialogoption der LP Solver verwendet.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">5</th><td>Solver MOPS wählen</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image024.jpg"></td>
+                 <td><p>Zur Lösung des Zuordnungsproblems wird nach Selektion dieser Dialogoption der MOPS Solver verwendet.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">6</th><td>Solver Enumeration wählen</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image026.jpg"></td>
+                 <td><p>Zur Lösung des Zuordnungsproblems wird nach Selektion dieser Dialogoption der von den Autoren der Software entwickelte Enumerationsalgorithmus verwendet.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">7</th><td>Zeile anhängen</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image028.jpg"></td>
+                 <td><p>Der Matrix wird eine Zeile hinzugefügt. </p></td>
+               </tr>
+                 <tr>
+                <th scope="row">8</th><td>Letzte Zeile löschen</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image030.jpg"></td>
+                 <td><p>Die letzte Zeile der Matrix wird gelöscht.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">9</th><td> Spalte anhängen</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image032.jpg"></td>
+                 <td><p>Der Matrix wird eine Zeile hinzugefügt.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">10</th><td>Letzte Spalte löschen</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image034.jpg"></td>
+                 <td><p>Die letzte Zeile der Matrix wird gelöscht.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">11</th><td>Zeilen</td>
+                <td>Selektionsbox</td>
+                <td><img src="helpfile-Dateien/image036.jpg"></td>
+                 <td><p>Die Anzahl der Zeilen der Zuordnungsmatrix kann hier festgelegt werden.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">12</th><td>Spalten</td>
+                 <td>Selektionsbox</td>
+                <td><img src="helpfile-Dateien/image038.jpg"></td>
+                 <td><p>Die Anzahl der Spalten der Zuordnungsmatrix kann hier festgelegt werden.</p></td>
+               </tr>
+                 <tr>
+                <th scope="row">13</th><td>Minimieren/Maximieren</td>
+                 <td>Checkboxen</td>
+                <td><img src="helpfile-Dateien/image040.jpg"></td>
+                 <td><p>Hier kann festgelegt werden, ob maximiert oder minimiert werden soll.</p></td>
+               </tr>
+                <tr>
+                <th scope="row">14</th><td>Solver starten</td>
+                <td>Button</td>
+                <td><img src="helpfile-Dateien/image042.jpg"></td>
+                 <td><p>Hier wird der Solver gestartet, um eine Berechnung durchzuführen.</p></td>
+               </tr>
+             </tbody>  
+          </table>
+        </p>
+      </div>
+      <div id="button_pTag" class="col-md-4">
+         <div class="alert alert-info" role="alert">
+           <h4>Hinweis!</h4>
+           <p>Die Buttons 1. bis 6. entsprechen der Funktionalität der Dialogoptionen in der Hauptmenüleiste.</p></br>
+           <p>Die Buttons 7. bis 14. bzw. die beiden Selektionsboxen dienen zur Anpassung der Größe der Matrix des Zuordnungsproblems.</p>    
+        </div>
+      </div>
+    </div>
+
+    <hr class="trennung" class="featurette-divider">
+
+    <div id="matrix" class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Eingabematrix<span class="text-muted"></span></h2>
+        <p class="lead">Für das Lesen eines Problems muss zuerst eine Matrix editiert werden.
+           Für die Übernahme der editierten Werte in den einzelnen Feldern muss ein anderes Feld der Matrix angeklickt bzw. editiert werden. 
+          Erst dann kann ein Solver für die Lösung ausgewählt werden.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image043.gif" alt="Beispiel einer Eingabematrix">
+      </div>
+    </div>
+
+  
+
+    <div id="eingabematrix_zwei" class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading">Eingabematrix <span class="text-muted">Falsche Solverwahl</span></h2>
+        <p>Falls versucht wird, das Zuordnungsproblem ohne die Anwahl eines Solvers zu lösen, wird auf darauf hingewiesen einen Solver zu selektieren.</p>
+      </div>
+      <div class="col-md-5 col-md-pull-7">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image045.jpg" alt="Warnung falsche Solverauswahl">
+      </div>
+    </div>
+
+    
+
+    <div id="eingabematrix_drei" class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Eingabematrix <span class="text-muted">Eingabefenster</span></h2>
+        <p>Nachdem ein Solver (Symbolleiste bzw. Hauptmenüleiste) ausgewählt und die Art der der Optimierung (Minimierung / Maximierung -> Checkbox) 
+          ausgewählt wurde, kann der Solver über den Button 15 gestartet werden. Falls die Matrix nicht voll belegt ist, 
+          wird sie über einen Assistenten vervollständigt.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image047.jpg" alt="Eingabefenster für die Eingabematrix">
+      </div>
+    </div>
+
+
+    <div id="eingabematrix_zwei" class="row featurette">
+      <div class="col-md-7 col-md-push-5">
+        <h2 class="featurette-heading">Eingabematrix <span class="text-muted">Lösung</span></h2>
+        <p>Die Lösung wird in einem neuen Fenster ausgegeben. Neben der Lösung werden hier auch die Lösungszeit und der verwendete Solver angegeben.</p>
+      </div>
+      <div class="col-md-5 col-md-pull-7">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image049.jpg" alt="Lösungsausgabe">
+      </div>
+    </div>
+    
+    <div id="eingabematrix_drei" class="row featurette">
+      <div class="col-md-7">
+        <div class="alert alert-warning" role="alert">
+          <h4>Hinweis!</h4>
+          <p>Für das Editieren der Matrix existiert ein Zwischenpuffer. </br> Falls die Matrix also versehentlich verkleinert bzw. Zeilen oder Spalten gelöscht wurden, 
+            werden diese zwischengespeichert und werden bei Vergrößerung der Matrix wieder in die entsprechenden Felder geschrieben. </p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="" alt="">
+      </div>
+    </div>
+
+    <hr class="trennung" class="featurette-divider">
+
+    <div id="status" class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Statusleiste<span class="text-muted"></span></h2>
+        <p class="lead">Am unteren Rand der Programmoberfläche befindet sich die Statusleiste.</p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image051.jpg" alt="Statusleiste auf der Oberfläche"></br>
+        <img class="featurette-image img-responsive center-block" src="helpfile-Dateien/image053.jpg" alt="Statusleiste auf der Oberfläche (vergrößert)">
+      </div>
+    </div>
+
+    <!--Beispiele-->
+      <hr class="ueberschrift_hr" class="featurette-divider">
+        <h1>Beispiele</h1>
+      <hr class="ueberschrift_hr" class="featurette-divider">
+      
+      
+       <div id="beispiel_eins" class="row featurette">
+       <div class="col-md-7">
+          <h2 class="featurette-heading">Beispiel 1 <span class="text-muted">Neuverteilung von Stellen</span></h2>
+          <p id="abstand">Ein Unternehmer einer kleinen regionalen Unternehmensberatung beschäftigt derzeit sechs Sachbearbeiter, 
+            denen jeweils ein bestimmtes Resort zugeteilt ist: </p>
+        
+          <table id="tabelle_eins" class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Person</th>
+                <th>Abteilung</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                <td>Herr Frommburger</td>
+                <td>Marketing</td>
+               </tr>
+                <tr>
+                <td>Frau Weiß</td>
+                <td>Vertrieb</td>
+               </tr>
+                <tr>
+                <td>Frau Primavera</td>
+                <td>Personalabteilung</td>
+               </tr>
+                <tr>
+                <td>Herr Brüsel</td>
+                <td>Produktion</td>
+               </tr>
+                <tr>
+                <td>Herr Bauer</td>
+                <td>Finanzierung</td>
+               </tr>
+                <tr>
+                <td>Frau Arbor</td>
+                <td>Vertragswesen</td>
+               </tr>
+            </tbody>     
+          </table>
+          <p>Der Unternehmer will wissen ob sich im Rahmen einer Neuverteilung die Gesamtqualifikation verbessern würde.
+             Es soll nun herausgefunden werden, wie die Mitarbeiter, gemessen an ihrer Qualifikation,
+              am besten auf die Stellen verteilt werden. Jeder Mitarbeiter soll genau einer Stelle zugeordnet werden.</p>          
+        </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="" alt="">
+      </div>
+    </div>
+
+     <p id="abstand">Aus den Personalunterlagen stehen folgende Qualifikationdaten gemessen in Qualifikationspunkten zur Verfügung. </p>
+        
+          <table id="tabelle_zwei" class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Person/Referat</th>
+                <th>Marketing</th>
+                <th>Vertrieb</th>
+                <th>Personalwesen</th>
+                <th>Produktion</th>
+                <th>Finanzierung</th>
+                <th>Vertragswesen</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                 <th scope="row">Herr Frommburger</th>
+                <td>16</td>
+                <td>23</td>
+                <td>5</td>
+                <td>14</td>
+                <td>5</td>
+                <td>11</td>
+               </tr>
+                <tr>
+                  <th scope="row">Frau Weiß</th>
+                <td>6</td>
+                <td>17</td>
+                <td>16</td>
+                <td>32</td>
+                <td>14</td>
+                <td>19</td>
+               </tr>
+                <tr>
+                <th scope="row">Frau Primavera</th>
+                <td>7</td>
+                <td>16</td>
+                <td>19</td>
+                <td>15</td>
+                <td>7</td>
+                <td>21</td>
+               </tr>
+                <tr>
+                <th scope="row">Herr Brüsel</th>
+                <td>7</td>
+                <td>21</td>
+                <td>19</td>
+                <td>12</td>
+                <td>24</td>
+                <td>5</td>
+               </tr>
+                <tr>
+                <th scope="row">Herr Bauer</th>
+                <td>20</td>
+                <td>5</td>
+                <td>10</td>
+                <td>21</td>
+                <td>11</td>
+                <td>15</td>
+               </tr>
+                <tr>
+                <th scope="row">Frau Arbor</th>
+                <td>4</td>
+                <td>8</td>
+                <td>22</td>
+                <td>13</td>
+                <td>12</td>
+                <td>10</td>
+               </tr>
+            </tbody>     
+          </table>
+          <p>Diese Qualifikationstabelle kann so in die Zuordnungsplanung übernommen werden und dann durch einen der Solver bzw. Enumerationsalgorithmus gelöst werden.</p><br>
+            <p>Download als <a href="helpfile-Dateien/Beispiel%201.csv" target="_blank">CSV-Datei</a>, mit der Zuordnungsplanung zu öffnen.</p>
+      <div class="col-md-5">
+       
+      </div>
+      <img class="featurette-image img-responsive center-block" src="" alt="">
+    <hr class="ueberschrift_hr" class="featurette-divider">
+      
+      
+       <div id="beispiel_zwei" class="row featurette">
+       <div class="col-md-8">
+          <h2 class="featurette-heading">Beispiel 2 <span class="text-muted">Besetzung von Stellen mit neuen Bewerbern</span></h2>
+          <p id="abstand">Die Produktionsabteilung eines Unternehmens soll vergrößert werden. 
+            Es gibt zwei neue Stellen auf die sich 5 Personen beworben haben. 
+            Es soll nun herausgefunden werden welche Person am besten geeignet für welche Stelle geeignet ist. 
+            Auf eine Stelle kann immer nur ein Bewerber eingestellt werden.</p></br>
+            
+            <p>Folgende Qualifikationstabelle steht zur Verfügung:</p>
+        
+           <table id="tabelle_zwei" class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Person/Referat</th>
+                <th>Schlosser</th>
+                <th>Fräser</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                 <th scope="row">Maier</th>
+                <td>16</td>
+                <td>15</td>  
+               </tr>
+                <tr>
+                  <th scope="row">Mueller</th>
+                <td>6</td>
+                <td>17</td>
+               </tr>
+                <tr>
+                <th scope="row">Schmid</th>
+                <td>7</td>
+                <td>16</td>
+               </tr>
+                <tr>
+                <th scope="row">Weber</th>
+                <td>7</td>
+                <td>21</td>
+               </tr>
+                <tr>
+                <th scope="row">Luedtke</th>
+                <td>17</td>
+                <td>23</td>
+               </tr>
+            </tbody>     
+          </table>
+          <p>Diese Qualifikationstabelle kann so in die Zuordnungsplanung 
+            übernommen werden und dann durch einen der Solver bzw. Enumerationsalgorithmus gelöst werden.</p></br>
+        <p>Download als <a href="helpfile-Dateien/Beispiel%202.csv" target="_blank">CSV-Datei</a>, mit der Zuordnungsplanung zu öffnen.</p>
+            </div> 
+           </div>
+        <div class="col-md-4">
+        <img class="featurette-image img-responsive center-block" src="" alt="">
+      </div>                           
+    <!-- /END THE FEATURETTES -->
+
+
+    <!-- FOOTER -->
+    <footer id="footer">
+      <p class="pull-right"><a href="#ueberblick">Back to top</a></p>
+      <p>&copy; 2015 &middot; Zarife Altikulac, Melissa Ries &middot; <a href="http://www.htwg-konstanz.de/">HTWG-Konstanz</a> &middot; Operations Research &middot; Zuordnungsplanung Version 2.0 </p>
+    </footer>
+ </div>
+  </div>
+  <!-- /.container -->
+  <div class="firstContent col-md-1"></div>
+
+
+  </div>
+</body>
+
+</html>

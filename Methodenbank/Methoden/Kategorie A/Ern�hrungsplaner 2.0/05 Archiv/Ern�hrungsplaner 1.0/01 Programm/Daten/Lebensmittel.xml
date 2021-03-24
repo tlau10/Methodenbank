@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+<Lebensmittel>
+ <Gruppe>Milchprodukte</Gruppe>
+ <GruppenID>0</GruppenID>
+ <Name>Milch(3,5%)</Name>
+ <Menge>200</Menge>
+ <Kalorien>132</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Milchprodukte</Gruppe>
+ <GruppenID>0</GruppenID>
+ <Name>Milch(1,5%)</Name>
+ <Menge>200</Menge>
+ <Kalorien>98</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Cerealien</Gruppe>
+ <GruppenID>1</GruppenID>
+ <Name>Haferflocken</Name>
+ <Menge>60</Menge>
+ <Kalorien>230</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Cerealien</Gruppe>
+ <GruppenID>1</GruppenID>
+ <Name>Cornflakes</Name>
+ <Menge>80</Menge>
+ <Kalorien>295</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Backware_fruehstueck</Gruppe>
+ <GruppenID>2</GruppenID>
+ <Name>Butterhoernchen</Name>
+ <Menge>45</Menge>
+ <Kalorien>185</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Backware_fruehstueck</Gruppe>
+ <GruppenID>2</GruppenID>
+ <Name>Butterbrezel</Name>
+ <Menge>50</Menge>
+ <Kalorien>180</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Getraenk_Fruehstueck</Gruppe>
+ <GruppenID>3</GruppenID>
+ <Name>Kaffee</Name>
+ <Menge>125</Menge>
+ <Kalorien>100</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Getraenk_Fruehstueck</Gruppe>
+ <GruppenID>3</GruppenID>
+ <Name>Kakao</Name>
+ <Menge>150</Menge>
+ <Kalorien>140</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Hauptgericht</Gruppe>
+ <GruppenID>4</GruppenID>
+ <Name>Rumpsteak</Name>
+ <Menge>150</Menge>
+ <Kalorien>430</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Hauptgericht</Gruppe>
+ <GruppenID>4</GruppenID>
+ <Name>Schweinebauch</Name>
+ <Menge>125</Menge>
+ <Kalorien>216</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Beilage</Gruppe>
+ <GruppenID>5</GruppenID>
+ <Name>Maccaroni</Name>
+ <Menge>100</Menge>
+ <Kalorien>359</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Beilage</Gruppe>
+ <GruppenID>5</GruppenID>
+ <Name>Bratkartoffeln</Name>
+ <Menge>150</Menge>
+ <Kalorien>294</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Beilage</Gruppe>
+ <GruppenID>5</GruppenID>
+ <Name>Pommes Frites</Name>
+ <Menge>150</Menge>
+ <Kalorien>435</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Dessert</Gruppe>
+ <GruppenID>6</GruppenID>
+ <Name>Eiscreme</Name>
+ <Menge>35</Menge>
+ <Kalorien>59</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Dessert</Gruppe>
+ <GruppenID>6</GruppenID>
+ <Name>Apfelkompott</Name>
+ <Menge>150</Menge>
+ <Kalorien>100</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Dessert</Gruppe>
+ <GruppenID>6</GruppenID>
+ <Name>Tiramisu</Name>
+ <Menge>150</Menge>
+ <Kalorien>420</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Getraenk_mittagessen</Gruppe>
+ <GruppenID>7</GruppenID>
+ <Name>Weissbier</Name>
+ <Menge>500</Menge>
+ <Kalorien>190</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Getraenk_mittagessen</Gruppe>
+ <GruppenID>7</GruppenID>
+ <Name>Apfelsaft</Name>
+ <Menge>200</Menge>
+ <Kalorien>95</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Brotbelag</Gruppe>
+ <GruppenID>8</GruppenID>
+ <Name>Emmentaler</Name>
+ <Menge>30</Menge>
+ <Kalorien>90</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Brotbelag</Gruppe>
+ <GruppenID>8</GruppenID>
+ <Name>Gaenseleberpastete</Name>
+ <Menge>25</Menge>
+ <Kalorien>80</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Backwaren_Abendessen</Gruppe>
+ <GruppenID>9</GruppenID>
+ <Name>Bauernbrot</Name>
+ <Menge>50</Menge>
+ <Kalorien>95</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Backwaren_Abendessen</Gruppe>
+ <GruppenID>9</GruppenID>
+ <Name>Roggenbrot</Name>
+ <Menge>45</Menge>
+ <Kalorien>100</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Getraenk_Abendessen</Gruppe>
+ <GruppenID>10</GruppenID>
+ <Name>Weinschorle</Name>
+ <Menge>125</Menge>
+ <Kalorien>45</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Getraenk_Abendessen</Gruppe>
+ <GruppenID>10</GruppenID>
+ <Name>Cola</Name>
+ <Menge>330</Menge>
+ <Kalorien>185</Kalorien>
+</Lebensmittel>
+<Lebensmittel>
+ <Gruppe>Getraenk_Abendessen</Gruppe>
+ <GruppenID>10</GruppenID>
+ <Name>Cola light</Name>
+ <Menge>330</Menge>
+ <Kalorien>1</Kalorien>
+</Lebensmittel>
+
+</list>

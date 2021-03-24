@@ -1,0 +1,17 @@
+package absf1;
+
+import javax.swing.table.*;
+import java.io.Serializable;
+
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unbekannt
+ * @version 1.0
+ */
+
+abstract class MyTableModel extends AbstractTableModel implements Serializable{
+    }

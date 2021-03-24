@@ -1,0 +1,1 @@
+defauldPeriode=60LPsolvePath=L:\Besf\solver\lp_solve\exec\lp_solve.exe

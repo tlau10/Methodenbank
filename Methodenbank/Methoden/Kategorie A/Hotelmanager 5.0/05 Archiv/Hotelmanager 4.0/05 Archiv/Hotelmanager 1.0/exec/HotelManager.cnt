@@ -1,0 +1,15 @@
+1 Der HotelManager allgemein
+2 Was ist der HotelManager ??=whatis@hotelmanager.hlp
+1 Funktionalität des HotelManager
+2 Das Hauptmenü und die Toolbar=menubar@hotelmanager.hlp
+2 Die Reservierungsübersicht=resuebersicht@hotelmanager.hlp
+2 Neue Reservierungsübersicht=neu@hotelmanager.hlp
+2 Eingabe neuer Reservierungen=reseingabe@hotelmanager.hlp
+2 Stornieren von Reservierungen=storno@hotelmanager.hlp
+2 Speichern von Reservierungen=speichern@hotelmanager.hlp
+2 Laden von Reservierungen=laden@hotelmanager.hlp
+2 Angabe von Kategorien=kategorien@hotelmanager.hlp
+2 Die Auswahl des Solvers=solver@hotelmanager.hlp
+2 Eingabe der Solver/Dateipfade=pfade@hotelmanager.hlp
+2 Grafische Darstellung der Auslastung=grafik@hotelmanager.hlp
+2 Die Onlinehilfe=hilfebutton@hotelmanager.hlp

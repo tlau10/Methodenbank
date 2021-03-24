@@ -1,0 +1,4 @@
+Value of objective function:              171
+x0_1                     0
+x2_0                     0
+x2_1                     1

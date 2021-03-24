@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<Bussimulation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\OR-Methoden\Eisenstadt\xmlFiles\xsd\busSimulation.xsd">
+  <Strassennetz>
+    <Haltestellen>
+      <Haltestelle id="1">
+        <Name>Haltestelle 1</Name>
+        <Kapazitaet>1</Kapazitaet>
+        <Point xValue="370" yValue="370" />
+      </Haltestelle>
+      <Haltestelle id="2">
+        <Name>Haltestelle 2</Name>
+        <Kapazitaet>1</Kapazitaet>
+        <Point xValue="500" yValue="292" />
+      </Haltestelle>
+      <Haltestelle id="3">
+        <Name>Haltestelle 3</Name>
+        <Kapazitaet>1</Kapazitaet>
+        <Point xValue="643" yValue="305" />
+      </Haltestelle>
+      <Haltestelle id="4">
+        <Name>Haltestelle 4</Name>
+        <Kapazitaet>1</Kapazitaet>
+        <Point xValue="786" yValue="344" />
+      </Haltestelle>
+    </Haltestellen>
+    <Planquadrate />
+    <Ziele>
+      <Ziel id="0">
+        <Name>Ziel [21, 14]</Name>
+        <Point xValue="279" yValue="188" />
+      </Ziel>
+      <Ziel id="1">
+        <Name>Ziel [31, 21]</Name>
+        <Point xValue="409" yValue="279" />
+      </Ziel>
+      <Ziel id="2">
+        <Name>Ziel [22, 32]</Name>
+        <Point xValue="292" yValue="422" />
+      </Ziel>
+      <Ziel id="3">
+        <Name>Ziel [40, 35]</Name>
+        <Point xValue="526" yValue="461" />
+      </Ziel>
+      <Ziel id="4">
+        <Name>Ziel [50, 32]</Name>
+        <Point xValue="656" yValue="422" />
+      </Ziel>
+      <Ziel id="5">
+        <Name>Ziel [48, 18]</Name>
+        <Point xValue="630" yValue="240" />
+      </Ziel>
+      <Ziel id="6">
+        <Name>Ziel [41, 15]</Name>
+        <Point xValue="539" yValue="201" />
+      </Ziel>
+      <Ziel id="7">
+        <Name>Ziel [42, 19]</Name>
+        <Point xValue="552" yValue="253" />
+      </Ziel>
+      <Ziel id="8">
+        <Name>Ziel [55, 24]</Name>
+        <Point xValue="721" yValue="318" />
+      </Ziel>
+    </Ziele>
+  </Strassennetz>
+  <SimuKonfiguration>
+    <AktuelleAufloesung resWidth="1024" resHeight="768" />
+    <GroessePlanquadrat>13</GroessePlanquadrat>
+    <EinstellungenFrame width="330" height="400" />
+    <GroesseFeldelement>65.0</GroesseFeldelement>
+    <BusGeschwindigkeit>40.0</BusGeschwindigkeit>
+    <GehGeschwindigkeit>6.0</GehGeschwindigkeit>
+  </SimuKonfiguration>
+  <SimuPanel>
+    <GroesseEditor>640</GroesseEditor>
+    <GroesseFelder>13</GroesseFelder>
+    <AnzahlFelder>49</AnzahlFelder>
+    <BackgroundImage url="/D:/OR-Methoden/Eisenstadt/bin/Eisenstadt.jpg" width="840" height="840" />
+    <Haltestellen>
+      <Haltestelle id="1" />
+      <Haltestelle id="2" />
+      <Haltestelle id="3" />
+      <Haltestelle id="4" />
+    </Haltestellen>
+    <BusPanels />
+    <BenoetigteBusse />
+  </SimuPanel>
+  <VirtualGrid>-- gets Data from SimuKonfiguration --</VirtualGrid>
+</Bussimulation>
+
