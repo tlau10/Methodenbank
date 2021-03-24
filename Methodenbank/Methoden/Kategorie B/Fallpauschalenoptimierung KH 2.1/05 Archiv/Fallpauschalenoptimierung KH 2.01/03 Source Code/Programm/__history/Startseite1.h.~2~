@@ -1,0 +1,76 @@
+//----------------------------------------------------------------------------------------//
+// Startseite des Programms                                                               //
+// hier befindet sich das Menü (Datei und Hilfe)                                          //
+// Datei öffnet neue Seite und beendet Anwendung                                          //
+// Hilfe enthält Hilfefunktion (Bug! Hilfe öffnet sich hinter dem Hauptfenster) und About //
+//----------------------------------------------------------------------------------------//
+
+
+#ifndef Startseite1H
+#define Startseite1H
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <Menus.hpp>
+#include <ExtCtrls.hpp>
+#include <ComCtrls.hpp>
+#include <Dialogs.hpp>
+#include <ImgList.hpp>
+#include <ToolWin.hpp>
+
+
+//---------------------------------------------------------------------------
+class TF : public TForm
+{
+__published:	// IDE-managed Components
+        TMainMenu *MainMenu1;
+        TMenuItem *Datei1;
+        TMenuItem *MenueNeu;
+        TMenuItem *Beenden1;
+        TMenuItem *N1;
+        TMenuItem *Hilfe1;
+        TMenuItem *Inhalt1;
+        TMenuItem *N3;
+        TMenuItem *ber1;
+	TMenuItem *N2;
+	TMenuItem *MenueOeffnen;
+	TMenuItem *MenueSpeichern;
+	TMenuItem *MenueSpeichernUnter;
+	TOpenDialog *OpenDialog1;
+	TSaveDialog *SaveDialog1;
+	TImageList *ImageList1;
+	TToolBar *MainToolBar;
+	TToolButton *NewToolButton;
+	TToolButton *OpenToolButton;
+	TToolButton *SaveToolButton;
+	TToolButton *ToolButton3;
+	TToolButton *ResetToolButton;
+	TToolButton *CalculateToolButton;
+	TToolButton *ToolButton7;
+	TStatusBar *StatusBar;
+        void __fastcall Beenden1Click(TObject *Sender);
+        void __fastcall MenueNeuClick(TObject *Sender);
+        void __fastcall ber1Click(TObject *Sender);
+        void __fastcall Inhalt1Click(TObject *Sender);
+	void __fastcall MenueSpeichernClick(TObject *Sender);
+	void __fastcall MenueSpeichernUnterClick(TObject *Sender);
+	void __fastcall MenueOeffnenClick(TObject *Sender);
+	void __fastcall CalculateToolButtonClick(TObject *Sender);
+	void __fastcall ResetToolButtonClick(TObject *Sender);
+	void __fastcall OpenToolButtonClick(TObject *Sender);
+	void __fastcall SaveToolButtonClick(TObject *Sender);
+private:	// User declarations
+	bool speichernUnter();
+	bool oeffnen();
+public:		// User declarations
+	  __fastcall TF(TComponent* Owner);
+	  char *solverPath;
+	  char *workSpacePath;
+	  //TFormEingabe1 *ActiveEingabeForm;
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TF *F;
+//---------------------------------------------------------------------------
+#endif

@@ -1,0 +1,295 @@
+<html>
+<body>
+<pre>
+<h1>Erstellungsprotokoll</h1>
+<h3>
+--------------------Konfiguration: Transop - Win32 Release--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Creating command line "rc.exe /l 0x407 /fo"Release/Transop.res" /d "NDEBUG" "D:\Studium\WI8\OR2\Transportoptimierung\Transop\Transop.rc"" 
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPD361.TMP" mit Inhalten
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/Transop.pch" /Yu"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ChildFrm.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\LinearFunction.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ListCtrlEx.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\LPInputFile.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\LPModel.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\LPOutputFile.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\MainFrm.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Node.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\PathPropertiesDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProducerDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProducerList.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProgressDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ReceiverDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Restriction.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Stretch.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\StretchesDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TargetFunction.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Transop.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopDoc.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopModel.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopStretch.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Transporter.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransporterDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransportModel.cpp"
+]
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPD361.TMP" 
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPD362.TMP" mit Inhalten
+[
+/nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/Transop.pch" /Yc"stdafx.h" /Fo"Release/" /Fd"Release/" /FD /c 
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPD362.TMP" 
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPD363.TMP" mit Inhalten
+[
+/nologo /subsystem:windows /incremental:no /pdb:"Release/Transop.pdb" /machine:I386 /out:"Release/Transop.exe" 
+.\Release\ChildFrm.obj
+.\Release\LinearFunction.obj
+.\Release\ListCtrlEx.obj
+.\Release\LPInputFile.obj
+.\Release\LPModel.obj
+.\Release\LPOutputFile.obj
+.\Release\MainFrm.obj
+.\Release\Node.obj
+.\Release\PathPropertiesDlg.obj
+.\Release\ProducerDlg.obj
+.\Release\ProducerList.obj
+.\Release\ProgressDlg.obj
+.\Release\ReceiverDlg.obj
+.\Release\Restriction.obj
+.\Release\StdAfx.obj
+.\Release\Stretch.obj
+.\Release\StretchesDlg.obj
+.\Release\TargetFunction.obj
+.\Release\Transop.obj
+.\Release\TransopDoc.obj
+.\Release\TransopModel.obj
+.\Release\TransopStretch.obj
+.\Release\TransopView.obj
+.\Release\Transporter.obj
+.\Release\TransporterDlg.obj
+.\Release\TransportModel.obj
+.\Release\Transop.res
+]
+Erstellen der Befehlzeile "link.exe @C:\WINDOWS\TEMP\RSPD363.TMP"
+<h3>Ausgabefenster</h3>
+Ressourcen werden kompiliert...
+Kompilierung läuft...
+StdAfx.cpp
+Kompilierung läuft...
+ChildFrm.cpp
+LinearFunction.cpp
+ListCtrlEx.cpp
+LPInputFile.cpp
+LPModel.cpp
+LPOutputFile.cpp
+MainFrm.cpp
+Node.cpp
+PathPropertiesDlg.cpp
+ProducerDlg.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProducerDlg.cpp(224) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProducerDlg.cpp(225) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+ProducerList.cpp
+ProgressDlg.cpp
+ReceiverDlg.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\ReceiverDlg.cpp(262) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\ReceiverDlg.cpp(263) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+Restriction.cpp
+Stretch.cpp
+StretchesDlg.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\StretchesDlg.cpp(255) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\StretchesDlg.cpp(256) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\StretchesDlg.cpp(257) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+TargetFunction.cpp
+Transop.cpp
+TransopDoc.cpp
+TransopModel.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopModel.cpp(151) : warning C4244: '=' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopModel.cpp(170) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+Generieren von Code...
+Kompilieren...
+TransopStretch.cpp
+TransopView.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(112) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(113) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(122) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(123) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(132) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(133) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(134) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+Transporter.cpp
+TransporterDlg.cpp
+TransportModel.cpp
+Generieren von Code...
+Linker-Vorgang läuft...
+
+
+
+<h3>Ergebnisse</h3>
+Transop.exe - 0 Fehler, 16 Warnung(en)
+<h3>
+--------------------Konfiguration: Transop - Win32 Debug--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Creating command line "rc.exe /l 0x407 /fo"Debug/Transop.res" /d "_DEBUG" "D:\Studium\WI8\OR2\Transportoptimierung\Transop\Transop.rc"" 
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPE150.TMP" mit Inhalten
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Debug/" /Fp"Debug/Transop.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ChildFrm.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\LinearFunction.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ListCtrlEx.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\LPInputFile.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\LPModel.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\LPOutputFile.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\MainFrm.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Node.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\PathPropertiesDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProducerDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProducerList.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProgressDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\ReceiverDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Restriction.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Stretch.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\StretchesDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TargetFunction.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Transop.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopDoc.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopModel.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopStretch.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\Transporter.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransporterDlg.cpp"
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransportModel.cpp"
+]
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPE150.TMP" 
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPE151.TMP" mit Inhalten
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /FR"Debug/" /Fp"Debug/Transop.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\Studium\WI8\OR2\Transportoptimierung\Transop\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSPE151.TMP" 
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPE152.TMP" mit Inhalten
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/Transop.pdb" /debug /machine:I386 /out:"Debug/Transop.exe" /pdbtype:sept 
+.\Debug\ChildFrm.obj
+.\Debug\LinearFunction.obj
+.\Debug\ListCtrlEx.obj
+.\Debug\LPInputFile.obj
+.\Debug\LPModel.obj
+.\Debug\LPOutputFile.obj
+.\Debug\MainFrm.obj
+.\Debug\Node.obj
+.\Debug\PathPropertiesDlg.obj
+.\Debug\ProducerDlg.obj
+.\Debug\ProducerList.obj
+.\Debug\ProgressDlg.obj
+.\Debug\ReceiverDlg.obj
+.\Debug\Restriction.obj
+.\Debug\StdAfx.obj
+.\Debug\Stretch.obj
+.\Debug\StretchesDlg.obj
+.\Debug\TargetFunction.obj
+.\Debug\Transop.obj
+.\Debug\TransopDoc.obj
+.\Debug\TransopModel.obj
+.\Debug\TransopStretch.obj
+.\Debug\TransopView.obj
+.\Debug\Transporter.obj
+.\Debug\TransporterDlg.obj
+.\Debug\TransportModel.obj
+.\Debug\Transop.res
+]
+Erstellen der Befehlzeile "link.exe @C:\WINDOWS\TEMP\RSPE152.TMP"
+<h3>Ausgabefenster</h3>
+Ressourcen werden kompiliert...
+Kompilierung läuft...
+StdAfx.cpp
+Kompilierung läuft...
+ChildFrm.cpp
+LinearFunction.cpp
+ListCtrlEx.cpp
+LPInputFile.cpp
+LPModel.cpp
+LPOutputFile.cpp
+MainFrm.cpp
+Node.cpp
+PathPropertiesDlg.cpp
+ProducerDlg.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProducerDlg.cpp(224) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\ProducerDlg.cpp(225) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+ProducerList.cpp
+ProgressDlg.cpp
+ReceiverDlg.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\ReceiverDlg.cpp(262) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\ReceiverDlg.cpp(263) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+Restriction.cpp
+Stretch.cpp
+StretchesDlg.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\StretchesDlg.cpp(255) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\StretchesDlg.cpp(256) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\StretchesDlg.cpp(257) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+TargetFunction.cpp
+Transop.cpp
+TransopDoc.cpp
+TransopModel.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopModel.cpp(151) : warning C4244: '=' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopModel.cpp(170) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+Generieren von Code...
+Kompilieren...
+TransopStretch.cpp
+TransopView.cpp
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(112) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(113) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(122) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(123) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(132) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(133) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+D:\Studium\WI8\OR2\Transportoptimierung\Transop\TransopView.cpp(134) : warning C4244: 'argument' : Konvertierung von 'double' in 'int', moeglicher Datenverlust
+Transporter.cpp
+TransporterDlg.cpp
+TransportModel.cpp
+Generieren von Code...
+Linker-Vorgang läuft...
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPE2C0.TMP" mit Inhalten
+[
+/nologo /o"Debug/Transop.bsc" 
+.\Debug\StdAfx.sbr
+.\Debug\ChildFrm.sbr
+.\Debug\LinearFunction.sbr
+.\Debug\ListCtrlEx.sbr
+.\Debug\LPInputFile.sbr
+.\Debug\LPModel.sbr
+.\Debug\LPOutputFile.sbr
+.\Debug\MainFrm.sbr
+.\Debug\Node.sbr
+.\Debug\PathPropertiesDlg.sbr
+.\Debug\ProducerDlg.sbr
+.\Debug\ProducerList.sbr
+.\Debug\ProgressDlg.sbr
+.\Debug\ReceiverDlg.sbr
+.\Debug\Restriction.sbr
+.\Debug\Stretch.sbr
+.\Debug\StretchesDlg.sbr
+.\Debug\TargetFunction.sbr
+.\Debug\Transop.sbr
+.\Debug\TransopDoc.sbr
+.\Debug\TransopModel.sbr
+.\Debug\TransopStretch.sbr
+.\Debug\TransopView.sbr
+.\Debug\Transporter.sbr
+.\Debug\TransporterDlg.sbr
+.\Debug\TransportModel.sbr]
+Erstellen der Befehlzeile "bscmake.exe @C:\WINDOWS\TEMP\RSPE2C0.TMP"
+Browse-Informationsdatei wird erstellt...
+<h3>Ausgabefenster</h3>
+
+
+
+<h3>Ergebnisse</h3>
+Transop.exe - 0 Fehler, 16 Warnung(en)
+</pre>
+</body>
+</html>

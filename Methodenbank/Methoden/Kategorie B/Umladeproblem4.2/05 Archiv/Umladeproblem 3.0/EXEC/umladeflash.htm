@@ -1,0 +1,76 @@
+<html>
+<head>
+  <title>Transport- und Umladeproblemen</title>
+</head>
+<body background="bg.gif" bgproperties="fixed">
+
+<center>
+<p><IMG SRC="umladeflash.jpg"></p>
+<h2>Methode zur Lösung von Transport- und Umladeproblemen</h2>
+</center>
+
+<p><font face="arial" size="-2"><b>Neuerstellung der Methode als Client / Server Anwendung (mit Flash-Technologie)</b></font>
+<p>
+<hr>
+<p>
+<h3>Problemstellung</h3>
+In der betrieblichen Systemforschung begegnet man immer wieder dem Transport- bzw.
+Umladeproblem. Hierbei geht es allgemein ausgedrückt um die effiziente Befriedigung von
+Nachfragern, die in erster Linie durch die Hilfe der Anbieter möglich ist, jedoch durch
+Restriktionen wie zum Beispiel Transport- oder Umladekosten genauer beschrieben. Für diese
+Art der Aufgabestellung erzielt das in dieser Ausarbeitung vorgestellte Programm die
+kostengünstigste Lösung.<p>
+
+<h3>Die Wahl der Technologie</h3>
+Die Wahl welche Technologie das Programm realisieren sollte war recht schnell getroffen. Die Restriktion der Aktualität, sowie die hohen grafischen Anforderungen schlossen viele gängige Programmierplattformen aus. Daher entschlossen wir uns Macromedia Flash in der Version MX 2004, als grafisches Frontend einzusetzen.
+Durch diese Entscheidung war klar, dass wir uns von einer gängigen Desktopanwendung zu einer Client / Server Anwendung bewegt hatten.
+Serverseitig entschieden wir uns zu einer auf Basis des .NET Frameworks unter C# entwickelten Web Application, als Schnittstelle zwischen dem grafischen Frontend und dem Solver.
+<p>
+<IMG SRC="cs_kommunikation.jpg">
+<p>
+Die Grafik zeigt die Interaktion der verschiedenen Komponenten. Im Folgenden möchten wir diese etwas weiter erläutern:
+Der Benutzer hat die Möglichkeit im Browser die in Flash entwickelte Oberfläche aufzurufen und seine Problemstellung abzubilden. Dazu mehr in Kapitel 3.2. Der Benutzer schließt seine Eingaben ab und werden anschließend in das LP - Modell übersetzt. Danach schickt der Client das LP-Modell über HTTP an die Web Applikation. Diese bereitet die Daten auf und bereitet den Solveraufruf vor. Nach dem der Solver die Lösung errechnet hat, wird diese von der Web Applikation wiederum aufbereitet und an die Flash-Oberfläche des Clients über HTTP zurück geschickt.
+Diese werden dort ausgewertet und in der Grafik entsprechend abgebildet.
+<p>
+<h3>Umgang mit der Oberfläche</h3>
+Wir werden in den folgenden Ausführungen auf den Umgang mit der Flash-Oberfläche eingehen und die Bedienung erklären.
+<p>
+<h4>Startbildschirm</h4>
+Nach dem Aufruf im Browser wird folgende Maske dargestellt:
+<p>
+<IMG SRC="umladeflash_start.jpg">
+<p>
+Jetzt hat der Benutzer die Möglichkeit durch Drag und Drop sich die entsprechende Anzahl an Knoten in das Planfeld hineinzuziehen. Der gewählte Knoten kann im Eigenschaftenfenster weiter charakterisiert werden. Er kann als Urspungs- oder Bestimmungsknoten definiert werden, und die jeweilige anzubietende oder nachzufragende Menge gesetzt. Des Weiteren kann jeder Knoten als möglicher Umladeknoten funktionieren und ggfs. Umladekosten hinterlegen. Alle gesetzten Eigenschaften werden außerdem in jedem Knoten grafisch veranschaulicht.
+<p>
+<h4>Hinzufügen von Verbindungen</h4>
+<p>
+Der nächste Screenshot zeigt den Benutzer beim Hinzufügen von Verbindungen.
+<p>
+<IMG SRC="umladeflash_verbindung.jpg">
+<p>
+Bei jedem hinzugefügten Knoten kann der Benutzer über das Kontextmenü eine neue Verbindung starten. Der Startknoten ist der für das Kontextmenü ausgewählte Knoten.
+Die Verbindung wird gezogen sobald auf ein weiteren Knoten mit der Maus geklickt wird.
+<p>
+<h4>Setzen der Eigenschaften</h4>
+<p>
+<IMG SRC="umladeflash_settings.jpg">
+<IMG SRC="umladeflash_settings2.jpg">
+<p>
+<h4>Anzeigen des Ergebnisses</h4>
+Nachdem der Benutzer den "Berechnen" - Knopf gedrückt hat wird der Lösungsprozess gestartet. Dies kann je nach Netzwerkverbindung und Problemstellung bis zu 10 sek dauern.
+Die Lösung wird an den entsprechenden grafischen Elementen dargestellt:
+<p>
+Darstellung während einer Berechnung:<p>
+<IMG SRC="umladeflash_result.jpg">
+<p>
+Darstellung des Ergebnisses:<p>
+<IMG SRC="umladeflash.jpg">
+<p>
+Die Lösungen werden durch die roten Zahlen an den verschiedenen grafischen Elementen
+ausgedrückt. Beispielsweise sollen von Knoten2 zu Knoten3 12 Elemente transportiert werden. Die entstandenen minimalen Kosten betragen 414 Einheiten!
+<p>
+<hr>
+<p><font size="-1">© 2004 - 2005 Fachhochschule Konstanz</font></p>
+
+</body>
+</html>

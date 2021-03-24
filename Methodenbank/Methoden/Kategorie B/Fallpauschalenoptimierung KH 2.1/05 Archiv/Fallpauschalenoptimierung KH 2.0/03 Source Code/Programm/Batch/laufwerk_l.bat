@@ -1,0 +1,1 @@
+LP_SOLVE.exe<C:/TEMP/eingabe.lp>C:/TEMP/ausgabe.txt

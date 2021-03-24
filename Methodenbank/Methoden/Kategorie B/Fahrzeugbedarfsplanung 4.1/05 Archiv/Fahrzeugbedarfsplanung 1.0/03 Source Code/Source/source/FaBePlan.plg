@@ -1,0 +1,33 @@
+<html>
+<body>
+<pre>
+<h1>Erstellungsprotokoll</h1>
+<h3>
+--------------------Konfiguration: FaBePlan - Win32 Release--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Erstellen der temporären Datei  "C:\WINDOWS\TEMP\RSPC1E5.BAT" mit Inhalten
+[
+@echo off
+start /wait hcw /C /E /M "hlp\FaBePlan.hpj"
+if errorlevel 1 goto :Error
+if not exist "hlp\FaBePlan.hlp" goto :Error
+copy "hlp\FaBePlan.hlp" .\Release
+goto :done
+:Error
+echo hlp\FaBePlan.hpj(1) : error:
+type "hlp\FaBePlan.log"
+:done
+]
+Erstellen der Befehlzeile "C:\WINDOWS\TEMP\RSPC1E5.BAT"
+<h3>Ausgabefenster</h3>
+Hilfedatei wird erzeugt...
+        1 Datei(en) kopiert
+
+
+
+<h3>Ergebnisse</h3>
+FaBePlan.exe - 0 Fehler, 0 Warnung(en)
+</pre>
+</body>
+</html>

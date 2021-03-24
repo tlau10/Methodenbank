@@ -1,0 +1,10 @@
+OUT>of
+OUT>
+OUT>C:\Workspace\Mischung2004>echo Automatisch erzeugte Stapeldatei startet den XA-Solver 
+OUT>Automatisch erzeugte Stapeldatei startet den XA-Solver
+OUT>
+OUT>C:\Workspace\Mischung2004>cd C:\Workspace\Mischung2004\XA 
+OUT>
+OUT>C:\Workspace\Mischung2004\XA>XA.EXE xa.clp  1>xa_output.txt 
+OUT>
+OUT>C:\Workspace\Mischung2004\XA>exit

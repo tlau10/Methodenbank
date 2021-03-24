@@ -1,0 +1,894 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perltie</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perltie_name_0">
+NAME</A>
+</H1>
+perltie - how to hide an object class in a simple variable
+<p><p><hr>
+
+<H1> 
+<A NAME="perltie_synopsis_0">
+SYNOPSIS</A>
+</H1>
+
+<XMP>
+ tie VARIABLE, CLASSNAME, LIST
+ $object = tied VARIABLE
+ untie VARIABLE
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perltie_description_0">
+DESCRIPTION</A>
+</H1>
+Prior to release 5.0 of Perl, a programmer could use <EM>dbmopen()</EM>
+to magically connect an on-disk database in the standard Unix dbm(3x)
+format to a <STRONG>%HASH</STRONG> in their program.  However, their Perl was either
+built with one particular dbm library or another, but not both, and
+you couldn't extend this mechanism to other packages or types of variables.
+<p>Now you can.
+<p>The <EM>tie()</EM> function binds a variable to a class (package) that will provide
+the implementation for access methods for that variable.  Once this magic
+has been performed, accessing a tied variable automatically triggers
+method calls in the proper class.  All of the complexity of the class is
+hidden behind magic methods calls.  The method names are in ALL CAPS,
+which is a convention that Perl uses to indicate that they're called
+implicitly rather than explicitly--just like the <EM>BEGIN()</EM> and <EM>END()</EM>
+functions.
+<p>In the <EM>tie()</EM> call, <CODE>VARIABLE</CODE> is the name of the variable to be
+enchanted.  <CODE>CLASSNAME</CODE> is the name of a class implementing objects of
+the correct type.  Any additional arguments in the 
+<A HREF="perltie.html#perltie_list_0">LIST</A>
+ are passed to
+the appropriate constructor method for that class--meaning 
+<A HREF="perltie.html#perltie_tiescalar_0">TIESCALAR()</A>
+,
+
+<A HREF="perltie.html#perltie_tiearray_0">TIEARRAY()</A>
+, 
+<A HREF="perltie.html#perltie_tiehash_0">TIEHASH()</A>
+ or 
+<A HREF="perltie.html#perltie_tiehandle_0">TIEHANDLE()</A>
+.  (Typically these are arguments
+such as might be passed to the <EM>dbminit()</EM> function of C.) The object
+returned by the ``new'' method is also returned by the <EM>tie()</EM> function,
+which would be useful if you wanted to access other methods in
+<CODE>CLASSNAME</CODE>. (You don't actually have to return a reference to a right
+``type'' (e.g. HASH or <CODE>CLASSNAME</CODE>) so long as it's a properly blessed
+object.)  You can also retrieve a reference to the underlying object
+using the <EM>tied()</EM> function.
+<p>Unlike <EM>dbmopen()</EM>, the <EM>tie()</EM> function will not <CODE>use</CODE> or <CODE>require</CODE> a module
+for you--you need to do that explicitly yourself.
+<p>
+<H2> 
+<A NAME="perltie_tying_0">
+Tying Scalars</A>
+</H2>
+A class implementing a tied scalar should define the following methods:
+TIESCALAR, FETCH, STORE, and possibly DESTROY.
+<p>Let's look at each in turn, using as an example a tie class for
+scalars that allows the user to do something like:
+<p>
+<XMP>
+    tie $his_speed, 'Nice', getppid();
+    tie $my_speed,  'Nice', $$;
+
+</XMP>
+<p>And now whenever either of those variables is accessed, its current
+system priority is retrieved and returned.  If those variables are set,
+then the process's priority is changed!
+<p>We'll use Jarkko Hietaniemi <EM>&lt;<A HREF="MAILTO:Jarkko.Hietaniemi@hut.fi">Jarkko.Hietaniemi@hut.fi</A>&gt;</EM>'s
+BSD::Resource class (not included) to access the PRIO_PROCESS, PRIO_MIN,
+and PRIO_MAX constants from your system, as well as the <EM>getpriority()</EM> and
+<EM>setpriority()</EM> system calls.  Here's the preamble of the class.
+<p>
+<XMP>
+    package Nice;
+    use Carp;
+    use BSD::Resource;
+    use strict;
+    $Nice::DEBUG = 0 unless defined $Nice::DEBUG;
+
+</XMP>
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perltie_tiescalar_0">
+TIESCALAR classname, LIST</A>
+
+</STRONG>
+<DD>
+This is the constructor for the class.  That means it is
+expected to return a blessed reference to a new scalar
+(probably anonymous) that it's creating.  For example:
+<p>
+<XMP>
+    sub TIESCALAR {
+        my $class = shift;
+        my $pid = shift || $$; # 0 means me
+        if ($pid !~ /^\d+$/) {
+            carp "Nice::Tie::Scalar got non-numeric pid $pid" if $^W;
+            return undef;
+        }
+        unless (kill 0, $pid) { # EPERM or ERSCH, no doubt
+            carp "Nice::Tie::Scalar got bad pid $pid: $!" if $^W;
+            return undef;
+        }
+        return bless \$pid, $class;
+    }
+
+</XMP>
+<p>This tie class has chosen to return an error rather than raising an
+exception if its constructor should fail.  While this is how <EM>dbmopen()</EM> works,
+other classes may well not wish to be so forgiving.  It checks the global
+variable <CODE><STRONG>$^</STRONG>W</CODE> to see whether to emit a bit of noise anyway.
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_fetch_0">
+FETCH this</A>
+
+</STRONG>
+<DD>
+This method will be triggered every time the tied variable is accessed
+(read).  It takes no arguments beyond its self reference, which is the
+object representing the scalar we're dealing with.  Since in this case
+we're just using a SCALAR ref for the tied scalar object, a simple <STRONG>$$</STRONG>self
+allows the method to get at the real value stored there.  In our example
+below, that real value is the process ID to which we've tied our variable.
+<p>
+<XMP>
+    sub FETCH {
+        my $self = shift;
+        confess "wrong type" unless ref $self;
+        croak "usage error" if @_;
+        my $nicety;
+        local($!) = 0;
+        $nicety = getpriority(PRIO_PROCESS, $$self);
+        if ($!) { croak "getpriority failed: $!" }
+        return $nicety;
+    }
+
+</XMP>
+<p>This time we've decided to blow up (raise an exception) if the renice
+fails--there's no place for us to return an error otherwise, and it's
+probably the right thing to do.
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_store_0">
+STORE this, value</A>
+
+</STRONG>
+<DD>
+This method will be triggered every time the tied variable is set
+(assigned).  Beyond its self reference, it also expects one (and only one)
+argument--the new value the user is trying to assign.
+<p>
+<XMP>
+    sub STORE {
+        my $self = shift;
+        confess "wrong type" unless ref $self;
+        my $new_nicety = shift;
+        croak "usage error" if @_;
+        if ($new_nicety < PRIO_MIN) {
+            carp sprintf
+              "WARNING: priority %d less than minimum system priority %d",
+                  $new_nicety, PRIO_MIN if $^W;
+            $new_nicety = PRIO_MIN;
+        }
+        if ($new_nicety > PRIO_MAX) {
+            carp sprintf
+              "WARNING: priority %d greater than maximum system priority %d",
+                  $new_nicety, PRIO_MAX if $^W;
+            $new_nicety = PRIO_MAX;
+        }
+        unless (defined setpriority(PRIO_PROCESS, $$self, $new_nicety)) {
+            confess "setpriority failed: $!";
+        }
+        return $new_nicety;
+    }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_destroy_0">
+DESTROY this</A>
+
+</STRONG>
+<DD>
+This method will be triggered when the tied variable needs to be destructed.
+As with other object classes, such a method is seldom necessary, since Perl
+deallocates its moribund object's memory for you automatically--this isn't
+C++, you know.  We'll use a DESTROY method here for debugging purposes only.
+<p>
+<XMP>
+    sub DESTROY {
+        my $self = shift;
+        confess "wrong type" unless ref $self;
+        carp "[ Nice::DESTROY pid $$self ]" if $Nice::DEBUG;
+    }
+
+</XMP>
+<p>
+</DL>
+That's about all there is to it.  Actually, it's more than all thereis to it, since we've done a few nice things here for the sake
+of completeness, robustness, and general aesthetics.  Simpler
+TIESCALAR classes are certainly possible.
+<p>
+<H2> 
+<A NAME="perltie_tying_1">
+Tying Arrays</A>
+</H2>
+A class implementing a tied ordinary array should define the following
+methods: TIEARRAY, FETCH, STORE, and perhaps DESTROY.
+<p><STRONG>WARNING</STRONG>: Tied arrays are <EM>incomplete</EM>.  They are also distinctly lacking
+something for the <CODE><STRONG>$#</STRONG>ARRAY</CODE> access (which is hard, as it's an lvalue), as
+well as the other obvious array functions, like <EM>push()</EM>, <EM>pop()</EM>, <EM>shift()</EM>,
+<EM>unshift()</EM>, and <EM>splice()</EM>.
+<p>For this discussion, we'll implement an array whose indices are fixed at
+its creation.  If you try to access anything beyond those bounds, you'll
+take an exception.  (Well, if you access an individual element; an
+aggregate assignment would be missed.) For example:
+<p>
+<XMP>
+    require Bounded_Array;
+    tie @ary, 'Bounded_Array', 2;
+    $| = 1;
+    for $i (0 .. 10) {
+        print "setting index $i: ";
+        $ary[$i] = 10 * $i;
+        $ary[$i] = 10 * $i;
+        print "value of elt $i now $ary[$i]\n";
+    }
+
+</XMP>
+<p>The preamble code for the class is as follows:
+<p>
+<XMP>
+    package Bounded_Array;
+    use Carp;
+    use strict;
+
+</XMP>
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perltie_tiearray_0">
+TIEARRAY classname, LIST</A>
+
+</STRONG>
+<DD>
+This is the constructor for the class.  That means it is expected to
+return a blessed reference through which the new array (probably an
+anonymous ARRAY ref) will be accessed.
+<p>In our example, just to show you that you don't <EM>really</EM> have to return an
+ARRAY reference, we'll choose a HASH reference to represent our object.
+A HASH works out well as a generic record type: the <CODE>{BOUND}</CODE> field will
+store the maximum bound allowed, and the <CODE>{ARRAY}</CODE> field will hold the
+true ARRAY ref.  If someone outside the class tries to dereference the
+object returned (doubtless thinking it an ARRAY ref), they'll blow up.
+This just goes to show you that you should respect an object's privacy.
+<p>
+<XMP>
+    sub TIEARRAY {
+        my $class = shift;
+        my $bound = shift;
+        confess "usage: tie(\@ary, 'Bounded_Array', max_subscript)"
+            if @_ || $bound =~ /\D/;
+        return bless {
+            BOUND => $bound,
+            ARRAY => [],
+        }, $class;
+    }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_fetch_1">
+FETCH this, index</A>
+
+</STRONG>
+<DD>
+This method will be triggered every time an individual element the tied array
+is accessed (read).  It takes one argument beyond its self reference: the
+index whose value we're trying to fetch.
+<p>
+<XMP>
+    sub FETCH {
+      my($self,$idx) = @_;
+      if ($idx > $self->{BOUND}) {
+        confess "Array OOB: $idx > $self->{BOUND}";
+      }
+      return $self->{ARRAY}[$idx];
+    }
+
+</XMP>
+<p>As you may have noticed, the name of the FETCH method (et al.) is the same
+for all accesses, even though the constructors differ in names (TIESCALAR
+vs TIEARRAY).  While in theory you could have the same class servicing
+several tied types, in practice this becomes cumbersome, and it's easiest
+to simply keep them at one tie type per class.
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_store_1">
+STORE this, index, value</A>
+
+</STRONG>
+<DD>
+This method will be triggered every time an element in the tied array is set
+(written).  It takes two arguments beyond its self reference: the index at
+which we're trying to store something and the value we're trying to put
+there.  For example:
+<p>
+<XMP>
+    sub STORE {
+      my($self, $idx, $value) = @_;
+      print "[STORE $value at $idx]\n" if _debug;
+      if ($idx > $self->{BOUND} ) {
+        confess "Array OOB: $idx > $self->{BOUND}";
+      }
+      return $self->{ARRAY}[$idx] = $value;
+    }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_destroy_0">
+DESTROY this</A>
+
+</STRONG>
+<DD>
+This method will be triggered when the tied variable needs to be destructed.
+As with the scalar tie class, this is almost never needed in a
+language that does its own garbage collection, so this time we'll
+just leave it out.
+<p>
+</DL>
+The code we presented at the top of the tied array class accesses manyelements of the array, far more than we've set the bounds to.  Therefore,
+it will blow up once they try to access beyond the 2nd element of <STRONG>@ary</STRONG>, as
+the following output demonstrates:
+<p>
+<XMP>
+    setting index 0: value of elt 0 now 0
+    setting index 1: value of elt 1 now 10
+    setting index 2: value of elt 2 now 20
+    setting index 3: Array OOB: 3 > 2 at Bounded_Array.pm line 39
+            Bounded_Array::FETCH called at testba line 12
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perltie_tying_2">
+Tying Hashes</A>
+</H2>
+As the first Perl data type to be tied (see <EM>dbmopen()</EM>), associative arrays
+have the most complete and useful <EM>tie()</EM> implementation.  A class
+implementing a tied associative array should define the following
+methods:  TIEHASH is the constructor.  FETCH and STORE access the key and
+value pairs.  EXISTS reports whether a key is present in the hash, and
+DELETE deletes one.  CLEAR empties the hash by deleting all the key and
+value pairs.  FIRSTKEY and NEXTKEY implement the <EM>keys()</EM> and <EM>each()</EM>
+functions to iterate over all the keys.  And DESTROY is called when the
+tied variable is garbage collected.
+<p>If this seems like a lot, then feel free to merely inherit
+from the standard Tie::Hash module for most of your methods, redefining only
+the interesting ones.  See <EM>Tie::Hash</EM> for details.
+<p>Remember that Perl distinguishes between a key not existing in the hash,
+and the key existing in the hash but having a corresponding value of
+<CODE>undef</CODE>.  The two possibilities can be tested with the <CODE><EM>exists()</EM></CODE> and
+<CODE><EM>defined()</EM></CODE> functions.
+<p>Here's an example of a somewhat interesting tied hash class:  it gives you
+a hash representing a particular user's dotfiles.  You index into the hash
+with the name of the file (minus the dot) and you get back that dotfile's
+contents.  For example:
+<p>
+<XMP>
+    use DotFiles;
+    tie %dot, 'DotFiles';
+    if ( $dot{profile} =~ /MANPATH/ ||
+         $dot{login}   =~ /MANPATH/ ||
+         $dot{cshrc}   =~ /MANPATH/    )
+    {
+        print "you seem to set your manpath\n";
+    }
+
+</XMP>
+<p>Or here's another sample of using our tied class:
+<p>
+<XMP>
+    tie %him, 'DotFiles', 'daemon';
+    foreach $f ( keys %him ) {
+        printf "daemon dot file %s is size %d\n",
+            $f, length $him{$f};
+    }
+
+</XMP>
+<p>In our tied hash DotFiles example, we use a regular
+hash for the object containing several important
+fields, of which only the <CODE>{LIST}</CODE> field will be what the
+user thinks of as the real hash.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perltie_user_0">
+USER</A>
+
+</STRONG>
+<DD>
+whose dot files this object represents
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_home_0">
+HOME</A>
+
+</STRONG>
+<DD>
+where those dotfiles live
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_clobber_0">
+CLOBBER</A>
+
+</STRONG>
+<DD>
+whether we should try to change or remove those dot files
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_list_0">
+LIST</A>
+
+</STRONG>
+<DD>
+the hash of dotfile names and content mappings
+<p>
+</DL>
+Here's the start of <EM>Dotfiles.pm</EM>:
+    package DotFiles;
+    use Carp;
+    sub whowasi { (caller(1))[3] . '()' }
+    my <STRONG>$DEBUG</STRONG> = 0;
+    sub debug { <STRONG>$DEBUG</STRONG> = <STRONG>@_</STRONG> ? shift : 1 }
+<p>For our example, we want to able to emit debugging info to help in tracing
+during development.  We keep also one convenience function around
+internally to help print out warnings; <EM>whowasi()</EM> returns the function name
+that calls it.
+<p>Here are the methods for the DotFiles tied hash.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perltie_tiehash_0">
+TIEHASH classname, LIST</A>
+
+</STRONG>
+<DD>
+This is the constructor for the class.  That means it is expected to
+return a blessed reference through which the new object (probably but not
+necessarily an anonymous hash) will be accessed.
+<p>Here's the constructor:
+<p>
+<XMP>
+    sub TIEHASH {
+        my $self = shift;
+        my $user = shift || $>;
+        my $dotdir = shift || '';
+        croak "usage: @{[&whowasi]} [USER [DOTDIR]]" if @_;
+        $user = getpwuid($user) if $user =~ /^\d+$/;
+        my $dir = (getpwnam($user))[7]
+                || croak "@{[&whowasi]}: no user $user";
+        $dir .= "/$dotdir" if $dotdir;
+        my $node = {
+            USER    => $user,
+            HOME    => $dir,
+            LIST    => {},
+            CLOBBER => 0,
+        };
+        opendir(DIR, $dir)
+                || croak "@{[&whowasi]}: can't opendir $dir: $!";
+        foreach $dot ( grep /^\./ && -f "$dir/$_", readdir(DIR)) {
+            $dot =~ s/^\.//;
+            $node->{LIST}{$dot} = undef;
+        }
+        closedir DIR;
+        return bless $node, $self;
+    }
+
+</XMP>
+<p>It's probably worth mentioning that if you're going to filetest the
+return values out of a readdir, you'd better prepend the directory
+in question.  Otherwise, since we didn't <EM>chdir()</EM> there, it would
+have been testing the wrong file.  
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_fetch_2">
+FETCH this, key</A>
+
+</STRONG>
+<DD>
+This method will be triggered every time an element in the tied hash is
+accessed (read).  It takes one argument beyond its self reference: the key
+whose value we're trying to fetch.
+<p>Here's the fetch for our DotFiles example.
+<p>
+<XMP>
+    sub FETCH {
+        carp &whowasi if $DEBUG;
+        my $self = shift;
+        my $dot = shift;
+        my $dir = $self->{HOME};
+        my $file = "$dir/.$dot";
+        unless (exists $self->{LIST}->{$dot} || -f $file) {
+            carp "@{[&whowasi]}: no $dot file" if $DEBUG;
+            return undef;
+        }
+        if (defined $self->{LIST}->{$dot}) {
+            return $self->{LIST}->{$dot};
+        } else {
+            return $self->{LIST}->{$dot} = `cat $dir/.$dot`;
+        }
+    }
+
+</XMP>
+<p>It was easy to write by having it call the Unix cat(1) command, but it
+would probably be more portable to open the file manually (and somewhat
+more efficient).  Of course, since dot files are a Unixy concept, we're
+not that concerned.
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_store_2">
+STORE this, key, value</A>
+
+</STRONG>
+<DD>
+This method will be triggered every time an element in the tied hash is set
+(written).  It takes two arguments beyond its self reference: the index at
+which we're trying to store something, and the value we're trying to put
+there.
+<p>Here in our DotFiles example, we'll be careful not to let
+them try to overwrite the file unless they've called the <EM>clobber()</EM>
+method on the original object reference returned by <EM>tie()</EM>.
+<p>
+<XMP>
+    sub STORE {
+        carp &whowasi if $DEBUG;
+        my $self = shift;
+        my $dot = shift;
+        my $value = shift;
+        my $file = $self->{HOME} . "/.$dot";
+        my $user = $self->{USER};
+        croak "@{[&whowasi]}: $file not clobberable"
+            unless $self->{CLOBBER};
+        open(F, "> $file") || croak "can't open $file: $!";
+        print F $value;
+        close(F);
+    }
+
+</XMP>
+<p>If they wanted to clobber something, they might say:
+<p>
+<XMP>
+    $ob = tie %daemon_dots, 'daemon';
+    $ob->clobber(1);
+    $daemon_dots{signature} = "A true daemon\n";
+
+</XMP>
+<p>Another way to lay hands on a reference to the underlying object is to
+use the <EM>tied()</EM> function, so they might alternately have set clobber
+using:
+<p>
+<XMP>
+    tie %daemon_dots, 'daemon';
+    tied(%daemon_dots)->clobber(1);
+
+</XMP>
+<p>The clobber method is simply:
+<p>
+<XMP>
+    sub clobber {
+        my $self = shift;
+        $self->{CLOBBER} = @_ ? shift : 1;
+    }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_delete_0">
+DELETE this, key</A>
+
+</STRONG>
+<DD>
+This method is triggered when we remove an element from the hash,
+typically by using the <EM>delete()</EM> function.  Again, we'll
+be careful to check whether they really want to clobber files.
+<p>
+<XMP>
+    sub DELETE   {
+        carp &whowasi if $DEBUG;
+        my $self = shift;
+        my $dot = shift;
+        my $file = $self->{HOME} . "/.$dot";
+        croak "@{[&whowasi]}: won't remove file $file"
+            unless $self->{CLOBBER};
+        delete $self->{LIST}->{$dot};
+        my $success = unlink($file);
+        carp "@{[&whowasi]}: can't unlink $file: $!" unless $success;
+        $success;
+    }
+
+</XMP>
+<p>The value returned by DELETE becomes the return value of the call
+to <EM>delete()</EM>.  If you want to emulate the normal behavior of <EM>delete()</EM>,
+you should return whatever FETCH would have returned for this key.
+In this example, we have chosen instead to return a value which tells
+the caller whether the file was successfully deleted.
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_clear_0">
+CLEAR this</A>
+
+</STRONG>
+<DD>
+This method is triggered when the whole hash is to be cleared, usually by
+assigning the empty list to it.
+<p>In our example, that would remove all the user's dotfiles!  It's such a
+dangerous thing that they'll have to set CLOBBER to something higher than
+1 to make it happen.
+<p>
+<XMP>
+    sub CLEAR    {
+        carp &whowasi if $DEBUG;
+        my $self = shift;
+        croak "@{[&whowasi]}: won't remove all dotfiles for $self->{USER}"
+            unless $self->{CLOBBER} > 1;
+        my $dot;
+        foreach $dot ( keys %{$self->{LIST}}) {
+            $self->DELETE($dot);
+        }
+    }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_exists_0">
+EXISTS this, key</A>
+
+</STRONG>
+<DD>
+This method is triggered when the user uses the <EM>exists()</EM> function
+on a particular hash.  In our example, we'll look at the <CODE>{LIST}</CODE>
+hash element for this:
+<p>
+<XMP>
+    sub EXISTS   {
+        carp &whowasi if $DEBUG;
+        my $self = shift;
+        my $dot = shift;
+        return exists $self->{LIST}->{$dot};
+    }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_firstkey_0">
+FIRSTKEY this</A>
+
+</STRONG>
+<DD>
+This method will be triggered when the user is going
+to iterate through the hash, such as via a <EM>keys()</EM> or <EM>each()</EM>
+call.
+<p>
+<XMP>
+    sub FIRSTKEY {
+        carp &whowasi if $DEBUG;
+        my $self = shift;
+        my $a = keys %{$self->{LIST}};          # reset each() iterator
+        each %{$self->{LIST}}
+    }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_nextkey_0">
+NEXTKEY this, lastkey</A>
+
+</STRONG>
+<DD>
+This method gets triggered during a <EM>keys()</EM> or <EM>each()</EM> iteration.  It has a
+second argument which is the last key that had been accessed.  This is
+useful if you're carrying about ordering or calling the iterator from more
+than one sequence, or not really storing things in a hash anywhere.
+<p>For our example, we're using a real hash so we'll just do the simple
+thing, but we'll have to indirect through the LIST field.
+<p>
+<XMP>
+    sub NEXTKEY  {
+        carp &whowasi if $DEBUG;
+        my $self = shift;
+        return each %{ $self->{LIST} }
+    }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_destroy_0">
+DESTROY this</A>
+
+</STRONG>
+<DD>
+This method is triggered when a tied hash is about to go out of
+scope.  You don't really need it unless you're trying to add debugging
+or have auxiliary state to clean up.  Here's a very simple function:
+<p>
+<XMP>
+    sub DESTROY  {
+        carp &whowasi if $DEBUG;
+    }
+
+</XMP>
+<p>
+</DL>
+Note that functions such as <EM>keys()</EM> and <EM>values()</EM> may return huge arrayvalues when used on large objects, like DBM files.  You may prefer to
+use the <EM>each()</EM> function to iterate over such.  Example:
+<p>
+<XMP>
+    # print out history file offsets
+    use NDBM_File;
+    tie(%HIST, 'NDBM_File', '/usr/lib/news/history', 1, 0);
+    while (($key,$val) = each %HIST) {
+        print $key, ' = ', unpack('L',$val), "\n";
+    }
+    untie(%HIST);
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perltie_tying_3">
+Tying FileHandles</A>
+</H2>
+This is partially implemented now.
+<p>A class implementing a tied filehandle should define the following methods:
+TIEHANDLE, PRINT and/or READLINE, and possibly DESTROY.
+<p>It is especially useful when perl is embedded in some other program,
+where output to STDOUT and STDERR may have to be redirected in some
+special way. See nvi and the Apache module for examples.
+<p>In our example we're going to create a shouting handle.
+<p>
+<XMP>
+    package Shout;
+
+</XMP>
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perltie_tiehandle_0">
+TIEHANDLE classname, LIST</A>
+
+</STRONG>
+<DD>
+This is the constructor for the class.  That means it is expected to
+return a blessed reference of some sort. The reference can be used to
+hold some internal information. We won't use it in out example.
+<p>
+<XMP>
+    sub TIEHANDLE { print "<shout>\n"; my $i; bless \$i, shift }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_print_0">
+PRINT this, LIST</A>
+
+</STRONG>
+<DD>
+This method will be triggered every time the tied handle is printed to.
+Beyond its self reference it also expects the list that was passed to
+the print function.
+<p>
+<XMP>
+    sub PRINT { $r = shift; $$r++; print join($,,map(uc($_),@_)),$\ }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_readline_0">
+READLINE this</A>
+
+</STRONG>
+<DD>
+This method will be called when the handle is read from. The method
+should return undef when there is no more data.
+<p>
+<XMP>
+    sub READLINE { $r = shift; "PRINT called $$r times\n"; }
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perltie_destroy_0">
+DESTROY this</A>
+
+</STRONG>
+<DD>
+As with the other types of ties, this method will be called when the
+tied handle is about to be destroyed. This is useful for debugging and
+possibly cleaning up.
+<p>
+<XMP>
+    sub DESTROY { print "</shout>\n" }
+
+</XMP>
+<p>
+</DL>
+Here's how to use our little example:
+    tie(*FOO,'Shout');
+    print FOO ``hello\n'';
+    <STRONG>$a</STRONG> = 4; <STRONG>$b</STRONG> = 6;
+    print FOO <STRONG>$a</STRONG>, `` plus '', <STRONG>$b</STRONG>, `` equals '', <STRONG>$a</STRONG> + <STRONG>$b</STRONG>, ``\n'';
+    print &lt;FOO&gt;;
+<p><p><hr>
+
+<H1> 
+<A NAME="perltie_see_0">
+SEE ALSO</A>
+</H1>
+See <EM>DB_File</EM> or <EM>Config</EM> for some interesting <EM>tie()</EM> implementations.
+<p><p><hr>
+
+<H1> 
+<A NAME="perltie_bugs_0">
+BUGS</A>
+</H1>
+Tied arrays are <EM>incomplete</EM>.  They are also distinctly lacking something
+for the <CODE><STRONG>$#</STRONG>ARRAY</CODE> access (which is hard, as it's an lvalue), as well as
+the other obvious array functions, like <EM>push()</EM>, <EM>pop()</EM>, <EM>shift()</EM>, <EM>unshift()</EM>,
+and <EM>splice()</EM>.
+<p>You cannot easily tie a multilevel data structure (such as a hash of
+hashes) to a dbm file.  The first problem is that all but GDBM and
+Berkeley DB have size limitations, but beyond that, you also have problems
+with how references are to be represented on disk.  One experimental
+module that does attempt to partially address this need is the MLDBM
+module.  Check your nearest CPAN site as described in the <EM>perlmod</EM>  manpage
+ for
+source code to MLDBM.
+<p><p><hr>
+
+<H1> 
+<A NAME="perltie_author_0">
+AUTHOR</A>
+</H1>
+Tom Christiansen
+<p>TIEHANDLE by Sven Verdoolaege &lt;<EM><A HREF="MAILTO:skimo@dns.ufsia.ac.be">skimo@dns.ufsia.ac.be</A></EM>&gt;
+<p>
+</BODY>
+</HTML>

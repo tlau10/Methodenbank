@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Das LP-Modell Werkstoffoptimierung</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="LP-Modell Wekstoffoptimierung">
+</OBJECT>
+
+<H1><A NAME="das_lp_modell_werkstoffoptimierung"></A><IMG SRC="../images/math.gif" ALT="" BORDER=0>Das LP-Modell Werkstoffoptimierung</H1>
+
+<P><B>Wie kommt es aber zur Aufstellung des linearen Modells?</B></P>
+
+<P>Es ist eine Hilfstabelle mit allen "Zuschnittsvarianten" zu erstellen, aus der dann das lineare Modell abgelesen werden kann.</P>
+
+<P>Die Spalten der Hilfstabelle sind folgendermaßen zu beschriften:</P>
+
+<TABLE border=1 cols=6 frame=box rules=all width=516>
+
+<TR VALIGN="top">
+<TD width=14%><B>Lfd. Nummer (1,2,3, ..)</B></TD>
+<TD width=15%><B>Variable (x1,x2, x3, x4,..)</B></TD>
+<TD width=19%><B>Größte gewünschte Breite</B></TD>
+<TD width=19%><B>Zweitgrößte gewünschte Breite</B></TD>
+<TD width=15%><B>usw.</B></TD>
+<TD width=18%><B>Verschnitt</B></TD>
+</TR>
+</TABLE><BR>
+
+<P>In die Zeilen der Hilfstabelle sind nun die "Zuschnittsvarianten" einzutragen. Der Algorithmus ist dabei folgender:</P>
+
+<P><font face="Symbol">·</FONT>In die erste Zeile ist die laufende Nummer "1" und die Variable "x1" einzutragen. Für jede weitere Zeile wird die laufende Nummer und der Index der Variablen um 1 erhöht.</P>
+
+<P><font face="Symbol">·</FONT>Die größte gewünschte Breite ist zu ermitteln und so oft als möglich in einer vorgegebenen Rolle unterzubringen: Die Breite der Rolle geteilt durch die größte gewünschte Breite, dieses Ergebnis - ganzzahlig nach unten abgerundet -  ergibt die in Zeile 1, Spalte 3 einzutragende Zahl. Die noch übrige Breite der ursprünglichen Rolle ist in die Spalte Verschnitt einzutragen, falls sich nicht noch - von links nach rechts gelesen - eine gewünschte Breite finden lässt, die kleiner als dieser "Rest" ist. In diesem Fall wird die Spalte dieser Breite mit der Zahl gefüllt, die multipliziert mit dieser Breite gerade noch in den "Rest" passt. Der "Rest" dieses "Restes" kommt in die Spalte Verschnitt, falls sich - wie oben - nicht wiederum noch - von links nach rechts gelesen - eine gewünschte Breite finden lässt, die kleiner als dieser "Rest" des "Restes" ist. Ist schlussendlich ein "Rest" kleiner als die kleinste gewünschte Breite kann er getrost in die Spalte Verschnitt eingetragen und die noch freien "Breiten-Spalten" mit Null gefüllt werden.</P>
+
+<P>Die erste Zeile des obigen Beispiels würde folgendermaßen aussehen:</P>
+
+<TABLE border=1 cols=5 frame=box rules=all width=473>
+
+<TR VALIGN="top">
+<TD width=20%><B>1</B></TD>
+<TD width=20%><B>x1</B></TD>
+<TD width=20%><B>2</B></TD>
+<TD width=20%><B>0</B></TD>
+<TD width=20%><B>1</B></TD>
+</TR>
+</TABLE><BR>
+
+<P>wobei die größte gewünschte Breite 2 Meter beträgt, diese 2 Meter genau zweimal innerhalb von 5 Metern unterzubringen sind und ein "Rest" von einem Meter zurückbleibt. Die gewünschte Rollenanzahl einer neuen Breite ist bei der Erstellung der Zuschnittsvarianten noch nicht zu berücksichtigen.</P>
+
+<P><font face="Symbol">·</FONT>Die nächste Zeile der Hilfstabelle, d.h. die nächste Zuschnittsvariante ergibt sich nun dadurch, dass die Zahl der darbüberliegenden Zeile, die als letzte (am weitesten rechts) ungleich Null in eine "Breiten-Spalte" eingetragen wurde, um 1 vermindert in die aktuelle Zeile (gleiche Spalte) eingetragen wird (die kleinste Breite wird hier natürlich ausgenommen, da eine Verminderung dieses Wertes nur zu größerem Verschnitt und nicht zu einem Nutzen führt). Alle "Breiten- Spalten", die sich links von dieser aktuellen Spalte befinden, werden aus der darbüberliegenden Zeile einfach übernommen. </P>
+
+<P>Da sich nun - durch Multiplikation des gerade eingetragenen Wertes mit der Gesamtbreite einer Rolle und Abziehen dieses Ergebnisses von der Gesamtbreite - ein neuer, größerer Verschnitt ergibt, kann dieser neue Verschnitt nun wieder ausreichen, noch eine kleinere "Breiten-Spalte" (rechts von der aktuellen Spalte) zu füllen. Dabei ist wiederum unbedingt von links nach rechts vorzugehen, d.h. es muss zuerst versucht werden, größere Breiten im "Rest" unterzubringen. </P>
+
+<P>Läuft man sämtliche Breiten ab, und der Verschnitt ist immer kleiner als eine der Breiten, werden die abgelaufenen "Breiten-Spalten" mit Null gefüllt und der gesamte "Rest" in der Spalte Verschnitt eingetragen.</P>
+
+<P>Die zweite Zeile des obigen Beispiels würde also so aussehen:</P>
+
+<TABLE border=1 cols=5 frame=box rules=all width=473>
+
+<TR VALIGN="top">
+<TD width=20%><B>2</B></TD>
+<TD width=20%><B>x2</B></TD>
+<TD width=20%><B>1</B></TD>
+<TD width=20%><B>2</B></TD>
+<TD width=20%><B>0</B></TD>
+</TR>
+</TABLE><BR>
+
+<P>wobei die größte gewünschte Breite 2 Meter beträgt, diese 2 Meter genau einmal innerhalb von 5 Metern unterzubringen sind (da laut Regel von der in Zeile 1, Spalte 3 geschriebenen "2" eine Eins abgezogen werden muss), so dass jetzt ein "Rest" von 3 Metern zurückbleibt. Die nächste gewünschte Breite beträgt 1,5 Meter und "passt" genau zweimal in den "Rest". Daraus resultiert die "2" in Spalte 4. Übrig bleibt in diesem Falle nichts, d.h. in die Spalte Verschnitt ist 0 einzutragen.</P>
+
+<P><font face="Symbol">·</FONT>Das unter 3. beschriebene Vorgehen wird nun solange wiederholt, bis alle "Breiten-Spalten" (mit Ausnahme der kleinsten Breite) mit Null gefüllt sind. Dann kann mit Sicherheit gesagt werden, dass alle möglichen Zuschnittsvarianten in der Hilfstabelle stehen.</P>
+
+<P>Anhand der Spalte "Laufende Nummer" kann abgelesen werden, wie viele Varianten es jeweils gibt. Die Variablen in Spalte 2 stehen bereit, um die Häufigkeit einer Variante aufzunehmen, d.h. sie werden die Lösung des linearen Modells enthalten.</P>
+
+<P><B>Wie kann nun dieses lineare Modell abgelesen werden?</B></P>
+
+<P>Ein lineares Modell beinhaltet die Zielfunktion, meist mehrere Restriktionen (Nebenbedingungen) und die Nichtnegativitätsbedingungen.</P>
+
+<P><font face="Symbol">·</FONT>Die Nichtnegativitätsbedingungen müssen lauten: xi &gt;= 0 für  1&lt;= i &lt;= Anzahl Zeilen der Hilfstabelle. Es versteht sich von selbst, dass keine der Zuschnittsvarianten eine Häufigkeit kleiner als Null haben kann, eine Variante kann nur ein- bzw. mehrmals vorkommen oder nicht, was gleich Null bedeutet.</P>
+
+<P><font face="Symbol">·</FONT>Die Restriktionen lesen sich folgendermaßen ab: Jede "Breiten-Spalte" der Hilfstabelle ergibt eine Restriktion, wobei jeder Spaltenwert der Koeffizient der Variablen, die in derselben Zeile wie dieser Koeffizient steht, ist. Am Beispiel: Folgender Ausschnitt der Hilfstabelle ergibt als linke Seite der Restriktion:</P>
+
+<P>2 x1 + 1x2 + 0 x3:</P>
+
+<TABLE border=1 cols=4 frame=box rules=all width=523>
+
+<TR VALIGN="top">
+<TD width=25%></TD>
+<TD width=25%><B>2000mm</B></TD>
+<TD width=25%><B>1500mm</B></TD>
+<TD width=25%><B>Verschnitt</B></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=25%><B>x1</B></TD>
+<TD width=25%><B>2</B></TD>
+<TD width=25%><B>0</B></TD>
+<TD width=25%><B>1000</B></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=25%><B>x2</B></TD>
+<TD width=25%><B>1</B></TD>
+<TD width=25%><B>2</B></TD>
+<TD width=25%><B></B></TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=25%><B>x3</B></TD>
+<TD width=25%><B>0</B></TD>
+<TD width=25%><B>3</B></TD>
+<TD width=25%><B>500</B></TD>
+</TR>
+</TABLE><BR>
+
+<P><font face="Symbol">·</FONT>Für jede Variantenzeile  wird nun eine Restriktion gebildet. Dabei wird der Verschnitt als B-Vector dienen</P>
+
+<P><B>Restriktion 1 :- </B> <B>2 x1 + 1 x2 + 0 x3 = 3.<BR>
+Restriktion 2 :- </B> <B>0 x1 + 2 x2 + 3 x3 = 2</B></P>
+
+<P><font face="Symbol">·</FONT>Da das Ziel der Aufgabenstellung die<I> <B>Minimierung</B></I><B> des gesamten Werkstücks</B> ist, ist die <B>Zielfunktion</B> die Summe der Produkte Verschnitt und Häufigkeitsvariable, d.h. Spalte Verschnitt mit Spalte Variable multiplizieren, diese Produkte dann addieren.</P>
+
+<P><B>Zielfunktion :- x1 + x2  =&gt; Min.</B></P>
+
+<P>Das lineare Modell liegt jetzt vor und muss "nur noch" mit dem entsprechenden Computerprogramm (basierend auf der Simplex-Methode) gelöst werden. Die Variablen x1 bis xn geben an, wie häufig eine Zuschnittsvariante - bzw. ob überhaupt - gewählt werden muss; die Summe dieser Variablen ergibt die Anzahl der insgesamt benötigten Rollen; der Verschnitt ist dem "Z" der Zielfunktion zu entnehmen.</P>
+
+</BODY>
+</HTML>

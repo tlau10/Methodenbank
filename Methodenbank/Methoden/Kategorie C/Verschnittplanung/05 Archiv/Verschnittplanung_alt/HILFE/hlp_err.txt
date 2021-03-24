@@ -1,0 +1,39 @@
+Microsoft (R) Help Compiler
+HCRTF 4.03.0002
+Copyright (c) Microsoft Corp 1990 - 1995. All rights reserved.
+verschn.hpj
+    HC1012: Note: topic #3 of z:\sim\or\Verschn2.rtf : 
+	Table cell borders are not supported.
+    HC3048: Warning: topic #3 of z:\sim\or\Verschn2.rtf : 
+	Nonscrolling region defined after scrolling region.
+    HC1012: Note: topic #4 of z:\sim\or\Verschn2.rtf : 
+	Table cell borders are not supported.
+    HC3048: Warning: topic #4 of z:\sim\or\Verschn2.rtf : 
+	Nonscrolling region defined after scrolling region.
+    HC3108: Warning: topic #5 of z:\sim\or\Verschn2.rtf : 
+	The title footnote ($) does not appear before any text.
+    HC3106: Warning: topic #5 of z:\sim\or\Verschn2.rtf : 
+	Browse footnote (+) does not appear before any text.
+    HC3111: Warning: topic #5 of z:\sim\or\Verschn2.rtf : 
+	This topic contains keywords but no title.
+    HC3111: Warning: topic #5 of z:\sim\or\Verschn2.rtf : 
+	This topic contains keywords but no title.
+    HC3048: Warning: topic #5 of z:\sim\or\Verschn2.rtf : 
+	Nonscrolling region defined after scrolling region.
+    HC1012: Note: topic #6 of z:\sim\or\Verschn2.rtf : 
+	Table cell borders are not supported.
+    HC1012: Note: topic #7 of z:\sim\or\Verschn2.rtf : 
+	Table cell borders are not supported.
+    HC3048: Warning: topic #7 of z:\sim\or\Verschn2.rtf : 
+	Nonscrolling region defined after scrolling region.
+18	Topics
+32	Jumps
+37	Keywords
+7	Bitmaps
+
+
+Created z:\sim\or\VERSCHN.hlp, 123,731 bytes
+Bitmaps: 90,760 bytes
+Hall+Zeck compression decreased help file by 20,117 bytes.
+Compile time: 0 minutes, 7 seconds
+4 notes, 8 warnings

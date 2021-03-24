@@ -1,0 +1,15 @@
+<solvers>
+<solver>
+<name>XA</name>
+<class>PersplanXA.PersplanXA</class>
+<library>D:\fh\Persplan\Source\PersplanXA\bin\Debug\PersplanXA.dll</library>
+<configFile>D:\FH\persplan\xa.xml</configFile>
+</solver>
+<!--
+<solver>
+<name>Mops</name>
+<class>Mops.Mops</class>
+<library>c:\mops.dll</library>
+<configFile>c:\mops.xml</configFile>
+</solver>-->
+</solvers>

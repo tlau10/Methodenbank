@@ -1,0 +1,44 @@
+                       MISCHUNGSPLANUNG
+                       ----------------
+
+
+Dokumentation: - 
+Grundlagen:    siehe OR Skript (ehemaliges) Kapitel 10
+
+
+WS 95/96:
+---------
+
+o Erstellung des Methodenprogramms
+
+o Z.Z. installierte Solver:
+  - XA EQS- und MPS-Format. Beide XA-Aufrufe werden ueber eine
+    CLP-Datei angesteuert.
+  - MOPS (MPS-Format)
+
+
+WS 96/97:
+---------
+
+o Die Solverei wurde auf eine Pif- u. eine Batchdatei umgestellt.
+  Hierbei wird die Batchdatei bei jedem Lauf neu erstellt. Der 
+  Inhalt ist vom gewählten Solver abhängig. Sinn u. Zweck dieses
+  Vorgehens: Start der Solver von schreibgeschützten Verzeichnissen
+  auf dem Server (Laufwerk h:).
+
+
+SS 97:
+------
+
+o Das Programm ist jetzt server-fähig, durch die Nutzung eines
+  WorkingDir, welches auf das lokale Temp-Verz. gesetzt werden kann.
+
+
+
+Erweiterungsmoeglichkeiten:
+
+- Auswahl (Optionsfeld) zur Eingabe von relativen bzw. absoluten
+  Werten fuer die Zielprodukte
+- Ganzzahligkeits-Option
+
+

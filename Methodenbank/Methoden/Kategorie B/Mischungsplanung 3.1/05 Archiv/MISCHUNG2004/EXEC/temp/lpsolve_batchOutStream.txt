@@ -1,0 +1,8 @@
+OUT>of
+OUT>
+OUT>C:\Eigene Dateien\FH\8. Semester\ABESF\PrototypV2>echo Automatisch erzeugte Stapeldatei startet den LP-Solver 
+OUT>Automatisch erzeugte Stapeldatei startet den LP-Solver
+OUT>
+OUT>C:\Eigene Dateien\FH\8. Semester\ABESF\PrototypV2>C:\Solver\LP_SOLVE.EXE  Dateien\FH\8. Semester\ABESF\PrototypV2\temp\lp_eingabe.lp Dateien\FH\8. Semester\ABESF\PrototypV2\temp\lp_ausgabe.txt 0<C:\Eigene 1>C:\Eigene 
+OUT>
+OUT>C:\Eigene Dateien\FH\8. Semester\ABESF\PrototypV2>exit

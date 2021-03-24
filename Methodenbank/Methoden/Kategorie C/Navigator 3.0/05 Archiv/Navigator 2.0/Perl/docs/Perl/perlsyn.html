@@ -1,0 +1,570 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perlsyn</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perlsyn_name_0">
+NAME</A>
+</H1>
+perlsyn - Perl syntax
+<p><p><hr>
+
+<H1> 
+<A NAME="perlsyn_description_0">
+DESCRIPTION</A>
+</H1>
+A Perl script consists of a sequence of declarations and statements.
+The only things that need to be declared in Perl are report formats
+and subroutines.  See the sections below for more information on those
+declarations.  All uninitialized user-created objects are assumed to
+start with a null or 0 value until they are defined by some explicit
+operation such as assignment.  (Though you can get warnings about the
+use of undefined values if you like.)  The sequence of statements is
+executed just once, unlike in <STRONG>sed</STRONG> and <STRONG>awk</STRONG> scripts, where the
+sequence of statements is executed for each input line.  While this means
+that you must explicitly loop over the lines of your input file (or
+files), it also means you have much more control over which files and
+which lines you look at.  (Actually, I'm lying--it is possible to do an
+implicit loop with either the <STRONG>-n</STRONG> or <STRONG>-p</STRONG> switch.  It's just not the
+mandatory default like it is in <STRONG>sed</STRONG> and <STRONG>awk</STRONG>.)
+<p>
+<H2> 
+<A NAME="perlsyn_declarations_0">
+Declarations</A>
+</H2>
+Perl is, for the most part, a free-form language.  (The only
+exception to this is format declarations, for obvious reasons.) Comments
+are indicated by the ``#'' character, and extend to the end of the line.  If
+you attempt to use <CODE>/* */</CODE> C-style comments, it will be interpreted
+either as division or pattern matching, depending on the context, and C++
+<CODE>//</CODE> comments just look like a null regular expression, so don't do
+that.
+<p>A declaration can be put anywhere a statement can, but has no effect on
+the execution of the primary sequence of statements--declarations all
+take effect at compile time.  Typically all the declarations are put at
+the beginning or the end of the script.  However, if you're using 
+lexically-scoped private variables created with <EM>my()</EM>, you'll have to make sure
+your format or subroutine definition is within the same block scope
+as the my if you expect to to be able to access those private variables.
+<p>Declaring a subroutine allows a subroutine name to be used as if it were a
+list operator from that point forward in the program.  You can declare a
+subroutine (prototyped to take one scalar parameter) without defining it by saying just:
+<p>
+<XMP>
+    sub myname ($);
+    $me = myname $0             or die "can't get myname";
+
+</XMP>
+<p>Note that it functions as a list operator though, not as a unary
+operator, so be careful to use <CODE>or</CODE> instead of <CODE>||</CODE> there.
+<p>Subroutines declarations can also be loaded up with the <CODE>require</CODE> statement
+or both loaded and imported into your namespace with a <CODE>use</CODE> statement.
+See the <EM>perlmod</EM>  manpage
+ for details on this.
+<p>A statement sequence may contain declarations of lexically-scoped
+variables, but apart from declaring a variable name, the declaration acts
+like an ordinary statement, and is elaborated within the sequence of
+statements as if it were an ordinary statement.  That means it actually
+has both compile-time and run-time effects.
+<p>
+<H2> 
+<A NAME="perlsyn_simple_0">
+Simple statements</A>
+</H2>
+The only kind of simple statement is an expression evaluated for its
+side effects.  Every simple statement must be terminated with a
+semicolon, unless it is the final statement in a block, in which case
+the semicolon is optional.  (A semicolon is still encouraged there if the
+block takes up more than one line, since you may eventually add another line.)
+Note that there are some operators like <CODE>eval {}</CODE> and <CODE>do {}</CODE> that look
+like compound statements, but aren't (they're just TERMs in an expression), 
+and thus need an explicit termination if used as the last item in a statement.
+<p>Any simple statement may optionally be followed by a <EM>SINGLE</EM> modifier,
+just before the terminating semicolon (or block ending).  The possible
+modifiers are:
+<p>
+<XMP>
+    if EXPR
+    unless EXPR
+    while EXPR
+    until EXPR
+
+</XMP>
+<p>The <CODE>if</CODE> and <CODE>unless</CODE> modifiers have the expected semantics,
+presuming you're a speaker of English.  The <CODE>while</CODE> and <CODE>until</CODE>
+modifiers also have the usual ``while loop'' semantics (conditional
+evaluated first), except when applied to a do-BLOCK (or to the
+now-deprecated do-SUBROUTINE statement), in which case the block
+executes once before the conditional is evaluated.  This is so that you
+can write loops like:
+<p>
+<XMP>
+    do {
+        $line = <STDIN>;
+        ...
+    } until $line  eq ".\n";
+
+</XMP>
+<p>See <EM>do</EM>.  Note also that the loop control
+statements described later will <EM>NOT</EM> work in this construct, since
+modifiers don't take loop labels.  Sorry.  You can always wrap
+another block around it to do that sort of thing.
+<p>
+<H2> 
+<A NAME="perlsyn_compound_0">
+Compound statements</A>
+</H2>
+In Perl, a sequence of statements that defines a scope is called a block.
+Sometimes a block is delimited by the file containing it (in the case
+of a required file, or the program as a whole), and sometimes a block
+is delimited by the extent of a string (in the case of an eval).
+<p>But generally, a block is delimited by curly brackets, also known as braces.
+We will call this syntactic construct a BLOCK.
+<p>The following compound statements may be used to control flow:
+<p>
+<XMP>
+    if (EXPR) BLOCK
+    if (EXPR) BLOCK else BLOCK
+    if (EXPR) BLOCK elsif (EXPR) BLOCK ... else BLOCK
+    LABEL while (EXPR) BLOCK
+    LABEL while (EXPR) BLOCK continue BLOCK
+    LABEL for (EXPR; EXPR; EXPR) BLOCK
+    LABEL foreach VAR (LIST) BLOCK
+    LABEL BLOCK continue BLOCK
+
+</XMP>
+<p>Note that, unlike C and Pascal, these are defined in terms of BLOCKs,
+not statements.  This means that the curly brackets are <EM>required</EM>--no
+dangling statements allowed.  If you want to write conditionals without
+curly brackets there are several other ways to do it.  The following
+all do the same thing:
+<p>
+<XMP>
+    if (!open(FOO)) { die "Can't open $FOO: $!"; }
+    die "Can't open $FOO: $!" unless open(FOO);
+    open(FOO) or die "Can't open $FOO: $!";     # FOO or bust!
+    open(FOO) ? 'hi mom' : die "Can't open $FOO: $!";
+                        # a bit exotic, that last one
+
+</XMP>
+<p>The <CODE>if</CODE> statement is straightforward.  Since BLOCKs are always
+bounded by curly brackets, there is never any ambiguity about which
+<CODE>if</CODE> an <CODE>else</CODE> goes with.  If you use <CODE>unless</CODE> in place of <CODE>if</CODE>,
+the sense of the test is reversed.
+<p>The <CODE>while</CODE> statement executes the block as long as the expression is
+true (does not evaluate to the null string or 0 or ``0'').  The LABEL is
+optional, and if present, consists of an identifier followed by a colon.
+The LABEL identifies the loop for the loop control statements <CODE>next</CODE>,
+<CODE>last</CODE>, and <CODE>redo</CODE>.  If the LABEL is omitted, the loop control statement
+refers to the innermost enclosing loop.  This may include dynamically
+looking back your call-stack at run time to find the LABEL.  Such
+desperate behavior triggers a warning if you use the <STRONG>-w</STRONG> flag.
+<p>If there is a <CODE>continue</CODE> BLOCK, it is always executed just before the
+conditional is about to be evaluated again, just like the third part of a
+<CODE>for</CODE> loop in C.  Thus it can be used to increment a loop variable, even
+when the loop has been continued via the <CODE>next</CODE> statement (which is
+similar to the C <CODE>continue</CODE> statement).
+<p>
+<H2> 
+<A NAME="perlsyn_loop_0">
+Loop Control</A>
+</H2>
+The <CODE>next</CODE> command is like the <CODE>continue</CODE> statement in C; it starts
+the next iteration of the loop:
+<p>
+<XMP>
+    LINE: while (<STDIN>) {
+        next LINE if /^#/;      # discard comments
+        ...
+    }
+
+</XMP>
+<p>The <CODE>last</CODE> command is like the <CODE>break</CODE> statement in C (as used in
+loops); it immediately exits the loop in question.  The
+<CODE>continue</CODE> block, if any, is not executed:
+<p>
+<XMP>
+    LINE: while (<STDIN>) {
+        last LINE if /^$/;      # exit when done with header
+        ...
+    }
+
+</XMP>
+<p>The <CODE>redo</CODE> command restarts the loop block without evaluating the
+conditional again.  The <CODE>continue</CODE> block, if any, is <EM>not</EM> executed.
+This command is normally used by programs that want to lie to themselves
+about what was just input.
+<p>For example, when processing a file like <EM>/etc/termcap</EM>.
+If your input lines might end in backslashes to indicate continuation, you
+want to skip ahead and get the next record.
+<p>
+<XMP>
+    while (<>) {
+        chomp;
+        if (s/\\$//) { 
+            $_ .= <>; 
+            redo unless eof();
+        }
+        # now process $_
+    } 
+
+</XMP>
+<p>which is Perl short-hand for the more explicitly written version:
+<p>
+<XMP>
+    LINE: while ($line = <ARGV>) {
+        chomp($line);
+        if ($line =~ s/\\$//) { 
+            $line .= <ARGV>; 
+            redo LINE unless eof(); # not eof(ARGV)!
+        }
+        # now process $line
+    } 
+
+</XMP>
+<p>Or here's a simpleminded Pascal comment stripper (warning: assumes no { or } in strings).
+<p>
+<XMP>
+    LINE: while (<STDIN>) {
+        while (s|({.*}.*){.*}|$1 |) {}
+        s|{.*}| |;
+        if (s|{.*| |) {
+            $front = $_;
+            while (<STDIN>) {
+                if (/}/) {      # end of comment?
+                    s|^|$front{|;
+                    redo LINE;
+                }
+            }
+        }
+        print;
+    }
+
+</XMP>
+<p>Note that if there were a <CODE>continue</CODE> block on the above code, it would get
+executed even on discarded lines.
+<p>If the word <CODE>while</CODE> is replaced by the word <CODE>until</CODE>, the sense of the
+test is reversed, but the conditional is still tested before the first
+iteration.
+<p>In either the <CODE>if</CODE> or the <CODE>while</CODE> statement, you may replace ``(EXPR)''
+with a BLOCK, and the conditional is true if the value of the last
+statement in that block is true.  While this ``feature'' continues to work in 
+version 5, it has been deprecated, so please change any occurrences of ``if BLOCK'' to
+``if (do BLOCK)''.
+<p>
+<H2> 
+<A NAME="perlsyn_for_0">
+For Loops</A>
+</H2>
+Perl's C-style <CODE>for</CODE> loop works exactly like the corresponding <CODE>while</CODE> loop;
+that means that this:
+<p>
+<XMP>
+    for ($i = 1; $i < 10; $i++) {
+        ...
+    }
+
+</XMP>
+<p>is the same as this:
+<p>
+<XMP>
+    $i = 1;
+    while ($i < 10) {
+        ...
+    } continue {
+        $i++;
+    }
+
+</XMP>
+<p>Besides the normal array index looping, <CODE>for</CODE> can lend itself
+to many other interesting applications.  Here's one that avoids the
+problem you get into if you explicitly test for end-of-file on 
+an interactive file descriptor causing your program to appear to 
+hang.
+<p>
+<XMP>
+    $on_a_tty = -t STDIN && -t STDOUT;
+    sub prompt { print "yes? " if $on_a_tty }
+    for ( prompt(); <STDIN>; prompt() ) {
+        # do something
+    } 
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perlsyn_foreach_0">
+Foreach Loops</A>
+</H2>
+The <CODE>foreach</CODE> loop iterates over a normal list value and sets the
+variable VAR to be each element of the list in turn.  The variable is
+implicitly local to the loop and regains its former value upon exiting the
+loop.  If the variable was previously declared with <CODE>my</CODE>, it uses that
+variable instead of the global one, but it's still localized to the loop.
+This can cause problems if you have subroutine or format declarations
+within that block's scope.
+<p>The <CODE>foreach</CODE> keyword is actually a synonym for the <CODE>for</CODE> keyword, so
+you can use <CODE>foreach</CODE> for readability or <CODE>for</CODE> for brevity.  If VAR is
+omitted, <STRONG>$_</STRONG> is set to each value.  If LIST is an actual array (as opposed
+to an expression returning a list value), you can modify each element of
+the array by modifying VAR inside the loop.  That's because the <CODE>foreach</CODE>
+loop index variable is an implicit alias for each item in the list that
+you're looping over.
+<p>Examples:
+<p>
+<XMP>
+    for (@ary) { s/foo/bar/ }
+    foreach $elem (@elements) {
+        $elem *= 2;
+    }
+    for $count (10,9,8,7,6,5,4,3,2,1,'BOOM') {
+        print $count, "\n"; sleep(1);
+    }
+    for (1..15) { print "Merry Christmas\n"; }
+    foreach $item (split(/:[\\\n:]*/, $ENV{TERMCAP})) {
+        print "Item: $item\n";
+    }
+
+</XMP>
+<p>Here's how a C programmer might code up a particular algorithm in Perl:
+<p>
+<XMP>
+    for ($i = 0; $i < @ary1; $i++) {
+        for ($j = 0; $j < @ary2; $j++) {
+            if ($ary1[$i] > $ary2[$j]) {
+                last; # can't go to outer :-(
+            }
+            $ary1[$i] += $ary2[$j];
+        }
+        # this is where that last takes me
+    }
+
+</XMP>
+<p>Whereas here's how a Perl programmer more comfortable with the idiom might
+do it:
+<p>
+<XMP>
+    OUTER: foreach $wid (@ary1) { 
+    INNER:   foreach $jet (@ary2) {
+                next OUTER if $wid > $jet;
+                $wid += $jet;
+             } 
+          } 
+
+</XMP>
+<p>See how much easier this is?  It's cleaner, safer, and faster.  It's
+cleaner because it's less noisy.  It's safer because if code gets added
+between the inner and outer loops later on, the new code won't be
+accidentally executed, the <CODE>next</CODE> explicitly iterates the other loop
+rather than merely terminating the inner one.  And it's faster because
+Perl executes a <CODE>foreach</CODE> statement more rapidly than it would the
+equivalent <CODE>for</CODE> loop.
+<p>
+<H2> 
+<A NAME="perlsyn_basic_0">
+Basic BLOCKs and Switch Statements</A>
+</H2>
+A BLOCK by itself (labeled or not) is semantically equivalent to a loop
+that executes once.  Thus you can use any of the loop control
+statements in it to leave or restart the block.  (Note that this
+is <EM>NOT</EM> true in <CODE>eval{}</CODE>, <CODE>sub{}</CODE>, or contrary to popular belief <CODE>do{}</CODE> blocks,
+which do <EM>NOT</EM> count as loops.)  The <CODE>continue</CODE> block
+is optional.  
+<p>The BLOCK construct is particularly nice for doing case
+structures.
+<p>
+<XMP>
+    SWITCH: {
+        if (/^abc/) { $abc = 1; last SWITCH; }
+        if (/^def/) { $def = 1; last SWITCH; }
+        if (/^xyz/) { $xyz = 1; last SWITCH; }
+        $nothing = 1;
+    }
+
+</XMP>
+<p>There is no official switch statement in Perl, because there are
+already several ways to write the equivalent.  In addition to the
+above, you could write
+<p>
+<XMP>
+    SWITCH: {
+        $abc = 1, last SWITCH  if /^abc/;
+        $def = 1, last SWITCH  if /^def/;
+        $xyz = 1, last SWITCH  if /^xyz/;
+        $nothing = 1;
+    }
+
+</XMP>
+<p>(That's actually not as strange as it looks once you realize that you can
+use loop control ``operators'' within an expression,  That's just the normal
+C comma operator.)
+<p>or
+<p>
+<XMP>
+    SWITCH: {
+        /^abc/ && do { $abc = 1; last SWITCH; };
+        /^def/ && do { $def = 1; last SWITCH; };
+        /^xyz/ && do { $xyz = 1; last SWITCH; };
+        $nothing = 1;
+    }
+
+</XMP>
+<p>or formatted so it stands out more as a ``proper'' switch statement:
+<p>
+<XMP>
+    SWITCH: {
+        /^abc/      && do { 
+                            $abc = 1; 
+                            last SWITCH; 
+                       };
+        /^def/      && do { 
+                            $def = 1; 
+                            last SWITCH; 
+                       };
+        /^xyz/      && do { 
+                            $xyz = 1; 
+                            last SWITCH; 
+                        };
+        $nothing = 1;
+    }
+
+</XMP>
+<p>or
+<p>
+<XMP>
+    SWITCH: {
+        /^abc/ and $abc = 1, last SWITCH;
+        /^def/ and $def = 1, last SWITCH;
+        /^xyz/ and $xyz = 1, last SWITCH;
+        $nothing = 1;
+    }
+
+</XMP>
+<p>or even, horrors,
+<p>
+<XMP>
+    if (/^abc/)
+        { $abc = 1 }
+    elsif (/^def/)
+        { $def = 1 }
+    elsif (/^xyz/)
+        { $xyz = 1 }
+    else
+        { $nothing = 1 }
+
+</XMP>
+<p>A common idiom for a switch statement is to use <CODE>foreach</CODE>'s aliasing to make
+a temporary assignment to <STRONG>$_</STRONG> for convenient matching:
+<p>
+<XMP>
+    SWITCH: for ($where) {
+                /In Card Names/     && do { push @flags, '-e'; last; };
+                /Anywhere/          && do { push @flags, '-h'; last; };
+                /In Rulings/        && do {                    last; };
+                die "unknown value for form variable where: `$where'";
+            } 
+
+</XMP>
+<p>Another interesting approach to a switch statement is arrange
+for a <CODE>do</CODE> block to return the proper value:
+<p>
+<XMP>
+    $amode = do {
+        if     ($flag & O_RDONLY) { "r" } 
+        elsif  ($flag & O_WRONLY) { ($flag & O_APPEND) ? "a" : "w" } 
+        elsif  ($flag & O_RDWR)   {
+            if ($flag & O_CREAT)  { "w+" }
+            else                  { ($flag & O_APPEND) ? "a+" : "r+" }
+        }
+    };
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perlsyn_goto_0">
+Goto</A>
+</H2>
+Although not for the faint of heart, Perl does support a <CODE>goto</CODE> statement.
+A loop's LABEL is not actually a valid target for a <CODE>goto</CODE>;
+it's just the name of the loop.  There are three forms: goto-LABEL,
+goto-EXPR, and goto-&amp;NAME.
+<p>The goto-LABEL form finds the statement labeled with LABEL and resumes
+execution there.  It may not be used to go into any construct that
+requires initialization, such as a subroutine or a foreach loop.  It
+also can't be used to go into a construct that is optimized away.  It
+can be used to go almost anywhere else within the dynamic scope,
+including out of subroutines, but it's usually better to use some other
+construct such as last or die.  The author of Perl has never felt the
+need to use this form of goto (in Perl, that is--C is another matter).
+<p>The goto-EXPR form expects a label name, whose scope will be resolved
+dynamically.  This allows for computed gotos per FORTRAN, but isn't
+necessarily recommended if you're optimizing for maintainability:
+<p>
+<XMP>
+    goto ("FOO", "BAR", "GLARCH")[$i];
+
+</XMP>
+<p>The goto-&amp;NAME form is highly magical, and substitutes a call to the
+named subroutine for the currently running subroutine.  This is used by
+<EM>AUTOLOAD()</EM> subroutines that wish to load another subroutine and then
+pretend that the other subroutine had been called in the first place
+(except that any modifications to <STRONG>@_</STRONG> in the current subroutine are
+propagated to the other subroutine.)  After the <CODE>goto</CODE>, not even <EM>caller()</EM>
+will be able to tell that this routine was called first.
+<p>In almost all cases like this, it's usually a far, far better idea to use the
+structured control flow mechanisms of <CODE>next</CODE>, <CODE>last</CODE>, or <CODE>redo</CODE> instead of
+resorting to a <CODE>goto</CODE>.  For certain applications, the catch and throw pair of
+<CODE>eval{}</CODE> and <EM>die()</EM> for exception processing can also be a prudent approach.
+<p>
+<H2> 
+<A NAME="perlsyn_pods_0">
+PODs: Embedded Documentation</A>
+</H2>
+Perl has a mechanism for intermixing documentation with source code.
+While it's expecting the beginning of a new statement, if the compiler
+encounters a line that begins with an equal sign and a word, like this
+<p>
+<XMP>
+    =head1 Here There Be Pods!
+
+</XMP>
+<p>Then that text and all remaining text up through and including a line
+beginning with <CODE>=cut</CODE> will be ignored.  The format of the intervening
+text is described in the <EM>perlpod</EM>  manpage
+. 
+<p>This allows you to intermix your source code
+and your documentation text freely, as in
+<p>
+<XMP>
+    =item snazzle($)
+    The snazzle() function will behave in the most spectacular 
+    form that you can possibly imagine, not even excepting
+    cybernetic pyrotechnics.
+    =cut back to the compiler, nuff of this pod stuff!
+    sub snazzle($) {
+        my $thingie = shift;
+        .........
+    } 
+
+</XMP>
+<p>Note that pod translators should only look at paragraphs beginning 
+with a pod directive (it makes parsing easier), whereas the compiler
+actually knows to look for pod escapes even in the middle of a 
+paragraph.  This means that the following secret stuff will be
+ignored by both the compiler and the translators.
+<p>
+<XMP>
+    $a=3;
+    =secret stuff
+     warn "Neither POD nor CODE!?"
+    =cut back
+    print "got $a\n";
+
+</XMP>
+<p>You probably shouldn't rely upon the <EM>warn()</EM> being podded out forever.
+Not all pod translators are well-behaved in this regard, and perhaps
+the compiler will become pickier.
+<p>
+</BODY>
+</HTML>

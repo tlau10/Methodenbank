@@ -1,0 +1,304 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perli18n</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perli18n_name_0">
+NAME</A>
+</H1>
+perl18n - Perl i18n (internalization)
+<p><p><hr>
+
+<H1> 
+<A NAME="perli18n_description_0">
+DESCRIPTION</A>
+</H1>
+Perl supports the language-specific notions of data like
+``is this a letter'' and ``which letter comes first''. These
+are very important issues especially for languages other
+than English -- but also for English: it would be very
+na&239;ve indeed to think that <CODE>A-Za-z</CODE> defines all the letters.
+<p>Perl understands the language-specific data via the standardized
+(ISO C, XPG4, POSIX 1.c) method called ``the locale system''.
+The locale system is controlled per application using one
+function call and several environment variables.
+<p><p><hr>
+
+<H1> 
+<A NAME="perli18n_using_0">
+USING LOCALES</A>
+</H1>
+If your operating system supports the locale system and you have
+installed the locale system and you have set your locale environment
+variables correctly (please see below) before running Perl, Perl will
+understand your data correctly according to your locale settings.
+<p>In runtime you can switch locales using the POSIX::<EM>setlocale()</EM>.
+<p>
+<XMP>
+        # setlocale is the function call
+        # LC_CTYPE will be explained later
+        use POSIX qw(setlocale LC_CTYPE);
+        # query and save the old locale.
+        $old_locale = setlocale(LC_CTYPE);
+        setlocale(LC_CTYPE, "fr_CA.ISO8859-1");
+        # for LC_CTYPE now in locale "French, Canada, codeset ISO 8859-1"
+        setlocale(LC_CTYPE, "");
+        # for LC_CTYPE now in locale what the LC_ALL / LC_CTYPE / LANG define.
+        # see below for documentation about the LC_ALL / LC_CTYPE / LANG.
+        # restore the old locale
+        setlocale(LC_CTYPE, $old_locale);
+
+</XMP>
+<p>The first argument of <CODE><EM>setlocale()</EM></CODE> is called <STRONG>the category</STRONG> and the
+second argument <STRONG>the locale</STRONG>. The category tells in what aspect of data
+processing we want to apply language-specific rules, the locale tells
+in what language-country/territory-codeset - but read on for the naming
+of the locales: not all systems name locales as in the example.
+<p>For further information about the categories, please consult your
+<EM>setlocale(3)</EM> manual. For the locales available in your system, also
+consult the <EM>setlocale(3)</EM> manual and see whether it leads you to the
+list of the available locales (search for the <CODE>SEE ALSO</CODE> section). If
+that fails, try out in command line the following commands:
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perli18n_locale_0">
+locale -a</A>
+
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+
+<A NAME="perli18n_nlsinfo_0">
+nlsinfo</A>
+
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+
+<A NAME="perli18n_ls_0">
+ls /usr/lib/nls/loc</A>
+
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+
+<A NAME="perli18n_ls_1">
+ls /usr/lib/locale</A>
+
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+
+<A NAME="perli18n_ls_2">
+ls /usr/lib/nls</A>
+
+</STRONG>
+<DD>
+<p>
+</DL>
+and see whether they list something resembling these
+	en_US.ISO8859-1		de_DE.ISO8859-1		ru_RU.ISO8859-5
+	en_US			de_DE			ru_RU
+	en			de			ru
+	english			german			russian
+	english.iso88591	german.iso88591		russian.iso88595
+<p>Sadly enough even if the calling interface has been standardized
+the names of the locales are not. The naming usually is
+language-country/territory-codeset but the latter parts may
+not be present. Two special locales are worth special mention:
+<p>
+<XMP>
+        "C"
+
+</XMP>
+<p>and
+	``POSIX''
+<p>Currently and effectively these are the same locale: the difference is
+mainly that the first one is defined by the C standard and the second
+one is defined by the POSIX standard. What they mean and define is the
+<STRONG>default locale</STRONG> in which every program does start in.  The language
+is (American) English and the character codeset <CODE>ASCII</CODE>.
+<STRONG>NOTE</STRONG>: not all systems have the <CODE>``POSIX''</CODE> locale (not all systems
+are POSIX): use the <CODE>``C''</CODE> locale when you need the default locale.
+<p>
+<H2> 
+<A NAME="perli18n_category_0">
+Category LC_CTYPE: CHARACTER TYPES</A>
+</H2>
+Starting from Perl version 5.002 perl has obeyed the 
+<A HREF="perli18n.html#perli18n_lc_ctype_0">LC_CTYPE</A>
+
+environment variable which controls application's notions on
+which characters are alphabetic characters. This affects in
+Perl the regular expression metanotation
+<p>
+<XMP>
+        \w
+
+</XMP>
+<p>which stands for alphanumeric characters, that is, alphabetic and
+numeric characters (please consult the <EM>perlre</EM>  manpage
+ for more information
+about regular expressions). Thanks to the 
+<A HREF="perli18n.html#perli18n_lc_ctype_0">LC_CTYPE</A>
+, depending on
+your locale settings, characters like <CODE>&198;</CODE>, <CODE>&201;</CODE>, <CODE>&223;</CODE>, <CODE>&248;</CODE>, can be
+understood as <CODE>\w</CODE> characters.
+<p>
+<H2> 
+<A NAME="perli18n_category_1">
+Category LC_COLLATE: COLLATION</A>
+</H2>
+Starting from Perl version 5.003_06 perl has obeyed the 
+<A HREF="perli18n.html#perli18n_lc_collate_0">LC_COLLATE</A>
+
+environment variable which controls application's notions on the
+collation (ordering) of the characters. <CODE>B</CODE> does in most Latin
+alphabets follow the <CODE>A</CODE> but where do the <CODE>&193;</CODE> and <CODE>&196;</CODE> belong?
+<p>Here is a code snippet that will tell you what are the alphanumeric
+characters in the current locale, in the locale order:
+<p>
+<XMP>
+        perl -le 'print sort grep /\w/, map { chr() } 0..255'
+
+</XMP>
+<p>As noted above, this will work only for Perl versions 5.003_06 and up.
+<p><STRONG>NOTE</STRONG>: in the pre-5.003_06 Perl releases the per-locale collation
+was possible using the <CODE>I18N::Collate</CODE> library module. This is now
+mildly obsolete and to be avoided. The 
+<A HREF="perli18n.html#perli18n_lc_collate_0">LC_COLLATE</A>
+ functionality is
+integrated into the Perl core language and one can use scalar data
+completely normally -- there is no need to juggle with the scalar
+references of <CODE>I18N::Collate</CODE>.
+<p><p><hr>
+
+<H1> 
+<A NAME="perli18n_environment_0">
+ENVIRONMENT</A>
+</H1>
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perli18n_perl_badlang_0">
+PERL_BADLANG</A>
+
+</STRONG>
+<DD>
+A string that controls whether Perl warns in its startup about failed
+locale settings. This can happen if the locale support in the
+operating system is lacking (broken) is some way. If this string has
+an integer value differing from zero, Perl will not complain.
+<STRONG>NOTE</STRONG>: this is just hiding the warning message: the message tells
+about some problem in your system's locale support and you should
+investigate what the problem is.
+<p>
+</DL>
+The following environment variables are not specific to Perl: they arepart of the standardized (ISO C, XPG4, POSIX 1.c) setlocale method to
+control an application's opinion on data.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perli18n_lc_all_0">
+LC_ALL</A>
+
+</STRONG>
+<DD>
+
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ is the ``override-all'' locale environment variable. If it is
+set, it overrides all the rest of the locale environment variables.
+<p>
+<DT><STRONG>
+
+<A NAME="perli18n_lc_ctype_0">
+LC_CTYPE</A>
+
+</STRONG>
+<DD>
+
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ controls the classification of characters, see above.
+<p>If this is unset and the 
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ is set, the 
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ is used as
+the 
+<A HREF="perli18n.html#perli18n_lc_ctype_0">LC_CTYPE</A>
+. If both this and the 
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ are unset but the 
+<A HREF="perli18n.html#perli18n_lang_0">LANG</A>
+
+is set, the 
+<A HREF="perli18n.html#perli18n_lang_0">LANG</A>
+ is used as the 
+<A HREF="perli18n.html#perli18n_lc_ctype_0">LC_CTYPE</A>
+.
+If none of these three is set, the default locale <CODE>``C''</CODE>
+is used as the 
+<A HREF="perli18n.html#perli18n_lc_ctype_0">LC_CTYPE</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perli18n_lc_collate_0">
+LC_COLLATE</A>
+
+</STRONG>
+<DD>
+
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ controls the collation of characters, see above.
+<p>If this is unset and the 
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ is set, the 
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ is used as
+the 
+<A HREF="perli18n.html#perli18n_lc_ctype_0">LC_CTYPE</A>
+. If both this and the 
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ are unset but the
+
+<A HREF="perli18n.html#perli18n_lang_0">LANG</A>
+ is set, the 
+<A HREF="perli18n.html#perli18n_lang_0">LANG</A>
+ is used as the 
+<A HREF="perli18n.html#perli18n_lc_collate_0">LC_COLLATE</A>
+.
+If none of these three is set, the default locale <CODE>``C''</CODE>
+is used as the 
+<A HREF="perli18n.html#perli18n_lc_collate_0">LC_COLLATE</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perli18n_lang_0">
+LANG</A>
+
+</STRONG>
+<DD>
+LC_ALL is the ``catch-all'' locale environment variable. If it is set,
+it is used as the last resort if neither of the 
+<A HREF="perli18n.html#perli18n_lc_all_0">LC_ALL</A>
+ and the
+category-specific <CODE>LC_...</CODE> are set.
+<p>
+</DL>
+There are further locale-controlling environment variables(<CODE>LC_MESSAGES, LC_MONETARY, LC_NUMERIC, LC_TIME</CODE>) but Perl
+<STRONG>does not</STRONG> currently obey them.
+<p>
+</BODY>
+</HTML>

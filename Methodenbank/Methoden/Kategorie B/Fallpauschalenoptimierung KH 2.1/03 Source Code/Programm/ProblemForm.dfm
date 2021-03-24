@@ -1,0 +1,581 @@
+object FormEingabe1: TFormEingabe1
+  Left = 0
+  Top = 0
+  AlphaBlend = True
+  BiDiMode = bdLeftToRight
+  BorderIcons = [biMinimize, biMaximize]
+  Caption = '[NEU]'
+  ClientHeight = 598
+  ClientWidth = 882
+  Color = clWindow
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  Icon.Data = {
+    0000010001002020100000000000E80200001600000028000000200000004000
+    0000010004000000000080020000000000000000000000000000000000000000
+    000000008000008000000080800080000000800080008080000080808000C0C0
+    C0000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF008888
+    777777777777777777777777778888887000000000000005000000007788F700
+    0000000000007700000000007788F7788888888888887870788888707788F778
+    7777787888887077077788707788F77F7777780888880000000078707788F77F
+    8777780776887071076478707788F77FF88878077788888F704777707788F778
+    8888780777788887883477707788F77F7777780777777777778707007788F77F
+    8777780777777777774817707788F77FF888780777777777744710700788F778
+    8888780777777764468707000788F77F7777780777777446787078000788F77F
+    8777780777764678774888700788F77F8888780444007873004788810788F778
+    8888888773787317877788870788F7077777777478710077777777771788F777
+    0000000773000000000007777788F7780000078700000000000008777788F703
+    0000771000000000000003078788888888887788888888888888888881888888
+    8871788888788758888888888788888888788888887887988888888887788888
+    8188888888188758878888888778888881888888871787787788888887888888
+    7780888887778778578888277788888880777788877777777788777008888888
+    8777008787777877875870878888888888F88F88178558818718FF8788888888
+    8888888877877881878888F88888888888888888888788878888888888880000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    000000000000000000000000000000000000000000000000000000000000}
+  OldCreateOrder = False
+  ParentBiDiMode = False
+  Position = poDesigned
+  Visible = True
+  OnActivate = OnActivate
+  DesignSize = (
+    882
+    598)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object mainTabControl: TTabControl
+    Left = 0
+    Top = 0
+    Width = 879
+    Height = 593
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    MultiLine = True
+    TabOrder = 0
+    TabPosition = tpLeft
+    Tabs.Strings = (
+      'Fallpauschalen'
+      'Angaben zu Kostenstellen'
+      'L'#246'sung')
+    TabIndex = 0
+    OnChange = mainTabControlChange
+    DesignSize = (
+      879
+      593)
+    object GroupBox2: TGroupBox
+      Left = 32
+      Top = 3
+      Width = 844
+      Height = 579
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Caption = 'Angaben zu Kostenstellen'
+      TabOrder = 1
+      Visible = False
+      DesignSize = (
+        844
+        579)
+      object GroupBoxHotelleistung: TGroupBox
+        Left = 16
+        Top = 21
+        Width = 817
+        Height = 57
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'Angaben zur "Hotelleistung"'
+        TabOrder = 0
+        object LabelHotelleistung: TLabeledEdit
+          Left = 304
+          Top = 24
+          Width = 89
+          Height = 21
+          EditLabel.Width = 221
+          EditLabel.Height = 13
+          EditLabel.Caption = 'H'#246'he der t'#228'glichen "Hotelleistung" pro Patient:'
+          LabelPosition = lpLeft
+          TabOrder = 0
+        end
+      end
+      object GroupBoxPersonal: TGroupBox
+        Left = 16
+        Top = 85
+        Width = 817
+        Height = 80
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'Angaben zum Personal'
+        TabOrder = 1
+        object LabelArbeitszeitKS: TLabeledEdit
+          Left = 304
+          Top = 24
+          Width = 81
+          Height = 21
+          EditLabel.Width = 275
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Monatliche Arbeitszeit pro Krankenschwester (in Stunden):'
+          LabelPosition = lpLeft
+          TabOrder = 0
+        end
+        object LabelGehaltKS: TLabeledEdit
+          Left = 304
+          Top = 48
+          Width = 81
+          Height = 21
+          EditLabel.Width = 247
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Monatlicher Gehaltsaufwand pro Krankenschwester:'
+          LabelPosition = lpLeft
+          TabOrder = 1
+        end
+      end
+      object GroupBoxOP: TGroupBox
+        Left = 16
+        Top = 173
+        Width = 817
+        Height = 80
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'Angaben zum Operationssaal'
+        TabOrder = 2
+        object LabelAuslastungOP: TLabeledEdit
+          Left = 304
+          Top = 21
+          Width = 89
+          Height = 21
+          EditLabel.Width = 269
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Monatliche Auslastung des Operationsaales (in Stunden):'
+          LabelPosition = lpLeft
+          TabOrder = 0
+        end
+        object LabelKostenOP: TLabeledEdit
+          Left = 304
+          Top = 48
+          Width = 89
+          Height = 21
+          EditLabel.Width = 200
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Monatliche Kosten f'#252'r den Operationssaal:'
+          LabelPosition = lpLeft
+          TabOrder = 1
+        end
+      end
+      object GroupBoxLabor: TGroupBox
+        Left = 16
+        Top = 261
+        Width = 817
+        Height = 113
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'Angaben zum Labor'
+        TabOrder = 3
+        object LabelAuslastungLabor: TLabeledEdit
+          Left = 304
+          Top = 24
+          Width = 97
+          Height = 21
+          EditLabel.Width = 225
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Monatliche Auslastung des Labors (in Stunden):'
+          LabelPosition = lpLeft
+          TabOrder = 0
+        end
+        object LabelKostenLabor: TLabeledEdit
+          Left = 304
+          Top = 48
+          Width = 97
+          Height = 21
+          EditLabel.Width = 156
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Monatliche Kosten f'#252'r das Labor:'
+          LabelPosition = lpLeft
+          TabOrder = 1
+        end
+        object LabelDeckungsbeitragLabor: TLabeledEdit
+          Left = 304
+          Top = 72
+          Width = 97
+          Height = 21
+          EditLabel.Width = 282
+          EditLabel.Height = 13
+          EditLabel.Caption = 'St'#252'ndlicher Deckungsbeitrag durch Fremdnutzung (in Euro):'
+          LabelPosition = lpLeft
+          TabOrder = 2
+        end
+      end
+      object GroupBoxRoentgen: TGroupBox
+        Left = 16
+        Top = 381
+        Width = 817
+        Height = 195
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'Angaben zur R'#246'ntgenabteilung'
+        TabOrder = 4
+        object LabelRoentgenArbeitszeit: TLabeledEdit
+          Left = 304
+          Top = 21
+          Width = 97
+          Height = 21
+          EditLabel.Width = 288
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Monatlicher Personalaufwand am R'#246'ntgenger'#228't (in Stunden):'
+          LabelPosition = lpLeft
+          TabOrder = 0
+        end
+        object LabelKostenRoentgen: TLabeledEdit
+          Left = 304
+          Top = 48
+          Width = 97
+          Height = 21
+          EditLabel.Width = 210
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Monatliche Kosten f'#252'r die R'#246'ntgenabteilung:'
+          LabelPosition = lpLeft
+          TabOrder = 1
+        end
+        object LabelKostenNeuesGeraet: TLabeledEdit
+          Left = 304
+          Top = 75
+          Width = 97
+          Height = 21
+          EditLabel.Width = 176
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Kosten eines neuen R'#246'ntgenger'#228'tes:'
+          LabelPosition = lpLeft
+          TabOrder = 2
+        end
+        object LabelErloesAltesGeraet: TLabeledEdit
+          Left = 304
+          Top = 102
+          Width = 97
+          Height = 21
+          EditLabel.Width = 242
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Erl'#246's durch den Verkauf des alten R'#246'ntgenger'#228'tes:'
+          LabelPosition = lpLeft
+          TabOrder = 3
+        end
+        object LabelAbschreibungsDauer: TLabeledEdit
+          Left = 304
+          Top = 129
+          Width = 97
+          Height = 21
+          EditLabel.Width = 135
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Abschreibungsdauer (Jahre):'
+          LabelPosition = lpLeft
+          TabOrder = 4
+        end
+        object LabelM: TLabeledEdit
+          Left = 304
+          Top = 156
+          Width = 97
+          Height = 21
+          EditLabel.Width = 82
+          EditLabel.Height = 13
+          EditLabel.Caption = 'Schaltvariable M:'
+          LabelPosition = lpLeft
+          TabOrder = 5
+          Text = '100000'
+        end
+      end
+    end
+    object GroupBox1: TGroupBox
+      Left = 32
+      Top = 3
+      Width = 844
+      Height = 579
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Caption = 'Angaben zum Krankenhaus und Fallpauschalen'
+      TabOrder = 0
+      DesignSize = (
+        844
+        579)
+      object LabelBettenanzahl: TLabeledEdit
+        Left = 191
+        Top = 29
+        Width = 81
+        Height = 21
+        Hint = 'Nur ganze Zahlen zul'#228'ssig.'
+        EditLabel.Width = 163
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Anzahl der Betten im Krankenhaus'
+        LabelPosition = lpLeft
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 0
+      end
+      object LabelBerechnungszeitraum: TLabeledEdit
+        Left = 463
+        Top = 29
+        Width = 81
+        Height = 21
+        Hint = 'Nur ganze Zahlen zul'#228'ssig.'
+        EditLabel.Width = 164
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Berechnungszeitraum (in Monaten)'
+        LabelPosition = lpLeft
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 1
+      end
+      object LabelAnzahlFallpauschalen: TLabeledEdit
+        Left = 687
+        Top = 29
+        Width = 81
+        Height = 21
+        Hint = 'Nur ganze Zahlen zul'#228'ssig.'
+        EditLabel.Width = 124
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Anzahl der Fallpauschalen'
+        LabelPosition = lpLeft
+        ParentShowHint = False
+        ShowHint = True
+        TabOrder = 2
+        Text = '1'
+      end
+      object UpDownAnzahlFallpauschalen: TUpDown
+        Left = 774
+        Top = 29
+        Width = 17
+        Height = 21
+        Min = 1
+        Position = 1
+        TabOrder = 3
+        OnClick = UpDownAnzahlFallpauschalenClick
+      end
+      object StringGridTabelle: TStringGrid
+        Left = 3
+        Top = 75
+        Width = 838
+        Height = 390
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        ColCount = 8
+        DefaultColWidth = 55
+        DefaultRowHeight = 26
+        RowCount = 25
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSizing, goColSizing, goEditing, goTabs]
+        TabOrder = 4
+        ColWidths = (
+          55
+          89
+          95
+          75
+          83
+          145
+          153
+          96)
+        RowHeights = (
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26
+          26)
+      end
+      object MemoEingabe1: TMemo
+        Left = 10
+        Top = 483
+        Width = 137
+        Height = 89
+        Anchors = [akLeft, akBottom]
+        Color = clInfoBk
+        Lines.Strings = (
+          'gT     = ganze Tage'
+          'S       = Stunden'
+          'M      = Minuten'
+          'gM    = ganze Minuten'
+          'S/T   = Stunden pro Tag'
+          'GE    = Geldeinheiten')
+        TabOrder = 5
+      end
+    end
+    object GroupBox3: TGroupBox
+      Left = 32
+      Top = 3
+      Width = 844
+      Height = 579
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      Caption = 'Optimale L'#246'sung des Problems'
+      ParentColor = False
+      TabOrder = 2
+      Visible = False
+      DesignSize = (
+        844
+        579)
+      object GroupBoxZfWert: TGroupBox
+        Left = 16
+        Top = 21
+        Width = 815
+        Height = 41
+        Anchors = [akLeft, akTop, akRight]
+        Caption = 'Gewinn'
+        TabOrder = 0
+        object LabelZf: TLabel
+          Left = 16
+          Top = 14
+          Width = 104
+          Height = 16
+          Caption = '<nicht berechnet>'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+        end
+      end
+      object GroupBoxFallpauschalen: TGroupBox
+        Left = 16
+        Top = 68
+        Width = 815
+        Height = 356
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Caption = 'Belegung'
+        ParentShowHint = False
+        ShowHint = False
+        TabOrder = 1
+        DesignSize = (
+          815
+          356)
+        object LabelFallp: TLabel
+          Left = 16
+          Top = 14
+          Width = 296
+          Height = 16
+          Caption = 'Optimale Belegung der Krankenhausbetten'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object StringTabelleErgebnis: TStringGrid
+          Left = 16
+          Top = 48
+          Width = 209
+          Height = 300
+          Anchors = [akLeft, akTop, akBottom]
+          ColCount = 2
+          FixedColor = clScrollBar
+          RowCount = 4
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          ParentShowHint = False
+          ShowHint = True
+          TabOrder = 0
+          ColWidths = (
+            64
+            140)
+          RowHeights = (
+            24
+            24
+            24
+            24)
+        end
+      end
+      object GroupBoxAnzahlKrankenschwestern: TGroupBox
+        Left = 16
+        Top = 430
+        Width = 815
+        Height = 41
+        Anchors = [akLeft, akRight, akBottom]
+        Caption = 'Anzahl der Krankenschwestern'
+        TabOrder = 2
+        object LabelAnzahlKS: TLabel
+          Left = 16
+          Top = 17
+          Width = 104
+          Height = 16
+          Caption = '<nicht berechnet>'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+        end
+      end
+      object GroupBox4: TGroupBox
+        Left = 16
+        Top = 476
+        Width = 815
+        Height = 46
+        Anchors = [akLeft, akRight, akBottom]
+        Caption = 'Ertrag aus Laborfremdnutzung'
+        TabOrder = 3
+        object Label2: TLabel
+          Left = 128
+          Top = 16
+          Width = 3
+          Height = 16
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+        end
+        object LabelLaborWert: TLabel
+          Left = 16
+          Top = 25
+          Width = 104
+          Height = 16
+          Caption = '<nicht berechnet>'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -15
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+        end
+      end
+      object GroupBoxGeraet: TGroupBox
+        Left = 16
+        Top = 524
+        Width = 815
+        Height = 41
+        Anchors = [akLeft, akRight, akBottom]
+        Caption = 'Empfehlung'
+        TabOrder = 4
+        object LabelRoentgen: TLabel
+          Left = 16
+          Top = 16
+          Width = 122
+          Height = 16
+          Caption = '<nicht berechnet>'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+      end
+    end
+  end
+end

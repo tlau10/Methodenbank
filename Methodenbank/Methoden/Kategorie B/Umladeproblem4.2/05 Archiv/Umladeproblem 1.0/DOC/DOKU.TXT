@@ -1,0 +1,17 @@
+                        UMLADEPLANUNG
+                        -------------
+
+
+
+WS 96/97:
+---------
+
+o Solveraufruf (XA) über die Batch-Datei XA_RUN.BAT.
+  In diese Datei ist der Pfad von XA einzutragen 
+  (z.Z. h:\win\or\solver\xa).
+
+
+Jan. 2000:
+----------
+
+o eh boah eh

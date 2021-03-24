@@ -1,0 +1,209 @@
+//----------------------------------------------------------------------------------------//
+// Startseite des Programms                                                               //
+// hier befindet sich das Menü (Datei und Hilfe)                                          //
+// Datei öffnet neue Seite und beendet Anwendung                                          //
+// Hilfe enthält Hilfefunktion (Bug! Hilfe öffnet sich hinter dem Hauptfenster) und About //
+//----------------------------------------------------------------------------------------//
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Startseite1.h"
+#include "Eingabe1.h"
+#include "verketteteListe.h"
+
+#include "About.h"
+#include "registry.h"
+#include "common.h"
+
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TF *F;
+//TFormEingabe1 *activeEingabeForm;
+//---------------------------------------------------------------------------
+__fastcall TF::TF(TComponent* Owner)
+        : TForm(Owner)
+{
+	this->workSpacePath = "C:/TEMP/";
+	this->Left = 0;
+	this->Top = 0;
+}
+//---------------------------------------------------------------------------
+void __fastcall TF::Beenden1Click(TObject *Sender)
+{
+		//Beenden schließt die Anwendung
+        Close();        
+}
+//---------------------------------------------------------------------------
+void __fastcall TF::MenueNeuClick(TObject *Sender)
+{
+	MenueNeuesFormular();
+}
+
+bool TF::MenueNeuesFormular()
+{
+	//bei Auswahl von "Neu" werden alle Feldinhalte gelöscht und leere Formulare angezeigt
+		FormEingabe1 = new TFormEingabe1(this);
+
+		FormEingabe1->Show();
+		FormEingabe1->zuruecksetzen();
+
+		FormEingabe1->fileName = NULL;
+		FormEingabe1->Caption = "[NEU]";
+
+		return true;
+}
+
+void __fastcall TF::MenueSpeichernClick(TObject *Sender)
+{
+		//Speichern
+	if(FormEingabe1->fileName != NULL)
+		FormEingabe1->saveFile();
+	else
+		speichernUnter();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TF::MenueSpeichernUnterClick(TObject *Sender)
+{
+	speichernUnter();
+}
+
+bool TF::speichernUnter()
+{
+	//Speichern unter
+	//TMDIChild* Child = (TMDIChild*)ActiveMDIChild;
+	SaveDialog1->InitialDir = reg_getdatadir();
+	SaveDialog1->FileName = "newfile.fpo";
+
+	char* supported_filelist[1] = { "fpo" };
+
+	if (SaveDialog1->Execute())
+	{
+	  char dir[256];
+	  getcwd(dir, sizeof(dir));
+	  reg_setdatadir(dir);
+	  char file[1024];
+
+	  strpncpy(file, SaveDialog1->Files->Strings[0].c_str(), sizeof(file));
+
+	  char* dotpos = strrchr(file, '.');
+
+	  FormEingabe1->fileName = file;
+	  FormEingabe1->Caption = FormEingabe1->fileName;
+	  FormEingabe1->saveFile();
+	}
+	else
+	{
+		return false;
+	}
+
+	return true;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TF::MenueOeffnenClick(TObject *Sender)
+{
+	oeffnen();
+}
+//---------------------------------------------------------------------------
+
+bool TF::oeffnen()
+{
+	// Öffnen
+
+	OpenDialog1->InitialDir = reg_getdatadir();          // Datei -> Oeffnen
+
+	if (OpenDialog1->Execute())
+	{
+		// open the dialog box
+		char dir[200];
+		getcwd(dir,sizeof(dir));       // gets current working directory
+		reg_setdatadir(dir);          // das letze Verz. wird in der Registry gespeichert
+        FormEingabe1 = new TFormEingabe1(this);
+		FormEingabe1->fileName = OpenDialog1->FileName.c_str();
+		FormEingabe1->Caption = FormEingabe1->fileName;
+		FormEingabe1->loadFile();
+		return true;
+	}
+
+	return false;
+}
+
+//---------------------------------------------------------------------------
+void __fastcall TF::ber1Click(TObject *Sender)
+{
+	//"über" öffnet das Fenster mit den allgemeinen Infos über die Software
+        AboutBox->ShowModal();
+}
+//---------------------------------------------------------------------------
+void __fastcall TF::Inhalt1Click(TObject *Sender)
+{
+		//Öffnen der Hilfe
+		//Fehler, Hilfe hinter Hauptfenster, bug leider nicht gefunden
+		Application->HelpCommand(HELP_FINDER, 0);
+}
+
+void __fastcall TF::CalculateToolButtonClick(TObject *Sender)
+{
+	FormEingabe1->berechnen();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TF::ResetToolButtonClick(TObject *Sender)
+{
+	if(Application->MessageBoxA("Wollen Sie die Eingaben wirklich löschen?", "Rücksetzen", MB_YESNO | MB_ICONQUESTION) == IDYES)
+		FormEingabe1->zuruecksetzen();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TF::OpenToolButtonClick(TObject *Sender)
+{
+	oeffnen();	
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TF::SaveToolButtonClick(TObject *Sender)
+{
+		//Speichern
+	if(FormEingabe1->fileName != NULL)
+		FormEingabe1->saveFile();
+	else
+		speichernUnter();	
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TF::NewToolButtonClick(TObject *Sender)
+{
+	MenueNeuesFormular();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TF::ToolButtonCloseChildClick(TObject *Sender)
+{
+	try
+	{
+		if(FormEingabe1 != NULL)
+		{
+			TFormEingabe1 *tmp = FormEingabe1;
+			FormEingabe1 = NULL;
+			delete tmp;
+		}
+	}
+	catch(Exception &e)
+	{
+
+    }
+}
+//---------------------------------------------------------------------------
+

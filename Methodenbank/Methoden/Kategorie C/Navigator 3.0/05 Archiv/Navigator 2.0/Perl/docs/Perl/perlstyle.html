@@ -1,0 +1,235 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perlstyle</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perlstyle_name_0">
+NAME</A>
+</H1>
+perlstyle - Perl style guide
+<p><p><hr>
+
+<H1> 
+<A NAME="perlstyle_description_0">
+DESCRIPTION</A>
+</H1>
+Each programmer will, of course, have his or her own preferences in
+regards to formatting, but there are some general guidelines that will
+make your programs easier to read, understand, and maintain.  
+<p>The most important thing is to run your programs under the <STRONG>-w</STRONG>
+flag at all times.  You may turn it off explicitly for particular
+portions of code via the <CODE><STRONG>$^</STRONG>W</CODE> variable if you must.  You should
+also always run under <CODE>use strict</CODE> or know the reason why not.
+The <CODE>use sigtrap</CODE> and even <CODE>use diagnostics</CODE> pragmas may also prove
+useful.
+<p>Regarding aesthetics of code lay out, about the only thing Larry
+cares strongly about is that the closing curly brace of
+a multi-line BLOCK should line up with the keyword that started the construct.
+Beyond that, he has other preferences that aren't so strong:
+<p>
+<UL>
+<LI>4-column indent.
+<p>
+<LI>Opening curly on same line as keyword, if possible, otherwise line up.
+<p>
+<LI>Space before the opening curly of a multiline BLOCK.
+<p>
+<LI>One-line BLOCK may be put on one line, including curlies.
+<p>
+<LI>No space before the semicolon.
+<p>
+<LI>Semicolon omitted in ``short'' one-line BLOCK.
+<p>
+<LI>Space around most operators.
+<p>
+<LI>Space around a ``complex'' subscript (inside brackets).
+<p>
+<LI>Blank lines between chunks that do different things.
+<p>
+<LI>Uncuddled elses.
+<p>
+<LI>No space between function name and its opening paren.
+<p>
+<LI>Space after each comma.
+<p>
+<LI>Long lines broken after an operator (except ``and'' and ``or'').
+<p>
+<LI>Space after last paren matching on current line.
+<p>
+<LI>Line up corresponding items vertically.
+<p>
+<LI>Omit redundant punctuation as long as clarity doesn't suffer.
+<p>
+</UL>
+Larry has his reasons for each of these things, but he doesn't claim thateveryone else's mind works the same as his does.
+<p>Here are some other more substantive style issues to think about:
+<p>
+<UL>
+<LI>Just because you <EM>CAN</EM> do something a particular way doesn't mean that
+you <EM>SHOULD</EM> do it that way.  Perl is designed to give you several
+ways to do anything, so consider picking the most readable one.  For
+instance
+<p>
+<XMP>
+    open(FOO,$foo) || die "Can't open $foo: $!";
+
+</XMP>
+<p>is better than
+<p>
+<XMP>
+    die "Can't open $foo: $!" unless open(FOO,$foo);
+
+</XMP>
+<p>because the second way hides the main point of the statement in a
+modifier.  On the other hand
+<p>
+<XMP>
+    print "Starting analysis\n" if $verbose;
+
+</XMP>
+<p>is better than
+<p>
+<XMP>
+    $verbose && print "Starting analysis\n";
+
+</XMP>
+<p>since the main point isn't whether the user typed <STRONG>-v</STRONG> or not.
+<p>Similarly, just because an operator lets you assume default arguments
+doesn't mean that you have to make use of the defaults.  The defaults
+are there for lazy systems programmers writing one-shot programs.  If
+you want your program to be readable, consider supplying the argument.
+<p>Along the same lines, just because you <EM>CAN</EM> omit parentheses in many
+places doesn't mean that you ought to:
+<p>
+<XMP>
+    return print reverse sort num values %array;
+    return print(reverse(sort num (values(%array))));
+
+</XMP>
+<p>When in doubt, parenthesize.  At the very least it will let some poor
+schmuck bounce on the <STRONG>% </STRONG>key in <STRONG>vi</STRONG>.
+<p>Even if you aren't in doubt, consider the mental welfare of the person
+who has to maintain the code after you, and who will probably put
+parens in the wrong place.
+<p>
+<LI>Don't go through silly contortions to exit a loop at the top or the
+bottom, when Perl provides the <CODE>last</CODE> operator so you can exit in
+the middle.  Just ``outdent'' it a little to make it more visible:
+<p>
+<XMP>
+    LINE:
+        for (;;) {
+            statements;
+          last LINE if $foo;
+            next LINE if /^#/;
+            statements;
+        }
+
+</XMP>
+<p>
+<LI>Don't be afraid to use loop labels--they're there to enhance
+readability as well as to allow multi-level loop breaks.  See the
+previous example.
+<p>
+<LI>Avoid using <EM>grep()</EM> (or <EM>map()</EM>) or `backticks` in a void context, that is,
+when you just throw away their return values.  Those functions all 
+have return values, so use them.  Otherwise use a <EM>foreach()</EM> loop or
+the <EM>system()</EM> function instead.
+<p>
+<LI>For portability, when using features that may not be implemented on
+every machine, test the construct in an eval to see if it fails.  If
+you know what version or patchlevel a particular feature was
+implemented, you can test <CODE>$]</CODE> (<CODE><STRONG>$PERL_VERSION</STRONG></CODE> in <CODE>English</CODE>) to see if it
+will be there.  The <CODE>Config</CODE> module will also let you interrogate values
+determined by the <STRONG>Configure</STRONG> program when Perl was installed.
+<p>
+<LI>Choose mnemonic identifiers.  If you can't remember what mnemonic means,
+you've got a problem.
+<p>
+<LI><EM>* </EM>
+While short identifiers like <STRONG>$gotit</STRONG> are probably ok, use underscores to
+separate words.  It is generally easier to read <STRONG>$var_names_like_this</STRONG> than
+<STRONG>$VarNamesLikeThis</STRONG>, especially for non-native speakers of English. It's
+also a simple rule that works consistently with VAR_NAMES_LIKE_THIS.
+<p>Package names are sometimes an exception to this rule.  Perl informally
+reserves lowercase module names for ``pragma'' modules like <CODE>integer</CODE> and
+<CODE>strict</CODE>.  Other modules should begin with a capital letter and use mixed
+case, but probably without underscores due to limitations in primitive
+filesystems' representations of module names as files that must fit into a
+few sparse bites.
+<p>
+<LI>You may find it helpful to use letter case to indicate the scope 
+or nature of a variable. For example: 
+<p>
+<XMP>
+    $ALL_CAPS_HERE   constants only (beware clashes with perl vars!)  
+    $Some_Caps_Here  package-wide global/static 
+    $no_caps_here    function scope my() or local() variables 
+
+</XMP>
+<p>Function and method names seem to work best as all lowercase. 
+E.g., <STRONG>$obj</STRONG>-&gt;<EM>as_string()</EM>. 
+<p>You can use a leading underscore to indicate that a variable or
+function should not be used outside the package that defined it.
+<p>
+<LI>If you have a really hairy regular expression, use the <CODE>/x</CODE> modifier and
+put in some whitespace to make it look a little less like line noise.
+Don't use slash as a delimiter when your regexp has slashes or backslashes.
+<p>
+<LI>Use the new ``and'' and ``or'' operators to avoid having to parenthesize
+list operators so much, and to reduce the incidence of punctuational
+operators like <CODE>&amp;&amp;</CODE> and <CODE>||</CODE>.  Call your subroutines as if they were
+functions or list operators to avoid excessive ampersands and parens.
+<p>
+<LI>Use here documents instead of repeated <EM>print()</EM> statements.
+<p>
+<LI>Line up corresponding things vertically, especially if it'd be too long
+to fit on one line anyway.  
+<p>
+<XMP>
+    $IDX = $ST_MTIME;       
+    $IDX = $ST_ATIME       if $opt_u; 
+    $IDX = $ST_CTIME       if $opt_c;     
+    $IDX = $ST_SIZE        if $opt_s;     
+    mkdir $tmpdir, 0700 or die "can't mkdir $tmpdir: $!";
+    chdir($tmpdir)      or die "can't chdir $tmpdir: $!";
+    mkdir 'tmp',   0777 or die "can't mkdir $tmpdir/tmp: $!";
+
+</XMP>
+<p>
+<LI>Always check the return codes of system calls.  Good error messages should
+go to STDERR, include which program caused the problem, what the failed
+system call and arguments were, and VERY IMPORTANT) should contain the
+standard system error message for what went wrong.  Here's a simple but
+sufficient example:
+<p>
+<XMP>
+    opendir(D, $dir)     or die "can't opendir $dir: $!";
+
+</XMP>
+<p>
+<LI>Line up your translations when it makes sense:
+<p>
+<XMP>
+    tr [abc]
+       [xyz];
+
+</XMP>
+<p>
+<LI>Think about reusability.  Why waste brainpower on a one-shot when you
+might want to do something like it again?  Consider generalizing your
+code.  Consider writing a module or object class.  Consider making your
+code run cleanly with <CODE>use strict</CODE> and <STRONG>-w</STRONG> in effect.  Consider giving away
+your code.  Consider changing your whole world view.  Consider... oh,
+never mind.
+<p>
+<LI>Be consistent.
+<p>
+<LI>Be nice.
+<p>
+</UL>
+
+</BODY>
+</HTML>

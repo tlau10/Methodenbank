@@ -1,0 +1,170 @@
+object FormEingabe1: TFormEingabe1
+  Left = 114
+  Top = 94
+  Width = 881
+  Height = 627
+  Align = alCustom
+  AlphaBlend = True
+  AutoSize = True
+  BiDiMode = bdLeftToRight
+  Caption = 'Eingabe'
+  Color = clInfoBk
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  ParentBiDiMode = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LabelBettenanzahl: TLabeledEdit
+    Left = 184
+    Top = 0
+    Width = 81
+    Height = 21
+    Hint = 'Nur ganze Zahlen zul'#228'ssig.'
+    EditLabel.Width = 163
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Anzahl der Betten im Krankenhaus'
+    LabelPosition = lpLeft
+    LabelSpacing = 3
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 0
+  end
+  object LabelBerechnungszeitraum: TLabeledEdit
+    Left = 184
+    Top = 32
+    Width = 81
+    Height = 21
+    Hint = 'Nur ganze Zahlen zul'#228'ssig.'
+    EditLabel.Width = 164
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Berechnungszeitraum (in Monaten)'
+    LabelPosition = lpLeft
+    LabelSpacing = 3
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+  end
+  object LabelAnzahlFallpauschalen: TLabeledEdit
+    Left = 184
+    Top = 64
+    Width = 81
+    Height = 21
+    Hint = 'Nur ganze Zahlen zul'#228'ssig.'
+    EditLabel.Width = 124
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Anzahl der Fallpauschalen'
+    LabelPosition = lpLeft
+    LabelSpacing = 3
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+    Text = '1'
+  end
+  object UpDownAnzahlFallpauschalen: TUpDown
+    Left = 265
+    Top = 64
+    Width = 15
+    Height = 21
+    Associate = LabelAnzahlFallpauschalen
+    Min = 1
+    Position = 1
+    TabOrder = 3
+    Wrap = False
+    OnClick = UpDownAnzahlFallpauschalenClick
+  end
+  object ButtonWeiterEingabe1: TBitBtn
+    Left = 712
+    Top = 376
+    Width = 75
+    Height = 25
+    Caption = 'Weiter'
+    TabOrder = 5
+    OnClick = ButtonWeiterEingabe1Click
+  end
+  object ButtonZurueckEingabe1: TBitBtn
+    Left = 608
+    Top = 376
+    Width = 89
+    Height = 25
+    Caption = 'Zur'#252'cksetzen'
+    TabOrder = 6
+    OnClick = ButtonZurueckEingabe1Click
+  end
+  object ButtonBeendenEingabe1: TBitBtn
+    Left = 496
+    Top = 376
+    Width = 89
+    Height = 25
+    Caption = 'Abbrechen'
+    TabOrder = 7
+    OnClick = ButtonBeendenEingabe1Click
+  end
+  object StringGridTabelle: TStringGrid
+    Left = 24
+    Top = 112
+    Width = 825
+    Height = 225
+    ColCount = 8
+    DefaultColWidth = 55
+    DefaultRowHeight = 26
+    RowCount = 25
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSizing, goColSizing, goEditing, goTabs]
+    TabOrder = 4
+    OnClick = StringGridTabelleClick
+    ColWidths = (
+      55
+      89
+      95
+      75
+      83
+      145
+      153
+      96)
+    RowHeights = (
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26
+      26)
+  end
+  object MemoEingabe1: TMemo
+    Left = 32
+    Top = 376
+    Width = 137
+    Height = 89
+    Color = clInfoBk
+    Lines.Strings = (
+      'gT     = ganze Tage'
+      'S       = Stunden'
+      'M      = Minuten'
+      'gM    = ganze Minuten'
+      'S/T   = Stunden pro Tag'
+      'GE    = Geldeinheiten')
+    TabOrder = 8
+  end
+end

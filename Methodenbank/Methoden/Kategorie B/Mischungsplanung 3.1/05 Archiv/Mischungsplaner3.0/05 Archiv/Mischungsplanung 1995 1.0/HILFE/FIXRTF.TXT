@@ -1,0 +1,85 @@
+     =====================================
+                          Easy FIXRTF 
+             Copyright (c) 1996 Eon Solutions Ltd
+     =====================================
+
+Description of the software
+---------------------------
+This program is freeware. It will
+convert your Word 97 RTF files
+into files that can be complied with
+the Help compilers.
+
+Special thanks
+--------------
+To Martyn L Wright (a brilliant Prolog programmer)
+for the code suggestions and review.   
+
+What is installed
+-----------------
+FIXRTF.EXE     The program
+FIXRTF.TXT     This read me text
+FIXRTF.HLP     Information about EasyHelp/Web	
+FIXRTF.LOG     Installation log
+
+UNFIXRTF.EXE Un-install program
+ 
+Usage
+-----
+FIXRTF will read and rewrite your
+RTF file and correct the problem
+with Word 97 RTF.
+
+FIXRTF <filename.RTF>
+
+Eon Solutions Ltd can be contacted at
+-------------------------------------
+Email
+   eon@cix.compulink.co.uk
+   eonsol@cix.compulink.co.uk
+ 
+Fax
+   +44 (0)1625 827037 
+
+Phone
+   +44 (0)973 209667
+
+Post
+   James Holroyd
+   Eon House   
+   Eon Solutions Ltd
+   12 Juniper Rise
+   Macclesfield
+   SK10 4XT
+   United Kingdom
+
+World Wide Web
+   http://www.eon-solutions.com
+
+
+Eon Solutions Ltd provide a range of services
+---------------------------------------------
+o Training in Hypertext Authoring Using
+   EasyHelp/Web
+
+  For beginners with only word processing skills to
+  system designers and programmers.
+
+o Hypertext Authoring and Consultancy
+ 
+  We can kick start your organisation by helping you
+  to design your on-line strategy and supervise the
+  construction of the  primary system.
+
+  We can either train your staff to maintain
+  the system, or maintain it on your behalf.
+
+o General IT amnd information management
+   consultancy.
+
+  Our background is in management and IT
+  consultancy.
+
+  We specialise in information management systems
+  and online documentation gained from over 20
+  years experience in industry and commerce.

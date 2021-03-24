@@ -1,0 +1,104 @@
+Ergebnisübersicht:;;;;;;;
+;;;;;;;
+Kreuzungs-ID: 0; Kreuzungs-Name: Reichenau_Byk-Gulden;;;;;;
+Daten der vorgelagerten WS:;;;;;;;
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;34;32,31;50;299;89,4;44,53
+1;Vorgelagert-Ost;0;0;0;0;0;0
+2;Vorgelagert-Süd;0;0;0;0;0;0
+3;Vorgelagert-West;1;0,03;2;5;0,18;0
+;;;;;;;
+Daten der WS:;;;;;;;
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord: Rechts;4;4,56;9;332;112,73;
+1;Nord: Gerade;0;0;0;0;0;
+2;Nord: Links;0;1,04;2;292;25,55;
+3;Ost: Rechts;0;0;0;0;0;
+4;Ost: Gerade;0;0;0;0;0;
+5;Ost: Links;0;0;0;0;0;
+6;Süd: Rechts;0;0;0;0;0;
+7;Süd: Gerade;0;0;0;0;0;
+8;Süd: Links;0;0;0;0;0;
+9;West: Rechts;0;0;0;0;0;
+10;West: Gerade;5;1,3;6;17;31,76;
+11;West: Links;0;0,02;1;20;0,48;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+Kreuzungs-ID: 1; Kreuzungs-Name: Reichenau_Ried;;;;;;
+Daten der vorgelagerten WS:;;;;;;;
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0;0;0;0;0
+1;Vorgelagert-Ost;345;129,51;345;762;132,81;53,57
+2;Vorgelagert-Süd;50;9,92;50;237;67,93;28,13
+3;Vorgelagert-West;36;2,08;36;42;2,03;0
+;;;;;;;
+Daten der WS:;;;;;;;
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord: Rechts;0;0;0;0;0;
+1;Nord: Gerade;1;0,06;1;41;1,32;
+2;Nord: Links;0;0,17;2;45;4,66;
+3;Ost: Rechts;4;4,43;8;682;108,62;
+4;Ost: Gerade;0;0;0;0;0;
+5;Ost: Links;0;0,87;2;514;23,65;
+6;Süd: Rechts;0;0,98;3;170;24,52;
+7;Süd: Gerade;4;3,23;7;199;83,89;
+8;Süd: Links;0;0;0;0;0;
+9;West: Rechts;0;1,2;5;54;29,92;
+10;West: Gerade;0;2,17;6;49;57,38;
+11;West: Links;6;2,41;8;132;56,02;
+;;;;;;;
+;;;;;;;
+;;;;;;;
+Kreuzungs-ID: 2; Kreuzungs-Name: Ried_Byk-Gulden;;;;;;
+;;;;;;;
+Daten der WS:;;;;;;;
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord;145;59,92;145;887;285,03;66,17
+1;Ost;217;98,3;240;1389;471,22;71,88
+2;Süd;24;14,38;31;170;71,93;40,65
+3;West;0;0;1;3;0,01;0
+;;;;;;;
+;;;;;;;
+;;;;;;;
+Kreuzungs-ID: 3; Kreuzungs-Name: Vorfahrt3;;;;;;
+;;;;;;;
+Daten der WS:;;;;;;;
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord;0;0;0;0;0;0
+1;Ost;22;19,76;40;158;98,83;60,77
+2;Süd;0;0;0;0;0;0
+3;West;0;0;0;0;0;0
+;;;;;;;
+;;;;;;;
+;;;;;;;
+Kreuzungs-ID: 4; Kreuzungs-Name: Vorfahrt4;;;;;;
+;;;;;;;
+Daten der WS:;;;;;;;
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord;0;0;0;0;0;0
+1;Ost;16;14,98;30;145;75,46;36,04
+2;Süd;0;0;0;0;0;0
+3;West;0;0;0;0;0;0
+;;;;;;;
+;;;;;;;
+;;;;;;;
+Kreuzungs-ID: 5; Kreuzungs-Name: Vorfahrt5;;;;;;
+;;;;;;;
+Daten der WS:;;;;;;;
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord;0;0;0;0;0;0
+1;Ost;22;15,69;30;163;79,67;38,44
+2;Süd;0;0;0;0;0;0
+3;West;5;1,02;5;0;4,34;0
+;;;;;;;
+;;;;;;;
+;;;;;;;
+Kreuzungs-ID: 6; Kreuzungs-Name: Vorfahrt6;;;;;;
+;;;;;;;
+Daten der WS:;;;;;;;
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord;0;0;0;0;0;0
+1;Ost;25;16,64;29;149;83,82;40,92
+2;Süd;0;0;0;0;0;0
+3;West;2;0,03;2;0;0,07;0

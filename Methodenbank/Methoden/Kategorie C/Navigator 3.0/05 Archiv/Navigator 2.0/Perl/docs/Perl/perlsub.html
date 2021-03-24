@@ -1,0 +1,883 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perlsub</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perlsub_name_0">
+NAME</A>
+</H1>
+perlsub - Perl subroutines
+<p><p><hr>
+
+<H1> 
+<A NAME="perlsub_synopsis_0">
+SYNOPSIS</A>
+</H1>
+To declare subroutines:
+<p>
+<XMP>
+    sub NAME;             # A "forward" declaration.
+    sub NAME(PROTO);      #  ditto, but with prototypes
+    sub NAME BLOCK        # A declaration and a definition.
+    sub NAME(PROTO) BLOCK #  ditto, but with prototypes
+
+</XMP>
+<p>To define an anonymous subroutine at runtime:
+<p>
+<XMP>
+    $subref = sub BLOCK;
+
+</XMP>
+<p>To import subroutines:
+<p>
+<XMP>
+    use PACKAGE qw(NAME1 NAME2 NAME3);
+
+</XMP>
+<p>To call subroutines:
+<p>
+<XMP>
+    NAME(LIST);    # & is optional with parens.
+    NAME LIST;     # Parens optional if predeclared/imported.
+    &NAME;         # Passes current @_ to subroutine.
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perlsub_description_0">
+DESCRIPTION</A>
+</H1>
+Like many languages, Perl provides for user-defined subroutines.  These
+may be located anywhere in the main program, loaded in from other files
+via the <CODE>do</CODE>, <CODE>require</CODE>, or <CODE>use</CODE> keywords, or even generated on the
+fly using <CODE>eval</CODE> or anonymous subroutines (closures).  You can even call
+a function indirectly using a variable containing its name or a CODE reference
+to it, as in <CODE><STRONG>$var</STRONG> = \&amp;function</CODE>.
+<p>The Perl model for function call and return values is simple: all
+functions are passed as parameters one single flat list of scalars, and
+all functions likewise return to their caller one single flat list of
+scalars.  Any arrays or hashes in these call and return lists will
+collapse, losing their identities--but you may always use
+pass-by-reference instead to avoid this.  Both call and return lists may
+contain as many or as few scalar elements as you'd like.  (Often a
+function without an explicit return statement is called a subroutine, but
+there's really no difference from the language's perspective.)
+<p>Any arguments passed to the routine come in as the array <STRONG>@_</STRONG>.  Thus if you
+called a function with two arguments, those would be stored in <CODE><STRONG>$_</STRONG>[0]</CODE>
+and <CODE><STRONG>$_</STRONG>[1]</CODE>.  The array <STRONG>@_</STRONG> is a local array, but its values are implicit
+references (predating the <EM>perlref</EM>  manpage
+) to the actual scalar parameters.  The
+return value of the subroutine is the value of the last expression
+evaluated.  Alternatively, a return statement may be used to specify the
+returned value and exit the subroutine.  If you return one or more arrays
+and/or hashes, these will be flattened together into one large
+indistinguishable list.
+<p>Perl does not have named formal parameters, but in practice all you do is
+assign to a <EM>my()</EM> list of these.  Any variables you use in the function
+that aren't declared private are global variables.  For the gory details
+on creating private variables, see
+<EM>``Private Variables via <EM>my()</EM>''</EM> and <EM>``Temporary Values via <EM>local()</EM>''</EM>.
+To create protected environments for a set of functions in a separate
+package (and probably a separate file), see <EM>``Packages''</EM>.
+<p>Example:
+<p>
+<XMP>
+    sub max {
+        my $max = shift(@_);
+        foreach $foo (@_) {
+            $max = $foo if $max < $foo;
+        }
+        return $max;
+    }
+    $bestday = max($mon,$tue,$wed,$thu,$fri);
+
+</XMP>
+<p>Example:
+<p>
+<XMP>
+    # get a line, combining continuation lines
+    #  that start with whitespace
+    sub get_line {
+        $thisline = $lookahead;  # GLOBAL VARIABLES!!
+        LINE: while ($lookahead = <STDIN>) {
+            if ($lookahead =~ /^[ \t]/) {
+                $thisline .= $lookahead;
+            }
+            else {
+                last LINE;
+            }
+        }
+        $thisline;
+    }
+    $lookahead = <STDIN>;       # get first line
+    while ($_ = get_line()) {
+        ...
+    }
+
+</XMP>
+<p>Use array assignment to a local list to name your formal arguments:
+<p>
+<XMP>
+    sub maybeset {
+        my($key, $value) = @_;
+        $Foo{$key} = $value unless $Foo{$key};
+    }
+
+</XMP>
+<p>This also has the effect of turning call-by-reference into call-by-value,
+since the assignment copies the values.  Otherwise a function is free to
+do in-place modifications of <STRONG>@_</STRONG> and change its caller's values.
+<p>
+<XMP>
+    upcase_in($v1, $v2);  # this changes $v1 and $v2
+    sub upcase_in {
+        for (@_) { tr/a-z/A-Z/ } 
+    } 
+
+</XMP>
+<p>You aren't allowed to modify constants in this way, of course.  If an
+argument were actually literal and you tried to change it, you'd take a
+(presumably fatal) exception.   For example, this won't work:
+<p>
+<XMP>
+    upcase_in("frederick");
+
+</XMP>
+<p>It would be much safer if the <EM>upcase_in()</EM> function 
+were written to return a copy of its parameters instead
+of changing them in place:
+<p>
+<XMP>
+    ($v3, $v4) = upcase($v1, $v2);  # this doesn't
+    sub upcase {
+        my @parms = @_;
+        for (@parms) { tr/a-z/A-Z/ } 
+        # wantarray checks if we were called in list context
+        return wantarray ? @parms : $parms[0];
+    } 
+
+</XMP>
+<p>Notice how this (unprototyped) function doesn't care whether it was passed
+real scalars or arrays.  Perl will see everything as one big long flat <STRONG>@_</STRONG>
+parameter list.  This is one of the ways where Perl's simple
+argument-passing style shines.  The <EM>upcase()</EM> function would work perfectly
+well without changing the <EM>upcase()</EM> definition even if we fed it things
+like this:
+<p>
+<XMP>
+    @newlist   = upcase(@list1, @list2);
+    @newlist   = upcase( split /:/, $var );
+
+</XMP>
+<p>Do not, however, be tempted to do this:
+<p>
+<XMP>
+    (@a, @b)   = upcase(@list1, @list2);
+
+</XMP>
+<p>Because like its flat incoming parameter list, the return list is also
+flat.  So all you have managed to do here is stored everything in <STRONG>@a</STRONG> and
+made <STRONG>@b</STRONG> an empty list.  See <EM>``Pass by Reference''</EM> for alternatives.
+<p>A subroutine may be called using the ``&amp;'' prefix.  The ``&amp;'' is optional in
+Perl 5, and so are the parens if the subroutine has been predeclared.
+(Note, however, that the ``&amp;'' is <EM>NOT</EM> optional when you're just naming
+the subroutine, such as when it's used as an argument to <EM>defined()</EM> or
+<EM>undef()</EM>.  Nor is it optional when you want to do an indirect subroutine
+call with a subroutine name or reference using the <CODE>&amp;<STRONG>$<</STRONG>EM>subref()</EM></CODE> or
+<CODE>&amp;{<STRONG>$subref</STRONG>}()</CODE> constructs.  See the <EM>perlref</EM>  manpage
+ for more on that.)
+<p>Subroutines may be called recursively.  If a subroutine is called using
+the ``&amp;'' form, the argument list is optional, and if omitted, no <STRONG>@_</STRONG> array is
+set up for the subroutine: the <STRONG>@_</STRONG> array at the time of the call is
+visible to subroutine instead.  This is an efficiency mechanism that
+new users may wish to avoid.
+<p>
+<XMP>
+    &foo(1,2,3);        # pass three arguments
+    foo(1,2,3);         # the same
+    foo();              # pass a null list
+    &foo();             # the same
+    &foo;               # foo() get current args, like foo(@_) !!
+    foo;                # like foo() IFF sub foo pre-declared, else "foo"
+
+</XMP>
+<p>Not only does the ``&amp;'' form make the argument list optional, but it also
+disables any prototype checking on the arguments you do provide.  This
+is partly for historical reasons, and partly for having a convenient way
+to cheat if you know what you're doing.  See the section on Prototypes below.
+<p>
+<H2> Private Variables via <EM>my()</EM></H2>
+Synopsis:
+<p>
+<XMP>
+    my $foo;            # declare $foo lexically local
+    my (@wid, %get);    # declare list of variables local
+    my $foo = "flurp";  # declare $foo lexical, and init it
+    my @oof = @bar;     # declare @oof lexical, and init it
+
+</XMP>
+<p>A ``my'' declares the listed variables to be confined (lexically) to the
+enclosing block, subroutine, <CODE>eval</CODE>, or <CODE>do/require/use</CODE>'d file.  If
+more than one value is listed, the list must be placed in parens.  All
+listed elements must be legal lvalues.  Only alphanumeric identifiers may
+be lexically scoped--magical builtins like $/ must currently be localized with
+``local'' instead.  
+<p>Unlike dynamic variables created by the ``local'' statement, lexical
+variables declared with ``my'' are totally hidden from the outside world,
+including any called subroutines (even if it's the same subroutine called
+from itself or elsewhere--every call gets its own copy).
+<p>(An <EM>eval()</EM>, however, can see the lexical variables of the scope it is
+being evaluated in so long as the names aren't hidden by declarations within
+the <EM>eval()</EM> itself.  See the <EM>perlref</EM>  manpage
+.)
+<p>The parameter list to <EM>my()</EM> may be assigned to if desired, which allows you
+to initialize your variables.  (If no initializer is given for a
+particular variable, it is created with the undefined value.)  Commonly
+this is used to name the parameters to a subroutine.  Examples:
+<p>
+<XMP>
+    $arg = "fred";        # "global" variable
+    $n = cube_root(27);
+    print "$arg thinks the root is $n\n";
+ fred thinks the root is 3
+    sub cube_root {
+        my $arg = shift;  # name doesn't matter
+        $arg **= 1/3;
+        return $arg;
+    }                   
+
+</XMP>
+<p>The ``my'' is simply a modifier on something you might assign to.  So when
+you do assign to the variables in its argument list, the ``my'' doesn't
+change whether those variables is viewed as a scalar or an array.  So
+<p>
+<XMP>
+    my ($foo) = <STDIN>;
+    my @FOO = <STDIN>;
+
+</XMP>
+<p>both supply a list context to the righthand side, while
+<p>
+<XMP>
+    my $foo = <STDIN>;
+
+</XMP>
+<p>supplies a scalar context.  But the following only declares one variable:
+<p>
+<XMP>
+    my $foo, $bar = 1;
+
+</XMP>
+<p>That has the same effect as
+<p>
+<XMP>
+    my $foo;
+    $bar = 1;
+
+</XMP>
+<p>The declared variable is not introduced (is not visible) until after
+the current statement.  Thus,
+<p>
+<XMP>
+    my $x = $x;
+
+</XMP>
+<p>can be used to initialize the new <STRONG>$x</STRONG> with the value of the old <STRONG>$x</STRONG>, and 
+the expression
+<p>
+<XMP>
+    my $x = 123 and $x == 123
+
+</XMP>
+<p>is false unless the old <STRONG>$x</STRONG> happened to have the value 123.
+<p>Some users may wish to encourage the use of lexically scoped variables.
+As an aid to catching implicit references to package variables,
+if you say
+<p>
+<XMP>
+    use strict 'vars';
+
+</XMP>
+<p>then any variable reference from there to the end of the enclosing
+block must either refer to a lexical variable, or must be fully
+qualified with the package name.  A compilation error results
+otherwise.  An inner block may countermand this with <STRONG>``no strict 'vars'''</STRONG>.
+<p>A <EM>my()</EM> has both a compile-time and a run-time effect.  At compile time,
+the compiler takes notice of it; the principle usefulness of this is to
+quiet <CODE>use strict 'vars'</CODE>.  The actual initialization doesn't happen
+until run time, so gets executed every time through a loop.
+<p>Variables declared with ``my'' are not part of any package and are therefore
+never fully qualified with the package name.  In particular, you're not
+allowed to try to make a package variable (or other global) lexical:
+<p>
+<XMP>
+    my $pack::var;      # ERROR!  Illegal syntax
+    my $_;              # also illegal (currently)
+
+</XMP>
+<p>In fact, a dynamic variable (also known as package or global variables)
+are still accessible using the fully qualified :: notation even while a
+lexical of the same name is also visible:
+<p>
+<XMP>
+    package main;
+    local $x = 10;
+    my    $x = 20;
+    print "$x and $::x\n";
+
+</XMP>
+<p>That will print out 20 and 10.
+<p>You may declare ``my'' variables at the outer most scope of a file to
+totally hide any such identifiers from the outside world.  This is similar
+to C's static variables at the file level.  To do this with a subroutine
+requires the use of a closure (anonymous function).  If a block (such as
+an <EM>eval()</EM>, function, or <CODE>package</CODE>) wants to create a private subroutine
+that cannot be called from outside that block, it can declare a lexical
+variable containing an anonymous sub reference:
+<p>
+<XMP>
+    my $secret_version = '1.001-beta';
+    my $secret_sub = sub { print $secret_version };
+    &$secret_sub();
+
+</XMP>
+<p>As long as the reference is never returned by any function within the
+module, no outside module can see the subroutine, since its name is not in
+any package's symbol table.  Remember that it's not <EM>REALLY</EM> called
+<STRONG>$some_pack::secret_version</STRONG> or anything; it's just <STRONG>$secret_version</STRONG>,
+unqualified and unqualifiable.
+<p>This does not work with object methods, however; all object methods have
+to be in the symbol table of some package to be found.
+<p>Just because the lexical variable is lexically (also called statically)
+scoped doesn't mean that within a function it works like a C static.  It
+normally works more like a C auto.  But here's a mechanism for giving a
+function private variables with both lexical scoping and a static
+lifetime.  If you do want to create something like C's static variables,
+just enclose the whole function in an extra block, and put the
+static variable outside the function but in the block.
+<p>
+<XMP>
+    {
+        my $secret_val = 0; 
+        sub gimme_another {
+            return ++$secret_val;
+        } 
+    } 
+    # $secret_val now becomes unreachable by the outside
+    # world, but retains its value between calls to gimme_another
+
+</XMP>
+<p>If this function is being sourced in from a separate file 
+via <CODE>require</CODE> or <CODE>use</CODE>, then this is probably just fine.  If it's
+all in the main program, you'll need to arrange for the <EM>my()</EM> 
+to be executed early, either by putting the whole block above
+your pain program, or more likely, merely placing a BEGIN 
+sub around it to make sure it gets executed before your program
+starts to run:
+<p>
+<XMP>
+    sub BEGIN {
+        my $secret_val = 0; 
+        sub gimme_another {
+            return ++$secret_val;
+        } 
+    } 
+
+</XMP>
+<p>See the <EM>perlrun</EM>  manpage
+ about the BEGIN function.
+<p>
+<H2> Temporary Values via <EM>local()</EM></H2>
+<STRONG>NOTE</STRONG>: In general, you should be using ``my'' instead of ``local'', because
+it's faster and safer.  Exceptions to this include the global punctuation
+variables, filehandles and formats, and direct manipulation of the Perl
+symbol table itself.  Format variables often use ``local'' though, as do
+other variables whose current value must be visible to called
+subroutines.
+<p>Synopsis:
+<p>
+<XMP>
+    local $foo;                 # declare $foo dynamically local
+    local (@wid, %get);         # declare list of variables local
+    local $foo = "flurp";       # declare $foo dynamic, and init it
+    local @oof = @bar;          # declare @oof dynamic, and init it
+    local *FH;                  # localize $FH, @FH, %FH, &FH  ...
+    local *merlyn = *randal;    # now $merlyn is really $randal, plus
+                                #     @merlyn is really @randal, etc
+    local *merlyn = 'randal';   # SAME THING: promote 'randal' to *randal
+    local *merlyn = \$randal;   # just alias $merlyn, not @merlyn etc 
+
+</XMP>
+<p>A <EM>local()</EM> modifies its listed variables to be local to the enclosing
+block, (or subroutine, <CODE>eval{}</CODE> or <CODE>do</CODE>) and I<any called from
+within that block&gt;.  A <EM>local()</EM> just gives temporary values to global
+(meaning package) variables.  This is known as dynamic scoping.  Lexical
+scoping is done with ``my'', which works more like C's auto declarations.
+<p>If more than one variable is given to <EM>local()</EM>, they must be placed in
+parens.  All listed elements must be legal lvalues.  This operator works
+by saving the current values of those variables in its argument list on a
+hidden stack and restoring them upon exiting the block, subroutine or
+eval.  This means that called subroutines can also reference the local
+variable, but not the global one.  The argument list may be assigned to if
+desired, which allows you to initialize your local variables.  (If no
+initializer is given for a particular variable, it is created with an
+undefined value.)  Commonly this is used to name the parameters to a
+subroutine.  Examples:
+<p>
+<XMP>
+    for $i ( 0 .. 9 ) {
+        $digits{$i} = $i;
+    } 
+    # assume this function uses global %digits hash
+    parse_num();  
+    # now temporarily add to %digits hash
+    if ($base12) {
+        # (NOTE: not claiming this is efficient!)
+        local %digits  = (%digits, 't' => 10, 'e' => 11);
+        parse_num();  # parse_num gets this new %digits!
+    }
+    # old %digits restored here
+
+</XMP>
+<p>Because <EM>local()</EM> is a run-time command, it gets executed every time
+through a loop.  In releases of Perl previous to 5.0, this used more stack
+storage each time until the loop was exited.  Perl now reclaims the space
+each time through, but it's still more efficient to declare your variables
+outside the loop.
+<p>A local is simply a modifier on an lvalue expression.  When you assign to
+a localized variable, the local doesn't change whether its list is viewed
+as a scalar or an array.  So
+<p>
+<XMP>
+    local($foo) = <STDIN>;
+    local @FOO = <STDIN>;
+
+</XMP>
+<p>both supply a list context to the righthand side, while
+<p>
+<XMP>
+    local $foo = <STDIN>;
+
+</XMP>
+<p>supplies a scalar context.
+<p>
+<H2> 
+<A NAME="perlsub_passing_0">
+Passing Symbol Table Entries (typeglobs)</A>
+</H2>
+[Note:  The mechanism described in this section was originally the only
+way to simulate pass-by-reference in older versions of Perl.  While it
+still works fine in modern versions, the new reference mechanism is
+generally easier to work with.  See below.]
+<p>Sometimes you don't want to pass the value of an array to a subroutine
+but rather the name of it, so that the subroutine can modify the global
+copy of it rather than working with a local copy.  In perl you can
+refer to all objects of a particular name by prefixing the name
+with a star: <CODE>*foo</CODE>.  This is often known as a ``type glob'', since the
+star on the front can be thought of as a wildcard match for all the
+funny prefix characters on variables and subroutines and such.
+<p>When evaluated, the type glob produces a scalar value that represents
+all the objects of that name, including any filehandle, format or
+subroutine.  When assigned to, it causes the name mentioned to refer to
+whatever ``*'' value was assigned to it.  Example:
+<p>
+<XMP>
+    sub doubleary {
+        local(*someary) = @_;
+        foreach $elem (@someary) {
+            $elem *= 2;
+        }
+    }
+    doubleary(*foo);
+    doubleary(*bar);
+
+</XMP>
+<p>Note that scalars are already passed by reference, so you can modify
+scalar arguments without using this mechanism by referring explicitly
+to <CODE><STRONG>$_</STRONG>[0]</CODE> etc.  You can modify all the elements of an array by passing
+all the elements as scalars, but you have to use the * mechanism (or
+the equivalent reference mechanism) to push, pop or change the size of
+an array.  It will certainly be faster to pass the typeglob (or reference).
+<p>Even if you don't want to modify an array, this mechanism is useful for
+passing multiple arrays in a single LIST, since normally the LIST
+mechanism will merge all the array values so that you can't extract out
+the individual arrays.  For more on typeglobs, see <EM>``Typeglobs''</EM>.
+<p>
+<H2> 
+<A NAME="perlsub_pass_0">
+Pass by Reference</A>
+</H2>
+If you want to pass more than one array or hash into a function--or 
+return them from it--and have them maintain their integrity,
+then you're going to have to use an explicit pass-by-reference.
+Before you do that, you need to understand references as detailed in the <EM>perlref</EM>  manpage
+.
+This section may not make much sense to you otherwise.
+<p>Here are a few simple examples.  First, let's pass in several
+arrays to a function and have it pop all of then, return a new
+list of all their former last elements:
+<p>
+<XMP>
+    @tailings = popmany ( \@a, \@b, \@c, \@d );
+    sub popmany {
+        my $aref;
+        my @retlist = ();
+        foreach $aref ( @_ ) {
+            push @retlist, pop @$aref;
+        } 
+        return @retlist;
+    } 
+
+</XMP>
+<p>Here's how you might write a function that returns a 
+list of keys occurring in all the hashes passed to it:
+<p>
+<XMP>
+    @common = inter( \%foo, \%bar, \%joe ); 
+    sub inter {
+        my ($k, $href, %seen); # locals
+        foreach $href (@_) {
+            while ( $k = each %$href ) {
+                $seen{$k}++;
+            } 
+        } 
+        return grep { $seen{$_} == @_ } keys %seen;
+    } 
+
+</XMP>
+<p>So far, we're just using the normal list return mechanism.
+What happens if you want to pass or return a hash?  Well, 
+if you're only using one of them, or you don't mind them 
+concatenating, then the normal calling convention is ok, although
+a little expensive.  
+<p>Where people get into trouble is here:
+<p>
+<XMP>
+    (@a, @b) = func(@c, @d);
+or
+    (%a, %b) = func(%c, %d);
+
+</XMP>
+<p>That syntax simply won't work.  It just sets <STRONG>@a</STRONG> or <STRONG>%a</STRONG> and clears the <STRONG>@b</STRONG> or
+<STRONG>%b</STRONG>.  Plus the function didn't get passed into two separate arrays or
+hashes: it got one long list in <STRONG>@_</STRONG>, as always.
+<p>If you can arrange for everyone to deal with this through references, it's
+cleaner code, although not so nice to look at.  Here's a function that
+takes two array references as arguments, returning the two array elements
+in order of how many elements they have in them:
+<p>
+<XMP>
+    ($aref, $bref) = func(\@c, \@d);
+    print "@$aref has more than @$bref\n";
+    sub func {
+        my ($cref, $dref) = @_;
+        if (@$cref > @$dref) {
+            return ($cref, $dref);
+        } else {
+            return ($dref, $cref);
+        } 
+    } 
+
+</XMP>
+<p>It turns out that you can actually do this also:
+<p>
+<XMP>
+    (*a, *b) = func(\@c, \@d);
+    print "@a has more than @b\n";
+    sub func {
+        local (*c, *d) = @_;
+        if (@c > @d) {
+            return (\@c, \@d);
+        } else {
+            return (\@d, \@c);
+        } 
+    } 
+
+</XMP>
+<p>Here we're using the typeglobs to do symbol table aliasing.  It's
+a tad subtle, though, and also won't work if you're using <EM>my()</EM>
+variables, since only globals (well, and <EM>local()</EM>s) are in the symbol table.
+<p>If you're passing around filehandles, you could usually just use the bare
+typeglob, like *STDOUT, but typeglobs references would be better because
+they'll still work properly under <CODE>use strict 'refs'</CODE>.  For example:
+<p>
+<XMP>
+    splutter(\*STDOUT);
+    sub splutter {
+        my $fh = shift;
+        print $fh "her um well a hmmm\n";
+    }
+    $rec = get_rec(\*STDIN);
+    sub get_rec {
+        my $fh = shift;
+        return scalar <$fh>;
+    }
+
+</XMP>
+<p>If you're planning on generating new filehandles, you could do this:
+<p>
+<XMP>
+    sub openit {
+        my $name = shift;
+        local *FH;
+        return open (FH, $path) ? \*FH : undef;
+    } 
+
+</XMP>
+<p>Although that will actually produce a small memory leak.  See the bottom
+of <EM>open</EM> for a somewhat cleaner way using the FileHandle
+functions supplied with the POSIX package.
+<p>
+<H2> 
+<A NAME="perlsub_prototypes_0">
+Prototypes</A>
+</H2>
+As of the 5.002 release of perl, if you declare
+<p>
+<XMP>
+    sub mypush (\@@)
+
+</XMP>
+<p>then <EM>mypush()</EM> takes arguments exactly like <EM>push()</EM> does.  The declaration
+of the function to be called must be visible at compile time.  The prototype
+only affects the interpretation of new-style calls to the function, where
+new-style is defined as not using the <CODE>&amp;</CODE> character.  In other words,
+if you call it like a builtin function, then it behaves like a builtin
+function.  If you call it like an old-fashioned subroutine, then it
+behaves like an old-fashioned subroutine.  It naturally falls out from
+this rule that prototypes have no influence on subroutine references
+like <CODE>\&amp;foo</CODE> or on indirect subroutine calls like <CODE>&amp;{<STRONG>$subref</STRONG>}</CODE>.
+<p>Method calls are not influenced by prototypes either, because the
+function to be called is indeterminate at compile time, since it depends
+on inheritance.
+<p>Since the intent is primarily to let you define subroutines that work
+like builtin commands, here are the prototypes for some other functions
+that parse almost exactly like the corresponding builtins.
+<p>
+<XMP>
+    Declared as                 Called as
+    sub mylink ($$)             mylink $old, $new
+    sub myvec ($$$)             myvec $var, $offset, 1
+    sub myindex ($$;$)          myindex &getstring, "substr"
+    sub mysyswrite ($$$;$)      mysyswrite $buf, 0, length($buf) - $off, $off
+    sub myreverse (@)           myreverse $a,$b,$c
+    sub myjoin ($@)             myjoin ":",$a,$b,$c
+    sub mypop (\@)              mypop @array
+    sub mysplice (\@$$@)        mysplice @array,@array,0,@pushme
+    sub mykeys (\%)             mykeys %{$hashref}
+    sub myopen (*;$)            myopen HANDLE, $name
+    sub mypipe (**)             mypipe READHANDLE, WRITEHANDLE
+    sub mygrep (&@)             mygrep { /foo/ } $a,$b,$c
+    sub myrand ($)              myrand 42
+    sub mytime ()               mytime
+
+</XMP>
+<p>Any backslashed prototype character represents an actual argument
+that absolutely must start with that character.  The value passed
+to the subroutine (as part of <CODE><STRONG>@_</STRONG></CODE>) will be a reference to the
+actual argument given in the subroutine call, obtained by applying
+<CODE>\</CODE> to that argument.
+<p>Unbackslashed prototype characters have special meanings.  Any
+unbackslashed <STRONG>@ </STRONG>or <STRONG>% </STRONG>eats all the rest of the arguments, and forces
+list context.  An argument represented by <STRONG>$ </STRONG>forces scalar context.  An
+&amp; requires an anonymous subroutine, which, if passed as the first
+argument, does not require the ``sub'' keyword or a subsequent comma.  A
+* does whatever it has to do to turn the argument into a reference to a
+symbol table entry.
+<p>A semicolon separates mandatory arguments from optional arguments.
+(It is redundant before <STRONG>@ </STRONG>or %.)
+<p>Note how the last three examples above are treated specially by the parser.
+<EM>mygrep()</EM> is parsed as a true list operator, <EM>myrand()</EM> is parsed as a
+true unary operator with unary precedence the same as <EM>rand()</EM>, and
+<EM>mytime()</EM> is truly argumentless, just like <EM>time()</EM>.  That is, if you
+say
+<p>
+<XMP>
+    mytime +2;
+
+</XMP>
+<p>you'll get <EM>mytime()</EM> + 2, not mytime(2), which is how it would be parsed
+without the prototype.
+<p>The interesting thing about &amp; is that you can generate new syntax with it:
+<p>
+<XMP>
+    sub try (&@) {
+        my($try,$catch) = @_;
+        eval { &$try };
+        if ($@) {
+            local $_ = $@;
+            &$catch;
+        }
+    }
+    sub catch (&) { @_ }
+    try {
+        die "phooey";
+    } catch {
+        /phooey/ and print "unphooey\n";
+    };
+
+</XMP>
+<p>That prints ``unphooey''.  (Yes, there are still unresolved
+issues having to do with the visibility of <STRONG>@_</STRONG>.  I'm ignoring that
+question for the moment.  (But note that if we make <STRONG>@_</STRONG> lexically
+scoped, those anonymous subroutines can act like closures... (Gee,
+is this sounding a little Lispish?  (Nevermind.))))
+<p>And here's a reimplementation of grep:
+<p>
+<XMP>
+    sub mygrep (&@) {
+        my $code = shift;
+        my @result;
+        foreach $_ (@_) {
+            push(@result, $_) if &$code;
+        }
+        @result;
+    }
+
+</XMP>
+<p>Some folks would prefer full alphanumeric prototypes.  Alphanumerics have
+been intentionally left out of prototypes for the express purpose of
+someday in the future adding named, formal parameters.  The current
+mechanism's main goal is to let module writers provide better diagnostics
+for module users.  Larry feels the notation quite understandable to Perl
+programmers, and that it will not intrude greatly upon the meat of the
+module, nor make it harder to read.  The line noise is visually
+encapsulated into a small pill that's easy to swallow.
+<p>It's probably best to prototype new functions, not retrofit prototyping
+into older ones.  That's because you must be especially careful about
+silent impositions of differing list versus scalar contexts.  For example,
+if you decide that a function should take just one parameter, like this:
+<p>
+<XMP>
+    sub func ($) {
+        my $n = shift;
+        print "you gave me $n\n";
+    } 
+
+</XMP>
+<p>and someone has been calling it with an array or expression
+returning a list:
+<p>
+<XMP>
+    func(@foo);
+    func( split /:/ );
+
+</XMP>
+<p>Then you've just supplied an automatic <EM>scalar()</EM> in front of their
+argument, which can be more than a bit surprising.  The old <STRONG>@foo</STRONG>
+which used to hold one thing doesn't get passed in.  Instead,
+the <EM>func()</EM> now gets passed in 1, that is, the number of elments
+in <STRONG>@foo</STRONG>.  And the <EM>split()</EM> gets called in a scalar context and
+starts scribbling on your <STRONG>@_</STRONG> parameter list.
+<p>This is all very powerful, of course, and should only be used in moderation
+to make the world a better place.  
+<p>
+<H2> 
+<A NAME="perlsub_overriding_0">
+Overriding Builtin Functions</A>
+</H2>
+Many builtin functions may be overridden, though this should only be
+tried occasionally and for good reason.  Typically this might be
+done by a package attempting to emulate missing builtin functionality
+on a non-Unix system.
+<p>Overriding may only be done by importing the name from a
+module--ordinary predeclaration isn't good enough.  However, the
+<CODE>subs</CODE> pragma (compiler directive) lets you, in effect, predeclare subs
+via the import syntax, and these names may then override the builtin ones:
+<p>
+<XMP>
+    use subs 'chdir', 'chroot', 'chmod', 'chown';
+    chdir $somewhere;
+    sub chdir { ... }
+
+</XMP>
+<p>Library modules should not in general export builtin names like ``open''
+or ``chdir'' as part of their default <STRONG>@EXPORT</STRONG> list, since these may
+sneak into someone else's namespace and change the semantics unexpectedly.
+Instead, if the module adds the name to the <STRONG>@EXPORT_OK</STRONG> list, then it's
+possible for a user to import the name explicitly, but not implicitly.
+That is, they could say
+<p>
+<XMP>
+    use Module 'open';
+
+</XMP>
+<p>and it would import the open override, but if they said
+<p>
+<XMP>
+    use Module;
+
+</XMP>
+<p>they would get the default imports without the overrides.
+<p>
+<H2> 
+<A NAME="perlsub_autoloading_0">
+Autoloading</A>
+</H2>
+If you call a subroutine that is undefined, you would ordinarily get an
+immediate fatal error complaining that the subroutine doesn't exist.
+(Likewise for subroutines being used as methods, when the method
+doesn't exist in any of the base classes of the class package.) If,
+however, there is an <CODE>AUTOLOAD</CODE> subroutine defined in the package or
+packages that were searched for the original subroutine, then that
+<CODE>AUTOLOAD</CODE> subroutine is called with the arguments that would have been
+passed to the original subroutine.  The fully qualified name of the
+original subroutine magically appears in the <STRONG>$AUTOLOAD</STRONG> variable in the
+same package as the <CODE>AUTOLOAD</CODE> routine.  The name is not passed as an
+ordinary argument because, er, well, just because, that's why...
+<p>Most <CODE>AUTOLOAD</CODE> routines will load in a definition for the subroutine in
+question using eval, and then execute that subroutine using a special
+form of ``goto'' that erases the stack frame of the <CODE>AUTOLOAD</CODE> routine
+without a trace.  (See the standard <CODE>AutoLoader</CODE> module, for example.)
+But an <CODE>AUTOLOAD</CODE> routine can also just emulate the routine and never
+define it.   For example, let's pretend that a function that wasn't defined
+should just call <EM>system()</EM> with those arguments.  All you'd do is this:
+<p>
+<XMP>
+    sub AUTOLOAD {
+        my $program = $AUTOLOAD;
+        $program =~ s/.*:://;
+        system($program, @_);
+    } 
+    date();
+    who('am', 'i');
+    ls('-l');
+
+</XMP>
+<p>In fact, if you preclare the functions you want to call that way, you don't
+even need the parentheses:
+<p>
+<XMP>
+    use subs qw(date who ls);
+    date;
+    who "am", "i";
+    ls -l;
+
+</XMP>
+<p>A more complete example of this is the standard Shell module, which
+can treat undefined subroutine calls as calls to Unix programs.
+<p>Mechanisms are available for modules writers to help split the modules
+up into autoloadable files.  See the standard AutoLoader module
+described in <EM>AutoLoader</EM> and in <EM>AutoSplit</EM>, the standard
+SelfLoader modules in <EM>SelfLoader</EM>, and the document on adding C
+functions to perl code in the <EM>perlxs</EM>  manpage
+.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlsub_see_0">
+SEE ALSO</A>
+</H1>
+See the <EM>perlref</EM>  manpage
+ for more on references.  See the <EM>perlxs</EM>  manpage
+ if you'd
+like to learn about calling C subroutines from perl.  See 
+the <EM>perlmod</EM>  manpage
+ to learn about bundling up your functions in 
+separate files.
+<p>
+</BODY>
+</HTML>
