@@ -1,0 +1,74 @@
+;  VisualOR Matrixdatei: Aufgabe 1 (Aufgabenteil 3)
+;
+;  Wird ein Semicolon als Zeilenabschluss benoetigt, so kann 
+;  dies durch das Substitut °&semicolon° angegeben werden.
+;  -> siehe LP-SOLVE 
+;
+;  MPS kann mit den Solvern MOPS u. STRADA verarbeitet werden.
+
+
+[LP-STATEMENT]
+x1       <=  60
+      x2 <=  40
+x1 +  x2 <=  70 
+x1 + 2x2 <= 100 
+
+2x1 + 3x2 --> Max ! 
+         
+
+[LP-Type]
+Type=MAX
+
+[SOLVER]
+Solver1=XA
+Solver2=LP-SOLVE
+Solver3=MOPS
+Solver4=STRADA
+
+[LP-SOLVE]
+max: 2x1 + 3x2°&semicolon°
+
+x1       <=  60°&semicolon°
+      x2 <=  40°&semicolon°
+x1 + 2x2 <=  70°&semicolon°
+x1 + 2x2 <= 100°&semicolon°
+
+
+[XA]          
+..TITLE
+  Aufgabe 1 (Teil 1)
+..OBJECTIVE MAXIMIZE
+  2 x1 + 3 x2
+..BOUNDS
+  x1>=0
+  x2>=0
+..CONSTRAINTS
+  R1: 1 x1        <=  60
+  R2:        1 x2 <=  40
+  R3: 1 x1 + 2 x2 <=  70
+  R4: 1 x1 + 2 x2 <= 100
+
+
+[MPS]
+NAME          T1_A3       
+ROWS
+ N  ZF
+ L  R1
+ L  R2
+ L  R3
+ L  R4
+COLUMNS
+    X1        ZF        2.
+    X1        R1        1.
+    X1        R3        1.
+    X1        R4        1.   
+    X2        ZF        3.
+    X2        R2        2.
+    X2        R3        2.
+    X2        R4        2.
+RHS
+    MYRHS     R1        60.
+    MYRHS     R2        40.
+    MYRHS     R3        70.
+    MYRHS     R4        100.
+ENDATA

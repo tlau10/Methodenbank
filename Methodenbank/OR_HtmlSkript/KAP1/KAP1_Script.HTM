@@ -1,0 +1,752 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+<HEAD>
+   <TITLE>Kap. 1</TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+   <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+<! -------------------------------------------------------------------------- >
+<body class="script">
+
+
+<h1>1. Ansatzformulierung</h1>
+
+<A NAME="1.1"></A>
+<h2>1.1 Einf&uuml;hrendes Beispiel der Produktionsprogrammplanung</h2>
+
+<P class=block>
+Die Komponenten eines Ansatzes der Linearen Programmierung sollen an
+einem einfachen Beispiel der Produktionsprogrammplanung erl&auml;utert
+werden:</P>
+
+<P class=block>
+Ein Betrieb fertigt auf zwei Universalmaschinen die Produkte 1 und 2.
+Die Kapazit&auml;t der Maschinen wird in Stunden gemessen, wobei die erste
+Maschine h&ouml;chstens 12 Stunden und die zweite h&ouml;chstens 9 Stunden
+am Tag ausgelastet werden kann.</P>
+
+<P class=block>
+Zur Herstellung von Produkt 1 ben&ouml;tigt man pro St&uuml;ck drei
+Stunden der Maschine 1 sowie eine Stunde der Maschine 2, w&auml;hrend man
+f&uuml;r die Bearbeitung von Produkt 2 die Maschine 1 zwei Stunden beansprucht
+und die Maschine 2 drei Stunden.</P>
+
+<P class=block>Der Deckungsbeitrag betr&auml;gt f&uuml;r Produkt 1 € 1,- 
+dagegen erzielt Produkt 2 einen Deckungsbeitrag von € 2,-.</P>
+
+<P>Ermitteln Sie das Produktionsprogramm !</P>
+
+<P class=block>
+Mit dieser Aufgabenstellung wurde eine (&ouml;konomische) Umwelt vorgegeben,
+hier speziell ein Problem der Produktionsprogrammplanung, f&uuml;r die
+ein mathematisches Modell aufgestellt werden soll, in diesem Fall ein Ansatz
+der Linearen Programmierung. Unter Modell soll hier eine zweckorientierte
+Darstellung der Realit&auml;t verstanden werden. Aufgabe des &quot;OR&quot;
+ist es, &uuml;ber die vorgegebene Umwelt eine mathematische und problemspezifische
+Interpretation zu liefern.</P>
+
+<P><font size="-2" face="arial"><b>
+Dieser Sachverhalt wird in Abbildung 1 veranschaulicht:</b></font></P>
+
+<p>
+<TABLE BORDER=1 BGColor="#cfe7f9" Width="540">
+<TR>
+<TD><center><b>
+  <BR>
+  (&ouml;konomische) &nbsp; ---- Interpretation ---&gt; &nbsp; Mathematisches<BR>
+
+  Umwelt
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+  Modell<br>
+
+  : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  :<br>
+
+  Produktionsprogramm-
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  lineares
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <BR>
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  planung
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Gleichungssystem<BR>
+
+  <br>
+  </b></center>
+</TD>
+</TR>
+</TABLE>
+</p>
+
+<p class=abb>Abbildung 1</p>
+
+
+<HR WIDTH="100%">
+<A NAME="1.2"></A>
+<h2>1.2 Entscheidungsvariable (Strukturvariable)</h2>
+
+<P class=block>
+F&uuml;r das Beispiel der Produktionsprogrammplanung ergibt sich eine
+F&uuml;lle von Handlungsalternativen:<br>
+Es muss eine Entscheidung &uuml;ber die
+St&uuml;ckanzahl der zu erstellenden Produkte je Tag getroffen werden.Wenn 
+gefragt ist, wieviel St&uuml;ck von Produkt 1 und 2 je Tag hergestellt werden 
+sollen, ist es sinnvoll, diese Anzahlen Variablen x<sub>1</sub> und 
+x<sub>2</sub> zuzuweisen:</P>
+
+<ul>
+x<sub>1</sub> sei die Produktionsmenge von Produkt 1<BR>
+x<sub>2</sub> sei die Produktionsmenge von Produkt 2</ul>
+
+<P class=block>Da die Variablen von x<sub>1</sub> und x<sub>2</sub> eine 
+Aussage &uuml;ber die zu treffende
+Entscheidung verk&ouml;rpern, werden sie <B>Entscheidungsvariablen </B>genannt.
+Da mit diesen Variablen aber auch die Struktur des Problems wiedergegeben
+wird, ist auch die Bezeichnung <B>Strukturvariable </B>&uuml;blich.</P>
+
+<br>
+
+<HR WIDTH="100%">
+<A NAME="1.3"></A>
+<h2>1.3 Nebenbedingungen (Restriktionen)</h2>
+
+<P class=block>Die m&ouml;glichen Handlungsalternativen f&uuml;r das 
+aufgezeigte Problem unterliegen problemspezifischen Einschr&auml;nkungen.</P>
+
+<P class=block>
+So werden zur Herstellung von Produkt 1 und 2 die Maschinen eins und
+zwei unterschiedlich lange ben&ouml;tigt. Insgesamt muss Maschine
+1 zw&ouml;lf Stunden und Maschine 2 neun Stunden ausgelastet werden. Dies
+k&ouml;nnte In der Praxis z.B. bei Maschinen auftreten, f&uuml;r die ein
+Abschalten nach einer k&uuml;rzeren Dauer zu aufwendig w&auml;re.</P>
+
+<P class=block>
+Angenommen, man w&uuml;rde nur Produkt 1 auf Maschine eins herstellen,
+so m&uuml;&szlig;ten genau vier St&uuml;ck pro Tag produziert werden, da:</P>
+
+<p><ol><tt>
+3x<sub>1</sub> = 12 <IMG SRC="rArr_dop.gif"> x<sub>1</sub> = 4
+</ol></tt></p>
+
+<P class=block>W&uuml;rde man nur Produkt 2 auf Maschine eins herstellen so 
+m&uuml;&szlig;ten genau sechs St&uuml;ck pro Tag produziert werden:</P>
+
+<P><ol><tt>
+2x<sub>2</sub> = 12 <IMG SRC="rArr_dop.gif"> x<sub>2</sub> = 6
+</ol></tt></P>
+
+<P class=block>
+Laut Aufgabenstellung sollen beide Produkte auf Maschine eins hergestellt werden, 
+was zu einer Art Mischen beider Produkte auf dieser Maschine f&uuml;hrt:</P>
+
+<P><ol><tt>
+3x<sub>1</sub> + 2x<sub>2</sub> = 12 (I)</ol></tt></P>
+
+<P>Analog gilt f&uuml;r Maschine 2:</P>
+
+<P><ol><tt>
+1x<sub>1</sub> + 3x<sub>2</sub> = &nbsp;9 (II)</ol></tt></P>
+
+<P class=block>
+Das durch Gleichung I und II dargestellte mathematische Modell bildet die
+Problemstellung der Aufgabe ab. Mit Hilfe des <B>Gau&szlig;'schen Algorithmus</B>
+zur L&ouml;sung von regul&auml;ren linearen Gleichungssystemen l&auml;sst
+sich das Problem l&ouml;sen:</P>
+
+<P>
+<table border="0" bgcolor="#e8f0f0" cellpadding="8" cellspacing="0">
+<tr><td>
+Das Gau&szlig;' sche Eliminationsverfahren (Pivotverfahren) verwendet
+elementare Zeilenumformungen. Darunter versteht man: 
+<ol type="a">
+  <li>das Vertauschen zweier Zeilen,
+  <li>die Addition einer mit einer beliebigen reellen Zahl multiplizierten
+      Zeile zu einer anderen,
+  <li>die Multiplikation einer Zeile mit einer von Null verschiedenen reellen
+      Zahl.
+</ol>
+</table></P>
+<br>
+
+<P class=block>Zur Wiederholung des Gau&szlig;'schen Verfahrens soll es an 
+unserem Beispiel kurz dargestellt werden:</P>
+
+
+<p><font color="#8080c8"><b>
+&nbsp; &nbsp; &nbsp; Gauß'scher Algorithmus zur Lösung linearer 
+Gleichungssysteme</b></font></p>
+
+
+<!-- zweispaltige Außentabelle zur Aufnahme von Tabellen und Textinhalten -->
+
+<table border=1 width="700" cellspacing="1" cellpadding="14">
+<tr>
+<!-- 1. Spalte Außentab. -->
+<td valign=top>
+  <b>numerisches Beispiel:</b><br>
+  <samp><br>
+  &nbsp; 3x<sub>1</sub> + 2x<sub>2</sub> = 12<br>
+  &nbsp; 1x<sub>1</sub> + 3x<sub>2</sub> = &nbsp;9</samp><br>
+  <br>
+
+  <table border="0" cellspacing="12" cellpadding="4">      
+  <colgroup>
+     <col align="right">
+     <col align="right">
+     <col align="right">
+     <col align="right">
+     <col align="right">
+     <col align="right">
+  </colgroup>
+
+  <tr>
+  <td><img src="KlammerL.gif"></td>
+  <td>3<br>1</td>
+  <td>2<br>3</td>  
+  <td>|<br>|</td>
+  <td>12<br>9</td>
+  <td><img src="KlammerR.gif"></td>
+
+  <tr>
+  <td><img src="KlammerL.gif"></td>
+  <td>1<br>1</td>
+  <td>2/3<br>3</td>  
+  <td>|<br>|</td>
+  <td>4<br>9</td>
+  <td><img src="KlammerR.gif"></td>
+
+  <tr>
+  <td><img src="KlammerL.gif"></td>
+  <td>1<br>0</td>
+  <td>2/3<br>7/3</td>  
+  <td>|<br>|</td>
+  <td>4<br>5</td>
+  <td><img src="KlammerR.gif"></td>
+  </table>
+
+</td>
+
+<!-- 2. Spalte Außentab. -->
+<td valign=top>
+  <b>allgemein:</b><br>
+  <samp><br>
+  &nbsp; a<sub>11</sub>x<sub>1</sub> + a<sub>12</sub>x<sub>2</sub> = b<sub>1</sub><br>
+  &nbsp; a<sub>21</sub>x<sub>1</sub> + a<sub>22</sub>x<sub>2</sub> = b<sub>2</sub></samp><br>
+  <br>
+
+  <table border="0" cellspacing="8" cellpadding="6">      
+  <colgroup>
+     <col align="right">
+     <col align="right">
+     <col align="right">
+     <col align="right">
+     <col align="right">
+     <col align="right">
+  </colgroup>
+
+  <tr>
+  <td><img src="KlammerL.gif"></td>
+  <td>a<sub>11</sub><br>a<sub>12</sub></td>
+  <td>a<sub>21</sub><br>a<sub>22</sub></td>  
+  <td>|<br>|</td>
+  <td>b<sub>1</sub><br>b<sub>2</sub></td>
+  <td><img src="KlammerR.gif"></td>
+
+  <tr>
+  <td><img src="KlammerL.gif"></td>
+  <td>1<br>a<sub>21</sub></td> 
+  <td>a<sub>12</sub> / a<sub>11</sub><br>a<sub>22</sub></td>  
+  <td>|<br>|</td>
+  <td>b<sub>1</sub> / a<sub>11</sub><br>b<sub>2</sub></td>
+  <td><img src="KlammerR.gif"></td>
+
+  <tr>
+  <td><img src="KlammerL.gif"></td>
+  <td><span style="background-color:#e7f9cf">&nbsp;1 </span><br>0</td>
+  <td>a<sub>12</sub> / a<sub>11</sub><br>
+                a<sub>22</sub> - (a<sub>12</sub> / a<sub>11</sub>) * a<sub>21</sub></td>  
+  <td>|<br>|</td>
+  <td>b<sub>1</sub> / a<sub>11</sub><br>
+                b<sub>2</sub> - (b<sub>1</sub> / a<sub>11</sub>) * a<sub>21</sub></td>
+  <td><img src="KlammerR.gif"></td>
+    
+  </table>
+
+  <br>
+  &nbsp; &nbsp;
+  Pivotzeile: &nbsp; &nbsp;<samp>r = 1</samp><br>
+  &nbsp; &nbsp;
+  Pivotspalte: &nbsp;<samp>s = 1</samp>
+
+</td>
+
+</tr>
+</table>
+
+<!-- Ende Außentabelle -->
+
+
+<p><br>
+<font color="#000000"><u>Umrechnung des Tableaus</u></font></p>
+
+<p>&nbsp; &nbsp; <b>allgemein gilt für:</b>
+
+<p>&nbsp; &nbsp; 1. <u>Pivotzeile</u>
+
+<ul><!-- Formeln mittels Tab.-Struk. umgesetzt -->
+<table><tr>
+<td><font face="courier new">
+    a<sub>rj</sub><sup>(n+1)</sup>&nbsp; = &nbsp;</font>
+<td align=center><font face="courier new">
+    a<sub>rj</sub><sup>(n)</sup><br>
+    <font size=1>——————————</font><br>
+    a<sub>rs</sub><sup>(n)</sup></font>
+<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+<td>
+    <font face=symbol>Ù</font><br>
+    <font face="courier new">j</font><br>
+    &nbsp;
+</table>
+<br>
+
+<table><tr>
+<td><font face="courier new">
+    b<sub>r</sub><sup>(n+1)</sup> &nbsp; = &nbsp;</font>
+<td align=center><font face="courier new">
+    b<sub>r</sub><sup>(n)</sup><br>
+    <font size=1>——————————</font><br>
+    b<sub>rs</sub><sup>(n)</sup></font>
+</table>
+</ul>
+
+
+<p>&nbsp; &nbsp; 2. <u>Übrige Elemente</u>
+
+<ul>
+<!-- Formeln mittels Tab.-Struk. umgesetzt -->
+<table><tr>
+<td><font face="courier new">
+    a<sub>ij</sub><sup>(n+1)</sup>&nbsp; =&nbsp;
+    a<sub>ij</sub><sup>(n)</sup> -&nbsp;</font>
+<td align=center><font face="courier new">
+    a<sub>rj</sub><sup>(n)</sup><br>
+    <font size=1>——————————</font><br>
+    a<sub>rs</sub><sup>(n)</sup></font>
+<td><font face="courier new">
+    &nbsp;* a<sub>is</sub><sup>(n)</sup></font>
+<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<td><font face=symbol>Ù</font><br>
+    <font face="courier new">j ,</font><br>&nbsp;
+<td><font face=symbol>Ù</font><br>
+    <font face="courier new">i</font><br>&nbsp;
+<td><font face="courier new">
+    &nbsp; &nbsp; i &ne; r</font>
+</table>
+<br>
+
+<table><tr>
+<td><font face="courier new">
+    b<sub>i</sub><sup>(n+1)</sup> &nbsp; =&nbsp;
+    b<sub>i</sub><sup>(n)</sup> -&nbsp;</font>
+<td align=center><font face="courier new">
+    b<sub>r</sub><sup>(n)</sup><br>
+    <font size=1>——————————</font><br>
+    a<sub>rs</sub><sup>(n)</sup></font>
+<td><font face="courier new">
+    &nbsp;* a<sub>is</sub><sup>(n)</sup></font>
+<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<td><font face=symbol>Ù</font><br>
+    <font face="courier new">i</font><br>&nbsp;
+<td><font face="courier new">
+    &nbsp; &nbsp; i &ne; r</font>
+</table>
+</ul>
+
+
+<ul>
+  <table border="0" cellspacing="12" cellpadding="4">      
+  <colgroup>
+     <col align="right">
+     <col align="right">
+     <col align="right">
+     <col align="right">
+     <col align="right">
+     <col align="right">
+  </colgroup>
+  
+  <tr>
+  <td><img src="KlammerL.gif">
+  <td>1<br>0
+  <td>2/3<br>7/3  
+  <td>|<br>|
+  <td>4<br>5
+  <td><img src="KlammerR.gif">
+
+  <tr>
+  <td><img src="KlammerL.gif">
+  <td>1<br>0
+  <td>0<br>1
+  <td>|<br>|
+  <td>18 / 7<br>15 / 7
+  <td><img src="KlammerR.gif">
+
+  </table>
+
+  <p><br>
+  <u><b>Lösung:</b></u>
+  &nbsp; &nbsp; &nbsp; &nbsp; 
+  x<sub>1</sub> = 18 / 7 
+  &nbsp; &nbsp; &nbsp; 
+  x<sub>2</sub> = 15 / 7
+  </p>
+
+</ul>
+<br>
+
+
+
+<P class=block>Die Interpretation der gefundenen L&ouml;sung des 
+mathematischen Modells lautet:<br>
+Jeden Tag m&uuml;ssen von Produkt 1 zwei 4 / 7 St&uuml;ck und von Produkt 2 
+zwei 1 / 7 St&uuml;ck erzeugt werden.</P>
+
+<P class=block>
+Die nicht geraden Zahlen in der L&ouml;sung k&ouml;nnen in diesem Fall
+so interpretiert werden: Nach den 12 bzw. 9 Stunden der Maschinenauslastung
+kann am Folgetag an einem bereits teilweise bearbeiteten St&uuml;ck weitergearbeitet
+werden.</P>
+
+<P class=block>
+Graphisch gesehen ergibt sich der L&ouml;sungspunkt des mathematischen
+Modells als Schnittpunkt zweier Geraden. Die beiden Restriktionen I und
+II lassen sich als Geraden in ein Koordinatensystem eintragen, etwa wie
+in Abbildung 2.</P>
+
+<P><IMG SRC="Image28.gif">  <! HEIGHT=400 WIDTH=430> 
+<p class=abb>Abbildung 2</p>
+<br>
+
+<P><IMG SRC="Image29.gif">  <! HEIGHT=480 WIDTH=436>
+<p class=abb>Abbildung 3</p>
+
+<P class=block>
+Wie Abbildung 2 zeigt, befindet sich der L&ouml;sungspunkt im Schnittpunkt
+der beiden Geraden I und II, im Punkt C. Der Deckungsbeitrag f&uuml;r diese
+optimale L&ouml;sung betr&auml;gt:&nbsp;</P>
+
+<CENTER><P>18 / 7 * 1 + 15 / 7 * 2 = 48 / 7 &nbsp;( € )</P></CENTER>
+
+<P class=block>Die gefundene L&ouml;sung gilt f&uuml;r eine Modellformulierung, 
+die ein Spezialproblem der Linearen Programmierung darstellt. Nun soll eine
+Verallgemeinerung vorgenommen werden: Die in der urspr&uuml;nglichen Aufgabenstellung
+unterstrichene Aussage &quot;ausgelastet werden m&uuml;ssen&quot; wird nun
+durch die Aussage &quot;zur Verf&uuml;gung stehen&quot; ersetzt. Weiter soll
+hier das optimale Produktionsprogramm gesucht werden. Diese Ver&auml;nderung
+f&uuml;hrt zu einer Erweiterung des L&ouml;sungsraums: Bei den Restriktionen
+I und II muss die Gleichheitsrelation durch ein &quot;<IMG SRC="..\le.gif">&quot;
+ersetzt werden. Es ist also jetzt mehr Spielraum bei den Einschr&auml;nkungen
+des Problems vorhanden.</P>
+
+<P class=block>In der Graphik wird der einzige L&ouml;sungspunkt C nun durch 
+den gesamten Bereich unterhalb der beiden Restriktionsgeraden I und II ersetzt 
+(in Abb. 3 schraffiert gezeichnet).</P>
+
+<P class=block>Es handelt sich um einen unendlich gro&szlig;en und 
+unbegrenzten L&ouml;sungsraum.</P>
+
+<P class=block>
+Betrachtet man den schraffierten Bereich unterhalb der Geraden, so zeigt
+sich, dass Punkte, die unterhalb der Abszisse bzw. links von der Ordinate
+liegen, unter &ouml;konomischen Gesichtspunkten nicht sinnvoll interpretiert
+werden k&ouml;nnen. Aus diesem Grund muss eine weitere Einschr&auml;nkung
+des L&ouml;sungsraumes vorgenommen werden:</P>
+
+<br>
+
+<HR WIDTH="100%">
+<A NAME="1.4"></A>
+<h2>1.4 Nichtnegativitatsbedingungen</h2>
+
+<P class=block>Negative Werte f&uuml;r die Entscheidungsvariablen x<sub>1</sub> 
+sind bei einer derartigen Aufgabenstellung ausschlie&szlig;bar. Aus diesem Grund
+m&uuml;ssen so genannte Nichtnegativit&auml;tsbedingungen eingef&uuml;hrt werden, 
+die positive Werte f&uuml;r die Variablen x<sub>1</sub> und x<sub>2</sub> 
+garantieren:</P>
+
+<P>
+<ul>
+x<sub>1</sub> <IMG SRC="..\ge.gif"> 0<BR>
+x<sub>2</sub> <IMG SRC="..\ge.gif"> 0<BR>
+</ul>
+
+<p  class=block>
+Die Auswirkung der Nichtnegativit&auml;tsbedingungen sind Abb. 4 zu entnehmen:
+Der L&ouml;sungsraum wird auf den positiven Bereich eingegrenzt.</P>
+
+<P><IMG SRC="Image32.gif">  <! HEIGHT=360 WIDTH=360></P>
+<p class=abb>Abbildung 4</p>
+
+<P class=block>
+Damit liegt als L&ouml;sungsraum ein konvexer Polyeder M vor, der im
+&auml;lteren Sprachgebrauch auch als L&ouml;sungssimplex bezeichnet wird.
+Dieser L&ouml;sungsraum ist f&uuml;r unser zweidimensionales Beispiel durch
+das Viereck A, B, C, D von Abb. 5 vorgegeben.</P>
+
+ 
+<P><IMG SRC="Image33.gif">  <! HEIGHT=360 WIDTH=360></P>
+<p class=abb>Abbildung 5</p>
+
+<P class=block>
+Der L&ouml;sungsraum M ist nach allen Seiten begrenzt, dennoch beinhaltet
+er unendlich viele L&ouml;sungen. Seine konvexe Eigenschaft ist deshalb
+gegeben, weil die linearen Verbindungen zwischen allen beliebigen Punkten
+des Raumes nur innerhalb des Raumes verlaufen. Das Gebilde von Abb. 6 beispielsweise
+ist nicht konvex, da zwei Punkte gefunden werden k&ouml;nnen deren Verbindungslinien
+au&szlig;erhalb des Gebildes liegen.</P>
+
+<P><IMG SRC="Image34.gif"><br>
+<span class="Abb">Abbildung 6</span>
+
+<P class=block>
+Nachdem nun f&uuml;r das Problem der Produktionsprogrammplanung unendlich
+viele L&ouml;sungen vorhanden sind, stellt sich die Frage, welche spezielle
+L&ouml;sung gesucht Ist. Es zeigt sich, dass die Problematik des Beispiels
+mit der Darstellung als lineares Ungleichungssystem nicht l&ouml;sbar Ist.
+Es fehlt ein weiteres Kriterium! </P>
+
+<br>
+<HR WIDTH="100%">
+<A NAME="1.5"></A>
+<h2>1.5 Zielfunktion</h2>
+
+<P class=block>
+Das Produktionsprogramm soll optimiert werden, d.h. in diesem Fall soll,
+aus der Vielzahl der m&ouml;glichen Handlungsalternativen (Kombination
+der St&uuml;ckzahlen von Produkt 1 und 2) eine Alternative so ausgesucht
+werden, dass ein vorgegebenes Ziel erreicht wird. Hier ist das Ziel
+der Maximierung des Deckungsbeitrags zu verfolgen. Damit ist <B>die </B>L&ouml;sung
+des L&ouml;sungsraumes M gesucht f&uuml;r die der Deckungsbeitrag maximal
+ist. Im Beispiel betr&auml;gt der Deckungsbeitrag pro St&uuml;ck </P>
+
+<ul>
+f&uuml;r Produkt 1: &nbsp; € 1,-<BR>
+f&uuml;r Produkt 2: &nbsp; € 2,-</ul>
+
+<P class=block>
+Der Deckungsbeitrag ergibt sich aus der Anzahl des hergestellten Produktes
+multipliziert mit dem Deckungsbeitrag pro St&uuml;ck. Hieraus resultiert
+die Zielfunktion:</P>
+
+<ul>Z = 1 x<sub>1</sub> + 2 x<sub>2</sub> &nbsp; ( € ).
+</ul>
+
+<P class=block>
+In diesem Zusammenhang soll eine kurze &Uuml;berlegung aufgezeigt werden:
+Intuitiv gesehen w&uuml;rde man m&ouml;glichst viele Einheiten von Produkt
+2 erzeugen, da hier der h&ouml;chste Deckungsbeitrag vorliegt. Diese Entscheidung
+w&auml;re jedoch nicht optimal, was sich am folgenden Beispiel sehen l&auml;sst:
+Will man ausschlie&szlig;lich von Produkt 2 erzeugen, so kann man wegen
+Restriktion II nur 3 St&uuml;ck produzieren, was zu einem Deckungsbeitrag
+von € 6,- pro Tag f&uuml;hrt.</P>
+
+<P class=block>
+W&uuml;rde man sich statt dessen bei Produkt 2 auf 2 St&uuml;ck beschr&auml;nken
+und die nun vorhandenen freien Kapazit&auml;ten f&uuml;r die Produktion
+von 2,5 St&uuml;ck von Produkt 1 verwenden, so ergebe sich ein Deckungsbeitrag
+von</P>
+
+<ul>
+2 * 2 = 4 und<BR>
+2,5 * 1 = 2,5<br>
+<br>
+(insgesamt € 6,50).</ul>
+
+<P class=block>
+Diese L&ouml;sung ist sicher besser und liegt, wie wir sp&auml;ter sehen
+werden, n&auml;her am Optimum. Es zeigt sich also, dass unter bestimmten
+Restriktionen es nicht immer sinnvoll ist, das gewinntr&auml;chtigste Produkt
+bevorzugt herzustellen.</P>
+
+<P>Die Formalisierung der Deckungsbeitragsmaximierung ergibt:</P>
+
+<ul>
+Z = 1 * x<sub>1</sub> + 2 * x<sub>2</sub> <IMG SRC="rarr.gif" HEIGHT=12 WIDTH=20> max !
+</ul>
+
+<P class=block>
+Auch diese Gleichung l&auml;sst sich als Gerade darstellen, wobei
+f&uuml;r Z willk&uuml;rlich Werte eingesetzt werden m&uuml;ssen. Da jeder
+Punkt dieser Geraden denselben Deckungsbeitrag (oder Gewinn) ergibt, wird
+sie auch <B>Isogewinngerade </B>genannt. In Abb. 7 sind mehrere Beispiele
+f&uuml;r unterschiedliche Werte von Z dieser Isogewinngeraden eingezeichnet.</P>
+
+<P class=block>
+Schiebt man die Gerade vom Nullpunkt parallel m&ouml;glichst weit weg,
+so wird das Absolutglied der Isogewinngeraden Z immer gr&ouml;&szlig;er.
+Da das Ziel der Aufgabenstellung die Maximierung ist, kann die optimale
+L&ouml;sung in diesem Fall nur der Schnittpunkt der Isogewinngeraden mit
+dem L&ouml;sungsraum M sein, der am weitesten vom Nullpunkt des Koordinatensystems
+entfernt liegt. Hiermit sind alle Komponenten eines Ansatzes der Linearen
+Programmierung vorgestellt, sie sollen im folgenden Abschnitt noch einmal
+zusammengefasst werden.</P>
+<br>
+
+<pre style="font-size:10pt">
+   Zielfunktion:              Z = 1x<sub>1</sub> + 2x<sub>2</sub> --&gt; max !
+
+   Geradengleichung der ZF:   Z = 1x<sub>1</sub> + 2x<sub>2</sub>
+
+                              x<sub>2</sub> = -1/2x<sub>1</sub> + Z/2
+</pre>
+
+
+<P><IMG SRC="Image36.gif"></P>
+
+<pre style="font-size:10pt">
+   Optimum:  x<sub>1</sub> = 16/7 ;  x<sub>2</sub> = 15/7 ;  Z = 48/7 ;
+</pre> 
+
+<p class=abb>Abbildung 7</p>
+
+<br>
+
+<HR WIDTH="100%">
+<A NAME="1.6"></A>
+<h2>1.6 Ansatz der Linearen Programmierung</h2>
+
+<A NAME="1.6.1"></A>
+<h3>1.6.1 Abgrenzung und Formulierung des Problems</h3>
+
+
+<P>
+<ol type="a">
+  <li><p>Entscheidungsvariable (Handlungsalternativen):<BR>
+      &quot;Wieviel soll vom Produkt 1 und 2 hergestellt werden ?&quot;<br>
+      <br>
+      x<sub>1</sub> Herstellungsmenge von Produkt 1 in St&uuml;ck<BR>
+      x<sub>2</sub> Herstellungsmenge von Produkt 2 in St&uuml;ck</p>
+
+  <li><p>Ziel (verfolgter Zweck): &quot;Maximiere den Deckungsbeitrag bei der
+      Ausnutzung der verf&uuml;gbaren Kapazit&auml;ten (Resourcen)&quot;</p>
+
+  <li><p>Restriktionen (Beschr&auml;nkungen der Handlungsalternativen):</p>
+</ol>
+</p>
+
+
+<p align=center>
+<br>
+
+<TABLE BORDER=1 CellSpacing=0 CellPadding=8 BGColor="#cff9e7">
+<colgroup>
+	<col ALIGN=CENTER>
+	<col ALIGN=CENTER>
+	<col ALIGN=CENTER>
+	<col ALIGN=CENTER>
+</colgroup>
+<TR>
+ <TD>&nbsp; </TD>
+ <TD><B>Produkt 1</B></TD>
+ <TD><B>Produkt 2</B></TD>
+ <TD><B>Kapazit&auml;t</B></TD>
+</TR>
+<TR>
+ <TD><B>Maschine 1</B></TD>
+ <TD>3</TD>
+ <TD>2</TD>
+ <TD>12 Std.</TD>
+</TR>
+<TR>
+ <TD><B>Maschine 2</B></TD>
+ <TD>1</TD>
+ <TD>3</TD>
+ <TD>&nbsp; 9 Std.</TD>
+</TR>
+</TABLE>
+
+</p><br>
+
+
+<A NAME="1.6.2"></A>
+<h3>1.6.2 Vollst&auml;ndiger LP-Ansatz:</h3>
+
+<pre>
+  Z = 1x<SUB>1</SUB> + 2x<SUB>2</SUB> &#8594; max!   Zielfunktion
+
+      3x<SUB>1</SUB> + 2x<SUB>2</SUB> &le; 12     Nebenbedingung I
+      1x<SUB>1</SUB> + 3x<SUB>2</SUB> &le;  9     Nebenbedingung II<BR>
+      x<SUB>1</SUB>, x<SUB>2</SUB> &le; 0         Nichtnegativit&auml;tsbedingungen
+</pre>
+<br>
+
+
+<! MATRIX-AUFRUF ------------------------------------------------>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="arial" size="-1"><b>
+<A HREF="MATRIX(mat01#01.lpx)">Solver-Aufruf</A>
+mit dem Standardbeispiel.</font></b></p>
+
+<br>
+
+
+<A NAME="1.6.3"></A>
+<h3>1.6.3 Standardform der Linearen Programmierung</h3>
+
+<ul>
+<table><tr>
+<td><samp>Z =
+<td align="center">
+   <font size="-2">n<br>
+   <font size="+2">&sum;<br>
+   <font size="-2">j = 1
+<td><samp>(c<SUB>j</SUB> x<SUB>j</SUB>) --&gt; max ! &nbsp; &nbsp;(j = 1...n)
+</table>
+
+<br>
+
+<table><tr>
+<td><samp>&nbsp; &nbsp;
+<td align="center">
+   <font size="-2">n<br>
+   <font size="+2">&sum;<br>
+   <font size="-2">j = 1
+<td><samp>(a<SUB>ij</SUB> x<SUB>j</SUB>) <IMG SRC="..\le.gif"> b<SUB>i</SUB> 
+<td><samp>&nbsp; &nbsp; &nbsp; &nbsp; (i = 1, 2,..., m)
+</table>
+<br>
+
+<samp>&nbsp; &nbsp; &nbsp; &nbsp; 
+x<sub>j</sub> <IMG SRC="..\ge.gif"> 0      
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; (j = 1, 2,..., n)
+</samp>
+
+</ul>
+
+<P>Dabei sind 
+&nbsp;<samp>a<SUB>ij</SUB>, c<SUB>j</SUB>, b<SUB>i</SUB></samp>&nbsp; Konstanten.
+
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="../Einfuehr.Htm">Einf&uuml;hrung</a><BR>
+<A HREF="../KAP2/Kap2.Htm">Kapitel 2</a><BR>
+<br>
+<A HREF="../PcStart.Htm">Startbildschirm</A></B></font></P>
+
+</BODY>
+</HTML>

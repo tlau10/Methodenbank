@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+<HEAD>
+  <TITLE>Aufgabenübersicht</TITLE>
+
+<style type="text/css">
+    body { background-color:#ffffff; }
+
+    /* A:link    { text-decoration:underline; color:#a0a0a0; } */
+    A:visited { text-decoration:underline; color:#379BFF; } 
+    A:link    { text-decoration:underline; color:#379BFF; }
+    A:active  { text-decoration:underline; color:#379BFF; } 
+    A:hover   { text-decoration:underline; color:#0066CC; }
+</style>
+
+</HEAD>
+<BODY>
+
+<! -- Seitentext >
+<div style="font-size:11pt; font-face:"times new roman",times"> 
+
+
+<! -- Überschrift >
+
+<script language="javascript">
+
+   var NavName = navigator.appName ;
+   var NavBaseVersion = parseFloat( navigator.appVersion ) ;
+   var MSIEVersion = 0 ;  // Vorbelegung
+
+   
+       // MSIE-Version feststellen
+   if ( NavName == "Microsoft Internet Explorer" )
+   {
+      var pos    = navigator.appVersion.indexOf("MSIE") ;
+      var tmpStr = navigator.appVersion.substr(pos+4, 20) ;
+
+      MSIEVersion = parseFloat( tmpStr ) ;
+   }
+
+
+   if ( NavName == "Microsoft Internet Explorer" && MSIEVersion < 6 )
+   {
+      document.write ('<span style="background-color: rgb(55,155,255)">')
+      document.write ('<div style="width:380; font-size:18pt; font-face:arial,helvetica;')
+      document.write ('  text-align:right;')
+      document.write ('  color:black; filter:Shadow(color=#f0f0f0, direction=64)">')
+      document.write ('<b>Die Übungsaufgaben &nbsp;</b></div></span>')
+   }
+   else
+   {
+      document.write ('<table border=0 bgcolor="#379BFF" cellpadding=0 cellspacing=0><tr><td>')
+      document.write ('  <table border=0 width="380" cellpadding=1 cellspacing=1>')
+      document.write ('  <tr><td align="right" bgcolor="#b0d0ff">')
+      document.write ('  <font size="5" color="#404040"><b>Die Übungsaufgaben &nbsp;</b>')
+      document.write ('  </td></tr></table>')
+      document.write ('</td></tr></table>')
+   }
+
+</script>
+
+
+
+
+<p><font size="-1">
+<br>
+Zahlreiche BESF/OR-Aufgaben stehen Ihnen für Übungszwecke zur Verfügung.
+</font></p>
+<br>
+
+
+<p>
+<DL>
+<dt><p><font size="4" face=arial,helvetica><b>
+   <A HREF="Aufgaben/Aufgaben_T1.HTM">Aufgabenteil 1</A>
+   </b></font></dt>
+<dd><p>15 Aufgaben mit Musterlösungen für die ersten 10 Aufgaben.</dd>
+
+<dt><p><font size="4" face=arial,helvetica><b>
+   <A HREF="Aufgaben/Aufgaben_T2.HTM">Aufgabenteil 2</A>
+   </b></font></dt>
+<dd><p>Aufgaben passend zur Vorlesung.</dd>
+
+<dt><p><font size="4" face="arial,helvetica"><b>
+   <A HREF="Aufgaben/Aufgaben_T3.HTM">Aufgabenteil 3</A>
+   </b></font></dt>
+<dd><p>Ehemalige Klausuraufgaben.<br>
+    <font color=#ff9999>
+    <!  (Bitte die aktuelle Nummerierung beachten !)  ></font>
+    </dd>
+</DL>
+</p>
+
+<br>
+
+<div> 
+
+
+<P><HR>
+<font size="-1" face="arial"><b>
+<A HREF="Einfuehr.Htm">OR-Einführung</A><BR>
+<br>
+<A HREF="PcStart.Htm">Startbildschirm</A></font>
+
+</BODY>
+</HTML>

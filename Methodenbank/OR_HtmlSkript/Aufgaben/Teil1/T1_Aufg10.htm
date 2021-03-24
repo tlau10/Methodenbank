@@ -1,0 +1,75 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>T1_Aufg10</title>
+</head>
+<body>
+<font face="Arial" color="#666666" size=-1>Aufgabenteil 1</font>
+
+<p align="center"><font size="+2" color="#3366c8"><b>Aufgabe 10</b></font></p>
+<hr>
+
+
+<div style="font-family:arial; font-size:13">
+
+<p><u><b>Aufgabenstellung:</b></u></p>
+
+<p>Gegeben ist folgendes LP-Modell:
+
+<pre style="font-size:13; color:#0020a0">
+            2x<sub>1</sub> + 3x<sub>2</sub>  --&gt;  max !
+                   x<sub>2</sub>  &lt;=   40
+             x<sub>1</sub> +  x<sub>2</sub>  &lt;=   70
+             x<sub>1</sub> + 2x<sub>2</sub>  &lt;=  100
+
+             x<sub>1</sub>, x<sub>2</sub> &gt;= 0 
+
+</pre>
+
+<ol type="a">
+<li><p>Lösen Sie das Problem grafisch.</p>
+<li><p>Berechnen Sie alle zulässigen Basislösungen.</p>
+<li><p><u>B</u> sei die Matrix der Basisvektoren, <u>N</u> die Matrix der
+Nichtbasisvektoren und <u>x<sub>B</sub></u> bzw. <u>x<sub>N</sub></u>
+die entsprechenden Variablen-Vektoren.
+
+<p>Damit kann das System der erweiterten Restriktionen eines LP-Problems in
+folgender knapper Form dargestellt werden:
+
+<p><ul><font face="verdana">
+<u>B</u> * <u>x<sub>B</sub></u> + <u>N</u> * <u>x<sub>N</sub></u> = <u>b</u>.
+</font></ul>
+
+<p>Zeigen Sie allgemein, dass jede zulässige Basislösung bestimmt ist durch:
+
+<p><ul><font face="verdana">
+<u>x<sub>B</sub></u> = <u>B</u><sup>-1</sup> * <u>b</u>.
+</font></ul>
+
+</ol>
+<br>
+
+
+<p><u><b>Musterl&ouml;sung:</b></u></p>
+<br>
+
+
+<ol type="a">
+<li>Grafische L&ouml;sung:
+<p><img SRC="10_1loe.GIF" height=406 width=475></p>
+
+<li><p>Zulässige Basislösungen:<br>
+<p><img SRC="10_2loe.GIF" height=271 width=490></p>
+
+<li><p>Allgemein gilt:<br>
+<p><img SRC="10_3loe.GIF" height=513 width=470></p>
+
+</ol>
+
+</div>
+
+<input type="button" value="LP-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe10\\lp_solve.bat');"/>
+<input type="button" value="XA-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe10\\xa.bat');"/>
+</body>
+</html>

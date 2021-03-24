@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+<HEAD>
+   <TITLE></TITLE>
+   <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+<body class="script">
+
+
+<h1>4. Dualit&auml;t</h1>
+
+<P><A NAME="4.1"></A>
+<h2>4.1 Ein Preisproblem</h2>
+
+<P align=justify>
+Ein Betrieb mietet zwei Produktionsanlagen auf der Basis 
+&#132;Maschinenstunden&#147; an, 
+mit denen zwei Produkte erzeugt werden sollen. Der Mietzins ist so
+zu kalkulieren, dass die gesamten Herstellungskosten bei Produkt 1
+mindestens 1 GE und bei Produkt 2 mindestens 2 GE pro ME betragen - andernfalls
+w&uuml;rde der Vermieter die Produktion selbst in die Hand nehmen.</P>
+
+<P align=justify>
+Die eingesetzten Maschinenkapazit&auml;ten f&uuml;r P<sub>l</sub> sind 3 h/ME und
+1 h/ME, f&uuml;r P<sub>2</sub> 2 h/ME und 3 h/ME.</P>
+
+<P align=justify>
+F&uuml;r den Produktionsprozess wird Maschine M<sub>l</sub> 12 h und 
+M<sub>2</sub> 9 h eingesetzt. Geben Sie die Mietzinskalkulation f&uuml;r 1 h 
+von M<sub>l</sub> bzw. M<sub>2</sub> an !</P>
+
+<br>
+
+<P><A NAME="Das Dualmodell"></A>
+<FONT face="arial"><U>Das Dualmodell</U></font></P>
+
+<p><FONT size="7" color="#88bbbb"><b>
+Primal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Dual</b></font></P>
+
+<P><IMG SRC="Image15.gif" HEIGHT=48 WIDTH=92>
+(i = 1, ...,m) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+<IMG SRC="Image16.gif" HEIGHT=45 WIDTH=88>
+(j = 1, ...,n)</P>
+
+<P><IMG SRC="Image17.gif" HEIGHT=48 WIDTH=109><FONT SIZE=+3> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG SRC="Image18.gif" HEIGHT=45 WIDTH=102><BR>
+<IMG SRC="Image19.gif" HEIGHT=33 WIDTH=81>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG SRC="Image20.gif" HEIGHT=33 WIDTH=80><BR>
+<IMG SRC="Image21.gif" HEIGHT=20 WIDTH=48>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG SRC="Image22.gif" HEIGHT=20 WIDTH=52><BR>
+<IMG SRC="Image23.gif" HEIGHT=21 WIDTH=76>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG SRC="Image24.gif" HEIGHT=21 WIDTH=73><BR>
+<IMG SRC="Image25.gif" HEIGHT=17 WIDTH=41>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</FONT>
+<IMG SRC="Image26.gif" HEIGHT=17 WIDTH=41></P>
+
+<br>
+
+<P><A NAME="4.2"></A>
+<h2>4.2 Das Dualit&auml;tstheorem</h2>
+
+<p>Besitzt Primal opt. Lsg. &nbsp;
+<IMG SRC="Image28.gif" HEIGHT=32 WIDTH=42>
+Dual besitzt opt.Lsg. <IMG SRC="Image29.gif" HEIGHT=32 WIDTH=21></P>
+<br>
+
+<P>Folgerung: ZF<SUB>primal</SUB> <IMG SRC="Image30.gif" HEIGHT=16 WIDTH=36>
+<IMG SRC="Image31.gif" HEIGHT=16 WIDTH=20> Dual hat keine zul&auml;ssig Lsg.
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG SRC="Image30.gif" HEIGHT=16 WIDTH=36>
+<IMG SRC="Image32.gif" HEIGHT=16 WIDTH=20>
+&nbsp;&nbsp;&nbsp;"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+
+<P>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG SRC="Image33.gif" HEIGHT=21 WIDTH=14> &nbsp;&nbsp; oder
+
+<p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+keine zul&auml;ssige L&ouml;sung</P>
+<br>
+
+<P><FONT face="arial"><U>Optimal-Tableau</U></font></P>
+
+<P><B>Primal</B></P>
+<P>Strukturvar. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Schlupfvar.<BR>
+x<SUB>1</SUB>x<SUB>2</SUB> ... x<SUB>n</SUB> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y<SUB>1</SUB>y<SUB>2</SUB>...y<SUB>m<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Image34.gif" HEIGHT=22 WIDTH=14>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<IMG SRC="Image34.gif" HEIGHT=22 WIDTH=14><BR>
+</SUB>v<SUB>1</SUB>v<SUB>2</SUB>...v<SUB>n</SUB> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT SIZE=+0>u<SUB>1</SUB>u<SUB>2</SUB>...u<SUB>m<BR>
+</SUB>Schlupfvar. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT SIZE=+0>Strukturvar.</FONT></P>
+
+<P><B>Dual<BR>
+<IMG SRC="Image35.gif" HEIGHT=20 WIDTH=14><BR>
+</B>&quot;reduced costs&quot;</P>
+
+<P>Es gilt: x<SUB>j</SUB> v<SUB>j</SUB> = 0 und y<SUB>i</SUB>
+u<SUB>i</SUB> = 0 &nbsp; (Satz vom komplement&auml;ren Schlupf)</P>
+
+<P>BV<SUB>primal</SUB> ist NBV<SUB>dual</SUB> zugeordnet
+und umgekehrt !</P>
+
+<br>
+
+<! ----------------------------->
+<P><A NAME="Optimales Endtableau"></A>
+<FONT face="arial" Color="#88bbbb"><U><b>Optimales Endtableau</b></u></FONT></P>
+
+<br>
+
+<! Aussentabelle (1 Zeile, 2 Spalten) ------------------------>
+<table border=0>
+<tr>
+<td Width="100" valign="top">
+<img src="blank.gif" HEIGHT=76 WIDTH=0>
+z<sub>j</sub> - c<sub>j</sub> - Zeile
+</td>
+
+<td>
+
+<! Innentabelle --->
+<TABLE BORDER=1 Width="412" Cellpadding="3" Cellspacing="0">
+<TR>
+<TD Colspan=2 Align="center">primale Strukturvariable</TD>
+<TD Colspan=2 Align="center">primale Schlupfvariable</TD>
+</TR>
+
+<TR>
+<TD Width="28%"><b>BV</b></TD>
+<TD><b>NBV</b></TD>
+<TD Width="25%"><b>BV</b></TD>
+<TD><b>NBV</b></TD>
+</TR>
+
+<TR>
+<TD Align="center">= 0</TD>
+<TD Align="center"><IMG SRC="..\ge.gif"> 0</TD>
+<TD Align="center">= 0</TD>
+<TD Align="center"><IMG SRC="..\ge.gif"> 0</TD>
+</TR>
+
+<tr>
+<td  Colspan=2 Align="center">duale Schlupfvariable</td>
+<td  Colspan=2 Align="center">duale Strukturvariable</td>
+</tr>
+</TABLE>   <! Innentab.>
+
+
+<P>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<IMG SRC="Image39.gif" HEIGHT=20 WIDTH=14>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+<IMG SRC="Image39.gif" HEIGHT=20 WIDTH=14><BR>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+"reduced costs"
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+Schattenpreise</P>
+
+</td></tr>
+</table>   <! Aussentab.>
+
+<br>&nbsp;
+
+
+<P><A NAME="4.3"></A>
+<h2>4.3 Motivation für Dualität</h2>
+
+<ul>
+<li><p align="justify">
+    Information über das Vorliegen alternativer Lösungen bei gleichem 
+    Zielfunktionswert</p></li>
+<li><p align="justify">
+    Reduktion der Zahl der Hilfsvariablen im <IMG SRC="..\ge.gif">- Fall und damit 
+    effizientere Lösung des LP-Modells über Dual</p></li>
+<li><p align="justify">
+    Aussage über die „Knappheit“ von Restriktionen, Angabe des Grenznutzens bei 
+    Veränderung der Werte des b-Vektors</p></li>
+</ul>
+
+<br>
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="../KAP3/Kap3.Htm">Kapitel 3</A><br>
+<A HREF="Kap5.Htm">Kapitel 5</A><br>
+<br>
+<A HREF="../PcStart.Htm">Start-Bildschirm</A></font></b></P>
+
+</BODY>
+</HTML>

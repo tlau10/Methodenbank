@@ -1,0 +1,135 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>T1 Ausgabe 2</title>
+  <link rel="stylesheet" href="../../css/aufgaben.css">
+</head>
+<body>
+
+<font face="Arial" font color="#666666" font size=-1>
+Aufgabenteil 1</font>
+
+<p align="center">
+<font size="+2" color="#3366C8"><b>Aufgabe 2</b></font></p>
+<hr>
+
+
+<p><u><b>Aufgabenstellung:</b></u>
+<p class=block>
+Ein Betrieb fertigt die Produkte 1 und 2. Jedes Produkt bringt unterschiedliche
+Erl&ouml;se und verursacht unterschiedliche direkte Kosten. Damit sind
+auch die sich als Differenz von Erl&ouml;sen und direkten Kosten ergebenden
+Deckungsbeitr&auml;ge unterschiedlich hoch. Mit ihrer Summe sind die fixen
+Kosten von monatlich 36.000,- EUR zu decken. Der &Uuml;berschuss ist
+der Gewinn, der maximiert werden soll. Die Mengen der Produkte sind durch
+die Kapazit&auml;ten der Fertigungsmaschinen begrenzt. Es stehen die Maschinen
+A, B und C zur Verf&uuml;gung.
+<p class=block>
+Das Produkt 1 durchl&auml;uft die Maschinen A und B, die es je eine
+Stunde je Mengeneinheit (ME) belegt. F&uuml;r die Fertigung des Produktes
+2 werden je Mengeneinheit zwei Stunden auf A, eine Stunde auf B und drei
+Stunden auf C ben&ouml;tigt. Die Kapazit&auml;t der Maschinen ergibt sich
+aus der monatlichen einschichtigen Arbeitszeit abz&uuml;blich der zu erwartenden
+Zeiten f&uuml;r Reparatur, Instandhaltung und Wartung.
+<p class=block>
+Gefragt ist nach denjenigen monatlich zu erzeugenden Mengen der Produkte
+1 und 2, f&uuml;r die sich unter Einhaltung der Kapazit&auml;tsgrenzen
+ein maximaler Gewinn ergibt. Die direkten Kosten und die Erl&ouml;se je
+Mengeneinheit sind mengenunabh&auml;ngig.
+<p class=block>
+In der folgenden Tabelle sind die einzelnen Daten des Problems zusammengefasst:
+<br>&nbsp;
+
+
+<! *** Leere Tab.-Zellen nicht 'fuellen' *** >
+
+<center>
+<table BORDER="1" BGCOLOR="#d8ebfb" bordercolor="#C0D0D0"
+       cellspacing="2" cellpadding="4">
+<tr>
+<td></td>
+<td>Produkt 1</td>
+<td>Produkt 2</td>
+<td>Monatliche
+    <br>Maschinenkapazit&auml;t</td>
+</tr>
+
+<tr>
+<td>Erlös (EUR/ME)</td>
+<td>1000,-</td>
+<td>3000,-</td>
+<td></td>
+</tr>
+
+<tr>
+<td>Direkte Kosten (EUR/ME)</td>
+<td>&nbsp; 700,-</td>
+<td>2500,-</td>
+<td></td>
+</tr>
+
+<tr>
+<td>Deckungsbeitrag (EUR/ME)</td>
+<td>&nbsp; 300,-</td>
+<td>&nbsp; 500,-</td>
+<td></td>
+</tr>
+
+<tr>
+<td>Fertigungszeit&nbsp;&nbsp; &nbsp; A
+<br>in (h/ME)&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; B
+<br>auf Maschine&nbsp;&nbsp; &nbsp; C</td>
+
+<td align="center">1
+<br>1
+<br>-</td>
+
+<td align="center">2
+<br>1
+<br>3</td>
+
+<td align="center">170
+<br>150
+<br>180</td>
+</tr>
+</table></center>
+
+<p><u><b>Musterl&ouml;sung:</b></u>
+
+<p class=block>
+Bei der Modellformulierung des linearen Programms fragt man 
+zweckm&auml;&szlig;igerweise zun&auml;chst nach den Variablen oder Unbekannten.
+Diese sind hier die Mengen der Produkte 1 und 2. Sie sollten mit den Symbolen 
+x<sub>1</sub> und x<sub>2</sub> bezeichnet werden. Mit den in der Tabelle 
+angegebenen Daten erh&auml;lt man so folgende Beziehungen:
+
+<ul>
+Maschine A:&nbsp;&nbsp;&nbsp; 1x<sub>1</sub> + 2x<sub>2</sub> &lt;= 170<br>
+Maschine B:&nbsp;&nbsp;&nbsp; 1x<sub>1</sub> + 1x<sub>2</sub> &lt;= 150<br>
+Maschine C:&nbsp;&nbsp;&nbsp; 0x<sub>1</sub> + 3x<sub>2</sub> &lt;= 180
+</ul>
+
+<p>Ferner ist zu beachten, dass keine negativen Mengen produziert
+werden:
+<ul>x<sub>1</sub>, x<sub>2</sub> &gt;= 0</ul>
+
+<p class=block>
+In unserem Beispiel ist der Gewinn zu maximieren. Dieser ergibt sich aus
+den mit den Deckungsbeitr&auml;gen multiplizierten Mengen und den Fixkosten:
+
+<ul>300x<sub>1</sub> + 500x<sub>2</sub> - 36000 --&gt; max !</ul>
+
+
+<p><br>
+<input type="button" value="LP-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe02\\lp_solve.bat');"/>
+<input type="button" value="XA-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe02\\xa.bat');"/>
+
+<p><font size="2"><i>
+Beachten Sie die 36000 in der Zielfunktion. Bei Berechnung mit XA
+kann dieser Wert im Modell nicht angegeben werden. Der Betrag ist dann
+nachträglich vom Berechnungsergebnis abzuziehen.</i></font></p>
+<br>
+
+</body>
+</html>

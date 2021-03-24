@@ -1,0 +1,104 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>Aufgabe 5</title>
+</head>
+<body>
+<font face="Arial" color="#666666" size=-1>Aufgabenteil 1</font>
+
+<p align="center">
+<font size="+2" color="#3366c8"><b>Aufgabe 5</b></font></p>
+<hr>
+
+
+<p><u><b>Aufgabenstellung</b></u></p>
+
+<p align=justify>
+Ein Betrieb kennt f&uuml;r die n&auml;chsten vier Perioden die Nachfragen
+N<sub>1</sub> bis N<sub>4</sub> nach dem einzigen von ihm gefertigten 
+nichtverderblichen Produkt. Die Nachfragen N<sub>2</sub> und N<sub>4</sub> 
+&uuml;bersteigen jedoch die "normale" Produktionskapazit&auml;t A 
+[Mengeneinheiten pro Periode], so dass zu entscheiden ist, ob in
+den Perioden 2 und 4 &Uuml;berstundenarbeit geleistet werder oder ob in
+den Perioden 1 und 3 auf Lager produziert werden soll. Zu Beginn der Periode
+1 kann mit einem Lagerbestand S<sub>1</sub> gerechnet werden.
+
+<p>Entwickeln Sie einen LP-Ansatz zur L&ouml;sung des Problems.</p>
+<br>
+
+<p><u><b>Musterl&ouml;sung:</b></u></p>
+
+<p>Bezeichnung der Entscheidungsvariablen:
+<ul>
+x<sub>j</sub> : &nbsp; Normalproduktion in der Periode j<br>
+y<sub>j</sub> : &nbsp; Überstundenproduktion in der Periode j<br>
+S<sub>j </sub>: &nbsp; Lagerbestand am Anfang der j-ten Periode
+</ul>
+
+<p>Bezeichnung der Modellkonstanten:
+<ul>
+c&nbsp; : &nbsp; Überstundenkosten pro Produktmengeneinheit<br>
+d&nbsp; : &nbsp; Lagerkosten pro Produktmengeneinheit<br>
+N<sub>j </sub>: &nbsp; Nachfrage in der Periode j<br>
+a&nbsp; : &nbsp; Produktionskapazität<br>
+b<sub>j</sub> : &nbsp; Überstundenproduktionskapazität in der Periode j
+</ul>
+<br>
+
+<p>LP-Modell:</p>
+
+
+<!--
+
+<ul>
+
+<table border=0>
+<tr>
+<td><samp>c (y<sub>2</sub> + y<sub>4</sub>) + d</samp></td>
+
+<td align=center>
+  <samp><font size="-1">4</font><br>
+        <font size="+4">&sum;</font><br>
+        <font size="-1">j=1</font></samp></td>
+
+<td align=center>
+  <samp>s<sub>j</sub> + s<sub>j+1</sub><br>----------<br>2</font></td>
+<td><samp>&nbsp; --&gt; &nbsp;min !</samp></td>
+</tr>
+</table>
+
+<pre>
+s<sub>1</sub> + x<sub>1</sub>      = N<sub>1</sub> + s<sub>1</sub>
+s<sub>2</sub> + x<sub>2</sub> + y<sub>2</sub> = N<sub>2</sub> + s<sub>3</sub>
+s<sub>3</sub> + x<sub>3</sub>      = N<sub>3</sub> + s<sub>4</sub>
+s<sub>4</sub> + x<sub>4</sub> + y<sub>4</sub> = N<sub>4</sub> + s<sub>5</sub>
+y<sub>2</sub> &lt;= b<sub>2</sub>
+y<sub>4</sub> &lt;= b<sub>4</sub>
+x<sub>j</sub> &lt;= a     <sub>  </sub>     (j = 1,2,3,4)
+x<sub>j</sub>, y<sub>j</sub>, s<sub>j</sub> &gt;= 0    (j = 1,2,3,4,5)
+
+</pre>
+
+</ul>
+-->
+
+
+
+<ul><img SRC="5_2loe.GIF"></ul>
+<br>
+
+<!-- SOLVER Buttons auskommentiert, da Lp Modell noch fehlt
+<input type="button" value="LP-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe05\\lp_solve.bat');"/>
+<input type="button" value="XA-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe05\\xa.bat');"/> -->
+
+
+
+<p align=justify>
+In der Zielfunktion dieses Modells wird bei Annahme eines <u>linearen</u>
+Lagerbestandverlaufs der jeweils mittlere Lagerbestand einer Periode mit den
+Lagerkosten bewertet.</p>
+<br>
+
+</body>
+</html>

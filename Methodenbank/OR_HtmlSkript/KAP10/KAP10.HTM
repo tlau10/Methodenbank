@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE> </TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+<body class="script">
+
+
+<h1>10. Das Verschnittproblem</h1>
+
+<P align=justify>Von ganz anderem &quot;Zuschnitt&quot;, was die 
+Aufgabenstellung anbetrifft, ist das <I>Verschnittproblem</I>, das in zwei 
+Varianten besteht, und zwar als eindimensionales und als zweidimensionales 
+Verschnittproblem. Beiden Aufgabenstellungen ist gemeinsam, dass <I>vor</I>
+der Formulierung des linearen Modells und damit auch <I>vor </I>der 
+L&ouml;sung mit Hilfe der SimplexMethode die sogenannten 
+<I>Zuschnittsvarianten</I> bestimmt werden m&uuml;ssen.</P>
+<br>
+
+
+<P><a name="10.1"></a>
+<h2>10.1 Das eindimensionale Verschnittproblem</h2>
+
+<P align=justify>Hierbei geht es darum, aus Rollen einer bestimmten Breite 
+Bahnen mit vorgeschriebener Breite und in festgelegten St&uuml;ckzahlen 
+herzustellen, und zwar so, dass der Verschnitt minimal wird (siehe auch 
+Abbildung 28).</P>
+
+<CENTER>
+<P><IMG SRC="P71II.gif" HEIGHT=434 WIDTH=500><BR>
+<span class=abb>Abb. 28: Rollenaufteilung beim eindimensionalen Verschnittproblem
+</span></P>
+</CENTER>
+
+<br><BR>
+
+<P align=justify>Ein Beispiel soll das Ganze verdeutlichen:<BR><br>
+Als Ausgangsmaterial liegen Rollen der Breite 3.000 mm vor. Folgender 
+Auftrag sei gegeben. Es sollen &quot;geschnitten&quot; werden:</P>
+
+<dir>
+<p><font face="arial" size="-1"><b>
+250 Rollen mit einer Breite von 900 mm<BR>
+150 Rollen mit einer Breite von 690 mm<BR>
+120 Rollen mit einer Breite von 280 mm</b></font></P>
+</dir>
+
+<P align=justify><BR>
+Frage: Wie soll das Ausgangsmaterial &quot;verschnitten&quot;
+werden, um diesen Auftrag zu erf&uuml;llen - bei minimalem Verschnitt?</P>
+
+<P align=justify>Um sich zun&auml;chst einmal einen &Uuml;berblick zu verschaffen, 
+welche Zuschnittsvarianten denkbar sind, ist die in Abbildung 29 gezeigte Tabelle 
+ein gutes Hilfsmittel. Sie entsteht folgenderma&szlig;en:</P>
+
+<P align=justify>Zun&auml;chst wird versucht (1. Zeile), die gr&ouml;&szlig;te
+Auftragsbreite m&ouml;glichst oft &quot;unterzubringen&quot;. Dabei entsteht
+ein Verschnitt von 300 mm. Sodann (2. Zeile) wird die St&uuml;ckzahl bei
+der gr&ouml;&szlig;ten Breite um 1 reduziert und versucht, die n&auml;chste
+Breite m&ouml;glichst oft unterzubringen. Man erkennt, dass die St&uuml;ckzahlen
+dadurch entlang der Diagonalen langsam von links nach rechts wandern. Es
+entstehen insgesamt 12 Kombinationen, deren H&auml;ufigkeit mit x<sub>1</sub> 
+bis x<sub>12</sub> bezeichnet seien.</P>
+<br>
+
+<p>
+<TABLE BORDER CELLSPACING=0 CELLPADDING=3 WIDTH=550 align="center"
+       style="font-family:arial; font-size:9pt">
+<colgroup>
+   <col ALIGN="CENTER" WIDTH="17%">
+   <col ALIGN="CENTER" WIDTH="17%">
+   <col ALIGN="CENTER" WIDTH="16%">
+   <col ALIGN="CENTER" WIDTH="16%">
+   <col ALIGN="CENTER" WIDTH="16%">
+   <col ALIGN="CENTER" WIDTH="17%">
+</colgroup>
+
+<TR style="background-color:e7f9ff">
+<TD ROWSPAN=2><B>Nr. der Kombination</B></TD>
+<TD ROWSPAN=2><B>H&auml;ufigkeit der Kombination</B></TD>
+<TD COLSPAN=3><B>Breite in mm</B></TD>
+<TD ROWSPAN=2><B>Verschnitt</B></TD>
+</TR>
+<TR style="background-color:e7f9ff">
+<TD><B>900</B></TD>
+<TD><B>600</B></TD>
+<TD><B>385</B></TD>
+</TR>
+
+<TR>
+<TD>1</TD>
+<TD>x<SUB>1</SUB></TD>
+<TD>3</TD>
+<TD>0</TD>
+<TD>0</TD>
+<TD>300</TD>
+</TR>
+<TR style="background-color:f0f0f0">
+<TD>2</TD>
+<TD>x<SUB>2</SUB></TD>
+<TD>2</TD>
+<TD>1</TD>
+<TD>1</TD>
+<TD>125</TD>
+</TR>
+<TR>
+<TD>3</TD>
+<TD>x<SUB>3</SUB></TD>
+<TD>2</TD>
+<TD>0</TD>
+<TD>3</TD>
+<TD>45</TD>
+</TR>
+<TR style="background-color:f0f0f0">
+<TD>4</TD>
+<TD>x<SUB>4</SUB></TD>
+<TD>1</TD>
+<TD>3</TD>
+<TD>0</TD>
+<TD>30</TD>
+</TR>
+<TR>
+<TD>5</TD>
+<TD>x<SUB>5</SUB></TD>
+<TD>1</TD>
+<TD>2</TD>
+<TD>1</TD>
+<TD>335</TD>
+</TR>
+<TR style="background-color:f0f0f0">
+<TD>6</TD>
+<TD>x<SUB>6</SUB></TD>
+<TD>1</TD>
+<TD>1</TD>
+<TD>3</TD>
+<TD>225</TD>
+</TR>
+<TR>
+<TD>7</TD>
+<TD>x<SUB>7</SUB></TD>
+<TD>1</TD>
+<TD>0</TD>
+<TD>5</TD>
+<TD>175</TD>
+</TR>
+<TR style="background-color:f0f0f0">
+<TD>8</TD>
+<TD>x<SUB>8</SUB></TD>
+<TD>0</TD>
+<TD>4</TD>
+<TD>0</TD>
+<TD>240</TD>
+</TR>
+<TR>
+<TD>9</TD>
+<TD>x<SUB>9</SUB></TD>
+<TD>0</TD>
+<TD>3</TD>
+<TD>2</TD>
+<TD>160</TD>
+</TR>
+<TR style="background-color:f0f0f0">
+<TD>10</TD>
+<TD>x<SUB>10</SUB></TD>
+<TD>0</TD>
+<TD>2</TD>
+<TD>4</TD>
+<TD>80</TD>
+</TR>
+<TR>
+<TD>11</TD>
+<TD>x<SUB>11</SUB></TD>
+<TD>0</TD>
+<TD>1</TD>
+<TD>6</TD>
+<TD>0</TD>
+</TR>
+<TR style="background-color:f0f0f0">
+<TD>12</TD>
+<TD>x<SUB>12</SUB></TD>
+<TD>0</TD>
+<TD>0</TD>
+<TD>7</TD>
+<TD>305</TD>
+</TR>
+</TABLE>
+
+
+<p class=abb align=center>Abb. 29: Zuschnittsvarianten (eindimensionales
+Verschnittproblem)</p>
+
+
+<P><BR>
+Nun zur Aufstellung des linearen Modells:</P>
+
+<P align=justify>Zielfunktion: Es ist das Ziel, den Verschnitt zu
+minimieren. Gesamtverschnitt ist die Summe der Produkte aus Rollenl&auml;nge
+(L) Breite des Verschnitts und (unbekannten) St&uuml;ckzahlen (x<sub>i</sub>).
+</P>
+
+<P>
+<tt>Z<SUP>*</SUP> = L 300 x1 + L 125 x2 + ... + L 305 x12 
+<img src="rarr.gif"> Min</tt>
+
+<p>
+Indem man durch L dividiert erh&auml;lt man:<br>
+<br>
+<tt>Z = 300 x1 + 125 x2 + ... + 305 x12 <IMG SRC="rarr.gif"> Min</tt></P>
+<br>
+
+<P align=justify>Die Restriktionen können aus kombinatorischen Gründen i.d.R. 
+nicht in Form von Gleichungen aufgestellt werden:
+<pre>
+3x1 + 2x2 + 2x3 + x4 + x5 + x6 + x7                   &#8805; 250
+x2 + 3x4 + 2x5 + x6 + 4x8 + 3x9 + 2x10 + x11          &#8805; 150
+x2 + 3x3 + x5 + 3x6 + 5x7 + 2x9 + 4x10 + 6x11 + 7x12  &#8805; 120
+</pre>
+</P>
+
+<P>Die Nichtnegativit&auml;tsbedingungen:
+<pre>
+x<SUB>i</SUB> &#8805; 0
+  (i = 1,...,12)
+</pre></P>
+
+<P align=justify>
+Da prim&auml;r die Problemstellung und die mathematische Formulierung 
+interessiert, kann an dieser Stelle auf die L&ouml;sung verzichtet werden.</P>
+
+
+<! Programm-Aufruf ------------------------------------------>
+<p>
+<table border=1 width="90%" align=center cellpadding=8 cellspacing=0
+       BGColor="#fff9e7">
+<tr>
+  <td><FONT SIZE=-1 face="arial">
+  Das Methodenbankprogramm
+  <A HREF="PrgVR kap10_1.vrs"> <b>Verschnittplanung</b> </A>
+  kapselt als Anwenderprogramm die oben erw&auml;hnte mathematische 
+  Formulierung des Problems.
+  </font></td>
+</tr></table>
+</p>
+
+<br>
+<p align=justify><FONT SIZE=-1 face="arial">
+Das selbe Problem wurde auch unter Verwendung eines genetischen
+Algorithmusses gel&ouml;st. <br>
+Programm: <A HREF="PrgGAVerschn"> <b>GA-Verschnittplanung</b></A><br>
+(siehe auch OR-Methodenbank InfoSystem, Verzeichnis AND).
+</font></p>
+
+
+<br>
+
+<hr width="80%">
+<P><a name="10.2"></a>
+<h2>10.2 Das zweidimensionale Verschnittproblem</h2>
+
+<P align=justify>Hierbei geht es darum, aus Blechtafeln Produkte vorgegebener 
+L&auml;nge und Breite bei minimalem Verschnitt zu gewinnen.Um die Aufgabenstellung
+konkret zu gestalten, seien folgende Zahlen gegeben:</P>
+
+<P>Ausgangsprodukt sind Tafeln der Abmessungen 2 m x 1 m.<BR>
+Zu liefern sind:</P>
+
+<dir>
+<p><font face="arial" size="-1"><b>
+100 Tafeln 0,5 x 0,6 m (Tafelart I), <BR>
+&nbsp; 50 Tafeln 0,8 x 0,4 m (Tafelart II), <BR>
+100 Tafeln 0,3 x 1,0 m (Tafelart III). </b></FONT></P>
+</dir>
+
+<P><font size="-1">
+<b><i>Gesucht ist der Verschnittplan mit minimalem Verschnitt!</i></b></font></P>
+<br>
+
+<P align=justify>Bevor man sich der mathematischen Formulierung zuwendet,
+m&uuml;ssen auch hier zun&auml;chst die &quot;Zuschnittsvarianten&quot; festgelegt
+werden. Dieses Problem hat nichts mit Linear Programm ing zu tun, und es
+sollen - um die Aufgabenstellung nicht allzusehr auszuweiten - nur die
+6 aufgef&uuml;hrten Zuschnitts-varianten (Abbildung 30) in Betracht gezogen
+werden; die Vielzahl der anderen Varianten sei z. B. aus produktionstechnischen
+Gr&uuml;nden ausgeschlossen.</P>
+<br>
+
+<ol>
+<p><IMG SRC="P73.gif" HEIGHT=450 WIDTH=540></P>
+
+<P class=abb>Abb. 30: Zuschnittvarianten 
+(zweidimensionales Verschnittproblem)</p>
+</ol>
+<br>
+
+
+<p>Man kann hierf&uuml;r folgende
+<FONT color="#0000c0"><b>Kombinationstabelle</b></font> aufstellen:</p>
+<br>
+
+<ol>
+<p>
+<table border="1" cellpadding="4" cellspacing="0" 
+       style="font-family:arial; font-size:13; line-height:16pt;">
+    <tr>
+        <td rowspan="2" width="90" align="center"><b>Variante V<sub>i</sub></b></td>
+        <td colspan="3" align="center"><b>Vorkommende Tafelarten</b></td>
+        <td rowspan="2" width="90" align="center"><b>Verschnitt</b></td>
+    </tr>
+    <tr>
+        <td align="center"><b>&nbsp;I&nbsp;</b></td>
+        <td align="center"><b>&nbsp;II</b></td>
+        <td align="center"><b>III</b></td>
+    </tr>
+    <tr>
+        <td align="center">
+        1<br>
+        2<br>
+        3<br>
+        4<br>
+        5<br>
+        6</td>
+
+        <td align="center">
+        6<br>-<br>2<br>-<br>4<br>-</td>
+
+        <td align="center">
+        -<br>2<br>2<br>5<br>2<br>-</td>
+
+        <td align="center">
+        -<br>4<br>2<br>-<br>-<br>6</td>
+
+        <td align="center">
+        0,20 m<sup>2</sup><br>
+        0,16 m<sup>2</sup><br>
+        0,16 m<sup>2</sup><br>
+        0,40 m<sup>2</sup><br>
+        0,16 m<sup>2</sup><br>
+        0,20 m<sup>2</sup></td>       
+    </tr>
+</table>
+
+<P class="Abb">Abb. 31 Kombinationstabelle</P>
+</ol>
+<br>
+
+<P>Zun&auml;chst die Zielfunktion:<BR>
+<BR>
+<tt>Z<SUP>*</SUP> = 0,20x1 + 0,16x2 + 0,16x3 + 0,40.x4 + 0,16x5 + 0,20x6
+<IMG SRC="rarr.gif"> Min</tt>
+</P>
+
+<P align=justify>Die Forderung, den Verschnitt minimal zu halten,
+kann man - etwas vereinfacht - auch so formulieren: Die Anzahl der ben&ouml;tigten
+urspr&uuml;nglichen Blechtafeln soll m&ouml;glichst gering sein, was zu
+folgender Zielfunktion f&uuml;hrt:<BR></P>
+
+<P><tt>Z = x1 + x2 + x3 + x4 + x5 + x6 
+<IMG SRC="rarr.gif"> Min</tt></P>
+
+<P align=justify><BR>
+Die Restriktionen ergeben sich aus folgender &Uuml;berlegung:
+Es sollen wenigstens 100 St&uuml;ck der Tafelart 1 angefertigt werden,
+hierzu k&ouml;nnen aber nur die Varianten V1, V3,V5 herangezogen werden,
+also:</P>
+
+<P><tt>6x1 + 2x3 + 4x5 &ge; 100</tt></P>
+
+<br>
+
+<P>analog f&uuml;r die Tafelarten II und III:
+</P>
+
+<P><BR>
+<tt>2 x2 + 2 x3 + 5 x4 + 2 x5 &ge; 50</tt></P>
+
+<P><tt>4 x2 + 2 x3 + 6 x6 &ge; 100</tt></P>
+
+<P><BR>
+Nichtnegativit&auml;tsbedingungen:</P>
+
+<P><tt>x<sub>i</sub> &ge; 0 (i = 1,...,6)</tt></P>
+
+<P><BR>
+Die L&ouml;sung nach der Simplex-Methode ergibt:</P>
+
+<P><tt>x1 = 17, x2 = 25</tt> ;</P>
+
+<P align=justify>d. h. 17 Tafeln der Variante 1 und 25 Tafeln der Variante 2 
+ergeben minimalen Verschnitt (7,4 m<SUP>2</SUP>).</P>
+
+<BR>
+
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="../KAP9/Kap9.Htm">Kapitel 9</A><br>
+<A HREF="../KAP11/Kap11.Htm">Kapitel 11</A><br>
+<br>
+<A HREF="../PcStart.Htm">Startbildschirm</A></font></P>
+
+</BODY>
+</HTML>

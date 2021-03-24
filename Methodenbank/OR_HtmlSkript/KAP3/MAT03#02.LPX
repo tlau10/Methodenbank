@@ -1,0 +1,73 @@
+;  VisualOR Matrixdatei: Mat03#02.Lpx
+;
+;  Wird ein Semicolon als Zeilenabschluss benoetigt, so kann 
+;  dies durch das Substitut °&semicolon° angegeben werden.
+;  -> siehe LP-SOLVE 
+
+[LP-STATEMENT]
+1x1 + 1x2 + 2x3p + 2x4p ---> max !
+
+3x1 + 2x2 =  12
+lxl + 3x2 <= 9;   
+
+ x2 + x3m - x3p = 1
+ x2 + x4m - x4p = 2
+
+ x1, x2, x3m, x3p, x4m, x4p >= 0 
+
+
+[LP-Type]
+Type=MAX
+
+[SOLVER]
+Solver1=XA
+Solver2=LP-SOLVE
+;Solver3=MOPS
+;Solver4=STRADA
+
+[LP-SOLVE]
+max: x1 + x2 + 2x3p + 2x4p°&semicolon°
+
+3x1 + 2x2 = 12°&semicolon°
+ x1 + 3x2 <= 9°&semicolon°
+
+ x2 + x3m - x3p = 1°&semicolon°
+ x2 + x4m - x4p = 2°&semicolon°
+
+
+[XA]
+..TITLE
+  Mat03#02
+..OBJECTIVE MAXIMIZE
+  1 x1 + 2 x2 + 2x3p + 2x4p + 0x3m + 0x4m
+..BOUNDS
+  x1 >= 0
+  x2 >= 0
+  x3p >= 0
+  x3m >= 0
+  x4p >= 0
+  x4m >= 0
+..CONSTRAINTS
+  R1: 3x1 + 2x2 = 12
+  R2: 1x1 + 3x2 <= 9
+  R3: 1x2 + 1x3m - 1x3p = 1
+  R4: 1x2 + 1x4m - 1x4p = 2
+
+
+[MPS]
+NAME          Mat01#01   ....andere baustelle !!!!!!
+ROWS
+ N  ZF
+ L  R1
+ L  R2
+COLUMNS
+    X1        ZF        1.
+    X1        R1        3.
+    X1        R2        1.
+    X2        ZF        2.
+    X2        R1        2.
+    X2        R2        3.
+RHS
+    MYRHS     R1        12.
+    MYRHS     R2        9.
+ENDATA

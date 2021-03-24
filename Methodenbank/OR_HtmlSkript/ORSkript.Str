@@ -1,0 +1,219 @@
+[Einstellungen]
+Anwendungsname=Operations Research Skript
+EbenenAnzeige=1
+
+[Info]
+InfoZeile1=Betriebliche Systemforschung
+InfoZeile2=Prof. Dr. Michael Grütz
+InfoZeile3=
+InfoZeile4=
+
+[Steuerung]
+;..4...........................................................64...............
+0  OR-Skript                                                   PCStart.Htm
+;1  VisualOR-Test                                               Vior\ViorTest.Htm
+;1  Aufgabenverwaltung                                          \\neptun\temp\Besf_AV\Vorrech.htm
+;1  Aufgabenverwaltung                                          "\\merkur\LEHRE\BESF\OR_HtmlSkript"\Aufgabenverwaltung
+1  Einführung                                                  Einfuehr.Htm
+
+1  1. Ansatzformulierung                                       Kap1\Kap1.Htm
+2  1.1 Einführendes Beispiel der Produktionsprogrammplanung    Kap1\Kap1.Htm#1.1
+2  1.2 Entscheidungsvariable (Strukturvariable)                Kap1\Kap1.Htm#1.2
+2  1.3 Nebenbedingungen                                        Kap1\Kap1.Htm#1.3
+2  1.4 Nichtnegativitätsbedingung                              Kap1\Kap1.Htm#1.4
+2  1.5 Zielfunktion                                            Kap1\Kap1.Htm#1.5
+2  1.6 Ansatz der Linearen Programmierung                      Kap1\Kap1.Htm#1.6
+3  1.6.1 Abgrenzung und Formulierung des Problems              Kap1\Kap1.Htm#1.6.1
+3  1.6.2 Vollständiger LP-Ansatz:                              Kap1\Kap1.Htm#1.6.2
+3  1.6.3 Standardform der Linearen Programmierung              Kap1\Kap1.Htm#1.6.3
+
+1  2. Lösung des Modells der Linearen Programmierung           Kap2\Kap2.Htm
+2  2.1 Grafische Lösung                                        Kap2\Kap2.Htm#2.1
+2  2.2 Simplexprinzip                                          Kap2\Kap2.Htm#2.2
+2  2.3 Lösung durch Enumeration                                Kap2\Kap2.Htm#2.3
+2  2.4 Die Simplexmethode                                      Kap2\Kap2.Htm#2.4
+3  2.4.1 Berechnung der zulässigen Basislö sungen              Kap2\Kap2.Htm#2.4
+3  2.4.2 Bestimmung der optimalen Basislösung                  Kap2\Kap2.Htm#2.4.2
+3  2.4.3 Die Schritt der Simplexmethode                        Kap2\Kap2.Htm#2.4.3
+
+1  3. Nicht-Standardfälle                                      Kap3\Kap3.Htm
+2  3.1 Überblick                                               Kap3\Kap3.Htm#3.1
+3  3.1.1 Nicht-Standardfälle bei den Variablen                 Kap3\Kap3.Htm#3.1.1
+3  3.1.2 Nicht-Standardfälle bei den Restriktionen             Kap3\Kap3.Htm#3.1.2
+3  3.1.3 Nicht-Standardfälle bei der Zielfunktion              Kap3\Kap3.Htm#3.1.3
+2  3.2 Goal Programming                                        Kap3\Kap3.Htm#3.2
+2  3.3 M-Methode                                               Kap3\Kap3.Htm#3.3
+2  3.4 Nichtlineare Programmierung (Separable Programmierung)  Kap3\Kap3.Htm#3.4
+
+1  4. Dualität                                                 Kap4-8\Kap4.Htm
+2  4.1 Ein Preisproblem                                        Kap4-8\Kap4.Htm#4.1
+2  4.2 Das Dualitätstheorem                                    Kap4-8\Kap4.Htm#4.2
+
+1  5. Sensibiltätsanalyse                                      Kap4-8\Kap5.Htm
+2  5.1 Problematik der Dualvariableninterpretation             Kap4-8\Kap5.Htm#5.1
+2  5.2 Variation eines Koeffizienten der Zielfunktion          Kap4-8\Kap5.Htm#5.2
+2  5.3 Variation eines Koeffizienten des b-Vektors             Kap4-8\Kap5.Htm#5.3
+
+1  6. Parametrische Programmierung                             Kap4-8\Kap6.Htm
+1  7. Transportmodelle, Zuordnungsmodelle u. Umladeprobleme    Kap4-8\Kap7.Htm
+2  7.1 Das Transportproblem                                    Kap4-8\Kap7.Htm#7.1
+3  7.1.1 Anfangslösung                                         Kap4-8\Kap7.Htm#7.1.1
+3  7.1.2 Stepping-Stone-Methode                                Kap4-8\Kap7.Htm#7.1.2
+3  7.1.3 Ergänzungen                                           Kap4-8\Kap7.Htm#7.1.3
+3  7.1.4 Die Schritte der Transportmethode                     Kap4-8\Kap7.Htm#7.1.4
+2  7.2 Das Umladeproblem                                       Kap4-8\Kap7.Htm#7.2
+2  7.3 Das Zuordnungsproblem                                   Kap4-8\Kap7.Htm#7.3
+
+1  8. Entscheidungsbaumverfahren nach Dakin                    Kap4-8\Kap8.Htm
+
+1  9. LP-Software                                              Kap9\Kap9.Htm
+2  LP-Programme an der FH                                      Kap9\Kap9.Htm#FHSolver
+2  LP 5000                                                     Kap9\Kap9.Htm#LP5000
+2  Aufgabe (Beispiel)                                          Kap9\Kap9.Htm#AUFGABE
+
+1  10. Das Verschnittproblem                                   Kap10\Kap10.Htm#10
+2  10.1 Eindimensionales Verschnittproblem                     Kap10\Kap10.Htm#10.1
+2  10.2 Zweidimensionales Verschnittproblem                    Kap10\Kap10.Htm#10.2
+
+1  11. Fallstudie Personalplanung                              Kap11\Kap11.Htm
+1  12. Generalized Networks                                    Kap12\Kap12.Htm
+
+;1  13. Chance Constraint Programming                           Kap12-13\Kap13.Htm
+;2  13.1 Losgrößenmodell mit diskreter Nachfrage                Kap12-13\Kap13.Htm#13.1
+;2  13.2 Deterministisches Losgrößenmodell mit diskreter Nachfr.Kap12-13\Kap13.Htm#13.2
+
+
+1  13. Übungsaufgaben                                          Aufgaben.Htm
+
+2  13.1 Aufgabenteil 1                                         Aufgaben/Aufgaben_T1.htm
+3  Aufgabe 1                                                   Aufgaben/Teil1/T1_Aufg01.htm
+3  Aufgabe 2                                                   Aufgaben/Teil1/T1_Aufg02.htm
+3  Aufgabe 3                                                   Aufgaben/Teil1/T1_Aufg03.htm
+3  Aufgabe 4                                                   Aufgaben/Teil1/T1_Aufg04.htm
+3  Aufgabe 5                                                   Aufgaben/Teil1/T1_Aufg05.htm
+3  Aufgabe 6                                                   Aufgaben/Teil1/T1_Aufg06.htm
+3  Aufgabe 7                                                   Aufgaben/Teil1/T1_Aufg07.htm
+3  Aufgabe 8                                                   Aufgaben/Teil1/T1_Aufg08.htm
+3  Aufgabe 9                                                   Aufgaben/Teil1/T1_Aufg09.htm
+3  Aufgabe 10                                                  Aufgaben/Teil1/T1_Aufg10.htm
+3  Aufgabe 11                                                  Aufgaben/Teil1/T1_Aufg11.htm
+3  Aufgabe 12                                                  Aufgaben/Teil1/T1_Aufg12.htm
+3  Aufgabe 13                                                  Aufgaben/Teil1/T1_Aufg13.htm
+3  Aufgabe 14                                                  Aufgaben/Teil1/T1_Aufg14.htm
+3  Aufgabe 15                                                  Aufgaben/Teil1/T1_Aufg15.htm
+
+2  13.3 Aufgabenteil 2                                         Aufgaben/Aufgaben_T2.htm
+3  Aufgabe 1                                                   Aufgaben/Teil2/T2_Aufg01.htm
+3  Aufgabe 2                                                   Aufgaben/Teil2/T2_Aufg02.htm
+3  Aufgabe 3                                                   Aufgaben/Teil2/T2_Aufg03.htm
+3  Aufgabe 4                                                   Aufgaben/Teil2/T2_Aufg04.htm
+3  Aufgabe 5                                                   Aufgaben/Teil2/T2_Aufg05.htm
+3  Aufgabe 6                                                   Aufgaben/Teil2/T2_Aufg06.htm
+3  Aufgabe 7                                                   Aufgaben/Teil2/T2_Aufg07.htm
+3  Aufgabe 8                                                   Aufgaben/Teil2/T2_Aufg08.htm
+3  Aufgabe 9                                                   Aufgaben/Teil2/T2_Aufg09.htm
+3  Aufgabe 10                                                  Aufgaben/Teil2/T2_Aufg10.htm
+3  Aufgabe 11                                                  Aufgaben/Teil2/T2_Aufg11.htm
+3  Aufgabe 12                                                  Aufgaben/Teil2/T2_Aufg12.htm
+3  Aufgabe 13                                                  Aufgaben/Teil2/T2_Aufg13.htm
+3  Aufgabe 14                                                  Aufgaben/Teil2/T2_Aufg14.htm
+3  Aufgabe 15                                                  Aufgaben/Teil2/T2_Aufg15.htm
+3  Aufgabe 16                                                  Aufgaben/Teil2/T2_Aufg16.htm
+3  Aufgabe 17                                                  Aufgaben/Teil2/T2_Aufg17.htm
+3  Aufgabe 18                                                  Aufgaben/Teil2/T2_Aufg18.htm
+3  Aufgabe 19                                                  Aufgaben/Teil2/T2_Aufg19.htm
+3  Aufgabe 20                                                  Aufgaben/Teil2/T2_Aufg20.htm
+3  Aufgabe 21                                                  Aufgaben/Teil2/T2_Aufg21.htm
+3  Aufgabe 22                                                  Aufgaben/Teil2/T2_Aufg22.htm
+3  Aufgabe 23                                                  Aufgaben/Teil2/T2_Aufg23.htm
+
+2  13.3 Aufgabenteil 3                                         Aufgaben/Aufgaben_T3.htm
+;3  Aufgabe 1                                                   Aufgaben/Teil3/T3_Aufg01.ppt
+3  Aufgabe 1                                                   Aufgaben/Teil3/T3_Aufg01.htm
+3  Aufgabe 2                                                   Aufgaben/Teil3/T3_Aufg02.htm
+3  Aufgabe 3                                                   Aufgaben/Teil3/T3_Aufg03.htm
+3  Aufgabe 4                                                   Aufgaben/Teil3/T3_Aufg04.htm
+3  Aufgabe 5                                                   Aufgaben/Teil3/T3_Aufg05.htm
+3  Aufgabe 6                                                   Aufgaben/Teil3/T3_Aufg06.htm
+3  Aufgabe 7                                                   Aufgaben/Teil3/T3_Aufg07.htm
+3  Aufgabe 8                                                   Aufgaben/Teil3/T3_Aufg08.htm
+3  Aufgabe 9                                                   Aufgaben/Teil3/T3_Aufg09.htm
+3  Aufgabe 10                                                  Aufgaben/Teil3/T3_Aufg10.htm
+3  Aufgabe 11                                                  Aufgaben/Teil3/T3_Aufg11.htm
+3  Aufgabe 12                                                  Aufgaben/Teil3/T3_Aufg12.htm
+3  Aufgabe 13                                                  Aufgaben/Teil3/T3_Aufg13.htm
+3  Aufgabe 14                                                  Aufgaben/Teil3/T3_Aufg14.htm
+3  Aufgabe 15                                                  Aufgaben/Teil3/T3_Aufg15.htm
+3  Aufgabe 16                                                  Aufgaben/Teil3/T3_Aufg16.htm
+3  Aufgabe 17                                                  Aufgaben/Teil3/T3_Aufg17.htm
+3  Aufgabe 18                                                  Aufgaben/Teil3/T3_Aufg18.htm
+3  Aufgabe 19                                                  Aufgaben/Teil3/T3_Aufg19.htm
+3  Aufgabe 20                                                  Aufgaben/Teil3/T3_Aufg20.htm
+3  Aufgabe 21                                                  Aufgaben/Teil3/T3_Aufg21.htm
+3  Aufgabe 22                                                  Aufgaben/Teil3/T3_Aufg22.htm
+3  Aufgabe 23                                                  Aufgaben/Teil3/T3_Aufg23.htm
+3  Aufgabe 24                                                  Aufgaben/Teil3/T3_Aufg24.htm
+3  Aufgabe 25                                                  Aufgaben/Teil3/T3_Aufg25.htm
+3  Aufgabe 26                                                  Aufgaben/Teil3/T3_Aufg26.htm
+3  Aufgabe 27                                                  Aufgaben/Teil3/T3_Aufg27.htm
+3  Aufgabe 28                                                  Aufgaben/Teil3/T3_Aufg28.htm
+3  Aufgabe 29                                                  Aufgaben/Teil3/T3_Aufg29.htm
+3  Aufgabe 30                                                  Aufgaben/Teil3/T3_Aufg30.htm
+3  Aufgabe 31                                                  Aufgaben/Teil3/T3_Aufg31.htm
+3  Aufgabe 32                                                  Aufgaben/Teil3/T3_Aufg32.htm
+3  Aufgabe 33                                                  Aufgaben/Teil3/T3_Aufg33.htm
+3  Aufgabe 34                                                  Aufgaben/Teil3/T3_Aufg34.htm
+3  Aufgabe 35                                                  Aufgaben/Teil3/T3_Aufg35.htm
+3  Aufgabe 36                                                  Aufgaben/Teil3/T3_Aufg36.htm
+3  Aufgabe 37                                                  Aufgaben/Teil3/T3_Aufg37.htm
+3  Aufgabe 38                                                  Aufgaben/Teil3/T3_Aufg38.htm
+3  Aufgabe 39                                                  Aufgaben/Teil3/T3_Aufg39.htm
+3  Aufgabe 40                                                  Aufgaben/Teil3/T3_Aufg40.htm
+3  Aufgabe 41                                                  Aufgaben/Teil3/T3_Aufg41.htm
+3  Aufgabe 42                                                  Aufgaben/Teil3/T3_Aufg42.htm
+3  Aufgabe 43                                                  Aufgaben/Teil3/T3_Aufg43.htm
+3  Aufgabe 44                                                  Aufgaben/Teil3/T3_Aufg44.htm
+3  Aufgabe 45                                                  Aufgaben/Teil3/T3_Aufg45.htm
+3  Aufgabe 46                                                  Aufgaben/Teil3/T3_Aufg46.htm
+3  Aufgabe 47                                                  Aufgaben/Teil3/T3_Aufg47.htm
+3  Aufgabe 48                                                  Aufgaben/Teil3/T3_Aufg48.htm
+3  Aufgabe 49                                                  Aufgaben/Teil3/T3_Aufg49.htm
+3  Aufgabe 50                                                  Aufgaben/Teil3/T3_Aufg50.htm
+3  Aufgabe 51                                                  Aufgaben/Teil3/T3_Aufg51.htm
+3  Aufgabe 52                                                  Aufgaben/Teil3/T3_Aufg52.htm
+3  Aufgabe 53                                                  Aufgaben/Teil3/T3_Aufg53.htm
+3  Aufgabe 54                                                  Aufgaben/Teil3/T3_Aufg54.htm
+3  Aufgabe 55                                                  Aufgaben/Teil3/T3_Aufg55.htm
+3  Aufgabe 56                                                  Aufgaben/Teil3/T3_Aufg56.htm
+3  Aufgabe 57                                                  Aufgaben/Teil3/T3_Aufg57.htm
+3  Aufgabe 58                                                  Aufgaben/Teil3/T3_Aufg58.htm
+3  Aufgabe 59                                                  Aufgaben/Teil3/T3_Aufg59.htm
+3  Aufgabe 60                                                  Aufgaben/Teil3/T3_Aufg60.htm
+3  Aufgabe 61                                                  Aufgaben/Teil3/T3_Aufg61.htm
+
+0  OR-InfoSystem                                               OR_Info.Htm
+
+0  Links zu anderen Hochschulen                                Links_Hochschulen.htm
+;1  Uni Passau Fakultät Mathematik                              http://www.fmi.uni-passau.de
+;1  Uni Karlsruhe Fakultät OR                                   http://www.wior.uni-karlsruhe.de
+
+
+[Referenzen]
+PrgGN=\\Merkur\Lehre\Besf\OR_MBank\gn\exec\gn.exe
+PrgMI=\\Merkur\Lehre\Besf\OR_MBank\mischung\exec\mi.exe
+PrgTR=\\Merkur\Lehre\Besf\OR_MBank\transpo\exec\transpo.exe
+PrgVR=\\Merkur\Lehre\Besf\OR_MBank\verschn\exec\verschn.exe
+PrgGAVerschn=\\Merkur\Lehre\Besf\and\GA_Verschnittplanung\or3.exe
+PrgZuord=\\Merkur\Lehre\Besf\OR_MBank\Zuord\exec\zuord.exe
+PrgORInfo=\\Merkur\Lehre\Besf\OR_Info\exec\or_info.exe
+
+PrgAV=\\Merkur\Lehre\Besf\AV_System\AV01.exe
+
+UrlFHK=http://www.fh-konstanz.de   
+
+
+[BDE]
+Anzahl=1
+BDEString1=MATRIX
+BDEExe1=XSolver.Exe
+
