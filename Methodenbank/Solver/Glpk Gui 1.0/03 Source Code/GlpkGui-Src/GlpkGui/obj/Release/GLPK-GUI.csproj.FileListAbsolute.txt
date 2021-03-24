@@ -1,0 +1,15 @@
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Release\GlpkGui.exe
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Release\GlpkGui.pdb
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Release\GlpkSharp.dll
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\ResolveAssemblyReference.cache
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\GlpkGui.MainForm.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\GlpkGui.Properties.Resources.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\GlpkGui.SolverView.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\GlpkGui.TableauView.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\GLPK-GUI.csproj.GenerateResource.Cache
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\GlpkGui.exe
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\GlpkGui.pdb
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Release\de\GlpkGui.resources.dll
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\GlpkGui.Properties.Resources.de.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Release\de\GlpkGui.resources.dll
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Release\GlpkSharp.pdb

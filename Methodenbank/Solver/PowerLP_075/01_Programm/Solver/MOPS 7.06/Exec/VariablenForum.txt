@@ -1,0 +1,44 @@
+Bedeutung der einzelnen Variablen der Konfigurationsdatei Xmops
+
+
+xoutsl -->Wenn diese Variable einen Wert >0 zugewiesen erhält, wird eine Lösung geschrieben.
+
+xlptyp --> Dient der Auswahl des Lösungsalgorithmus. Wert 0: primaler Simplexcode
+
+						     wert 2: dualer Simplexcode
+
+						     wert 4: inneres Punkteverfahren
+
+
+xmxmin --> Maximale CPU - Zeit bei Branch - and - Bound Verfahren
+
+
+xfnmps --> Pfad zum aufzulösenden LP - Modell (Datei meistens mps format)
+
+
+xminmx --> Maximierung 'MAX' oder Minimierung 'MIN'
+
+
+xheutp --> Bestimmt ob und welche ganzzahlige Heuristik zur Bestimmung einer Anfangslösung verwendet werden soll
+	
+	
+xnored --> ????
+
+xmxpsu --> 	Maximalzahl der Durchgänge im Supernode-Processing bei der alle Techniken ausgeführt
+		werden, um die Schärfe der LP-Relaxation zu verbessern. Das Supernode-Processing wird
+		terminiert nach xmxpsu Durchgängen oder wenn sich die Zielfunktion nicht mehr ändert.
+
+
+xinfor --> Dateiformat der Lösung: Wert 1 MPS Format.....sonst internes Dateiformat
+
+c,C * Zeile vollständig Kommentar
+
+ab einem ! ist der Rest der Zeile Kommentar
+
+
+Anmerkung: Der Mops - Solver löst auch gemischt - 
+
+
+
+	
+

@@ -1,0 +1,5 @@
+min: X1;
+min: X2;
+
+Constraint1: -X1 + 2*X2 <= 8;
+Constraint2: X1 + X2 <= 10;

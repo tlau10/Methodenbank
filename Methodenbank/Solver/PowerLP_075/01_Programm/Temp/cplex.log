@@ -1,0 +1,21 @@
+
+Log started (V12.5.0.0) Wed Jun 28 15:46:25 2017
+
+
+Problem 'ILOG.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =             6.000000
+
+Dual simplex - Optimal:  Objective = 6.8571428571e+000
+Solution time =    0.00 sec.  Iterations = 2 (0)
+Deterministic time = 0.00 ticks  (3.52 ticks/sec)
+
+
+Variable Name           Solution Value
+x1                            0.142857
+x2                            0.571429

@@ -1,0 +1,10 @@
+   ..TITLE                  *
+     ALLOY3.WK1(TITLE)      *       TITLE        A2..A2
+   ..TABLE   MINIMIZE       *
+     ALLOY3.WK1(MATRIX)     *      MATRIX        A4..K13
+   ..ACTIVITY               *
+     ALLOY3.WK1(ANSWERS)    *     ANSWERS        B15..I15
+   ..REDUCEDCOST            *
+     ALLOY3.WK1(REDUCED)    *     REDUCED        B16..H16
+     ALLOY3.WK1(DUAL)       *     DUAL VALUES    K5..K11
+

@@ -1,0 +1,122 @@
+XA POWERLP.lp OUTPUT xa.out PAGESIZE 20 LINESIZE 100 TMARGINS 0 BMARGINS 0 FIELDSIZE 11 DECIMALS 5 E
+UROPEAN NO LMARGINS 0 COPIES 1 WAIT NO MUTE NO LISTINPUT YES WARNING YES SOLUTION YES CONSTRAINTS YE
+S COSTANALYSIS YES MARGINANALYSIS YES MATLIST NO DEFAULTS NO
+..TITLE
+  Power-LP
+..OBJECTIVE MINIMIZE
+  + 12 x1 + 9 x2
+..BOUNDS
+  x1 >= 0
+  x2 >= 0
+..CONSTRAINTS
+  + 3 x1 + 1 x2 >=1
+  + 2 x1 + 3 x2 >=2
+ 
+STATISTICS - FILE: POWERLP   TITLE: Power-LP                   6/28/17 15:46:24
+  XA VERSION 2.00   USABLE MEMORY  518K BYTES
+  VARIABLES  2  MAXIMUM  500
+       0 LOWER,  0 FIXED,  0 UPPER,  0 FREE,  0 INTEGER.
+  CONSTRAINTS  2  MAXIMUM  100
+       2 GE,  0 EQ,  0 LE,  0 NULL/FREE,  0 RANGED.
+  CAPACITY USED BY CATEGORY-
+     0.4% VARIABLE,  2.0% CONSTRAINT,  0.1% NON-ZERO.
+  OBJECTIVE FUNCTION IS MINIMIZED.
+ 
+ 
+ 
+O P T I M A L   S O L U T I O N ---> OBJECTIVE     6.85714
+ELAPSED TIME 00:00:00  ITERATIONS     0  MEMORY USED  0.0%
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+File: POWERLP                                           6/28/17 15:46:24 Page 1
+SOLUTION (Minimized):     6.85714  Power-LP
+-------------------------------------------------------------------------------
+| Variable |  Activity   |    Cost     | Variable |  Activity   |    Cost     |
+-------------------------------------------------------------------------------
+I       x1       0.14286      12.00000 I       x2       0.57143       9.00000 |
+|           REDUCED COST       0.00000 |           REDUCED COST       0.00000 |
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+File: POWERLP                                       6/28/17 15:46:24 Page 2
+CONSTRAINTS: Power-LP
+---------------------------------------------------------------------------
+|Constraint|  Activity  |    RHS     |Constraint|  Activity  |    RHS     |
+---------------------------------------------------------------------------
+| ROW    1      1.00000 >    1.00000 | ROW    2      2.00000 >    2.00000 |
+|            DUAL VALUE      2.57143 |            DUAL VALUE      2.14286 |
+---------------------------------------------------------------------------
+ Cumulative Variable Error:        0.000000000
+ Cumulative Constraint Error:      0.000000000
+
+
+
+
+
+
+
+
+
+
+File: POWERLP                                   6/28/17 15:46:24 Page 3
+COST ANALYSIS: Power-LP
+-----------------------------------------------------------------------
+|          |  Stable    | Variable |          |  Stable    | Variable |
+| Variable |   Cost     |    to    | Variable |   Cost     |    to    |
+|          |  Range     |  Change  |          |  Range     |  Change  |
+-----------------------------------------------------------------------
+|    Upper     27.00000   ROW    2 |    Upper     18.00000   ROW    1 |
+|       x1     12.00000            |       x2      9.00000            |
+|    Lower      6.00000   ROW    1 |    Lower      4.00000   ROW    2 |
+|  Reduced Cost            0.00000 |  Reduced Cost            0.00000 |
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+File: POWERLP                                                                6/28/17 15:46:24 Page 4
+MARGINAL ANALYSIS: Power-LP
+----------------------------------------------------------------------------------------------------
+|   Constraint     |   Value     |   Constraint     |   Value     |
+|    at limit      |             |    at limit      |             |
+----------------------------------------------------------------------------------------------------
+|         ROW    1 >     1.00000 |         ROW    2 >     2.00000 |
+|  Increases objective ...       |  Increases objective ...       |
+|               by       2.57143 |               by       2.14286 |
+|                                |                                |
+|  Upper Limit.                  |  Upper Limit.                  |
+|    New limit ..        3.00000 |    New limit ..        3.00000 |
+|    New optimum ...    12.00000 |    New optimum ...     9.00000 |
+|    Forced to limit          x2 |    Forced to limit          x1 |
+|                                |                                |
+|  Lower Limit.                  |  Lower Limit.                  |
+|    New limit ..        0.66667 |    New limit ..        0.66667 |
+|    New optimum ...     6.00000 |    New optimum ...     4.00000 |
+|    Forced to limit          x1 |    Forced to limit          x2 |
+-------------------------------------------------------------------
+ 
+timum ...  

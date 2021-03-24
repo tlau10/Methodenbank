@@ -1,0 +1,50 @@
+ MOPS V7.06, (C) Uwe H. Suhl, 14.06.2004 28.06.2017 15.46                        
+
+                                Convert
+
+ MPS File                                                      powerlp.mps
+ Data name                                                        Power-LP
+ Objectiv-function name                                                 ZF
+ RHS-Vector name                                                     MYRHS
+ Number of file records                                                 16
+ CP-time in convert (secs)                                            0.01
+
+                           model statistics
+
+ structurals                    2        variables                       4
+ integer variables              0        sos                             0
+ 0-1 variables                  0        sos variables                   0
+ free variables                 0        fixed variables                 0
+ constraints                    2        nonzeros                        4
+ equations                      0        density in %               100.00
+ ranged rows                    0        free rows                       0
+
+                           LP - preprocessing
+
+ presolve level                 2        presolve type                2047
+ rows removed                   0        active rows                     2
+ variables removed              0        active variables                2
+ nonzeros inactivated           0        active nonzeros                 4
+ active integer vars.           0        cp-time (secs)               0.01
+
+                           Crash - put into basis
+
+ logicals                       2        structurals                     0
+ artificials                    0        time (secs)                  0.00
+
+                           LP optimization
+
+ mps file                                                      powerlp.mps
+ LP-status                                                         optimal
+ objective function value                                     6.8571428571
+ optim. direction                                             minimization
+ simplex iterations             2        IPM iterations                  0
+ total cp-time (sec)         0.01        IPM cp-time (sec)            0.00
+ pivots                         2        degenerate pivots               0
+ feasible at                    1        reinv. (accuracy)               0
+ primal pertub.                 0        dual pertub.                    0
+ lost feasibilty                0        singular bases                  0
+ no of reinv.                   2        reinv. (space)                  0
+ row compressions               0        col compressions                0
+ xfraro                         0        xfraco                          0
+ max. dual error       0.0000E+00        max. primal error      0.3331E-15

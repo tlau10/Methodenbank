@@ -1,0 +1,12 @@
+Kommentare:
+
+o Bei Install auf einem Server: 
+  Logfile-Erstellung in lp.par abschalten
+
+o MPS-Dateien werden nur mit der Endung .mat richtig geladen
+
+o Die Parameterdatei lp.par wird im aktuellen Pfad gesucht. 
+  --> Bei Aufruf aus einem anderen Verz. wird sie nicht
+      gefunden.
+  --> Auf die Pfadeinstellung achten.
+  

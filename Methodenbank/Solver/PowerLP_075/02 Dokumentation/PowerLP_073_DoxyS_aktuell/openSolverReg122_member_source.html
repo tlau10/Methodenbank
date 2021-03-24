@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>PowerLP_073 - openSolverReg</TITLE>
+<script type="text/javascript">
+  var relPathToCommmon = "common/";
+  var relPathToHelpDir = "common/help/";
+</script>
+<script type="text/javascript" src="common/jsdyn.js" language="JavaScript"></script>
+<script type="text/javascript" src="common/js.js" language="JavaScript"></script>
+<script type="text/javascript" src="leftmenu.js" language="JavaScript"></script>
+<script type="text/javascript">
+  var toSearchPage     = "_search','search";
+  Body1();
+</script>
+<div class="headerPage">openSolverReg</div>
+<div class="path"><a href="#" OnMouseOver="link('','index',this)" class="pathLink">Default mainpage</A><img src="common/path-arrow.gif" class="path-arrow"><a href="#" OnMouseOver="link('_dir','SOURCE0',this)" class="pathLink">SOURCE</A><img src="common/path-arrow.gif" class="path-arrow"><span class="pathNonLink">openSolverReg</span></div>
+<script type="text/javascript">
+ Body2();
+ BodyLeftMenuStart();
+WriteLeftMenu("","","","");
+ BodyLeftMenuEnd();
+ Body3();
+</script>
+<span class="tabInActive"><a href="#" OnMouseOver="linkTab('_member','openSolverReg122','_description',this)" class="tabLinkInActive">Description</a></span>
+<span class="tabActive"><a href="#" OnMouseOver="linkTab('_member','openSolverReg122','_source',this)" class="tabLinkActive">Source</a></span>
+<span class="tabInActive"><a href="#" OnMouseOver="linkTab('_member','openSolverReg122','_callgraph',this)" class="tabLinkInActive">Call Graph</a></span>
+<script type="text/javascript">
+ Body4();
+</script>
+<div class="contentAirTop"></div>
+<div class="paragraph2NoTopPadding">Start Line: 41</div>
+<pre class="codeExamples">
+HKEY <a href="#" onMouseOver="link('_member','openSolverReg122',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>HKEY&nbsp;&nbsp;openSolverReg&nbsp;&nbsp;()',CAPTION,'<strong>Brief description</strong><BR>Öffnen des Solver Schlüssels in der Regestrierung.');" onMouseOut="return nd();">openSolverReg</a>()
+                     {
+  HKEY Result;
+  Result = <a href="#" onMouseOver="link('_member','openPowerLPReg122',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>HKEY&nbsp;&nbsp;openPowerLPReg&nbsp;&nbsp;()',CAPTION,'<strong>Brief description</strong><BR>Öffnen des PowerLP Schlüssels in der Regestrierung in<BR>HKEY_LOCAL_MACHINE.');" onMouseOut="return nd();">openPowerLPReg</a>();
+  RegCreateKeyEx(Result, "Solver", NULL, NULL,  REG_OPTION_NON_VOLATILE ,
+    KEY_ALL_ACCESS, NULL,  &amp;Result, &amp;disposition);
+  return Result;
+}
+</pre><div class="contentAirBottom"></div>
+<script type="text/javascript">
+ Body5();
+Statistics("","","","","");
+ Body6();
+SetPageTab('_member','_source');
+</script>

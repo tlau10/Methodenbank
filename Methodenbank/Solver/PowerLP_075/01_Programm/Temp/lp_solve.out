@@ -1,0 +1,25 @@
+
+Model name: lp
+                x1       x2 
+Minimize        12        9 
+r_1              3        1 >=        1
+r_2              2        3 >=        2
+Type          Real     Real 
+upbo       Infinite Infinite
+lowbo            0        0 
+
+Value of objective function: 6.85714
+
+Actual values of the variables:
+x1                   0.142857
+x2                   0.571429
+
+Actual values of the constraints:
+r_1                  1
+r_2                  2
+
+Dual values with from - till limits:
+r_1                   2.57143  0.666667        3
+r_2                   2.14286  0.666667        3
+x1                          0   -1e+024   1e+024
+x2                          0   -1e+024   1e+024
