@@ -1,0 +1,71 @@
+<html>
+<head>
+<title></title>
+</head>
+
+<!-- Beachte File-Angabe (..funzt).
+<body background="file:///L|/Besf/OR_Info/DATEN/bg.gif" bgproperties="fixed">
+-->
+
+<body background="bg.gif" bgproperties="fixed">
+
+
+<p align="center"><font face="tahoma,arial" size="+1" color="ffc040">
+Fallpauschalierte Krankenhausanalyse mit Erstellung eines Prototyps 
+zur Ermittlung<br>
+des optimalen Fallklassenprogramms eines Krankenhauses
+</font></p>
+
+<hr>
+
+<FONT face="Arial, Helvetica, sans-serif" size="-1"> 
+
+<p><b>Das Programm</b> 
+
+<p>Der Excel Prototyp enth&auml;lt vier Arbeitsbl&auml;tter: Aufgabe, Umwandlung, 
+Import und Ergebnis. </p>
+<p><img src="kh_analyse_1.jpg" width="383" height="46"></p>
+
+<p><strong>Arbeitsblatt Aufgabe</strong><br>
+<br>
+Um den Prototyp nutzen zu k&ouml;nnen m&uuml;ssen die Tabellen auf dem Arbeitsblatt 
+&#8222;Aufgabe&#8220; mit entsprechenden Werten gef&uuml;llt werden. Als erstes 
+sollten f&uuml;r 17 Fallklassen jeweils Fallpauschale, Verweildauer, Pflegebedarf, 
+OP-Bedarf, Laborbedarf sowie Hotelkosten eingegeben werden.<br>
+Die Werte sollten das Format besitzen, welches hinter den Begriffen in Klammern 
+steht.<br>
+Anschließend müssen die Daten, die für alle Fallklassen gemeinsam gelten, in 
+  die zweite Tabelle eingegeben werden.<br>
+  Auch hier ist wieder auf das genau Format der Daten zu achten.<br>
+  Zuletzt m&uuml;ssen noch die Werte f&uuml;r die zu erwarteten Patientenzahlen 
+  eingegeben werden. Standardm&auml;ssig sind die Mindestwerte (min) auf &#8222;0&#8220; 
+  gesetzt, dies bedeutet dass Fallklassen nicht genutzt werden m&uuml;ssen.<br>
+  Müssen z.B. bei Versorgungsaufträgen Mindestwerte eingehalten werden, sind die 
+  Vorgaben zu ändern. Maximalwerte (max) müssen immer eingegeben werden. Nach 
+  dieser Eingabe kann auf das Arbeitsblatt „Umwandlung“ gewechselt werden. </p>
+
+<p><strong>Arbeitsblatt Umwandlung</strong></p>
+<p>Die hier abgebildeten Restrektionen werden automatisch aus den Werten des Arbeitsblattes 
+  &#8222;Aufgabe&#8220; errechnet.<br>
+  Durch anklicken des Buttons &#8222;Extrahieren&#8220; wird im Verzeichnis &#8222;C:\Temp\Krankenhausanalyse&#8220; 
+  die Datei &#8222;formeln.txt&#8220; erstellt. In dieser findet man die Restrektionen, 
+  die f&uuml;r den Start des Solvers notwendig sind (siehe C:\Temp\Krankenhausanalyse).<br>
+  Nun wird im Verzeichnis &#8222;C:\Temp\Krankenhausanalyse&#8220; der Solver automatisch gestartet 
+  und eine Datei namens &#8222;ergebnis.txt&#8220; erzeugt. Die Werte dieser Datei sind f&uuml;r das 
+  Arbeitsblatt &#8222;Import&#8220; relevant. </p>
+
+<p><strong>Arbeitsblatt Import</strong> 
+<p>Im Tabellenblatt &#8222;Import&#8220; sollte nun mit der rechten Maustaste 
+  auf ein schon beschriebenes Feld geklickt werden. Danach kann man &uuml;ber 
+  das nun erscheinende Men&uuml; die Daten aktualisieren.<br>
+  Danach &ouml;ffnet sich ein weiteres Fenster in dem die Datei 
+  &#8222;ergebnis.txt&#8220; importiert werden muss.</p>
+
+<p><strong>Arbeitsblatt Ergebnis</strong></p>
+<p>Im Tabellenblatt &#8220;Ergebnis&#8221; 
+  sind nun die aktualisierten Werte aus dem Tabellenblatt &#8220;Import&#8221; 
+  entsprechend anschaulich sortiert und zugeordnet, so dass man diese nun benutzen 
+  kann.</p>
+
+</FONT>
+</BODY></HTML>

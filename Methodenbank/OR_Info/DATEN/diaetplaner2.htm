@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+</HEAD>
+<BODY background="bg.gif">
+
+<p align="center">
+<font face="arial" size="+1" color="#000000">Diätplaner II</font></p>
+
+<p><font face="arial" size="-2"><b>-&gt; Datenbankanbindung beachten !<br>
+&nbsp; &nbsp; 
+Diese muss vor der Verwendung hergestellt werden.</b>
+
+<hr noshade size=1></p>
+
+<FONT FACE="arial" size="-1">
+
+
+<p>Der Diätplaner ist ein Programm zur optimalen Zusammenstellung von Menüplänen.
+Das Programm ist als Prototyp angelegt und verfolgt die Zielsetzung 
+"Abnehmen durch Kalorienreduzierung". Dabei wurde das Programm soweit offengehalten,
+dass weitere Zielsetzungen implementiert werden können, bespielsweise sei hier
+hier ein Menüplan für Hochleistungssportler genannt welcher ein ganz anderes 
+LP-Modell voraussetzt.</p>
+
+<p>Bei der Umsetzung des Prototypen stand die Reduzierung der Tageskalorien des 
+Benutzers im Vordergrund. Das LP-Modell des von uns vorgetragenen Planspiels 
+diente uns zunächst als Grundlage. Folgende Funktionen wurden für den Diätplaner 
+Prototypen vorgesehen:</p>
+
+<ul>
+<li>Gewicht, Alter und Grösse einlesen, und daraus Kalorienbedarf des Benutzers berechnen.<br>
+<li>Lebensmittel aus einer Datei oder einer Datenbank einlesen.<br>
+<li>Basismodell anhand der eingelesenen Lebensmittel generieren und für Benutzer optimales 
+  Tagesmenü berechnen (mittels LP-Solve).<br>
+<li>Eventuell pflegen der Lebensmitteldaten (eintragen, löschen, bearbeiten).<br>
+</ul>
+
+<br><br>
+
+
+
+<h4>Funktionsweise & Handhabung</h4>
+
+Der Benutzer wählt nach Starten des Programms in der Menüleiste den Menüpunkt 
+"Menüplan - Abnahme". Anschließend erscheint das Fenster "Abnehmen durch 
+Kalorienreduzierung", in dem der Benutzer seine "Körpergrösse", sein "Alter"  
+und sein "Wunschgewicht" eingibt(Abb.2). Zusätzlich hat der Benutzer die 
+Möglichkeit, über die Option "Lebensmittel auswählen", Einfluss auf die 
+Zusammenstellung des Menüplans zu nehmen. Nachdem der Benutzer den Button 
+"Menüplan generieren" betätigt hat, wird der Kalorienbedarf pro Tag berechnet 
+und anschliessend entweder sofort - anhand des Kalorienbedarfs und der zu 
+Verfügung stehenden Lebensmittel - ein Menüplan generiert, oder es erscheint 
+noch ein weiteres Fenster(Abb.3), in dem der Benutzer die Möglichkeit hat, 
+gezielt Lebensmittel auszuwählen, welche er auf jeden Fall in seinem Menüplan 
+wiederfinden möchte- anschliessend muss der Button "optimiere" betätigt werden, 
+daraufhin erscheint der generierte Menüplan.
+
+<br><br>
+
+
+
+<h4>Anbindung der Datenbank</h4>
+
+Da das Programm &quot;<I>Di&auml;tplaner&quot;</I> eine Microsoft Access 
+Datenbank verwendet, muss bei der Installation noch der ben&ouml;tigte ODBC 
+Treiber eingerichtet werden. Um dies vorzunehmen geht man wie folgt vor:</P>
+
+<ul>
+<LI>Das Programm &quot;<I>ODBC-Datenquellen (32Bit)</I>&quot; - welches man in der Systemsteuerung findet – starten (Unter Windows 2000 findet man das Programm in der Systemsteuerung unter Verwaltung).</LI>
+<LI>Unter &quot;<I>Benutzer-DSN</I>&quot; w&auml;hlt man &quot;<I>Hinzuf&uuml;gen</I>&quot;.</LI>
+</UL>
+
+
+
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="CENTER"><IMG SRC="diaet_image41.gif" WIDTH=494 HEIGHT=403></P>
+
+<B><P ALIGN="CENTER">Abb. ODBC-Datenquellen-Administrator</P></B>
+
+
+
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>Unter &quot;<I>Neue Datenquelle erstellen</I>&quot; w&auml;hlt man den passenden Datenbanktreiber aus (In unserem Fall den deutschen Access Treiber), und w&auml;hlt &quot;<I>Fertig stellen</I>&quot;</LI></P></UL>
+
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="CENTER"><IMG SRC="diaet_Image42.gif" WIDTH=468 HEIGHT=345></P>
+
+<B><P ALIGN="CENTER">Abb. Neue Datenquelle erstellen</P></B>
+
+
+<UL>
+<P ALIGN="JUSTIFY"><LI>Im folgenden Fenster muss unter &quot;<I>Datenquellenname&quot; </I>der Name &quot;<I>my_source</I>&quot; eingegeben werden. </LI></P>
+<P ALIGN="JUSTIFY"><LI>Unter &quot;<I>Beschreibung</I>&quot; kann ein Kommentar gegeben werden.</LI></P>
+<P ALIGN="JUSTIFY"><LI>Nun muss noch unter &quot;<I>Datenbank</I>&quot; – &quot;<I>Ausw&auml;hlen...</I>&quot; unsere Datenbank mit dem Namen &quot;<I>diaet.mdb</I>&quot; im entsprechenden Verzeichnis gesucht und markiert werden.</LI></P></UL>
+
+
+<P ALIGN="CENTER"><IMG SRC="diaet_Image43.gif" WIDTH=471 HEIGHT=312></P>
+
+<B><P ALIGN="CENTER">Abb. ODBC Microsoft Access Setup</P></B>
+
+
+<P ALIGN="JUSTIFY">Nun sollte es keine Probleme mehr bez&uuml;glich des Datenbankzugriffes geben.</P>
+
+
+</FONT>
+
+<hr noshade size=1>
+<FONT SIZE="-2" face="arial">&#169; &nbsp;Fachhochschule Konstanz</FONT>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<html>
+<head>
+  <title>JobShop</title>
+</head>
+<body background="backgrnd.gif" bgproperties="fixed">
+
+<center>
+  <p><img src="jobshop.gif" width="317" height="185"></p>
+  <h1>JobShop</h1>
+</center>
+<font size="-1">Dos-Programm</font>
+<hr>
+
+
+<p align=center><font face="courier new" color="7e00ff" size="+0">
+**********************************************<br>
+Läuft nicht unter Windows NT !<br>
+**********************************************</b>
+</font></p>
+
+
+<h4>Aufgabe des Programms</h4>
+
+<p>Aufgabe des Programmes ist, eine vorgegebene
+Zahl von Produkten hinsichtlich einer optimalen, kürzesten
+Gesamtdurchlaufzeit auf verschiedene Maschinen einzuplanen.
+Hierbei sind die maximalen Produkt- und Maschinenzahlen auf 16
+Einheiten begrenzt.</p>
+
+<p><a href="jobshop1.htm">LP-Ansatz</a></p>
+
+<p><b>Prämissen des Modells</b></p>
+
+<p>Die Reihenfolge, in welcher die Produkte die einzelnen
+Maschinen durchlaufen, ist für alle Produkte gleich. Die
+Variationen der möglichen Kombinationen bezieht sich somit nur
+auf die zeitliche Anordnung der Produkte auf die Maschinen.</p>
+
+<p>Die Anzahl der Produkte und Maschinen liegt innerhalb der
+Grenzen: 1&lt; Anzahl &lt; 27. Die maximale Bearbeitungszeit
+eines Produktes auf einer Maschine liegt bei 999 Zeiteinheiten.
+Diese Zeiteinheiten sind ganzzahlig vorzugeben.</p>
+
+<p>Bei der Ermittlung des Optimums können eventuell mehrere
+Variationen mit demselben Minimum auftreten. Das Programm stellt
+jedoch nur maximal 10 Optimas zur Verfügung, verweist jedoch auf
+die Gesamtzahl der ermittelten Möglichkeiten.</p>
+
+<p>Die optimalen Lösungen (maximal 10) können durch einen
+Drucker an der Schnittstelle LPT1 ausgegeben werden.
+Berücksichtigt werden hierbei jedoch nur die numerische, nicht
+aber die grafische Druckausgabe.</p>
+
+<p>Um ein Optimum zu berechnen ist zuerst eine Matrix mit den
+Zeit- werten einzugeben. Diese kann manuell über Tastatur sowie
+aus einer bereits zu einem früheren Zeitpunkt angelegten Datei
+ein- gelesen werden. Bei einer manuellen Ersteingabe über
+Tastatur wird zuerst ein gültiger Dateiname verlangt, unter
+welchem die nachfolgende Eingabe der Matrizenelemente
+abgespeichert werden.</p>
+
+<p>Die eingelesene Ausgangsmatrix kann sofort nach dem Einlesen
+durch den Drucker ausgegeben werden. Für die Druckausgabe eines
+Optimums muss dieses jedoch zuvor getrennt ermittelt werden.</p>
+
+<hr>
+<p><font size="-1">© Fachhochschule Konstanz</font></p>
+
+</body>
+</html>

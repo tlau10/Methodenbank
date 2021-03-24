@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<META NAME="GENERATOR" CONTENT="StarOffice/4.0 (WinNT/Win95)">
+	<META NAME="CREATED" CONTENT="19980710;11460293">
+<body BGCOLOR="#FFFFFF">
+<h1 align="center">Stra&szlig;entunnel-Simulation</h1>
+<br>
+
+<font size="1">Doku.-Auszug</font>
+<hr>
+
+<FONT FACE="Arial"><FONT SIZE=2>
+
+
+<P>Das System beschreibt einen
+	Tunnel in &Ouml;sterreich. Das Problem, das speziell bei diesem aber
+	auch bei vielen anderen Tunneln auftritt, ist, da&szlig; es vor den
+	Tunneleinfahrten h&auml;ufig zu Stauungen kommt. Gr&uuml;nde hierf&uuml;r
+	k&ouml;nnen zum einen Geschwindigkeitsbegrenzungen innerhalb des
+	Tunnels sein, h&auml;ufig ist es aber auch so, da&szlig; im Tunnel
+	weniger Fahrspuren zur Verf&uuml;gung stehen wie noch vor dem
+	Tunnel. Bei hohem Verkehrsaufkommen kommt es durch die Verringerung
+	der Fahrspuren dann logischerweise zu Staus.</p>
+
+<p>Dies ist auch das Problem unseres Tunnels, wo es vor dem Tunnel in beiden
+	Fahrtrichtungen zweispurig ist, innerhalb des Tunnels dann aber
+	insgesamt nur noch zwei Fahrspuren zur Verf&uuml;gung stehen, im
+	Normalfall also f&uuml;r jede Fahrtrichtung eine (siehe Abb.1).
+	Durch Ampelanlagen ist es nun aber m&ouml;glich in der einen
+	Richtung die Tunneleinfahrt komplett zu sperren,  was der anderen
+	Richtung dann eine zweispurige Tunneldurchfahrt erm&ouml;glicht
+	(siehe Abb.2).</P>
+	
+<BR>
+	
+<P ALIGN=CENTER>
+<IMG SRC="tunnel01.gif" NAME="Grafik2" ALIGN=BOTTOM WIDTH=433 HEIGHT=120 BORDER=1>
+</p>
+<P ALIGN=CENTER>Abb.1: Normalbetrieb</P>
+<BR>
+
+<P ALIGN=CENTER>
+<IMG SRC="tunnel02.gif" NAME="Grafik3" ALIGN=BOTTOM WIDTH=432 HEIGHT=119 BORDER=1></P>
+<P ALIGN=CENTER>Abb.2: Zweispuriger Betrieb</P>
+<br>
+
+<H2><FONT FACE="Arial"><FONT SIZE=3>
+Zielsetzung und Restriktionen</FONT></FONT></H2>
+
+<P>Prim&auml;rziel muss es
+	sein, in einer bestimmten Zeiteinheit einen m&ouml;glichst hohen
+	Gesamtdurchsatz an Fahrzeugen durch den Tunnel zu erreichen. Als
+	Sekund&auml;rziel k&ouml;nnte es interessant sein darauf zu achten,
+	da&szlig; die durchschnittlichen Wartezeiten aus beiden Richtungen
+	nicht zu sehr voneinander differieren.</P>
+<P>Durch geeignetes Schalten der
+	Ampeln ist es m&ouml;glich diese Ziele zu optimieren. Entsteht
+	beispielsweise aus einer Richtung wegen einer verh&auml;ltnism&auml;&szlig;ig
+	hohen Fahrzeugankuftsrate ein Stau, aus der anderen Richtung bei
+	niedriger Ankuftsrate dagegen nicht, so erscheint es sinnvoll die
+	Seite, wo der Stau ist, auf zweispurigen Betrieb umzustellen und
+	daf&uuml;r die andere Seite komplett zu sperren. Dies hat dann
+	nat&uuml;rlich zur Folge, da&szlig; auch auf der gesperrten Seite
+	ein Stau entsteht.</P>
+
+<P>Es w&auml;re nun denkbar die
+	eine Seite solange gesperrt zu lassen, bis sich die Staul&auml;ngen
+	beider Richtungen einander angepa&szlig;t haben. Dies ist aber in
+	der Regel nicht akzeptabel, da die Fahrzeuge auf der gesperrten
+	Seite eine zu hohe Wartezeit in Kauf nehmen m&uuml;&szlig;ten.
+	Deshalb ist sicherzustellen, da&szlig; nach einer bestimmten
+	Zeitdauer auf jeden Fall wieder in den Normalbetrieb &uuml;bergegangen
+	wird.</P>
+
+<P>Des weiteren ist zu beachten,
+	da&szlig; bei jedem Wechsel von Normalbetrieb zu Zweispurigem
+	Betrieb (und umgekehrt) eine der Tunnelfahrspuren zuerst gesperrt
+	werden mu&szlig;, damit sie anschlie&szlig;end f&uuml;r die
+	Gegenrichtung freigegeben werden kann. Mit dem Freigeben mu&szlig;
+	allerdings solange gewartet werden, bis alle Fahrzeuge auf dieser
+	Fahrspur den Tunnel verlassen haben, ansonsten k&auml;me es
+	unweigerlich zu Unf&auml;llen.</P>
+
+<br>
+
+<H2><FONT FACE="Arial"><FONT SIZE=3>Simulationsmodell</FONT></FONT></H2>
+
+<P>Um den Einflu&szlig; der Ampelanlagen auf die oben genannten Ziele zu 
+	untersuchen, wollen wir	den Tunnel mit einem geeigneten Modell simulieren.</P>
+<P>Unser Tunnel, durch den aus zwei Richtungen (Richtung A und Richtung B) gefahren 
+	werden kann, besteht aus zwei Fahrspuren. Beide Fahrspuren sind in beiden
+	Einfahrtsrichtungen mit je einer Ampel versehen (insgesamt vier
+	Ampeln). Ist eine Ampel auf gr&uuml;n geschaltet, so ist die
+	Einfahrt in den Tunnel auf dieser Fahrspur erlaubt.</P>
+
+<P>Folgende Gr&ouml;&szlig;en
+	werden f&uuml;r die Simulation ben&ouml;tigt:</P>
+
+<UL>
+	<li><P><FONT SIZE=2><FONT FACE="Arial">	Ankunftsabst&auml;nde
+		der Fahrzeuge aus Richtung A und Ankunftsabst&auml;nde der
+		Fahrzeuge aus Richtung B (zu den Verteilungen siehe 2.3)</FONT></FONT></P>
+
+	<li><P><FONT SIZE=2><FONT FACE="Arial">	Anfahrtszeiten
+		bei einspurigem Betrieb (Normalbetrieb) und Anfahrtszeiten bei
+		zweispurigem Betrieb (zu den Verteilungen siehe 2.3)</FONT></FONT></P>
+		<P><FONT FACE="Arial"><FONT SIZE=2>Die Anfahrtszeiten kann man
+		auch als Bedienzeiten auffassen. Man kann sie bei Stau als die Zeit
+		interpretieren, die vom Losfahren bis zum Tunneleintritt vergeht.
+		Wenn kein Stau vor dem Tunnel herrscht, kann man die Anfahrtszeit
+		als die Zeitverz&ouml;gerung auffassen, die durch das Abbremsen auf
+		die im Tunnel vorgeschriebene H&ouml;chstgeschwindigkeit entsteht.</FONT></FONT></P>
+		<P><FONT FACE="Arial"><FONT SIZE=2>Die Unterscheidung der
+		Anfahrtszeiten f&uuml;r einspurigen und zweispurigen Betrieb beruht
+		auf der &Uuml;berlegung, da&szlig; bei einspurigem Betrieb durch
+		die Fahrspurverringerung im Durchschnitt wahrscheinlich eine h&ouml;here
+		Anfahrtszeit zu verzeichnen ist als bei zweispurigem Betrieb.</FONT></FONT></P>
+	
+     <li><P><FONT SIZE=2><FONT FACE="Arial">Maximale
+		Zeitdauer f&uuml;r zweispurigen Betrieb (Anfang Sperraufhebung)</FONT></FONT></P>
+		<P><FONT FACE="Arial"><FONT SIZE=2>Nach dieser Zeitdauer wird
+		wieder in den Normalbetrieb gewechselt, um die Wartezeit auf der
+		gesperrten Seite in einem akzeptablen Rahmen zu halten. Wie lange
+		der Normalbetrieb dann beibehalten werden soll, mu&szlig; ebenfalls
+		angegeben werden (Ende Sperraufhebung).</FONT></FONT></P>
+
+	<li><P><FONT SIZE=2><FONT FACE="Arial">Mindestgeschwindigkeit
+		im Tunnel</FONT></FONT></P>
+		<P><FONT FACE="Arial"><FONT SIZE=2>Die Mindestgeschwindigkeit
+		wird ben&ouml;tigt, um die maximale Dauer einer Tunneldurchfahrt zu
+		berechnen. Diese maximale Tunneldurchfahrzeit wiederum braucht man
+		um sicherzustellen, da&szlig; vor dem Freigeben einer Fahrspur alle
+		Fahrzeuge aus der Gegenrichtung den Tunnel bereits verlassen haben.</FONT></FONT></P>
+
+	<li><P><FONT SIZE=2><FONT FACE="Arial">Regeln
+		f&uuml;r Zustandswechsel (siehe hierzu 2.2.2)</FONT></FONT></P>
+</UL>
+
+<P>Durch Angabe der Tunnell&auml;nge
+	ist dieses Modell nicht auf einen bestimmten Tunnel beschr&auml;nkt,
+	sondern kann auf jeden beliebigen zweispurigen Tunnel, der mit
+	Ampelanlagen versehen ist, angewandt werden. Durch die M&ouml;glichkeit
+	die Warteschlangenl&auml;ngen vor beiden Tunneleinfahrten
+	vorzuinitialisieren, wird das Modell noch flexibler.</P>
+	
+<P>Im folgenden werden wir uns
+	mit einer dynamischen, diskreten und stochastischen Simulation
+	besch&auml;ftigen, die ereignisorientiert durchgef&uuml;hrt wird.</P>
+<BR>
+	
+
+
+<H2><FONT FACE="Arial"><FONT SIZE=3>Zust&auml;nde</FONT></FONT></H2>
+
+<p>Wir beschr&auml;nken uns in unserem System
+	auf drei Zust&auml;nde 0, 1 und 2, die durch den momentanen
+	Ampelzustand charakterisiert werden.</p>
+
+<DD><FONT FACE="Arial"><FONT SIZE=2>(Ampel)Zustand 0 : Aus Richtung
+	A keine Einfahrt, </FONT></FONT>
+<DD><P><FONT FACE="Arial"><FONT SIZE=2> aus Richtung B
+	zweispurige Einfahrt.</FONT></FONT></P>
+<DD><FONT FACE="Arial"><FONT SIZE=2>(Ampel)Zustand 1 : Aus Richtung
+	A und B jeweils einspurige Einfahrt.</FONT></FONT>
+	<DL>
+		<DL>
+			<DL>
+				<DL>
+					<DD><P><SPACER TYPE=HORIZONTAL SIZE=47><FONT FACE="Arial"><FONT SIZE=2>(Normalbetrieb)</FONT></FONT></P>
+				</DL>
+			</DL>
+		</DL>
+	</DL>
+<DD><FONT FACE="Arial"><FONT SIZE=2>(Ampel)Zustand 2 : Aus Richtung
+	A zweispurige Einfahrt,</FONT></FONT><DD><P>
+	<FONT FACE="Arial"><FONT SIZE=2>aus Richtung B keine Einfahrt.</FONT></FONT></P>
+<DD><P><FONT FACE="Arial"><FONT SIZE=2>Aus folgender Abbildung
+	werden die m&ouml;glichen Zustands&uuml;berg&auml;nge deutlich,
+	wobei ein direkter &Uuml;bergang von 0 nach 2 bzw. 2 nach 0 nur in
+	speziellen F&auml;llen auftritt.</FONT></FONT></P>
+	 
+<P ALIGN=CENTER><IMG SRC="tunnel03.gif" NAME="Grafik4" ALIGN=BOTTOM WIDTH=240 HEIGHT=96 BORDER=1></P>
+<P ALIGN=CENTER>Abb.3: &Uuml;bergangsgraph</P>
+ 
+	
+<P>Diese Zustands&uuml;berg&auml;nge
+	sind eigentlich keine direkten &Uuml;berg&auml;nge, sondern f&uuml;hren
+	&uuml;ber einen Zwischenzustand. Bevor n&auml;mlich auf einer Seite
+	z.B. zweispuriger Betrieb m&ouml;glich ist, muss zuerst auf
+	der anderen Seite eine Fahrspur gesperrt werden und solange mit dem
+	Freigeben gewartet werden bis alle Fahrzeuge dieser Spur den Tunnel
+	verlassen haben. Da solche Zwischenzust&auml;nde bei jedem
+	Zustandswechsel auftreten und auch immer von gleicher Zeitdauer sind
+	- n&auml;mlich gleich der maximalen Tunneldurchfahrzeit - werden sie
+	nicht gesondert betrachtet.</P>
+
+</FONT></FONT>
+
+<hr>
+<p><font size="-1">© 1998 Fachhochschule Konstanz</font></p>
+
+</BODY>
+</HTML>

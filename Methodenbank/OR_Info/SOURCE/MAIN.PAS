@@ -1,0 +1,596 @@
+unit Main;
+//  8! BEIM KOMPILIEREN AUF DIE EXEPATH-EINSTELLUNG ACHTEN
+//
+//  Änderungen Feb. 98
+//  - Protierung auf das 32-Bit System (Delphi 3)
+//  - THtml-Komponente Version 5.2
+//
+//  Änderungen Feb. 99
+//  - THtml-Komponente: Update auf Version 6.2
+//
+//  Änderungen Aug. 99
+//  - THtml-Komponente: Austausch der normalen Html-Komponente
+//                      durch die Frame-Komponente
+//
+//  Änderungen Juni + Okt. 2000
+//  - Anzahl und Namen der Outline-Struktur-Dateien (ORS) sind nun dynamisch
+//    in der Ini-Datei einstellbar
+//  - Abschlussbehandlung (..was beim Prog.-Ende noch ausgeführt wird)
+
+interface
+
+uses
+  // -- Delphi 1 (16 Bit)
+  //SysUtils, WinTypes, WinProcs, Messages, Classes, Graphics, Controls,
+  //Forms, Dialogs, StdCtrls, Buttons, ExtCtrls, Menus, Grids,
+  //Outline, IniFiles, About, OleCtrls, isp3;
+
+  // -- Delphi 3
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  StdCtrls, ExtCtrls, Menus, ComCtrls, OleCtrls, Buttons,
+  About, Grids, Outline, Inifiles,
+  ShellAPI, SHDocVw;  // siehe ShellExecute
+  //Htmlview,
+  //FramView, Readhtml;
+
+type
+  TMainForm = class(TForm)
+    MainMenu: TMainMenu;
+    FilePrintItem: TMenuItem;
+    FilePrintSetupItem: TMenuItem;
+    FileExitItem: TMenuItem;
+    HelpContentsItem: TMenuItem;
+    HelpSearchItem: TMenuItem;
+    HelpHowToUseItem: TMenuItem;
+    HelpAboutItem: TMenuItem;
+    StatusLine: TPanel;
+    PrintDialog: TPrintDialog;
+    PrintSetupDialog: TPrinterSetupDialog;
+    MainLeftPanel: TPanel;
+    MainRightPanel: TPanel;
+    ComboBoxPanel: TPanel;
+    StructComboBox: TComboBox;
+    OutlinePanel: TPanel;
+    StructOutline: TOutline;
+    ExecutePanel: TPanel;
+    ExecuteBitBtn: TBitBtn;
+    SpeedButtonExit: TSpeedButton;
+    SpeedButton2: TSpeedButton;
+    SpeedButton1: TSpeedButton;
+    BtnHandRight: TBitBtn;
+    BtnHandLeft: TBitBtn;
+    BtnHandTop: TBitBtn;
+    Splitter1: TSplitter;
+    StatusBar1: TStatusBar;
+    HtmlPanel: TPanel;
+    WebBrowser1: TWebBrowser;  { E&xit }
+    procedure FormCreate(Sender: TObject);
+    procedure Init(Sender: TObject);
+    procedure ReadIniData(Methode: String);
+    procedure ReadOutlineStruct(StructFile: String);
+    procedure ShowHTMLFile(FileName: String);
+    procedure ShowHint(Sender: TObject);
+    procedure FilePrintSetup(Sender: TObject);
+    procedure FileExit(Sender: TObject);
+    procedure HelpContents(Sender: TObject);
+    procedure HelpSearch(Sender: TObject);
+    procedure HelpHowToUse(Sender: TObject);
+    procedure HelpAbout(Sender: TObject);
+    procedure ExecuteBitBtnClick(Sender: TObject);
+    procedure StructComboBoxChange(Sender: TObject);
+    procedure StructOutlineClick(Sender: TObject);
+    procedure SelectInfoItem(Sender: TObject);
+    procedure BtnHandTopClick(Sender: TObject);
+    procedure BtnHandLeftClick(Sender: TObject);
+    procedure BtnHandRightClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure FilePrintItemClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FrameViewer1HotSpotTargetClick(Sender: TObject; const Target,
+      URL: String; var Handled: Boolean);
+    procedure FrameViewer1HotSpotTargetCovered(Sender: TObject;
+      const Target, URL: String);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+  private
+    procedure Drucken;
+  end;
+
+
+var
+  MainForm        : TMainForm;
+  Strukturdateien : array [0..10] of string[20] ;  // enthält die Namen der ORS-Files
+  ExecFile, WorkingDir,
+  DummyFile, InfoFile,
+  DataPath, ActiveFile,
+  EXEPath, DBPath,
+  VersionText, BuildText : String;
+  OrInfoIni : TIniFile;
+
+implementation
+
+{$R *.DFM}
+
+
+{ Utility Function }
+procedure MsgBox(const TextString, Ueberschrift: string; id: integer);
+var
+  T_pChar : array[0..255] of char;
+  U_pChar : array[0..255] of char;
+begin
+  strpcopy(T_pChar,TextString);
+  strpcopy(U_pChar,Ueberschrift);
+  application.MessageBox(T_pChar, U_pChar, id);
+end;
+
+
+{ MainForm erstellen }
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  Application.OnHint := ShowHint;
+//  FrameViewer1.ViewImages := true;   // Inline-Grafiken anzeigen
+  //HTMLViewer1.DefBackground := rgb(248,248,248);
+
+  //statusline.Color := rgb(200,200,255);
+
+end;
+
+
+{ MainForm initialisieren }
+procedure TMainForm.Init(Sender: TObject);
+var
+  i, AnzahlStrukturDateien : byte ;
+begin
+  (* Setzen der Programmpfade:
+
+  Um das Programm in unterschiedlichen Verz. ohne Anpassungen
+  ablegen zu können, wird MBank-kompatibel ein EXE- und ein
+  DBPath gesetzt.
+  Im EXEPath befinden sich die IniDatei u. die ORS-Dateien.
+  Der DBPath wird relativ zum EXEPath gesetzt. Hierin befinden
+  sich die Html- und Grafik-Dateien.
+  *)
+
+  // +++++++++++++++++++++++++++++++++++++++++++++
+  EXEPath := 'L:\Besf\OR_INFO\EXEC\';      // ..zur Entwicklung
+  EXEPath := ExtractFilePath(Application.ExeName);  // ..zur Laufzeit
+
+  { IniDatei }
+  OrInfoIni := TIniFile.Create(EXEPath + 'OR_INFO.INI');
+
+  { Einlesen des Datenpfades }
+  DBPath := OrInfoIni.ReadString('Einstellungen','Datenpfad',EXEPath + '..\daten') + '\';
+
+
+  //-- fehlt der Eintrag des Datenpfades (DBPath) in der INI-Datei, so wird der
+  //   relative Default-Pfad verwendet, bzw. der Datenpfad ist gleich relativ
+  //   angegeben, so wird er in einen absoluten umgewandelt.
+  //   Da dies ausgehend vom akt. Verzeichnis erfolgt, muss das akt. Verzeichnis
+  //   auf den Execpfad gesetzt sein.
+
+  if length(DBPath) = 0 then DBPath := '..\Daten' ;
+
+  if pos('..', DBPath) > 0 then begin
+     chdir (EXEPath) ;                     // akt. Verz. auf Exec-Pfad setzen
+     DBPath := ExpandFileName (DBPath) ;   // erzeugt einen absoluten Pfadnamen
+     end ;
+
+  (*
+  begin
+    if compareText(copy(EXEPath, length(EXEPath)-4, 4), 'exec') = 0 then
+      DBPath := copy(EXEPath, 1, length(EXEPath)-5) + 'daten\'
+    else
+      // relativ zum Source-Verzeichnis
+      DBPath := copy(EXEPath, 1, length(EXEPath)-7) + 'daten\';
+  end;  *)
+
+
+  { Einlesen des Anwendungsnamens u.a. (steht in der Ini) }
+  Caption := OrInfoIni.ReadString('Einstellungen','AnwendungsName','');
+  Application.Title := Caption;
+  VersionText := OrInfoIni.ReadString('Einstellungen','Version','');
+  BuildText := OrInfoIni.ReadString('Einstellungen','Build','');
+
+//..neu
+  { Anzahl Namen der Outline-Strukturdateiangabenen einlesen }
+  AnzahlStrukturDateien := OrInfoIni.ReadInteger('Strukturdateien','Anzahl',0) ;
+
+  for i := 1 to AnzahlStrukturDateien do
+  begin
+    StructComboBox.Items[i-1] := OrInfoIni.ReadString('Strukturdateien','Strukturbezeichnung'+IntToStr(i),'') ;
+    Strukturdateien[i-1]      := OrInfoIni.ReadString('Strukturdateien','Strukturdateiname'+IntToStr(i),'') ;
+  end ;
+
+
+  { ..... einlesen }
+  DummyFile := OrInfoIni.ReadString('DummyFile','HTMLFile','');
+  InfoFile  := OrInfoIni.ReadString('OR-INFOSYSTEM','HTMLFile','');
+
+  { ComboBox-Textfeld erstmalig füllen }
+  StructCombobox.Text := StructComboBox.Items.Strings[0] ;
+
+  { Start mit der ersten Strukturdatei }
+  ReadOutlineStruct( EXEPath + Strukturdateien[0] );
+  SelectInfoItem(MainForm);       // Focussetzung
+
+  { Erstes Outline-Change-Ereignis, das zur Anzeige der Html-Datei führt }
+  StructOutline.SelectedItem := 2;
+  StructOutline.SelectedItem := 1;
+
+end;
+
+
+{Info-Block der Methode aus Ini-Datei lesen}
+procedure TMainForm.ReadIniData(Methode: String);
+var
+  HTMLFile: String;
+begin
+     HTMLFile:=OrInfoIni.ReadString(Methode,'HTMLFile','');
+     ExecFile:=OrInfoIni.ReadString(Methode,'ExecFile','');
+     DataPath:=OrInfoIni.ReadString(Methode,'DataPath','.');
+
+     if HTMLFile <> '' then
+     begin
+       ShowHTMLFile(DBPath + HTMLFile);     {HTML-File anzeigen}
+       if ExecFile <> '' then               {existiert Executable-File ?}
+          ExecuteBitBtn.Enabled:=True       {Ausführen-Button aktivieren}
+       else
+          ExecuteBitBtn.Enabled:=false;     {Ausführen-Button deaktivieren}
+     end;
+
+     if HTMLFile = '' then
+     begin
+       ShowHTMLFile(DBPath + DummyFile);    {Dummy-File anzeigen}
+       ExecuteBitBtn.Enabled:=False;        {Ausführen-Button deaktivieren}
+     end;
+end;
+
+
+{HTMLViewer-Komponente aufrufen}
+procedure TMainForm.ShowHTMLFile(FileName: String);
+
+begin
+  if (CompareStr(FileName,ActiveFile) <> 0) then  {nur anzeigen wenn Datei nicht...}
+  begin                                           {...schon im Viewer vorhanden}
+    if StructOutline.enabled then
+       StructOutline.enabled:=false;              {Outline inaktiv setzen bis HTML-File geladen ist}
+
+//    FrameViewer1.LoadFromFile(FileName);            {HTML-File darstellen}
+    WebBrowser1.Navigate(FileName);
+
+    //htmlview2.Cancel('');   //das alte stoppen
+
+    //MsgBox(FileName, 'xx', mb_OK);
+    //HTMLview2.RequestDoc('file:' + FileName);
+    //HTMLview2.RequestDoc('FILE:C:/TEST/XA.HTM');
+    //HTMLview2.RequestDoc('file:PrgMischung');
+    StatusLine.Caption := 'Fertig !  [' + Filename + ']';
+
+    //MsgBox(htmlview2.requesturl, 'nach der anzeige', mb_OK);
+    //htmlview2.Cancel('');
+
+
+    ActiveFile:=FileName;
+    if not StructOutline.enabled then
+       StructOutline.enabled:=true;               {Outline aktiv setzen}
+  end;
+end;
+
+
+{ Outline-Struktur einlesen (ORS-Dateien) }
+procedure TMainForm.ReadOutlineStruct(StructFile: String);
+//var
+//  aTest : array[1..4] of string;
+begin
+  //StructOutline.Lines.LoadFromFile(StructFile);
+  StructOutline.LoadFromFile(StructFile);    // ..kürzer !
+end;
+
+
+{ Focus auf ein Item in der Outline-Struktur setzen }
+procedure TMainForm.SelectInfoItem(Sender: TObject);
+begin
+  With StructOutline do begin
+    { Aufklappen der 'Methodenbank'-Outline-Struktur }
+    if StructComboBox.Text = 'Methodenbank' then
+    begin
+      (* Items[3].expand; *)
+      fullexpand;          {totales Expandieren (Aufklappen) der Outline-Struktur}
+      Items[1].Collapse;   {Unterelemente des 1. Gliederungselements ausblenden}
+      SelectedItem := 3;   {Fokus auf das (absolut) 3. Element setzen}
+    end else
+    begin     // ..andere Outline-Strukturen
+      (*
+      if Items[2].isVisible then
+         SelectedItem := 2
+      else
+      begin
+        Items[1].Expand;
+        SelectedItem := 2;
+      end; *)
+
+      fullexpand ;
+      //Items[1].Collapse;
+
+      //fullexpand ;
+      //SelectedItem := 4;
+      //SelectedItem := 1;
+    end;
+  End; { with }
+end;
+
+{ Hinweise anzeigen (falls Cursor über Objekt) }
+procedure TMainForm.ShowHint(Sender: TObject);
+begin
+  StatusLine.Caption := Application.Hint;
+end;
+
+{ Drucker-Dialog aufrufen }
+procedure TMainForm.FilePrintSetup(Sender: TObject);
+begin
+  PrintSetupDialog.Execute;
+end;
+
+{ Programm beenden }
+procedure TMainForm.FileExit(Sender: TObject);
+begin
+  Close ;
+end;
+
+{ Hilfe-System (Inhalt) aufrufen }
+procedure TMainForm.HelpContents(Sender: TObject);
+begin
+  //Application.HelpCommand(HELP_CONTENTS, 0);
+  //MsgBox('Is nich !','Hilfe ?',mb_OK);
+  ShowHTMLFile(DBPath + 'Hilfe00.htm');
+  ExecuteBitBtn.Enabled:= False;
+end;
+
+{ Hilfe-System (Suchen) aufrufen (noch nicht implementiert) }
+procedure TMainForm.HelpSearch(Sender: TObject);
+const
+  EmptyString : PChar = '';
+begin
+  Application.HelpCommand(HELP_PARTIALKEY, Longint(EmptyString));
+end;
+
+{ Hilfe-System aufrufen (noch nicht implementiert) }
+procedure TMainForm.HelpHowToUse(Sender: TObject);
+begin
+  Application.HelpCommand(HELP_HELPONHELP, 0);
+end;
+
+{ About-Box anzeigen }
+procedure TMainForm.HelpAbout(Sender: TObject);
+begin
+  AboutBox.ShowAboutBox(AboutBox);
+end;
+
+{ Methode ausführen }
+procedure TMainForm.ExecuteBitBtnClick(Sender: TObject);
+var
+  ReturnValue: Word;
+  OldPath: String;
+  NullTerminateString: array[0..255] of Char;
+begin
+  (* Dem EXEPath muss das letzte Zeichen (Backslash) entfernt werden *)
+  OldPath := Copy(EXEPath, 1, length(EXEPath) - 1);
+
+  ChDir(DataPath);    // teilw. notwendig, damit Datenfiles geöffnet werden können.
+
+  //-- Win16-Funktion (alt)
+  //StrPCopy(NullTerminateString, ExecFile);             {String umwandeln}
+  //ReturnValue:=WinExec(NullTerminateString, SW_SHOW);  {API-Funktion aufrufen}
+
+  //-- Win32-Funktion
+  ShellExecute( Mainform.Handle, nil,
+                pchar(ExecFile), '',
+                pchar(DataPath), SW_SHOWNORMAL );
+
+  (* ChDir(WorkingDir);
+     ChDir(OldPath);
+     ChDir(EXEPath);   *)
+end;
+
+{ Outline-Strukturen einlesen }
+procedure TMainForm.StructComboBoxChange(Sender: TObject);
+begin
+    ReadOutlineStruct( EXEPath + Strukturdateien[StructComboBox.ItemIndex] ) ;
+    SelectInfoItem( MainForm ) ;
+end;
+
+{ bei Selektion eines Items in der Outline-Struktur
+  --> Info aus Ini-Datei einlesen und HTML-File anzeigen }
+procedure TMainForm.StructOutlineClick(Sender: TObject);
+begin
+  Try
+     if not (StructOutline.Items[StructOutline.SelectedItem].HasItems) then
+     begin
+        ReadIniData(StructOutline.Items[StructOutline.SelectedItem].Text);
+     end else
+     { keine Einträge in Ini-Datei gefunden }
+     begin
+        ShowHTMLFile(DBPath + InfoFile);
+        ExecuteBitBtn.Enabled:=False;
+     end;
+  Finally
+      {nix}
+  End;
+end;
+
+{Focus auf erstes Element in Outline-Struktur setzen}
+procedure TMainForm.BtnHandTopClick(Sender: TObject);
+begin
+  with StructOutline do
+    SelectedItem := Items[SelectedItem].TopItem;
+end;
+
+{Fokus eine Ebene tiefer in Outline-Struktur setzen}
+procedure TMainForm.BtnHandRightClick(Sender: TObject);
+var
+  Index: LongInt;
+begin
+     with StructOutline do
+     begin
+          Index:=Items[SelectedItem].Index;
+          while(Index < ItemCount) do
+          begin
+               if (Items[Index + 1].isVisible) then
+               begin
+                 SelectedItem:=Index + 1;
+                 Index:=ItemCount;
+               end else
+                 Index:=Index + 1;
+          end;
+     end;
+end;
+
+{Fokus eine Ebene höher in Outline-Struktur setzen}
+procedure TMainForm.BtnHandLeftClick(Sender: TObject);
+var
+  Index: LongInt;
+begin
+  With StructOutline do
+  begin
+       Index := Items[SelectedItem].Index;
+       while(Index > 1) do
+       begin
+            if Items[Index - 1].isVisible then
+            begin
+                 SelectedItem:=Index - 1;
+                 Index:=1
+            end else
+                 Index:=Index - 1;
+       end;
+  End; { with }
+end;
+
+{HTML-File ausdrucken}
+procedure TMainForm.SpeedButton1Click(Sender: TObject);
+begin
+  Drucken;
+end;
+
+{HTML-File ausdrucken}
+procedure TMainForm.FilePrintItemClick(Sender: TObject);
+begin
+  Drucken ;
+end;
+
+{ Positionierung des Anwendungsfensters auf dem Schirm (mittig) }
+procedure TMainForm.FormShow(Sender: TObject);
+var
+  NormHoehe, NormWeite: integer;
+begin
+  { Weiten- u. Höhenangaben werden ggf. auf die Monitorgröße begrenzt ! }
+
+  NormHoehe := OrInfoIni.ReadInteger('Einstellungen','Anzeigehoehe', 568) ;
+  NormWeite := OrInfoIni.ReadInteger('Einstellungen','Anzeigebreite', 770) ;
+
+  if Screen.Height < NormHoehe then
+    Height := screen.Height
+  else
+    Height := NormHoehe;
+
+  if Screen.Width < NormWeite then
+    Width := screen.Width
+  else
+    Width := NormWeite;
+
+  // mittige Ausrichtung
+  Top := trunc((screen.Height - Height) / 2);
+  Left := trunc((screen.Width - Width) / 2);
+
+  // Ausrichtung nach oben verschieben, wg. der Menüleiste
+  Top := trunc(Top * 0.3);
+end;
+
+procedure TMainForm.Drucken;
+var
+  ZCode: string;
+  vIn, vOut: OleVariant;
+begin
+  if OrInfoIni.ReadString('Einstellungen','Druckfreigabe','0') = '1' then
+  begin
+     WebBrowser1.ControlInterface.ExecWB(OLECMDID_PRINT, OLECMDEXECOPT_PROMPTUSER, vIn, vOut);
+  end else
+  begin
+    ZCode:= InputBox('FHK System','Bitte geben Sie den Zugriffscode ein:','');
+    if (ZCode = 'otwspezial') or (ZCode = 'saigon95') or (ZCode = 'josef43') then
+    begin
+      WebBrowser1.ControlInterface.ExecWB(OLECMDID_PRINT, OLECMDEXECOPT_PROMPTUSER, vIn, vOut);
+    end else
+    if ZCode <> '' then
+       MsgBox('Falscher Zugriffscode !','FHK System',mb_OK);
+  end;
+end;
+
+
+{ Link-Klick-Handhabung }
+procedure TMainForm.FrameViewer1HotSpotTargetClick(Sender: TObject;
+  const Target, URL: String; var Handled: Boolean);
+begin
+   //-- Internet-Link
+  if (pos('HTTP:',uppercase(URL)) > 0) or (pos('FTP:',uppercase(URL)) > 0) then
+  begin
+    Handled := true;
+    if MessageDlg('Möchten Sie Ihren Standardbrowser starten, '
+       + 'um die Internetseite ' + URL + ' zu laden?',
+       mtConfirmation, [mbYes,mbNo], 0) = mrYES then
+    begin
+      TRY
+        //-- Standard-Browser starten
+        ShellExecute(0, nil, pchar(URL), nil, nil, SW_SHOWNORMAL);
+      EXCEPT
+        showmessage('Der Browser lies sich nicht starten.');
+      END;
+    end; { if }
+  end;
+
+  //-- ..die anderen Links werden von HTMLView gehandhabt
+
+end;
+
+{ Mausfahrt über einen Link }
+procedure TMainForm.FrameViewer1HotSpotTargetCovered(Sender: TObject;
+  const Target, URL: String);
+begin
+  StatusLine.Caption := URL;
+end;
+
+{ Abschlussbehandlung }
+procedure TMainForm.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+var
+  TempPath ,
+  NachlaufBatch   : string ;
+  flgTempLoeschen : boolean ;
+begin
+  // -> optionaleBehandlungen
+
+  { Einlesen von .. }
+  TempPath := OrInfoIni.ReadString('Einstellungen','Arbeitsverzeichnis','c:\temp') + '\' ;
+
+  flgTempLoeschen := OrInfoIni.ReadBool('Nachbearbeitung','TempDateienLoeschen',false) ;
+
+  NachlaufBatch := OrInfoIni.ReadString('Nachbearbeitung','RunBatch','') ;
+
+
+  { Ini freigeben }
+  ORInfoIni.Free ;     // sollte noch für das Ende über Menübuttons eingefügt werden
+
+
+  if flgTempLoeschen then begin
+     // dann tue's
+     end ;
+
+  if length(NachlaufBatch) > 0 then
+     Try
+       ShellExecute( Mainform.Handle, nil,
+                pchar(NachlaufBatch), '',
+                pchar(ExePath), SW_SHOWMINNOACTIVE );
+     Except
+       showmessage('Die "Nachlauf-Batch" konnte nicht ausgeführt werden !');
+     End ;
+     
+end;
+
+end.

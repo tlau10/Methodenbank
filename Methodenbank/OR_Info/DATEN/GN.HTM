@@ -1,0 +1,180 @@
+<html>
+<head>
+  <title>Generalized Networks</title> 
+</head>
+<body background="backgrnd.gif">
+
+<center>
+<img border="0" src="file:///L:/BESF/OR_Info/DATEN/GN.GIF" width="260" height="195">
+<h2><font face="Candara">Generalized Networks</font></h2>
+</center>
+<hr>
+
+<p><font face="Candara">Generalized Networks sind verallgemeinerte Transportmodelle 
+(Netzwerkmodelle) und spezielle LP-Modelle, wie z.B.
+Rohrleitungsnetze, Verkehrsnetze, usw.<br>
+Jedes Netzwerkflußproblem läßt sich mit Hilfe des 
+Simplex-Verfahrens lösen. Es gibt aber auch andere Verfahren.</font>
+
+<p><font face="Candara">Bei Netzwerkflußproblemen wird ein Gut von einem Startknoten 
+(Quelle, Input) durch ein Netzwerk mit verschiedenen 
+Zwischenstationen (Knoten) zu einem Endknoten (Senke, Output) 
+transportiert. Der Transport soll derart erfolgen, daß eine 
+lineare Zielfunktion optimiert wird (Maximierung des Gewinns 
+bzw. Deckungsbeitrags, Minimierung der Produktionskosten / 
+Transportkosten).</font>
+
+<p><font face="Candara">Der Transport kann nur in einer Richtung auf einer Verbindung 
+(Kante) erfolgen. Die Kanten werden durch geeignete Zahlenpaare 
+(i,j) eindeutig identifiziert, wobei i der Anfangsknoten und j 
+der Endknoten der jeweiligen Kante ist. Jede Kante weist 
+Kapazitätsgrenzen auf (min, max). Durch den Multiplikator können 
+die Mengen beim Transport vermindert (Verlust, Schwund) oder 
+vermehrt (Gewinn) werden. In den Knoten herrscht das sogenannte 
+Konservativitätsgesetz, d.h. die in den Knoten i einfließende 
+Menge stimmt mit der aus dem Knoten i ausfließenden Menge überein 
+(Kirchhoff’sche Knotenregel). Ausnahmen sind Quelle und Senke.
+
+<br><br>
+
+</font>
+<p class="MsoNormal" style="line-height:150%"><b style="mso-bidi-font-weight:
+normal"><u><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt"><font face="Candara">Beispiel:</font></span></u></b><font face="Candara"><span style="font-size:12.0pt;mso-bidi-font-size:10.0pt"><o:p>
+</o:p>
+</span></font></p>
+<p class="MsoNormal" style="line-height:150%"><font face="Candara">Rohrleitungssystem:<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="line-height:150%"><font face="Candara">&nbsp;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="line-height:150%"><font face="Candara"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:340.5pt;
+ height:258pt'>
+ <v:imagedata src="file:///C:/DOKUME~1/Besitzer/LOKALE~1/Temp/msoclip1/02/clip_image001.wmz"
+  o:title="" croptop="3293f" cropbottom="31020f"/>
+</v:shape><![endif]-->
+<img src="GN.HTM1.gif" v:shapes="_x0000_i1025" width="454" height="344"><o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">Gesucht:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Kostenminimaler Transport<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">&nbsp;<o:p>
+</o:p>
+Zugehöriges LP-Modell:<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">&nbsp;<o:p>
+</o:p>
+Zielfunktion:<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">Z = 1 x12 + 1 x13 + 1 x24 + 1 x34
+-&gt;min !<o:p>
+</o:p>
+<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">Angebot der Quelle:<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">- x12 - x13 &lt;= 0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Knoten 1<o:p>
+</o:p>
+<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">Konservativität:<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">0,8 x12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- x24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;= 0;&nbsp;&nbsp;&nbsp;
+Knoten 2<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0,5 x13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - x34 &lt;= 0;&nbsp;&nbsp;&nbsp;
+Knoten 3<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">&nbsp;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">Nachfrage der Senke:<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+0,5 x24 + 0,8 x34 &lt;= 0;&nbsp;&nbsp; Knoten 4<o:p>
+</o:p>
+<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">Obergrenzen:<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="tab-stops:3.0cm"><font face="Candara">x12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;= 10000;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="tab-stops:21.3pt 3.0cm"><font face="Candara">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x13&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;= 8000;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="tab-stops:42.55pt 3.0cm"><font face="Candara">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x24&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;= 10000;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="tab-stops:63.8pt 3.0cm"><font face="Candara">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x34&nbsp;&nbsp;&nbsp; &lt;= 5000;<o:p>
+</o:p>
+<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">Untergrenzen:<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal"><font face="Candara">x12 , x13 , x24 , x34&nbsp; =&gt;0;<o:p>
+</o:p>
+</font></p>
+<p class="MsoNormal" style="line-height:150%"><font face="Candara">x13
+ganzzahlig;<span style="font-size:12.0pt;
+mso-bidi-font-size:10.0pt"><o:p>
+</o:p>
+</span></font></p>
+
+<p><font face="Candara"><b>Anmerkung:</b><br>
+Es gibt Problemstellungen mit mehreren Start- und/oder Endknoten.
+Enthält das Netzwerk z.B. mehrere Startknoten, so kann ein fiktiver Startknoten
+als <i>Quelle</i> hinzugefügt werden. Dieser Startknoten ist mit den eigentlichen
+Startknoten zu verbinden. Die Kanten dieser Verbindungen unterliegen dann keinen
+Kapazitätsgrenzen. Als Multiplikator ist der Wert 1 zu verwenden.
+Diese Möglichkeit besteht natürlich auch, wenn das Netzwerk mehrere Endknoten
+(Senken) enthält.</font></p>
+
+<hr>
+<p><FONT Face="arial" SIZE="1">&#169; 1996 - 1998 Fachhochschule Konstanz</FONT></p>
+ <LI><A HREF="fahrz2.htm">LP-Ansatz</A></LI>
+</body>
+</html>

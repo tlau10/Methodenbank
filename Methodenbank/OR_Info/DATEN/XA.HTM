@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>xa</title>
+</head>
+<body background="bg.gif" bgproperties="fixed">
+
+
+<table border=0 width="100%" cellpadding=0 cellspacing=0>
+<tr>
+<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td>
+<td align=center>
+    <p><br><font SIZE="5"Face="arial" color="#242424">
+       <nobr><b>Extended Application</b></font></nobr></p>
+    <p><font size="2" Face="arial" color="#242424">
+       <! b>Version 2.0</b></font></p></td>
+<td align=right width=210><IMG SRC="xalogo_trans.gif"></td>
+</tr></table>
+
+<! hr noshade size=1>
+
+<p>Extended Application ist ein SW-Produkt zur Lösung linearer
+Programmierungsaufgaben.</p>
+
+<p>Ein Problem kann in einem der folgenden Formate formuliert werden:
+<ul>
+  <li><b>Equation Style</b><br>
+      hierbei versteht man die Formulierung eines Modells im Gleichungsstil
+      nach syntaktischen Vorgaben
+  <li><b>MPS Format</b><br>
+      Industriestandardformat der linearen Programmierung
+  <li><b>Spreadsheet Style</b><br>
+      diese Art der Problemformulierung unterstützt Lotus-Dateien und
+      Kompatible
+</ul></p>
+
+<p>Die einfachste Art XA einzusetzen erfolgt mit dem Equation Style
+(LP-Format). Im folgenden wird darauf eingegangen.</p>
+
+<p>XA arbeitet im Batch-Modus, d.h. Daten werden dem System beim Aufruf
+mittels Parameter übergegeben. Der Equation Style erwartet dabei zwei
+Dateien. Das CLP-File (Command Line Parameter File), sowie das LP-File
+(Line Parameter-File). Beide Dateien können mit einem beliebigen Editor
+bearbeitet werden. Statt des CLP-Files können auch Startparameter verwendet 
+werden.</p>
+
+<p>Die Arbeitsweise von XA:<br>
+Das im Vorfeld formulierte Problem wird aus dem LP-File sequentiell
+ausgelesen. Die Berechnung wird durch die Parameter des CLP-Files
+gesteuert. Die Ausgabe der Berechnung erfolgt auf den Bildschirm,
+Drucker oder in eine im CLP-File angegebene Datei.</p>
+
+<p>Die Installationsversion enthält ein Standard-CLP-File (XA.CLP),
+auf das XA zurückgreift, sofern kein anderes angegeben wird.
+Auf den Rechnern der FH sind i.d.R. die Files MUSTER.LP und
+MUSTER.CLP zu finden. Diese können kopiert und als Vorlage verwendet
+werden.</p>
+
+<p><b>Vorgehensweise:</b>
+
+<pre>
+  1. Kopieren der MUSTER-Files
+     z.B.:   MUSTER.CLP -&gt; PRODPLAN.CLP
+             MUSTER.LP  -&gt; PRODPLAN.LP
+       bzw.  MUSTER.MPS -&gt; PRODPLAN.MPS
+
+  2. Problemspezifische Bearbeitung des CLP-Files. 
+     Achten Sie hier auf den Eintrag des Ausgabe-
+     mediums.
+
+  3. Problemspezifische Bearbeitung des LP/MPS-Files, 
+     also Formulierung des LP-Ansatzes.
+
+  4. Start von XA:  XA  Dateiname.Ext
+     Bsp.:          XA  PRODPLAN.CLP
+</pre></p>
+
+
+<p><b>Weitere Informationen:</b><br>
+<br>
+&nbsp; &nbsp;- Beispiele für das <A HREF="xa_eqs.htm">EQS-Format</A>
+              und das <A HREF="xa_mps.htm">MPS-Format</A><br>
+&nbsp; &nbsp;- <A HREF="xa_beson.htm">Besonderheiten des Solvers</A><br>
+&nbsp; &nbsp;- <A HREF="xa_int.htm">Binärität / Ganzzahligkeit</A>
+
+
+<p><hr noshade size=1>
+<FONT SIZE="-1">&#169; Fachhochschule Konstanz</FONT>
+
+</body>
+</html>
