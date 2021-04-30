@@ -1,8 +1,0 @@
-OUT>of
-OUT>
-OUT>C:\Users\Benedikt\Desktop\Studium\6.Semester\ALO\Abgabe\Finaleversion\Mischungsplaner>echo Automatisch erzeugte Stapeldatei startet den LP-Solver 
-OUT>Automatisch erzeugte Stapeldatei startet den LP-Solver
-OUT>
-OUT>C:\Users\Benedikt\Desktop\Studium\6.Semester\ALO\Abgabe\Finaleversion\Mischungsplaner>C:\Users\Benedikt\Desktop\Studium\6.Semester\ALO\Abgabe\Finaleversion\Mischungsplaner\LP_SOLVE.exe  0<C:\Users\Benedikt\Desktop\Studium\6.Semester\ALO\Abgabe\Finaleversion\Mischungsplaner\lp_ein.lp 1>C:\Users\Benedikt\Desktop\Studium\6.Semester\ALO\Abgabe\Finaleversion\Mischungsplaner\lp_aus.txt 
-OUT>
-OUT>C:\Users\Benedikt\Desktop\Studium\6.Semester\ALO\Abgabe\Finaleversion\Mischungsplaner>exit

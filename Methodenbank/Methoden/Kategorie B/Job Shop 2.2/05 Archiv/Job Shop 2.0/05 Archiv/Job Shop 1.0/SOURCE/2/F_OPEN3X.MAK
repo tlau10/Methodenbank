@@ -1,7 +1,0 @@
-OPEN.FRM
-C:\WINDOWS\SYSTEM\CMDIALOG.VBX
-ProjWinSize=101,419,261,137
-ProjWinShow=2
-IconForm="Form1"
-Title="F_OPEN3X"
-ExeName="F_OPEN3X.EXE"

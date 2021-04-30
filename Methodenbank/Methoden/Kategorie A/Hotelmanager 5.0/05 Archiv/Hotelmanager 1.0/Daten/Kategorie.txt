@@ -1,7 +1,0 @@
-"# Bett Kategorien, Aufruf in VB über getPfad(ZeilenID)"
-"Nr","Kategorie-Name","Anz","Stk","Preis"
-1,"Einzelzimmer",1,30,100
-2,"Doppelzimmer",2,40,180
-3,"Einzel-Suite",2,5,300
-4,"Doppel-Suite",4,5,560
-5,"Präsidenten-Suite",2,1,1000

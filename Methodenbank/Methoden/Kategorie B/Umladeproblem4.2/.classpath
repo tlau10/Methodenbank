@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="03 Source Code/Source"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/tobia/Desktop/java-toolbox-1.5.jar"/>
-	<classpathentry kind="lib" path="C:/Methodenbank/Methoden/Kategorie B/Umladeproblem4.2/01 Programm/Umladeproblem4.1(alt).jar"/>
-	<classpathentry kind="output" path="03 Source Code/Source"/>
-</classpath>

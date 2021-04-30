@@ -1,8 +1,0 @@
-OUT>of
-OUT>
-OUT>E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\PTSS1.1\03 PTSS Source Code>echo Automatisch erzeugte Stapeldatei startet den LP-Solver 
-OUT>Automatisch erzeugte Stapeldatei startet den LP-Solver
-OUT>
-OUT>E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\PTSS1.1\03 PTSS Source Code>bin\\LP_SOLVE.EXE  0<temp\\lp_eingabe.lp 1>temp\\lp_ausgabe.txt 
-OUT>
-OUT>E:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\PTSS1.1\03 PTSS Source Code>exit

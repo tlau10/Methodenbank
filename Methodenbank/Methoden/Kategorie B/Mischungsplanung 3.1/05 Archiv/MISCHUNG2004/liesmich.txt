@@ -1,4 +1,0 @@
-Der Mischungsoptimierer benötigt Java 1.4.x !
-Start mit Mischung.bat
-
-

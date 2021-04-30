@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="src" path="03 Source Code/Source"/>
-	<classpathentry kind="lib" path="01 Programm/Umladeproblem.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="Z:/Win 6/ALO/Projekt/jtoolbox.jar"/>
-	<classpathentry kind="output" path="03 Source Code/Source"/>
-</classpath>

@@ -1,1 +1,0 @@
-java -jar transformer.jar clipboard test.xml

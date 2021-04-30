@@ -1,4 +1,0 @@
-LP-Solve:C:\Methodenbank\Methoden\Kategorie A\Standortplanung 3.0\01 Programm\Solver\LP_SOLVE.EXE;
-XA:;
-MOPS:C:\Methodenbank\Methoden\Kategorie A\Standortplanung 3.0\01 Programm\Solver\mops.exe;
-TEMP:C:\temp;
