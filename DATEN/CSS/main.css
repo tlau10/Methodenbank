@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'swiss721';
+  src:  url('swiss721_heavy.woff2') format('woff2'); 
+}
+
+@media screen and (min-width: 560px){
+	#verySmallBanner {
+		display: none;
+	}
+}	
+
+@media screen and (max-width: 999px) {
+	#fullscreenBanner {
+		display: none;
+	}
+	#hackyDiv {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 559px), (min-width: 1000px) {
+	#smallBanner {
+		display: none;
+	}
+}
+
+body
+{
+	background-color:#d9e5ec;
+	font-family: 'swiss721', Fallback, sans-serif;
+	color: #334152;
+}
+
+hr
+{
+	border-color: #009B91;
+}
+
+body {
+margin: 0;
+}
+
+.content {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+#smallBanner {
+	background-image: url("../img/banner_mobile.svg");
+	background-color: #FFFFFF;
+	height: 140px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#verySmallBanner {
+	background-image: url("../img/banner_mobile.svg");
+	background-color: #FFFFFF;
+	height: 90px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#fullscreenBanner {
+	background-color: #FFFFFF;
+	width: 100%;
+	padding: 0;
+	/* border-bottom: 2px solid #009B91; */
+	/* box-shadow: 3px 3px 3px 3px; */
+}
+
+.infoPics
+{
+	width: 50%;
+}
+
+img { 
+	width: 100%;
+	margin-bottom: 0;
+}
+
