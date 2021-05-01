@@ -1,8 +1,0 @@
-NAME          Power-LP MAXIMIZE
-ROWS
- N  ZF
- L  R1
- L  R2
-COLUMNS
-RHS
-ENDATA

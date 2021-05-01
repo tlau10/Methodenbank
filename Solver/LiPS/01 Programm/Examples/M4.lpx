@@ -1,9 +1,0 @@
-max: -X1 + 2*X2;
-max: 2*X1 + X2;
-max: X1 - 3*X2;
-
-row1: X1 + X2 <= 6;
-row2: X1 <= 3;
-row3: X1 >= 1;
-row4: X2 <= 4;
-row5: X2 >= 1;

@@ -1,7 +1,0 @@
-// Example for integer programming
-max: 5*x1 + 4*x2;
-
-x1 + x2 < 5;
-10*x1 + 6*x2 < 45;
-
-int x1,x2;

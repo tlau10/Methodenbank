@@ -1,1 +1,0 @@
-C:\Methodenbank\Solver\LP_Solve\Exec\lp_solve.exe -S6 <C:\Users\dominic\Documents\Studium\Teamprojekt\test.lp>c:\OR\test.out
