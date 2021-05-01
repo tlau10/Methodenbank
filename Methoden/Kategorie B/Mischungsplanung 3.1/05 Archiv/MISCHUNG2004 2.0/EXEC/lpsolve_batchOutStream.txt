@@ -1,8 +1,0 @@
-OUT>of
-OUT>
-OUT>C:\Users\Marius\Google Drive\HTWG\Semester 6\ALO\Projekt\Mischungsplanung 3.0\05 Archiv\MISCHUNG2004 2.0\EXEC>echo Automatisch erzeugte Stapeldatei startet den LP-Solver 
-OUT>Automatisch erzeugte Stapeldatei startet den LP-Solver
-OUT>
-OUT>C:\Users\Marius\Google Drive\HTWG\Semester 6\ALO\Projekt\Mischungsplanung 3.0\05 Archiv\MISCHUNG2004 2.0\EXEC>C:\Users\Marius\Google Drive\HTWG\Semester 6\ALO\Projekt\Mischungsplanung 3.0\05 Archiv\MISCHUNG2004 2.0\EXEC\LP_SOLVE.exe  Drive\HTWG\Semester 6\ALO\Projekt\Mischungsplanung 3.0\05 Archiv\MISCHUNG2004 2.0\EXEC\lp_ein.lp Drive\HTWG\Semester 6\ALO\Projekt\Mischungsplanung 3.0\05 Archiv\MISCHUNG2004 2.0\EXEC\lp_aus.txt 0<C:\Users\Marius\Google 1>C:\Users\Marius\Google 
-OUT>
-OUT>C:\Users\Marius\Google Drive\HTWG\Semester 6\ALO\Projekt\Mischungsplanung 3.0\05 Archiv\MISCHUNG2004 2.0\EXEC>exit

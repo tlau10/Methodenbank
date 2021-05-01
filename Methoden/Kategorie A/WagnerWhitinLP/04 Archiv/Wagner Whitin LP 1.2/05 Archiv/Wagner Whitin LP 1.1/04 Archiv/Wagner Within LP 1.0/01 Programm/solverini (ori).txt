@@ -1,6 +1,0 @@
-Working Directory:
-D:\Archiv\Studium\plo_workon\v2.0\plo
-Solver Directory:
-D:\Archiv\Studium\plo_workon\v2.0\plo
-Solver Name:
-LP_SOLVE.EXE

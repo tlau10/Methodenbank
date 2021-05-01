@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<library>
-  <!--JBuilder Library Definition File-->
-  <fullname>JSX</fullname>
-  <class>
-    <path>[lib/JSX1.0.6.0.jar]</path>
-  </class>
-</library>

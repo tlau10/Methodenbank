@@ -1,9 +1,0 @@
-
-
-
-             Noch nicht eingepflegte Tools
-             -----------------------------
-
-               o Dakin-Revision (Solver)
-               o Maschinenbelegungsplanung
-               o ??

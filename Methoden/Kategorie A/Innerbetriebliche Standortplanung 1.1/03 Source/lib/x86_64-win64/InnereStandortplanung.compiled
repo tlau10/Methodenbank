@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CONFIG>
-  <Compiler Value="D:\Programme\lazarus\fpc\3.0.2\bin\x86_64-win64\fpc.exe" Date="1247518955"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -WG -l -vewnhibq &quot;-FiE:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Innerbetriebliche Standortplanung 1.1\03 Source\lib\x86_64-win64&quot; -FuD:\Programme\lazarus\lcl\units\x86_64-win64\win32 -FuD:\Programme\lazarus\lcl\units\x86_64-win64 -FuD:\Programme\lazarus\components\lazutils\lib\x86_64-win64 -FuD:\Programme\lazarus\packager\units\x86_64-win64 &quot;-FuE:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Innerbetriebliche Standortplanung 1.1\03 Source\&quot; &quot;-FUE:\Users\Tobias\Documents\Studium\Teamprojekt\Jar Dateien richtiger Path\Innerbetriebliche Standortplanung 1.1\03 Source\lib\x86_64-win64\&quot; -dLCL -dLCLwin32 InnereStandortplanung.lpr"/>
-</CONFIG>

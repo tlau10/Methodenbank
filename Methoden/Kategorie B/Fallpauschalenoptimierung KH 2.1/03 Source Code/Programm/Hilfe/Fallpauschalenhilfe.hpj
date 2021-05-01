@@ -1,8 +1,0 @@
-[OPTIONS]
-LCID=0x407 0x0 0x0 ; Deutsch (Deutschland)
-REPORT=Yes
-CNT=Extension.cnt
-HLP=Fallpauschalenhilfe.hlp
-
-[FILES]
-FallpauschalenHilfe.rtf

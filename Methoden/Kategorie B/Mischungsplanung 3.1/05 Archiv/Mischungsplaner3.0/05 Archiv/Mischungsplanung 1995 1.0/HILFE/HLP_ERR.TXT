@@ -1,5 +1,0 @@
-Microsoft (R) Help Compiler Version 3.10.505
-Copyright (c) Microsoft Corp 1990 - 1992. All rights reserved.
-mischung.hpj
-
-Warning 4792: topic...5 of mi01.rtf : Non-scrolling region defined after scrolling region.

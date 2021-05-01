@@ -1,1 +1,0 @@
-LPsolvePath=runLPsolve.bat

@@ -1,1 +1,0 @@
-defauldPeriode=60LPsolvePath=C:\Methodenbank\\Solver\\LP_Solve\\Exec\\lp_solve.exe

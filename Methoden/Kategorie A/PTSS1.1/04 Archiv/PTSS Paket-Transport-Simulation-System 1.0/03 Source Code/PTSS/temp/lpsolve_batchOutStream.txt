@@ -1,8 +1,0 @@
-OUT>of
-OUT>
-OUT>D:\sandbox\PTSS>echo Automatisch erzeugte Stapeldatei startet den LP-Solver 
-OUT>Automatisch erzeugte Stapeldatei startet den LP-Solver
-OUT>
-OUT>D:\sandbox\PTSS>bin\\LP_SOLVE.EXE  0<temp\\lp_eingabe.lp 1>temp\\lp_ausgabe.txt 
-OUT>
-OUT>D:\sandbox\PTSS>exit

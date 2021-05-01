@@ -1,5 +1,0 @@
-Microsoft (R) Help Compiler Version 3.10.505
-Copyright (c) Microsoft Corp 1990 - 1992. All rights reserved.
-navigat.hpj
-
-Warning 4792: topic...4 of taxi01.rtf : 

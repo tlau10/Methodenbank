@@ -1,8 +1,0 @@
-
-constants
-model.eingabe
-model.lpBuilder
-model.solverCaller
-view.exception
-view.fileFilter
-view.listener

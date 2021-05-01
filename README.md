@@ -1,2 +1,0 @@
-# Methodenbank
-Teamprojekt SS21
