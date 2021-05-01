@@ -1,0 +1,11 @@
+Standortplanung;V 3.0;;;;;
+columns=;7;;;;;
+rows=;7;;;;;
+Entfernung=;15;;;;;
+;Standort 1;Standort 2;Standort 3;Standort 4;Standort 5;Standort 6
+Standort 1;0;10;20;30;40;30
+Standort 2;10;0;30;40;30;10
+Standort 3;20;25;0;15;30;20
+Standort 4;30;35;15;0;10;20
+Standort 5;30;20;40;15;0;11
+Standort 6;20;10;20;25;14;0

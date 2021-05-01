@@ -1,0 +1,12 @@
+W/B,W/R,,,N/BG
+1,25,1,26
+N/RB
+23,0,24,79
+N/W
+Hilfe fr Transportproblem
+1,25,
+ <ESC> = Ende der Hilfe        Bl„ttern mit <PgUp> , <PgDn> und Cursortaten
+23,0,
+ <Ctrl_PgUp> = Anfang Hilfe    <Ctrl_PgDn> = Ende Hilfe 
+24,0,
+3,1,22,78

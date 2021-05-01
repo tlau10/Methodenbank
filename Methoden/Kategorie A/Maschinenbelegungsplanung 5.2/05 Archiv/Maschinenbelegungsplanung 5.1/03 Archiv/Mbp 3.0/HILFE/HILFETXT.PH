@@ -1,0 +1,73 @@
+"MODELL.XLS"
+Alternativperiode
+Anzahl
+Auftrag
+Auftragsbezeichnung
+Auftragsdaten
+Auftragsdauer
+Auftragsnummer
+Aufträge
+Auslastung
+Bearbeitung
+Die
+Ein
+Hilfe zur Maschinenbelegungsplanung
+Kapazität
+LP-Ansatz
+Maschine
+Maschinenbelegung
+Maschinenbelegungsplanung
+Maschinenbelegungsplanung mit Minimierung der zusätzlichen Maschinenzahl
+Maschinenbelegungsplanung mit vorhandener Maschinenzahl
+Maschinendaten
+Maschinenzahl
+Menüpunkt
+Methode
+Minimierung
+Minuten
+Nummer
+Periode
+Solver
+Solverdatei erstellen
+Variante
+Verfügung
+Vorstell
+abgearbeitet
+auf
+automatisch
+bearbeite
+beginn
+dann
+den
+der
+des
+die
+durch
+ein
+einge
+enthalten
+entsprechende
+erfaßt.
+erstell
+ist
+kennzeichne
+können
+maximal
+minimal
+mit
+möglich
+notwendig
+planen
+primär
+primäre Bearbeitung
+soll
+umfaßt
+und
+vergeben.
+von - bis
+vorhandene
+welche
+werden
+wird
+zur
+zusätzliche

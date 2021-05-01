@@ -1,0 +1,19 @@
+[OPTIONS]
+TITLE = Hilfe zur Maschinenbelegungsplanung
+; CONTENTS = index
+COMPRESS = true
+copyright = Fachhochschule Konstanz
+report = on
+ERRORLOG = hilfetxt.err
+
+[FILES]
+hilfetxt.rtf
+
+[MAP]
+MASCHINENDATEN 10
+AUFTRAGSDATEN 20
+MASCHINENBELEGUNG 30
+
+
+[CONFIG]
+;BrowseButtons()

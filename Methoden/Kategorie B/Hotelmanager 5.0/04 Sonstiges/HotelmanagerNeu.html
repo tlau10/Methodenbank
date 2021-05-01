@@ -1,0 +1,94 @@
+﻿<html>
+<head>
+  <title>Hotelmanager 4.0</title>
+</head>
+	<body bgcolor="00BFFF" bgproperties="fixed">
+
+		<h2 align="left">
+			<font Face="arial" SIZE="7" color="FFFFFF">Hotelmanager 5.0</font></h2>
+			<hr color="ffffff" noshade size=1>
+			<p><font color="FFFFFF" face="arial">In einem Hotel mit verschiedenen Zimmerkategorien soll gew&auml;hrleistet werden, dass zu jeder Zeit m&ouml;glichst viele Buchungen angenommen werden k&ouml;nnen und
+				der erzielte Deckungsbeitrag des Hotels maximiert wird. Dieser h&auml;ngt von der Auslastung der Zimmer, der Anzahl der erwarteten kurzfristigen Buchungen
+				und von den gew&auml;hrten Preisnachl&auml;ssen ab. Das Programm schl&auml;gt immer die n&auml;chste optimale Buchungsalternative vor und zeigt diese grafisch an:</font></p>
+			<img align="center" src="HotelmanagerNeu.PNG">
+			
+			<hr color="ffffff" noshade size=1>
+			
+		<h2 align="left">
+			<font Face="arial" color="FFFFFF"><u>Erstellung des LP-Ansatzes</u></font></h2>
+		<p><font Face="arial" color="FFFFFF">Die wesentlichste &Auml;nderung im LP-Ansatz ist nat&uuml;rlich, dass es sich nun nicht mehr um 
+			eine Minimierung der Zimmer handelt, sondern um eine Maximierung des potentiellen Deckungsbeitrages.</font></p>
+			
+		<p class="MsoNormal"><font face="Candara"><!--[if gte vml 1]><v:shapetype id="_x0000_t75" coordsize="21600,21600"
+			o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f"
+			 stroked="f">
+			 <v:stroke joinstyle="miter"/>
+			 <v:formulas>
+			  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+			  <v:f eqn="sum @0 1 0"/>
+			  <v:f eqn="sum 0 0 @1"/>
+			  <v:f eqn="prod @2 1 2"/>
+			  <v:f eqn="prod @3 21600 pixelWidth"/>
+			  <v:f eqn="prod @3 21600 pixelHeight"/>
+			  <v:f eqn="sum @0 0 1"/>
+			  <v:f eqn="prod @6 1 2"/>
+			  <v:f eqn="prod @7 21600 pixelWidth"/>
+			  <v:f eqn="sum @8 21600 0"/>
+			  <v:f eqn="prod @7 21600 pixelHeight"/>
+			  <v:f eqn="sum @10 21600 0"/>
+			 </v:formulas>
+			 <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+			 <o:lock v:ext="edit" aspectratio="t"/>
+			</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:453pt;
+			 height:117pt' o:ole="">
+			 <v:imagedata src="file:///C:/DOKUME~1/Besitzer/LOKALE~1/Temp/msoclip1/01/clip_image001.png"
+			  o:title=""/>
+			</v:shape><![endif]-->
+			<img src="Hotelm1.jpg" v:shapes="_x0000_i1025" width="604" height="156"><!--[if gte mso 9]><xml>
+			 <o:OLEObject Type="Embed" ProgID="PBrush" ShapeID="_x0000_i1025"
+			  DrawAspect="Content" ObjectID="_1294172630">
+			 </o:OLEObject>
+			</xml><![endif]-->
+			</font></p>
+			
+		<P><font Face="arial" color="FFFFFF">Hier ist ein beispielhaftes LP-Modell zu sehen, wie es vom Hotelmanager erstellt und vom Batch-Solver 
+			gel&ouml;st wird. Hier sollen zwei Zimmerkategorien mit einem Buchungswunsch von 2 Tagen und einem 
+			Betrachtungszeitraum von je 4 Tagen (normalerweise 6 Tage) dargestellt sein.</font></p>
+			
+		<P><font Face="arial" color="FFFFFF">Die Variablen X1-X4 stehen dabei für die Tage 1-4 des Betrachtungszeitraums und einer Buchung in Kategorie 1.
+			X5-X8 stellen ebenfalls diese Tage für Kategorie 2 dar. Zwischen X4 und X5 sieht man einen „Knick“ in den diagonal verlaufenden Einserkolonnen, 
+			da dort der Kategorienwechsel stattfindet.</font></p>
+			
+		<P><font Face="arial" color="FFFFFF">Pro Kategorie gibt es drei Buchungsm&ouml;glichkeiten, insgesamt also sechs. Da nur eine davon gew&auml;hlt werden kann, 
+			sind sechs Schaltervariablen notwendig. Diese werden durch X9-X14 dargestellt.</font></p>
+			
+		<P><font Face="arial" color="FFFFFF">Restriktion 7 schließt die Auswahl mehrerer Schaltervariablen aus, Restriktion 8 sollte eigentlich nicht notwendig sein,
+		da sie in den anderen Restriktionen bereits implizit enthalten ist. Jedoch tauchten bei gr&ouml;ßeren Modellen ohne diese Restriktion bei LP-Solve Berechnungsfehler auf,
+		die nicht ganz nachvollziehbar waren. Mit dieser Restriktion funktionierte alles tadellos!</font></p>
+		
+		<P><font Face="arial" color="FFFFFF">In der Zielfunktion werden die errechneten potentiellen Deckungsbeiträge eingetragen und die Funktion wird maximiert! 
+		Im Programm werden die errechneten Deckungsbeitr&auml;ge mit dem Faktor 100 multipliziert und dann der ganzzahlige Anteil eingetragen, somit wird der Deckungsbeitrag 
+		auf zwei Stellen hinter dem Komma ber&uuml;cksichtigt. An dem Ergebnis der Maximierung ändert dies nichts, jedoch ist der absolut erzielte Deckungsbeitrag um den Faktor 100
+		h&ouml;her als tats&auml;chlich!</font></p>
+		<P><font Face="arial" color="FFFFFF">Die Variablen X1-X14 sind alle bin&auml;r (ganzzahlig, >= 0 und <= 1).</font></p>
+		
+		<hr color="ffffff" noshade size=1>
+		
+		<h2 align="left">
+			<font Face="arial" color="FFFFFF"><u>Neuer Reiter "LP-Solve: LP Restriktionen und LP-Solve: LP Lösung"</u></font></h2>
+		<P><font Face="arial" color="FFFFFF">Auf dem Reiter "LP-Solve: Restriktionen und LP-Solve: LP Lösung  besteht nun die Möglichkeit, sich über zwei verschiedene Reiter die Restriktionen
+			und sich das LP-Solve Ergebnis anzeigen zu lassen. </font></p>
+			
+		<br>
+		
+		<img align="center" src="HotelmanagerNeu_Ausgabe_R.JPG">
+		<br>
+		<br>
+		<img align="center" src="HotelmanagerNeu_Ausgabe_L.JPG">
+			
+		<hr color="ffffff" noshade size=1>
+		<P><FONT color="ffffff" SIZE="-1" face="arial">&#169; 2013 Fachhochschule Konstanz</FONT></P>
+		
+	</body>
+</html>
+

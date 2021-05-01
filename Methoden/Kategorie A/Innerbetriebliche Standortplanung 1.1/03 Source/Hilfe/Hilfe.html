@@ -1,0 +1,92 @@
+<!DOCTYPE HTML >
+<html>
+   <head>
+		<meta charset="utf-8" >
+      <title>Hilfe - Innerbetriebliche Standortplanung</title>
+	  <style type="text/css">
+		.text{
+			font-family: Arial;
+		}
+		.berechnung{
+			width: 70%;
+			height: 500px;
+		}
+		.bild{
+			position: absolute;
+			float: right;
+			margin: right;
+			height: 500px;
+			left: 55%;
+		}
+		td,th{
+			border: 1px double grey;
+			text-align: left;
+			padding: 7px; 
+		}
+		table{
+			border-collapse: collapse;
+		}
+		h1,h2,h3,h4{
+			color: #00B2EE;
+		}
+	  </style>
+   </head>
+   <body>
+		<div class="text">
+			<h1>Hilfe - Innerbetriebliche Standortplanung</h1>
+			<br></br>
+			<h2>Informationen zur Methode</h2>
+			<p>Die innerbetriebliche Standortplanung behandelt die Zuordnung von Fertigungseinheiten auf mögliche Standorte. Mathematisch gesehen behandelt es das Zuordnungsmodell. Die Fertigungseinheiten sind so zu platzieren, dass der Transportaufwand, der zwischen den Fertigungseinheiten zu transportierenden Mengen, minimiert wird. Der Transportaufwand (TAW) ist die Summe aller mathemaischen Produkte, die sich aus den transportierenden Mengen zwischen paarweise zugeordneten Fertigungszellen und den betreffenden Entfernungen ergeben.</p>
+			<br></br>
+			<h2>Bearbeiten - Einstellungen</h2>
+			<ul>
+				<li><u>Maximale Anzahl von Standorte</u>: Änderung der default-mäßigen Einstellung von 10 Standorten.</li>
+				<li><u>Detaillierte Ausgabe des Entscheidungsbaumverfahrens</u>: Diese Option ermöglicht die Ausgabe des Entscheidungsbaumes zur Aufgabe.</li>
+				<li><u>Bei Abbruch das vorläufig optimale Ergebnis ausgeben</u>: Kann das Ergebnis nicht vollständig berechnet werden, wird bei der Auswahl dieser Funktion das bis zum Abbruch berechnete Ergebnis ausgegeben.</li>
+			</ul>
+			<br></br>
+			<div class="berechnung">
+				<img class="bild" src="Entscheidungsbaum.png" alt="Entscheidungsbaum Beispiel"/>
+				<div class="berechnung">
+					<h2>Berechnungsart</h2>
+					<h3>Enumeration</h3>
+					<p>Die vollständige Enumeration bezeichnet das Vorgehen, bei welchem alle zulässigen Lösungen berechnet werden und daraus die Kombination mit dem geringsten Zielfunktionswert ausgesucht wird. Die möglichen Fehler durch das Übersehen von Kombinationen werden verringert, indem die Lösungssuche nach einer bestimmten logischen Weise strukturiert wird. </p>
+					<h3>Entscheidungsbaumverfahrens</h3>
+					<p>Das Entscheidungsbaumverfahren zeigt	die Organisation der Lösungsschritte, mit denen das Modell solange manipuliert wird, bis der gesuchte maximale oder minimale Lösungswert gefunden ist. Es gibt immer n! zulässige Lösungen. </p>
+					<p>Im Beispiel (siehe rechts) wird der Entscheidungsbaum zu einer Aufgabe mit 4 Standorten (A-D) und 4 Maschinen (1-4) angezeigt.</p>
+				</div>
+			</div>
+			<div class="zuordnung">
+				<h2>Ausgabe - Ergebnis</h2>
+				<p>Das Ergebnis besteht aus der Zuordnungsmatrix und dem Zuordnungsergebnis.</p>
+				<h3>Zuordnungsmatrix</h3>
+				<p>Die Zuordnungsmatrix des Ergebnisses gibt die passende quadratische Zielfunktion zur Eingabe an. Dabei sind die Werte der einzelnen Zellen der berechnete Transportaufwand. Beispiel: Der Wert in Zelle 1 ergibt sich aus dem Produkt der Summe der Transportmengen zwischen den Maschinen 1 und 2 und der Entfernung der Standorte A und B (z.B. Menge(1,2) * Entfernung(A,B) = (10 + 18) * 60 = 1680 ). Der Transportaufwand der Matrix tritt ein, wenn x<sub>(A,1)</sub> * x<sub>(B,2)</sub> den Wert 1 annimmt. Wird jedoch einer dieser Werte x<sub>(A,1)</sub> oder x<sub>(B,2)</sub> 0 tritt der Transportaufwand nicht ein.</p>
+				<h3>Zuordnungsergebnis</h3>
+				<p>Das Zuordnungsergebnis gibt an welche Maschine welchem Standort zugeordnet wurde. Die obere Zeile zeigt die einzelnen Standorte an. In der unteren Zeile wird angegeben welche Maschine dem entsprechenden Standort zugeordnet wurde.</p>
+			</div>
+			<br></br>
+			<div class="tabelle">
+				<h2>Über...</h2>
+				<table>
+					<tr>
+						<th> Version </th>
+						<th> Author </th>
+						<th> Datum </th>
+					</tr>
+					<tr>
+						<td> 1.0 </td>
+						<td> Marc Junghänel </td>
+						<td> 04. Oktober 1999 </td>
+					</tr>
+					<tr>
+						<td> 1.1 </td>
+						<td> Sarah Amann & Jenny Schwarz </td>
+						<td> 01. Juli 2015 </td>
+					</tr>
+				</table>
+			</div>
+			<br>
+			<br/>
+		</div>
+	</body> 
+</html>

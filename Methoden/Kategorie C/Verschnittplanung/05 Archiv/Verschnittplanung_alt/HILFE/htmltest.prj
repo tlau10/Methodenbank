@@ -1,0 +1,13 @@
+[Project htmltest]
+CreatedBy=MH
+CreatedOn=27.06.2001
+HelpTitle=Verschnittplanung
+Contents=Inhalt
+WebOutputPath=d:\lehre\besf\or_mbank\verschn\hilfe\webpages\
+DetailsPath=d:\lehre\besf\or_mbank\verschn\hilfe\
+BuildRequired=yes
+WebGraphicsPrefix=
+HTMLHeader=
+HTMLFooter=
+HTMLSideBar=
+HtmlBackground=

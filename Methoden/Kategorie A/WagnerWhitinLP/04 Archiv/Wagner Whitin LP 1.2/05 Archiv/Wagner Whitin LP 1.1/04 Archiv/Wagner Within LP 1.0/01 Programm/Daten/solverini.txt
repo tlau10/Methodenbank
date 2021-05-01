@@ -1,0 +1,6 @@
+Working Directory:
+c:\temp
+Solver Directory:
+C:\Methodendatenbank\Solver\LP_Solve\Exec
+Solver Name:
+lp_solve.exe

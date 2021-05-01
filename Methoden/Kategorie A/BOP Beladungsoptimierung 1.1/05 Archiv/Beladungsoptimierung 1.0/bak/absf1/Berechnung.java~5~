@@ -1,0 +1,214 @@
+package absf1;
+
+import java.lang.Thread;
+import java.lang.String;
+import java.io.*;
+import javax.swing.table.TableModel;
+import javax.swing.*;
+import java.util.*;
+/**
+ * <p>Title: Solver Interface</p>
+ * <p>Description:Interface  Schnittstelle für die Solverklassen</p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author Florian Puetz
+ * @version 1.0
+ */
+
+public class Berechnung {
+
+
+
+  /**
+   * Konstruktor der Klasse Berechnung. Übergabe der Parameter und setzen der Membervariablen. Anlegen der benötigten Variablen.
+   * @param pFahrzeuge
+   * @param pGebinde
+   * @param pSolverpfad
+   */
+  public Berechnung(TableModel pFahrzeuge, TableModel pGebinde, String pSolverpfad) {
+    tblFahrzeuge = pFahrzeuge;
+    tblGebinde = pGebinde;
+    mySolver = new LPSolve();
+    ListVarianten = new ArrayList();
+    mySolverpfad = pSolverpfad;
+    ArrayVarianten= new int[tblGebinde.getRowCount()];
+    verhaeltnis = new double[tblGebinde.getRowCount()];
+  }
+
+  /**
+   * Überprüft die eingegebenen Daten auf Plausibilität
+   * Eingabe erfolgt in mm -> prüfen ob Benutzer das weiß -> Eingabe >1000
+   * Gibt 1 zurück wenn bei LKW eine Eingabe kleiner 1000 ist (LKW < 1m)
+   * @return
+   */
+
+  public int pruefeDaten() {
+    for(int j=0; j< tblGebinde.getRowCount(); j++)
+    {
+      int gebindeLaenge = Integer.parseInt( (tblGebinde.getValueAt(j, 1)).
+                                           toString()); //Länge des Gebinde
+      int gebindeBreite = Integer.parseInt( (tblGebinde.getValueAt(j, 2)).
+                                           toString()); //Breite des Gebinde
+      int gebindeHoehe = Integer.parseInt( (tblGebinde.getValueAt(j, 3)).
+                                          toString()); //Hoehe des Gebinde
+    }
+    for(int i=0; i < tblFahrzeuge.getRowCount(); i++) {
+      int laenge = Integer.parseInt( (tblFahrzeuge.getValueAt(i, 1)).
+                                          toString()); //Länge des  Fahrzeugs
+      int breite = Integer.parseInt( (tblFahrzeuge.getValueAt(i, 2)).
+                                          toString()); //Breite des Fahrzeugs
+      int hoehe = Integer.parseInt( (tblFahrzeuge.getValueAt(i, 3)).
+                                         toString()); //Hoehe des Fahrzeugs
+           if(laenge < 1000 || breite < 1000 || hoehe < 1000)
+           {
+             return 1;
+           }
+      }
+    }
+
+
+
+  /**
+   * Eigentliche Berechnungs-Methode, die den Algorithmus zur Berechnung der Varianten enthält.
+   * @return
+   */
+  public int berechne() {
+    //Algorithmus
+
+
+    //für jedes Fahrzeugs werden die Beladungsvarianten berechnet.
+    for(int i=0; i < tblFahrzeuge.getRowCount(); i++) {
+      int gesamtLaenge = Integer.parseInt((tblFahrzeuge.getValueAt(i, 1)).toString()); //Länge des  Fahrzeugs
+      int gesamtBreite = Integer.parseInt((tblFahrzeuge.getValueAt(i, 2)).toString()); //Breite des Fahrzeugs
+      int gesamtHoehe = Integer.parseInt((tblFahrzeuge.getValueAt(i, 3)).toString()); //Hoehe des Fahrzeugs
+      //Varianten, bei denen nur die gleichen Gebinde beladen werden.
+      for(int j=0; j< tblGebinde.getRowCount(); j++)
+      {
+        int gebindeLaenge = Integer.parseInt((tblGebinde.getValueAt(j,1)).toString()); //Länge des Gebinde
+        int gebindeBreite = Integer.parseInt((tblGebinde.getValueAt(j,2)).toString()); //Breite des Gebinde
+        int gebindeHoehe = Integer.parseInt((tblGebinde.getValueAt(j,3)).toString()); //Hoehe des Gebinde
+        //ein Gebinde wird eingeladen
+        int anzahlLaenge = gesamtLaenge/gebindeLaenge;
+        int anzahlBreite = gesamtBreite/gebindeBreite;
+        int anzahlHoehe = gesamtHoehe/gebindeHoehe;
+        int anzahlElem = anzahlLaenge * anzahlBreite * anzahlHoehe;
+        //schreibe in Array
+        ArrayVarianten[j] = anzahlElem;
+
+        //Verhältnis ausrechnen
+        double tempVerhaeltnis1 = ArrayVarianten[0];
+        double tempVerhaeltnis2 = ArrayVarianten[j];
+        double tempVerhaeltnis = tempVerhaeltnis1/tempVerhaeltnis2;
+        verhaeltnis[j] = tempVerhaeltnis;
+      }
+      //Berechnung aller möglichen Alternativen
+
+      //Anlegen des Arrays für die erste Zeile und mit 0 initialisieren
+      int[] tempVarianten;
+      int maxSpalten = tblGebinde.getRowCount()+1;
+      tempVarianten = new int[tblGebinde.getRowCount()+1];
+      for(int g=0; g < tblGebinde.getRowCount()+1; g++)
+      {
+        tempVarianten[g] = 0;
+      }
+      aktCountSpalte=1; //erste Spalte ist für FahrzeugID reserviert
+      tempVarianten[0] = Integer.parseInt((tblFahrzeuge.getValueAt(i, 0)).toString()); //die LKW-ID eintragen
+      tempVarianten[aktCountSpalte] = ArrayVarianten[0]; //den ausgerechneten Wert in die Zeile 1, Spalte 2 schreiben
+      ListVarianten.add(tempVarianten); //erste Zeile in die List eintragen
+      int myEnd = 0;
+      if(tblGebinde.getRowCount() < 3){
+        myEnd = tblGebinde.getRowCount()-1; //Hilfsvariable zum finden der Zählspalte
+      }
+      else
+        myEnd = 2;
+      int durchLauf = 0;
+      if(tblGebinde.getRowCount()>1) {
+      while(tempVarianten[aktCountSpalte] >0 ) {
+        //nehme letztes Array aus der Liste und kopiere es
+        tempVarianten = new int[tblGebinde.getRowCount()+1];
+        //Alte Zeile in temporäres Array schrieben
+        int[]oldZeile = new int[tblGebinde.getRowCount()+1];
+        oldZeile=(int[])ListVarianten.get(ListVarianten.size()-1);
+        //Werte übertragen bis zur aktuellen Zählspalte, sonst mit 0 initialisieren
+        for(int o=0; o<tblGebinde.getRowCount()+1; o++) {
+          if(o<aktCountSpalte+1)
+           tempVarianten[o] = oldZeile[o];
+          else
+            tempVarianten[o] = 0;
+        }
+        if(aktCountSpalte+1 != maxSpalten) {
+          tempVarianten[aktCountSpalte]--; //Wert der aktuellen CountSpalte 1 dekrementieren
+          //berechnung der nächsten Spalte
+          //Formel
+          double multiSumme =0;
+          for(int b=1; b<=aktCountSpalte; b++)
+          {
+            multiSumme += (tempVarianten[b]*verhaeltnis[b-1]);
+          }
+          double temp =(ArrayVarianten[0]-multiSumme)/verhaeltnis[aktCountSpalte]; //Verhaeltnisliste hat eine Spalte weniger
+          tempVarianten[aktCountSpalte+1] = (int)temp;
+        //Ende der Formel
+        }
+        ListVarianten.add(tempVarianten);
+
+        //to do engültige Berechnung der aktuellen CountSpalte
+        if(aktCountSpalte+myEnd == maxSpalten && tempVarianten[aktCountSpalte] == 0) //Wenn aktCountSpalte auf vorletzter Spalte ist
+        {
+          aktCountSpalte--;
+          while(tempVarianten[aktCountSpalte] == 0 && aktCountSpalte > 1){
+            aktCountSpalte--;
+          }
+        }
+        else if(aktCountSpalte+2 != maxSpalten) {
+          //Spaltencounter wird hoch gezählt
+          aktCountSpalte++;
+        }
+      }
+      }
+
+    }
+
+    //erstellen der Zielfunktion, Restriktion und Bedingung
+    mySolver.writeToInFile(ListVarianten, tblGebinde);
+
+    try {
+    int result = mySolver.executeSolver(mySolverpfad);   //der Solver wird gestartet
+    return result;
+    }
+    catch(IOException e)
+    {
+      e.printStackTrace();
+      return 1;
+    }
+
+
+  }
+
+  /**
+   * Fordert das Ergebnis in Form einer ArrayList an.
+   * @return
+   */
+  public ArrayList parseErgebnis()
+  {
+    return mySolver.getOutput();
+  }
+
+  /**
+   * Liefert die Liste mit den verschiedenen Varianten.
+   * @return
+   */
+  public ArrayList getVarianten()
+  {
+    return ListVarianten;
+  }
+
+  private Solver mySolver;
+  private TableModel tblFahrzeuge;
+  private TableModel tblGebinde;
+  private ArrayList ListVarianten;
+  private String mySolverpfad;
+  private int[] ArrayVarianten;
+  private double[] verhaeltnis;
+  private int aktCountSpalte;
+  private boolean zeileNeu;
+}

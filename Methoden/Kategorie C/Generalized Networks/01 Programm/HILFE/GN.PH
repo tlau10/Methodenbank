@@ -1,0 +1,127 @@
+"HWAWIN
+10000;
+<= 10000;
+Ausgabefenster
+Beispiel
+Berechn
+Darstellung
+Das Ausgabefenster
+Das Eingabefenster
+Das LP-Modell
+Das Programm
+Date
+Der
+Die
+Eine Einführung
+Einführung
+Eingabefenster
+Endknoten
+Falls mehrere
+Feld
+Fenster
+Generalized
+Gewinn
+Grafikausgabe
+Grafische Darstellung
+Hauptbildschirm
+Hilfe
+Hilfedatei
+In einem
+Inhalt
+Input
+Kante
+Kapazitä
+Knoten
+Konservativität
+Kosten
+LP-Modell
+Lösung
+Menge
+Menü
+Minimierung
+Modell
+Multiplikator
+Nach
+Networks
+Netzwerk
+Obergrenze
+Optionen
+Output
+Problem
+Programm
+Quelle
+Rohrleitungs
+Schaltfläche
+Schließen
+Senke
+Shareware-Version
+Sichert das aktuell
+Solver
+Spalte
+Speichern
+Startknoten
+Tabelle
+Teil
+Transport
+Untergrenze
+Ver
+Verzeichnisse
+Wert
+Zeigt
+Zielfunkt
+aktuell
+ange
+angegeben
+auch
+auf
+aus
+ausgewählt
+beendet.
+besteht
+bzw.
+das
+dem
+den
+der
+des
+die
+dieses
+eigentlichen
+ein
+eine
+einem
+einer
+eines
+einziger
+entspricht
+erfolg
+erste
+fiktiver
+folgende
+gegeben
+gewünschte
+grafisch
+ist
+jeweilige
+kann
+lediglich
+mehrere
+müssen
+oder
+sein
+setzen
+sind
+soll
+spezielle
+und
+unter
+verschiedenen
+von
+werden
+wird
+x12
+x13
+x24
+x34
+zwei
+Über dieses Programm

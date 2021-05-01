@@ -1,0 +1,1 @@
+defauldPeriode=60LPsolvePath=C:\\Methodenbank\\Solver\\LP_Solve\\Exec\\lp_solve.exeLPsolvePath2=C:\Methodenbank\Solver\Power LP 0.7.4\01 Programm\Solver\MOPS 7.06\Exec\mops.execheckedPath=C:\\Methodenbank\\Solver\\LP_Solve\\Exec\\lp_solve.exe

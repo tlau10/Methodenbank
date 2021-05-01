@@ -1,0 +1,6 @@
+Fri Mar 27 13:51:16 1998
+Installing Perl for Win32 into C:\Perl
+Added key to HKEY_LOCAL_MACHINE\SOFTWARE\ActiveWare\Perl5 ..
+Adding C:\Perl\bin to script path information
+Adding C:\Perl\lib to library include path information
+Couldn't retrieve path information from session manager!!

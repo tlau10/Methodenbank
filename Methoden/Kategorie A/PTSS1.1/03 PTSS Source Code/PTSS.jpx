@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--JBuilder XML Project-->
+<project>
+  <property category="idl" name="ProcessIDL" value="false"/>
+  <property category="optimize.0" name="BuildTargetOnOptimize" value="com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;make"/>
+  <property category="optimize.0" name="OptimizableType" value="com.borland.jbuilder.optimize.IntroOptimizeitCoverageAnalyzer"/>
+  <property category="runtime.0" name="BuildTargetOnRun" value="com.borland.jbuilder.build.ProjectBuilder$ProjectBuildAction;make"/>
+  <property category="runtime.0" name="ConfigurationName" value="PTSS"/>
+  <property category="runtime.0" name="RunnableType" value="com.borland.jbuilder.runtime.ApplicationRunner"/>
+  <property category="runtime.0" name="application.class" value="ptss.PTSS"/>
+  <property category="runtime.0" name="application.vmparameters" value="-Dwasp.location=&quot;C:\Dokumente und Einstellungen\Administrator\.wasptools\clients\default&quot;"/>
+  <property category="runtime.0" name="appserver.parameters" value=""/>
+  <property category="runtime.0" name="appserver.servername" value=""/>
+  <property category="runtime.0" name="appserver.vmparameters" value=""/>
+  <property category="runtime.0" name="server.arguments" value=""/>
+  <property category="runtime.0" name="server.disableServerClassTracing" value="0"/>
+  <property category="runtime.0" name="server.instance.name" value=""/>
+  <property category="runtime.0" name="server.name" value="Tomcat 3.3"/>
+  <property category="runtime.0" name="server.vmparameters" value=""/>
+  <property category="runtime.0" name="test.harness" value="com.borland.jbuilder.unittest.JBTestRunner"/>
+  <property category="sys" name="AuthorLabel" value="@author"/>
+  <property category="sys" name="BackupPath" value="bak"/>
+  <property category="sys" name="BeansInstantiate" value="false"/>
+  <property category="sys" name="BraceStyle" value="0"/>
+  <property category="sys" name="CheckStable" value="1"/>
+  <property category="sys" name="Company" value=""/>
+  <property category="sys" name="CompanyLabel" value="Organisation:"/>
+  <property category="sys" name="Copyright" value="Copyright (c) 2002"/>
+  <property category="sys" name="CopyrightLabel" value="Copyright:"/>
+  <property category="sys" name="DefaultPath" value="src"/>
+  <property category="sys" name="Description" value=""/>
+  <property category="sys" name="DescriptionLabel" value="Beschreibung:"/>
+  <property category="sys" name="DocPath" value="doc"/>
+  <property category="sys" name="EventMatch" value="false"/>
+  <property category="sys" name="EventStyle" value="1"/>
+  <property category="sys" name="ExcludeClassEnabled" value="0"/>
+  <property category="sys" name="IncludeTestPath" value="1"/>
+  <property category="sys" name="InstanceVisibility" value="0"/>
+  <property category="sys" name="JDK" value="java 1.3.1-b24"/>
+  <property category="sys" name="Libraries" value="JBCL;JSX"/>
+  <property category="sys" name="OutPath" value="classes"/>
+  <property category="sys" name="SourcePath" value="src;test"/>
+  <property category="sys" name="SyncOutdir" value="0"/>
+  <property category="sys" name="TestPath" value="src"/>
+  <property category="sys" name="Title" value=""/>
+  <property category="sys" name="TitleLabel" value="\u00dcberschrift:"/>
+  <property category="sys" name="Version" value="1.0"/>
+  <property category="sys" name="VersionLabel" value="@version"/>
+  <property category="sys" name="WorkingDirectory" value="."/>
+  <property category="sys"
+    name="uidesign.size.Simulation.SimulationView" value="434,326"/>
+  <property category="sys" name="uidesign.size.ptss.ModellierView" value="503,364"/>
+  <property category="sys" name="uidesign.size.ptss.Progress" value="400,61"/>
+  <property category="team" name="ignorePath.0" value="bak"/>
+  <property category="team" name="ignorePath.1" value="classes"/>
+  <property category="team" name="ignorePath.10" value="temp/lpsolve_batchOutStream.txt"/>
+  <property category="team" name="ignorePath.11" value="temp/start_lpsolve.bat"/>
+  <property category="team" name="ignorePath.2" value="doc"/>
+  <property category="team" name="ignorePath.3" value="daten/test.xml"/>
+  <property category="team" name="ignorePath.4" value="PTSS.html"/>
+  <property category="team" name="ignorePath.5" value="PTSS.jar"/>
+  <property category="team" name="ignorePath.6" value="PTSSW.exe"/>
+  <property category="team" name="ignorePath.7" value="temp/lp_ausgabe.txt"/>
+  <property category="team" name="ignorePath.8" value="temp/lp_eingabe.lp"/>
+  <property category="team" name="ignorePath.9" value="temp/lpsolve_batchErrorStream.txt"/>
+  <node name="ptts" type="Archive">
+    <property category="archiving" name="archiverClass" value="com.borland.jbuilder.wizard.archive.ApplicationArchiver"/>
+    <property category="archiving" name="executableEnabled.1" value="1"/>
+    <property category="archiving" name="executableEnabled.2" value="0"/>
+    <property category="archiving" name="executableEnabled.3" value="0"/>
+    <property category="archiving" name="executableEnabled.4" value="0"/>
+    <property category="archiving" name="executableEnabled.5" value="0"/>
+    <property category="archiving" name="executableFiles.1" value=""/>
+    <property category="archiving" name="executableFiles.2" value=""/>
+    <property category="archiving" name="executableFiles.3" value=""/>
+    <property category="archiving" name="executableFiles.4" value=""/>
+    <property category="archiving" name="executableFiles.5" value=""/>
+    <property category="archiving" name="libraryStates.1" value="3:JSX"/>
+    <property category="archiving" name="targetCompressed" value="1"/>
+    <property category="archiving" name="targetPath" value="PTSS.jar"/>
+  </node>
+</project>

@@ -1,0 +1,726 @@
+DEBUG : de.fh_konstanz.simubus.util.Logger:setLogToFile (144)
+	Set logToFile to true
+DEBUG : de.fh_konstanz.simubus.model.SimuKonfiguration:setSound (282)
+	Sound: Ja
+DEBUG : de.fh_konstanz.simubus.util.Logger:setCurrentLoglevel (153)
+	LogLevel set to 0
+DEBUG : de.fh_konstanz.simubus.view.SimuPanel:startAnimation (235)
+	Bus-Position: 0 0
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7360991965562448
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.47992584018663476
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6507728584745456
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7344524334064899
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.04851219608835877
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5178128418158501
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.008992318819275424
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5030192802939176
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.4994374646999167
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.17330223557618685
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.3260930184426718
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.2930591553806653
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9776551614863546
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6931998125585632
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6950386139092825
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.20380490052716793
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.4504968358471869
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.2437719048897401
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7739912469110949
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6601298187876783
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5258389845578075
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8989628841463092
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7820515474530104
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.4853903567422331
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.972409655607598
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.09180818423907455
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.291202060403433
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.18160507206838183
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.1866892850669536
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.3298246096564663
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.42773579017470853
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8427514106853841
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8446870016746132
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.2251587549077626
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.34645059344796447
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.37696121058126075
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.22687366736428938
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.1402751246914059
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.09089122646579706
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9633966131176013
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9545529703783724
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.999964996696025
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.2029196501474836
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9195872467684454
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.12595157841738347
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.0704571918763558
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6948956454193275
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.40501013312014333
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.09031006335372105
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7564125317191512
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.24774803654100985
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6366934706611582
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.34825531438573487
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7165823650303107
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7482187163815854
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5426257536392919
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.3167360394019608
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8489132641332857
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.528560017295157
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.02875106114033621
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9468025110158058
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9458785784837948
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9219670627563216
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.2853322940405929
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.4325117621597464
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.07081837189619955
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9970261872978051
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8084630981297187
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.49923963356848866
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9560688858719931
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5844607097330924
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.0625101541987908
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.009680557665186829
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9736627646531056
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9594554377791108
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9592667447534011
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.875816920764425
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.4793814601619629
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7928407941810031
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5795991067833244
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5151385826322535
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5809407320760376
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.23441833733482065
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8133666367107575
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.339394417668727
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6310909070679861
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.24170842494914058
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8433973749922895
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.014156598314266411
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9964127752062106
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5174016074769221
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6492996949355706
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.477479358285422
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9025906757882282
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6687948649370553
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9568919584819628
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9559329934942637
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.4069437474592351
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.45249392367963126
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.3090309219551124
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.4662948010040714
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7989968874376681
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.21766296788006068
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.1836202596459532
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5411779150412273
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.979872312743763
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9111029599643291
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.33458074074272137
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.16687942004101897
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.6212833651104614
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.257439832596452
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7815628090783032
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.17172885620944778
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.15491147482440726
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9777037142763519
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.12418336197381397
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.553218624238619
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8929477985165127
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.15958068214722276
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.10656742549666831
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.4821972630967787
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8305805579085459
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.1426179581914404
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.607976500060297
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9724069659695436
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9312093933695434
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.531664109469311
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.4853044450471242
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.45364662864835215
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9451682286750762
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.2018251760302987
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.9432223411058334
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.7368416538816531
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.06273747653543471
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.40821839890973044
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.3577534148713739
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.10930164952266685
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.95222705893402
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle1#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.36380441968655697
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.729059680825573
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.5484474898583959
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle2#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.98391163063555
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.8985793036402006
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.18922082625326064
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.29228875129384946
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.690598936012985
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle3#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.06340778697329374
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle2#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.24078743359602695
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:createStartHS (108)
+	Zufahllsazhl: 0.2549329694244161
+DEBUG : de.fh_konstanz.simubus.model.simulation.events.PassagierGeneratorEvent:eventRoutine (75)
+	StartHS: Haltestelle1#1 ZielHS: Haltestelle3#1 Buslinie: Linie 1
+DEBUG : de.fh_konstanz.simubus.util.Logger:setLogToFile (144)
+	Set logToFile to true
+DEBUG : de.fh_konstanz.simubus.model.SimuKonfiguration:setSound (282)
+	Sound: Ja
+DEBUG : de.fh_konstanz.simubus.util.Logger:setCurrentLoglevel (153)
+	LogLevel set to 2
+DEBUG : de.fh_konstanz.simubus.controller.JToggleButtonListener:actionPerformed (21)
+	JToggleButtonLister
+DEBUG : de.fh_konstanz.simubus.view.View:ChangeJToggleButtons (198)
+	Button: Haltestelle einfügen : true
+
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 163:95
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (121)
+	JToggleButton: Haltestellen einfügen aktviert
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 373:312
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (121)
+	JToggleButton: Haltestellen einfügen aktviert
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 255:352
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (121)
+	JToggleButton: Haltestellen einfügen aktviert
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 282:229
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (121)
+	JToggleButton: Haltestellen einfügen aktviert
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 384:184
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (121)
+	JToggleButton: Haltestellen einfügen aktviert
+DEBUG : de.fh_konstanz.simubus.controller.JToggleButtonListener:actionPerformed (21)
+	JToggleButtonLister
+DEBUG : de.fh_konstanz.simubus.view.View:ChangeJToggleButtons (198)
+	Button: Ziele einfügen : true
+
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 164:139
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (118)
+	JToggleButton: Ziele einfügen aktiviert
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 243:243
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (118)
+	JToggleButton: Ziele einfügen aktiviert
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 201:370
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (118)
+	JToggleButton: Ziele einfügen aktiviert
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 369:356
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (118)
+	JToggleButton: Ziele einfügen aktiviert
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (95)
+	Postion pressed Left Mouse: 438:252
+DEBUG : de.fh_konstanz.simubus.controller.MyMarqueeHandler:mousePressed (118)
+	JToggleButton: Ziele einfügen aktiviert
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (55)
+	createOrMatrix
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (58)
+	anzahl Haltestellen: 5
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (60)
+	anzahl GesperrteHaltestellen: 0
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (62)
+	neues orModel anlegen: ziele x anzahlFelder: 6x4096
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (69)
+	durchlauf target nr 0
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (75)
+	durchlauf strasse nr 0
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (69)
+	durchlauf target nr 1
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (75)
+	durchlauf strasse nr 0
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (69)
+	durchlauf target nr 2
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (75)
+	durchlauf strasse nr 0
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (69)
+	durchlauf target nr 3
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (75)
+	durchlauf strasse nr 0
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (69)
+	durchlauf target nr 4
+DEBUG : de.fh_konstanz.simubus.util.OrUtil:createOrMatrix (75)
+	durchlauf strasse nr 0
+DEBUG : de.fh_konstanz.simubus.util.OrOptiIterator:<init> (101)
+	OrOpti: new
+DEBUG : de.fh_konstanz.simubus.model.optimierung.OrIterator:<init> (42)
+	new OrIterator, matrix dimension 6x4096
+DEBUG : de.fh_konstanz.simubus.util.OrOptiIterator:transform (152)
+	OrOpti: transform
+DEBUG : de.fh_konstanz.simubus.util.OrOptiIterator:solve (140)
+	OrOpti: solve
+DEBUG : de.fh_konstanz.simubus.util.OrOptiIterator:fillMinimalMatrix (388)
+	nDimension: 0 rows:6
+DEBUG : de.fh_konstanz.simubus.model.optimierung.OrIterator:getSolution (361)
+	nrOfCombinations: 1
+DEBUG : de.fh_konstanz.simubus.model.optimierung.OrIterator:getSolution (364)
+	anzahl basisvars: 5
+DEBUG : de.fh_konstanz.simubus.model.optimierung.BasicSolution:<init> (34)
+	added basicsolution: [BasicVariable: [row: 1] [column: 462] [value: 1.0] ]
+DEBUG : de.fh_konstanz.simubus.model.optimierung.BasicSolution:<init> (34)
+	added basicsolution: [BasicVariable: [row: 2] [column: 1175] [value: 1.0] ]
+DEBUG : de.fh_konstanz.simubus.model.optimierung.BasicSolution:<init> (34)
+	added basicsolution: [BasicVariable: [row: 3] [column: 1749] [value: 1.0] ]
+DEBUG : de.fh_konstanz.simubus.model.optimierung.BasicSolution:<init> (34)
+	added basicsolution: [BasicVariable: [row: 4] [column: 1566] [value: 1.0] ]
+DEBUG : de.fh_konstanz.simubus.model.optimierung.BasicSolution:<init> (34)
+	added basicsolution: [BasicVariable: [row: 5] [column: 927] [value: 1.0] ]
+DEBUG : de.fh_konstanz.simubus.model.optimierung.BasicSolution:<init> (34)
+	added basicsolution: [BasicVariable: [row: 1] [column: 462] [value: 1.0] ]
+DEBUG : de.fh_konstanz.simubus.controller.XMLFileManager:deleteHaltestellenArray (1205)
+	Haltestelle: 4 deleted!
+DEBUG : de.fh_konstanz.simubus.controller.XMLFileManager:deleteHaltestellenArray (1205)
+	Haltestelle: 3 deleted!
+DEBUG : de.fh_konstanz.simubus.controller.XMLFileManager:deleteHaltestellenArray (1205)
+	Haltestelle: 2 deleted!
+DEBUG : de.fh_konstanz.simubus.controller.XMLFileManager:deleteHaltestellenArray (1205)
+	Haltestelle: 1 deleted!
+DEBUG : de.fh_konstanz.simubus.controller.XMLFileManager:deleteHaltestellenArray (1205)
+	Haltestelle: 5 deleted!
+DEBUG : de.fh_konstanz.simubus.controller.XMLFileManager:deleteHaltestellenArray (1205)
+	Haltestelle: 1 deleted!

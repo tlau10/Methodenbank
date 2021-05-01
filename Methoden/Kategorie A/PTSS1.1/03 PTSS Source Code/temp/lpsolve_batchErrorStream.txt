@@ -1,0 +1,2 @@
+ERR>Der Befehl "bin\\LP_SOLVE.EXE" ist entweder falsch geschrieben oder
+ERR>konnte nicht gefunden werden.

@@ -1,0 +1,15 @@
+[PropertyInfo]
+borderLayout1,BorderLayout,false,false, , ,false,<default>
+jMenuBar1,JMenuBar,false,false, , ,false,<default>
+jMenuFile,JMenu,false,false, , ,false,<default>
+jMenuFileExit,JMenuItem,false,false, , ,false,<default>
+jMenuHelp,JMenu,false,false, , ,false,<default>
+jMenuHelpAbout,JMenuItem,false,false, , ,false,<default>
+jMenuPlanErstellen,JMenuItem,false,false, , ,false,<default>
+statusBar,JLabel,false,false, , ,false,<default>
+titledBorder1,TitledBorder,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

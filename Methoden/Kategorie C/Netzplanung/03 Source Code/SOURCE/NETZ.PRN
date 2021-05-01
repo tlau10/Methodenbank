@@ -1,0 +1,1422 @@
+FEHLER1.FRM - 1
+
+Sub Befehl2_Click ()
+    abbruch = 1
+End Sub
+
+Sub Befehl1_Click ()
+    Unload fehler1
+End Sub
+
+
+FORM3.FRM - 1
+
+
+GRID_DO.FRM - 1
+
+Sub liste_fullen ()
+If Datopenflag <> 1 Then
+    MsgBox "Fehler", 48
+    Exit Sub
+End If
+If TatigkInput$ = "" Then
+        RowAnzahl = 10
+    Else
+        RowAnzahl = Val(TatigkInput$) + 1
+    End If
+    MousePointer = 11
+    grid_do.DO_LISTE.Cols = 7
+    grid_do.DO_LISTE.Rows = RowAnzahl
+    grid_do.DO_LISTE.FixedAlignment(0) = 2
+
+    grid_do.DO_LISTE.ColWidth(0) = 400
+    grid_do.DO_LISTE.Row = 0
+
+    grid_do.DO_LISTE.Col = 1
+    grid_do.DO_LISTE.ColWidth(1) = 1000
+    grid_do.DO_LISTE.Text = "Tatigkeit i"
+    grid_do.DO_LISTE.Col = 2
+    grid_do.DO_LISTE.ColWidth(2) = 1000
+    grid_do.DO_LISTE.Text = "Tatigkeit j"
+
+    grid_do.DO_LISTE.Col = 3
+    grid_do.DO_LISTE.ColWidth(3) = 1000
+    grid_do.DO_LISTE.Text = "dnom[i,j]"
+
+    grid_do.DO_LISTE.Col = 4
+    grid_do.DO_LISTE.ColWidth(4) = 1000
+    grid_do.DO_LISTE.Text = "dmin[i,j]"
+    grid_do.DO_LISTE.Col = 5
+    grid_do.DO_LISTE.ColWidth(5) = 1000
+    grid_do.DO_LISTE.Text = "w[i,j]"
+    grid_do.DO_LISTE.Col = 6
+    grid_do.DO_LISTE.ColWidth(6) = 1000
+    grid_do.DO_LISTE.Text = "knoten?"
+    For dsnr = 1 To RowAnzahl
+        grid_do.DO_LISTE.Col = 0
+        grid_do.DO_LISTE.Row = dsnr - 1
+        If Not (dsnr - 1) = 0 Then
+            grid_do.DO_LISTE.Text = "u" + (dsnr - 1)
+        End If
+    Next dsnr
+    For dsnr = 1 To RowAnzahl - 1
+        grid_do.DO_LISTE.SelStartCol = 1
+        grid_do.DO_LISTE.SelStartRow = dsnr
+        grid_do.DO_LISTE.SelEndCol = 6
+        grid_do.DO_LISTE.SelEndRow = dsnr
+        grid_do.DO_LISTE.Clip = Str(u(dsnr).do_i) + Chr$(9) + Str(u(dsnr).do_j)
+           + Chr$(9) + Str(u(dsnr).dnom) + Chr$(9) + Str(u(dsnr).dmin)
+           + Chr$(9) + Str(u(dsnr).w) + Chr$(9) + Str(u(dsnr).eknoten)
+    Next dsnr
+    MousePointer = 0
+End Sub
+
+
+Sub Form_Load ()
+    liste_fullen
+End Sub
+
+
+GRID_IN.FRM - 1
+
+Sub dateneinsetzen ()
+' Daten aus der Datenstruktur werden in die Tabelle positioniert
+If Tatigkinput$ = "" Then
+        RowAnzahl = 10
+    Else
+        RowAnzahl = Val(Tatigkinput$) + 1
+    End If
+
+    For dsnr = 1 To RowAnzahl - 1       'Fur jede Zeile wird ein Datensatz in die Tabelle geschrieben
+        grid_in.Liste.SelStartCol = 1
+        grid_in.Liste.SelStartRow = dsnr
+        grid_in.Liste.SelEndCol = 5
+        grid_in.Liste.SelEndRow = dsnr
+grid_in.Liste.Clip = LTrim(Str(u(dsnr).do_i)) + Chr$(9) + LTrim(Str(u(dsnr).do_j)) + Chr$(9) + LTrim(Str(u(dsnr).dnom)) + Chr$(9) + LTri
+m(Str(u(dsnr).dmin)) + Chr$(9) + LTrim(Str(u(dsnr).w))
+    Next dsnr
+End Sub
+
+
+Function holen (x As Integer, y As Integer) As String
+' Daten werden gemaB ihrer Position in der Tabelle
+' aus der entsprechenden Variable der Datenstruktur geholt
+    Select Case x     'X = Die Spalte
+        Case 1
+            holen = Str(u(y).do_i)
+        Case 2
+            holen = Str(u(y).do_j)
+        Case 3
+            holen = Str(u(y).dnom)
+        Case 4
+            holen = Str(u(y).dmin)
+        Case 5
+            holen = Str(u(y).w)
+      End Select
+End Function
+
+
+Sub liste_fullen ()
+'SUB nimmt die Beschriftung der Tabelle vor
+If Tatigkinput$ = "" Then
+        Tatigkinput = "10"
+        RowAnzahl = Val(Tatigkinput$) + 1
+    Else
+        RowAnzahl = Val(Tatigkinput$) + 1
+    End If
+    MousePointer = 11
+    grid_in.Liste.Cols = 6
+    grid_in.Liste.Rows = RowAnzahl
+    grid_in.Liste.FixedAlignment(0) = 2
+
+    grid_in.Liste.ColWidth(0) = 1000
+    grid_in.Liste.Row = 0
+
+    grid_in.Liste.Col = 1
+    grid_in.Liste.ColWidth(1) = 1000
+    grid_in.Liste.Text = "Von"
+    grid_in.Liste.Col = 2
+    grid_in.Liste.ColWidth(2) = 1000GRID_IN.FRM - 2
+
+    grid_in.Liste.Text = "Nach"
+
+    grid_in.Liste.Col = 3
+    grid_in.Liste.ColWidth(3) = 1000
+    grid_in.Liste.Text = "Dnom"
+
+    grid_in.Liste.Col = 4
+    grid_in.Liste.ColWidth(4) = 1000
+    grid_in.Liste.Text = "Dmin"
+    grid_in.Liste.Col = 5
+    grid_in.Liste.ColWidth(5) = 1000
+    grid_in.Liste.Text = "Kosten"
+    'grid_in.Liste.Col = 6
+    'grid_in.Liste.ColWidth(6) = 1000
+    'grid_in.Liste.Text = "knoten?"
+    For dsnr = 1 To RowAnzahl
+        grid_in.Liste.Col = 0
+        grid_in.Liste.Row = dsnr - 1
+        If Not (dsnr - 1) = 0 Then
+            grid_in.Liste.Text = "Kante" + (dsnr - 1)
+        End If
+    Next dsnr
+
+MousePointer = 0
+End Sub
+
+
+Sub speichern_hd2 ()
+MousePointer = 11
+Open startformnetzplan.StdDialog1.Filename For Output As #1
+    For dsnr = 1 To Val(Tatigkinput$)
+        Print #1, u(dsnr).do_i;
+        Print #1, u(dsnr).do_j;
+        Print #1, u(dsnr).dnom;
+        Print #1, u(dsnr).dmin;
+        Print #1, u(dsnr).w;
+     Next dsnr
+Close #1
+MousePointer = 0
+End Sub
+
+
+Sub SpeichernHarddisk_Click ()
+    startformnetzplan.StdDialog1.Action = 2
+    speichern_hd2
+End Sub
+
+
+Sub Abbrechen_Click ()
+' Taste Abbrechen verlaBt Form Grid_in
+    Unload grid_in
+End Sub
+
+
+Sub Form_KeyPress (KeyAnsi As Integer)
+     Nullspalte = grid_in.Liste.ColWidth(0)
+     spalte = grid_in.Liste.ColWidth(1)
+     Nullzeile = grid_in.Liste.RowHeight(0)
+     zeile = grid_in.Liste.RowHeight(1)
+End Sub
+
+
+Sub Form_Load ()
+' Ausfuhrung wenn Form das erstemal geladen wird
+    lfdnr = 1
+    liste_fullen                 ' Aufbau und beschriftung leere ListeGRID_IN.FRM - 3
+
+    If status = 1 Then           ' Nur bei einer geoffneten Datei ist es moglich
+        dateneinsetzen           ' Daten aus Datenstruktur werden in Tabelle eingesetzt
+    End If
+    SendKeys "{Tab 3}"           ' Positionieren des Cursors auf Zeilen-Editor
+    posx = 1                     ' Positionieren der Variablen auf 1,1
+    posy = 1                     ' Positionieren der Variablen auf 1,1
+End Sub
+
+
+
+
+Sub grid_in_weiter_Click ()
+' Taste OK der Form Grid_in
+'    aktEK = 1                'Zahler fur die Anzahl Entscheidungsknoten hier:Initialisierung
+'    ek_suchen_in_tab         'SUB
+'    klassifizierung          'SUB
+    'testausgabe              'SUB
+
+
+    If datopenflag = 0 Then
+        startformnetzplan.StdDialog1.Filename = "noname.ne1"
+        speichern_hd
+        datei_oeffnen
+    End If
+    status = 1
+    write_constraints
+    Unload grid_in
+    XCONTROL.Show 1           'Neue Form
+End Sub
+
+
+Sub Grid_speichern_Click ()
+' Taste Speichern bewirkt das Abspeichern der Daten in der Datenstruktur
+
+
+    '' Elke Armbruster 26.10.94 WI8
+    '' Neue Form: Verzeichnis einstellen
+    '' Nachfolgende 4 Zeilen sind zum bestehenden Code fur
+    '' das Einstellen des Pfades eingefugt worden
+    If Right(dbpath, 1) = "\" Then
+        startformnetzplan.StdDialog1.InitDir = Left(dbpath, Len(dbpath) - 1)
+    Else
+        startformnetzplan.StdDialog1.InitDir = dbpath
+    End If
+    startformnetzplan.StdDialog1.Action = 2         'Command.dll
+    If startformnetzplan.StdDialog1.Filename <> "" Then   'Nur wenn ein Name vorhanden ist
+        speichern_hd                       ' speichert die Datenstruktur in einem Textfile
+        status_aktualisieren               ' Der Name der Datei erscheint in Statuszeile
+        datopenflag = 1                    ' Flag macht deutlich das eine Datei geoffnet ist
+    End If
+End Sub
+
+
+Sub Liste_Click ()
+' Daten die mit dem Mauszeiger in der Tabelle angeklickt
+' werden, werden in den Zeilen-Spalten-Editor ubenommen
+    posy = grid_in.Liste.Row
+    posx = grid_in.Liste.Col
+
+    grid_in.Liste.SelStartRow = posy
+    grid_in.Liste.SelEndRow = posy
+    grid_in.Liste.SelStartCol = posx
+    grid_in.Liste.SelEndCol = posx
+    grid_in.Liste.HighLight = True
+
+    grid_in.txtin.Text = Trim$(holen(posx, posy))   'Funktion die Daten aus der Datenstruktur
+                                                    'anhand der x,y-Koordinaten holt
+
+    SendKeys "{tab 3}"
+    SendKeys "+{END}"
+End Sub
+
+
+Sub Liste_DblClick ()
+    Steuerung
+End Sub
+
+
+Sub txtin_KeyPress (KeyAnsi As Integer)
+' Hier wird die Cursorsteuerung aktiviert, indem auf die
+' RETURN Taste abgefragt wird
+    If KeyAnsi = 13 Then
+        Steuerung           'Eigentliche Cursor-Steuerungsfunktion
+    End If
+End Sub
+
+
+GRID_OUT.FRM - 1
+
+Sub Befehl2_Click ()
+    Unload grid_out
+End Sub
+
+
+Sub Befehl3_Click ()
+    infofenster.Show 1
+End SubINFOFENS.FRM - 1
+
+
+
+Sub InfoBOK_Click ()
+    Unload InfoFenster
+End Sub
+
+
+Sub Zeit1_Timer ()
+    Static MundAuf As Integer
+    If MundAuf Then
+        InfoIcon.Picture = IconMundAuf.Picture
+    Else
+        InfoIcon.Picture = IconMundZu.Picture
+    End If
+    MundAuf = Not MundAuf
+End Sub
+
+
+NETGRAPH.FRM - 1
+
+Sub Zeit2_Timer ()
+    Static Text As Integer
+    If Text Then
+        TextFeld.Caption = TextFeld1.Caption
+    Else
+        TextFeld.Caption = LeerFeld.Caption
+    End If
+    Text = Not Text
+End Sub
+
+
+Sub Zuruck_Click ()
+    Unload netgraph
+End Sub
+
+
+NETZ1.FRM - 1
+
+Function test ()
+End Function
+Sub MBearbeitenStart_Click ()
+    netz2.Show 1
+End Sub
+
+
+Sub MDateiBeenden_Click ()
+    End
+End Sub
+
+
+Sub MDateiNeu_Click ()
+    NewNet.Show 1
+End Sub
+
+
+Sub MHilfeInfo_Click ()
+    InfoFenster.Show 1
+End Sub
+
+
+NETZ2.FRM - 1
+
+Sub liste_fullen ()
+    If TatigkInput$ = "" Then
+        RowAnzahl = 10
+    Else
+        RowAnzahl = Val(TatigkInput$) + 1
+    End If
+    MousePointer = 11
+    Netz2.Liste.Cols = 7
+    Netz2.Liste.Rows = RowAnzahl
+    Netz2.Liste.FixedAlignment(0) = 2
+
+    Netz2.Liste.ColWidth(0) = 400
+    Netz2.Liste.Row = 0
+
+    Netz2.Liste.Col = 1
+    Netz2.Liste.ColWidth(1) = 1000
+    Netz2.Liste.Text = "Tatigkeit i"
+    Netz2.Liste.Col = 2
+    Netz2.Liste.ColWidth(2) = 1000
+    Netz2.Liste.Text = "Tatigkeit j"
+
+    Netz2.Liste.Col = 3
+    Netz2.Liste.ColWidth(3) = 1000
+    Netz2.Liste.Text = "dnom[i,j]"
+
+    Netz2.Liste.Col = 4
+    Netz2.Liste.ColWidth(4) = 1000
+    Netz2.Liste.Text = "dmin[i,j]"
+    Netz2.Liste.Col = 5
+    Netz2.Liste.ColWidth(5) = 1000
+    Netz2.Liste.Text = "w[i,j]"
+    Netz2.Liste.Col = 6
+    Netz2.Liste.ColWidth(6) = 2000
+    Netz2.Liste.Text = "Entscheidungsknoten?"
+    For DSNR = 1 To RowAnzahl
+        Netz2.Liste.Col = 0
+        Netz2.Liste.Row = DSNR - 1
+        If Not (DSNR - 1) = 0 Then
+            Netz2.Liste.Text = "u" + (DSNR - 1)
+        End If
+    Next DSNR
+    MousePointer = 0
+End Sub
+
+
+Sub Befehl1_Click ()
+    Unload Netz2
+    NETZOUT.Show 1
+End Sub
+
+
+Sub Befehl2_Click ()
+    Unload Netz2
+End Sub
+
+
+Sub Form_Load ()
+     liste_fullenNETZ2.FRM - 2
+End Sub
+
+
+NETZOUT.FRM - 1
+
+Option Compare Text ' Vergleichsverfahren festlegen.
+
+Sub auswerten ()
+ 'Initialisierung
+ T$ = Space$(32000)
+ Ndx& = 1
+ Filenr = FreeFile
+ ' Laden der Netz.prn Datei
+ Open "C:\or\or-mbank\xa\ss87a8.prn" For Input As #Filenr
+ 'Laden ersten 32000 Bytes der Datei (falls Datei > 32KB)
+ Do Until EOF(Filenr)
+    Line Input #Filenr, A$
+    If Ndx& + Len(A$) >= 32000 Then
+        Exit Do
+    Else
+        Mid$(T$, Ndx&, Len(A$)) = A$
+        Ndx& = Ndx& + Len(A$)
+    End If
+ Loop
+ Variable = RTrim$(T$)
+ Close #Filenr
+ For dsnr = 1 To Rowanzahl - 1
+     NBvar = "NB" & dsnr
+     gefunden = InStr(Variable, NBvar)
+     uvar = "u" & dsnr
+     gefundenu = InStr(Variable, uvar)
+     yvar = "y" & Str(u(dsnr).do_i) & Str(u(dsnr).do_j)
+     gefundeny = InStr(Variable, yvar)
+     xvar = "x" & Str(u(dsnr).do_i) & Str(u(dsnr).do_j)
+     gefundenx = InStr(Variable, xvar)
+     If gefunden <> 0 Then
+        laenge1 = gefunden + 16
+        laengeges = laenge1 - gefunden
+        test = Mid(Variable, gefunden, laengeges)
+        test2 = Right(test, 9)
+        ergebnis = Val(test2)
+        If ergebnis < 0 Then
+          netzout.Liste.Col = 6
+          netzout.Liste.Row = dsnr
+          netzout.Liste.Text = 0
+        Else
+          netzout.Liste.Col = 6
+          netzout.Liste.Row = dsnr
+          netzout.Liste.Text = 1
+        End If
+    Else
+       netzout.Liste.Col = 6
+       netzout.Liste.Row = dsnr
+       netzout.Liste.Text = 0
+   End If
+ Next dsnr
+End Sub
+
+
+Sub Befehl1_Click ()
+End Sub
+
+
+Sub Befehl4_Click ()
+End Sub
+
+
+Sub Befehl5_Click ()
+
+End Sub
+
+
+Sub Bezeichnung_3Click ()
+'    Unload netzout
+End Sub
+
+
+Sub dateneinsetzen ()
+If TatigkInput$ = "" Then
+        Rowanzahl = 10
+    Else
+        Rowanzahl = Val(TatigkInput$) + 1
+    End If
+For dsnr = 1 To Rowanzahl - 1
+        netzout.Liste.SelStartCol = 1
+        netzout.Liste.SelStartRow = dsnr
+        netzout.Liste.SelEndCol = 5
+        netzout.Liste.SelEndRow = dsnr
+        netzout.Liste.Clip = Str(u(dsnr).do_i) + Chr$(9) + Str(u(dsnr).do_j)
+        + Chr$(9) + Str(u(dsnr).dnom) + Chr$(9) + Str(u(dsnr).dmin) + Chr$(9)
+        + Str(u(dsnr).w) + Chr$(9)' + Str(u(dsnr),eknoten)
+    Next dsnr
+
+'--------------------------AUSWERTUNG DER XA-DATEI
+
+ NL$ = Chr$(13) + Chr$(10)
+ T$ = Space$(32000)
+ A$ = Space$(32000)
+ Ndx& = 1
+ Filenr = FreeFile
+ ' Laden der Netz.prn Datei
+ Open "C:\or\xa\netz.prn" For Input As #Filenr
+ 'Laden ersten 32000 Bytes der Datei (falls Datei > 32KB)
+ Do Until EOF(Filenr)
+ ' Zeilenweise einlesen
+    Line Input #Filenr, A$
+    A$ = A$ + NL$
+    If Ndx& + Len(A$) >= 32000 Then
+ Exit Do
+    Else
+        Mid$(T$, Ndx&, Len(A$)) = A$
+        Ndx& = Ndx& + Len(A$)
+    End If
+ Loop
+ Close #Filenr
+ zahl = 0
+ '------------------------------------------------------------
+
+ For dsnr = 1 To Rowanzahl - 1
+   yvar = "Y" & LTrim$(Str(u(dsnr).do_i)) & LTrim$(Str(u(dsnr).do_j))
+   gefundeny = InStr(1, T$, yvar)
+   If gefundeny <> 0 Then
+     laenge1 = gefundeny + 16
+     laengeges = laenge1 - gefundeny
+     test = Mid(T$, gefundeny, laengeges)
+     test2 = Right(test, 9)
+     ergebnis = Val(test2)
+     If ergebnis > 0 Then
+        ' ------ Dauer Min / Norm
+       netzout.Liste.Col = 6
+       netzout.Liste.Row = dsnr
+       netzout.Liste.Text = u(dsnr).dnom - ergebnis
+
+       '------Verkurzung
+       netzout.Liste.Col = 8
+       netzout.Liste.Row = dsnr
+       netzout.Liste.Text = ergebnis
+       NETZOUT.FRM - 3
+
+       '------Kosten
+       netzout.Liste.Col = 9
+       netzout.Liste.Row = dsnr
+       netzout.Liste.Text = u(dsnr).w * ergebnis
+       zahl = u(dsnr).w * ergebnis + zahl
+     Else
+       netzout.Liste.Col = 6
+       netzout.Liste.Row = dsnr
+       netzout.Liste.Text = u(dsnr).dnom
+
+       '------Verkurzung
+       netzout.Liste.Col = 8
+       netzout.Liste.Row = dsnr
+       netzout.Liste.Text = ergebnis
+       netzout.Liste.Col = 9
+       netzout.Liste.Row = dsnr
+       netzout.Liste.Text = 0
+       netzout.Text3.Text = 0
+     End If
+   Else
+     netzout.Liste.Col = 6
+     netzout.Liste.Row = dsnr
+     netzout.Liste.Text = u(dsnr).dnom
+   End If
+' ------Schaltvariable suchen
+xvar = "X" & LTrim$(Str(u(dsnr).do_i)) & LTrim$(Str(u(dsnr).do_j))
+gefundenx = InStr(1, T$, xvar)
+   If gefundenx <> 0 Then
+        l = gefundenx + 16
+        lges = l - gefundenx
+        testx = Mid(T$, gefundenx, lges)
+        test2x = Right(testx, 9)
+        ergebnisx = Val(test2x)
+        If ergebnisx = 1 Then
+                 netzout.Liste.Col = 7
+                 netzout.Liste.Row = dsnr
+                 netzout.Liste.Text = ergebnisx
+                 If ergebnis > 0 Then
+                    netzout.Liste.Col = 6
+                    netzout.Liste.Row = dsnr
+                    netzout.Liste.Text = u(dsnr).dmin
+                 Else
+                    netzout.Liste.Col = 6
+                    netzout.Liste.Row = dsnr
+                    netzout.Liste.Text = u(dsnr).dnom
+                 End If
+
+        Else
+                 netzout.Liste.Col = 6
+                 netzout.Liste.Row = dsnr
+                 netzout.Liste.Text = 0
+                 netzout.Liste.Col = 7
+                 netzout.Liste.Row = dsnr
+                 netzout.Liste.Text = 0
+
+        End If
+   End If
+ Next dsnr
+'---------Laufzeitermittlung
+For i = 1 To Rowanzahl - 1
+uvar = "U" & LTrim$(i)
+gefundenu = InStr(1, T$, uvar)
+   If gefundenu <> 0 Then
+
+     laengeu = gefundenu + 16
+     laengegesu = laengeu - gefundenu
+     testu = Mid(T$, gefundenu, laengegesu)
+     test2u = Right(testu, 9)
+     ergebnisu = Val(test2u)
+     If ergebnisu > 0 Then
+       netzout.Text1.Text = ergebnisu
+       uauswert = "zum Knoten " & i & "    " & ergebnisu & " ZE"
+       netzout.Laufzeitrealisierung.AddItem uauswert
+     End If
+   End If
+Next i
+'-----------------Kostenermittlung
+netzout.KostenTag.Text = EntschKnotenInput$
+netzout.Text3.Text = zahl
+kostenvar = "SOLUTION (Minimized)"
+gefundenkosten = InStr(1, T$, kostenvar)
+If gefundenkosten <> 0 Then
+     laengekosten = gefundenkosten + 35
+     laengegeskosten = laengekosten - gefundenkosten
+     testkosten = Mid(T$, gefundenkosten, laengegeskosten)
+     test2kosten = Right(testkosten, 14)
+     netzout.Text2.Text = test2kosten
+Else
+     netzout.Text2.Text = 0
+End If
+'--------------------------------------------------------------------
+End Sub
+
+
+Function DStr_ein (x As Integer, y As Integer, wert As String)
+Select Case x
+        Case 1
+            u(y).do_i = Val(wert)
+            DSein = 1
+        Case 2
+            u(y).do_j = Val(wert)
+            DSein = 1
+        Case 3
+            u(y).dnom = Val(wert)
+            DSein = 1
+        Case 4
+            u(y).dmin = Val(wert)
+            DSein = 1
+        Case 5
+            u(y).w = Val(wert)
+            DSein = 1
+        'Case 6
+            'u(y).eknoten = Val(wert)
+            'DSein = 1
+    End Select
+End Function
+
+
+Sub liste_fullen ()
+    If TatigkInput$ = "" Then
+        Rowanzahl = 11
+    Else
+        Rowanzahl = Val(TatigkInput$) + 1
+    End If
+    MousePointer = 11
+    netzout.Liste.Cols = 10
+    netzout.Liste.Rows = Rowanzahl
+
+    netzout.Liste.FixedAlignment(0) = 2
+
+    netzout.Liste.Col = 0
+    netzout.Liste.ColWidth(0) = 650
+    netzout.Liste.Row = 0
+    netzout.Liste.Text = "Kante"
+    netzout.Liste.Col = 1
+    netzout.Liste.ColWidth(1) = 1050
+    netzout.Liste.Text = "von Knoten"
+    netzout.Liste.Col = 2
+    netzout.Liste.ColWidth(2) = 1150
+    netzout.Liste.Text = "nach Knoten"
+
+    netzout.Liste.Col = 3
+    netzout.Liste.ColWidth(3) = 1100
+    netzout.Liste.Text = "Dauer Norm"
+
+    netzout.Liste.Col = 4
+    netzout.Liste.ColWidth(4) = 950
+    netzout.Liste.Text = "Dauer Min"
+    netzout.Liste.Col = 5
+    netzout.Liste.ColWidth(5) = 1100
+    netzout.Liste.Text = "Kosten / ZE"
+    netzout.Liste.Col = 6
+    netzout.Liste.ColWidth(6) = 1000
+    netzout.Liste.Text = "Dauer tat."
+
+    netzout.Liste.Col = 7
+    netzout.Liste.ColWidth(7) = 1100
+    netzout.Liste.Text = "Schaltvar."
+
+    netzout.Liste.Col = 8
+    netzout.Liste.ColWidth(8) = 1120
+    netzout.Liste.Text = "Verkurzung."
+
+    netzout.Liste.Col = 9
+    netzout.Liste.ColWidth(9) = 1180
+    netzout.Liste.Text = "Kosten/ZE tat."
+
+    For dsnr = 1 To Rowanzahl
+        netzout.Liste.Col = 0
+        netzout.Liste.Row = dsnr - 1
+        If Not (dsnr - 1) = 0 Then
+            netzout.Liste.Text = (dsnr - 1)
+        End If
+    Next dsnr
+    MousePointer = 0
+End Sub
+
+
+Sub Neue_Eingabe_Click ()
+   Unload netzout
+   Unload Newnet
+   Newnet.Show 1
+End Sub
+
+
+Sub Ende_Click ()
+    Unload netzout
+
+End Sub
+
+
+Sub Form_Load ()
+    lfdnr = 1
+    liste_fullen
+     If status = 1 Then
+        dateneinsetzen
+     End If
+     netzout.Liste.Col = 0
+     netzout.Liste.Row = 1
+     'NetzOut.BezZeile.Width = 400
+     'NetzOut.BezZeile = NetzOut.Liste.Text
+
+     netzout.Liste.Col = 1
+     netzout.Liste.Row = 0
+     'NetzOut.BezSpalte.Width = 1000
+     'NetzOut.BezSpalte = NetzOut.Liste.Text
+
+'     SendKeys "{Tab 3}", True
+posx = 1
+posy = 1
+End Sub
+
+
+Sub Graphik_Click ()
+    netgraph.Show 1
+End Sub
+
+
+Sub Liste_Click ()
+    posy = netzout.Liste.Row
+    posx = netzout.Liste.Col
+
+    'NetzOut.txtin.Text = holen(posx, posy)
+    'NetzOut.BezZeile = "Kante" + NetzOut.Liste.Row
+    'NetzOut.BezSpalte = NetzOut.Liste.Col
+End Sub
+
+
+Sub Suchen_Click ()
+suchdemo.Show 1
+End Sub
+
+
+Sub XA_Click ()
+      Unload netzout
+      write_constraints
+      Load netzout
+End Sub
+
+
+NEWNET.FRM - 1
+
+Sub Befehl1_Click ()
+Tatigkinput$ = maskeDoing
+EntschKnotenInput$ = maskeDecision
+
+    doingin$ = maskeDoing
+    decisionin$ = maskeDecision
+    If (Val(doingin$) >= 150) Then
+        FM$ = "Bitte beachten Sie die max - Angaben der Felder!!"
+        MsgBox FM$, 48
+    Else
+        Unload newnet
+        Grid_in.Show 1
+    End If
+End Sub
+
+
+Sub Befehl2_Click ()
+    Unload newnet
+End Sub
+
+
+Sub Form_Load ()
+    If datopenflag = 1 Then
+        maskeDoing.Text = Tatigkinput$
+        maskeDecision.Text = EntschKnotenInput$
+        SendKeys "{tab 2}"
+        SendKeys "+{END}"
+    Else
+        SendKeys "{tab 2}"
+    End If
+End Sub
+
+
+Sub MaskeDecision_KeyPress (KeyAnsi As Integer)
+    If KeyAnsi = 13 Then
+        SendKeys " {tab}"
+    End If
+End Sub
+
+
+Sub MaskeDoing_KeyPress (KeyAnsi As Integer)
+    If KeyAnsi = 13 Then
+        SendKeys " {tab}"
+    End If
+End Sub
+
+
+SUCHDEMO.FRM - 1
+
+Sub Drucken_Click ()
+'** Ganzen oder selektierten Text ausdrucken
+ If Text1.SelLength Then T$ = "Selektierten "
+ OK% = MsgBox(T$ + "Text ausdrucken?", 36, "Drucken")
+ If OK% <> 6 Then Exit Sub
+ If Text1.SelLength Then
+  Printer.Print Text1.SelText
+ Else
+  Printer.Print Text1.Text
+ End If
+
+ Printer.EndDoc
+End Sub
+
+
+Sub Ende_Click ()
+Unload SUCHDEMO
+End Sub
+
+
+Sub Form_Load ()
+ NL$ = Chr$(13) + Chr$(10)
+ T$ = Space$(32000)
+ A$ = Space$(32000)
+ Ndx& = 1
+ Filenr = FreeFile
+ ' Laden der Netz.prn Datei
+ Open "C:\or\xa\netz.prn" For Input As #Filenr
+ 'Laden ersten 32000 Bytes der Datei (falls Datei > 32KB)
+ Do Until EOF(Filenr)
+    Line Input #Filenr, A$
+     A$ = A$ + NL$
+     If Ndx& + Len(A$) >= 32000 Then
+       Exit Do
+    Else
+        Mid$(T$, Ndx&, Len(A$)) = A$
+        Ndx& = Ndx& + Len(A$)
+    End If
+ Loop
+ 'Variable = T$
+ Close #Filenr
+
+  Text1.Text = T$
+ Close #Filenr
+End Sub
+
+
+Sub Suchen_Click ()
+ S% = InStr(Text1.SelStart + 2, Text1.Text, SuchText.Text)
+ If S% Then
+  Text1.SelStart = S% - 1
+  Text1.SelLength = Len(SuchText.Text)
+ Else
+  Beep
+ End If
+
+ Text1.SetFocus
+End Sub
+
+
+Sub SuchText_GotFocus ()
+ SuchText.SelStart = 0
+ SuchText.SelLength = 999
+End Sub
+
+
+XCONTROL.FRM - 1
+
+Sub Befehl1_Click ()
+    netzout.Show 1
+End Sub
+
+
+Sub OKBut_Click ()
+    Unload xcontrol
+    netzout.Show 1
+End Sub
+
+
+Sub Zeit1_Timer ()
+       xcontrol.OKBut.Enabled = True
+End Sub
+
+
+Sub Zeit2_Timer ()
+    Static Anzeige As Integer
+    If xcontrol.OKBut.Enabled = False Then
+        If Anzeige Then
+            xcontrol.XAMeldung.Caption = "BITTE WARTEN..."
+        Else
+            xcontrol.XAMeldung.Caption = ""
+        End If
+        Anzeige = Not Anzeige
+    Else
+        xcontrol.XAMeldung.Caption = "Weiter mit OK"
+    End If
+End Sub
+
+
+NETGLOBL.BAS - 1
+
+Global tatigkinput$         'Anzahl der einzugebenden Kanten (Zeilen)
+Global EntschKnotenInput$   'Kosten des Gesamtprojektes je Tag
+Type Datensatz              'Datenstruktur fur Eingabe, Verarbeitung ...
+    do_i As Integer         'linker Knoten der Kante
+    do_j As Integer         'rechter Knoten der Kante
+    iTyp As Integer         'linker Knotentyp (siehe Modul write constraints)
+    jTyp As Integer         'rechter "           "      "     "
+    dnom As Integer         'Dauer der Kante bei "normaler" Projektlaufzeit
+    dmin As Integer         'Dauer bei maximal reduzierter Projektlfz. (stetig)
+    w    As Integer         'Kostenzuwachs je Einheit (stetig) oder auf einmal (diskret)
+End Type
+'Definition von Konstanten
+Global Const MM = 99999              'Konstante fur groBen Wert (M im LP-Modell)
+Global Const PROGPATH = "C:\OR\OR-MBANK\NETZPLAN\EXEC\"     'Ei wo ist denn das Netzplan-Direktory?
+'Ende Konstantendefinition
+'' Elke Armbruster 26.10.94 WI8
+Global DBPath As Variant
+Global XAPath As Variant
+''
+Global Const maxDoing = 150  'Maximale Kantenanzahl
+Global u(maxDoing) As Datensatz  'Definition des Arrays s.o.
+
+Global start  'Knotennummer des Startknotens
+Global ende   'Knotennummer des Endeknotens
+Global posx As Integer                'x Position in der EingabeTabelle
+Global posy As Integer                'y Position in der EingabeTabelle
+Global Text As String
+Global datopenflag As Integer         'Flag ob eine Datei geoffnet ist
+Global status As Integer              'Flag ob eine Datei gespeichert ist
+'Global abbruch As Integer
+'Global lfdnr As Integer
+'Global EK(30) As Integer
+'Global aktEK As Integer
+
+
+Sub CursorAnzeige ()
+'Positionierung der sichtbaren blauen Marke in der Tabelle,
+'die unterschiedlich zur x und y Position bewegt werden muB,
+'da der Benutzer immer sehen soll in welches Feld er eingeben muB.
+'Diese wir erfordelich da die Variablen posx,posy immer beim Betatigen der
+'Returntaste um 1 erhoht werden!
+            Select Case posx
+
+            Case 5
+               If posy = Val(tatigkinput$) Then
+               grid_in.Liste.SelStartRow = 1
+               grid_in.Liste.SelEndRow = 1
+               grid_in.Liste.SelStartCol = 1
+               grid_in.Liste.SelEndCol = 1
+            Else
+               grid_in.Liste.SelStartRow = posy + 1
+               grid_in.Liste.SelEndRow = posy + 1
+               grid_in.Liste.SelStartCol = 1
+               grid_in.Liste.SelEndCol = 1
+            End IfNETGLOBL.BAS - 2
+
+            Case 6
+                If posy = Val(tatigkinput$) Then
+                grid_in.Liste.SelStartRow = posy - posy + 1
+                grid_in.Liste.SelEndRow = posy - posy + 1
+                grid_in.Liste.SelStartCol = 2
+                grid_in.Liste.SelEndCol = 2
+            Else
+                grid_in.Liste.SelStartRow = posy + 1
+                grid_in.Liste.SelEndRow = posy + 1
+                grid_in.Liste.SelStartCol = 2
+                grid_in.Liste.SelEndCol = 2
+            End If
+
+            Case Else
+                grid_in.Liste.SelStartRow = posy
+                grid_in.Liste.SelEndRow = posy
+                grid_in.Liste.SelStartCol = posx + 1
+                grid_in.Liste.SelEndCol = posx + 1
+            End Select
+            grid_in.Liste.HighLight = True
+End Sub
+
+
+Sub datei_oeffnen ()
+'SUB offnen eine Datei zum lesen. Hier stehen alte Eingaben!
+MousePointer = 11
+Open startformnetzplan.StdDialog1.Filename For Input As #1
+If Input$(6, #1) <> "&&#ne1" Then
+    MsgBox "Datei konnte nicht geladen werden!" + Chr$(13) + "Unzulassiges Dateiformat", 48
+    Close #1
+    Exit Sub
+End If
+Input #1, tatigkinput$
+Input #1, EntschKnotenInput$
+
+    For dsnr = 1 To Val(tatigkinput$)
+        Input #1, u(dsnr).do_i
+        Input #1, u(dsnr).do_j
+        Input #1, u(dsnr).dnom
+        Input #1, u(dsnr).dmin
+        Input #1, u(dsnr).w
+
+    Next dsnr
+Close #1
+MousePointer = 0
+End Sub
+
+
+Sub DStr_ein (X As Integer, y As Integer, wert As String)
+Select Case X
+        Case 1
+            u(y).do_i = Val(wert)
+            DSein = 1
+        Case 2
+            u(y).do_j = Val(wert)
+            DSein = 1
+        Case 3
+            u(y).dnom = Val(wert)
+            DSein = 1
+        Case 4
+            u(y).dmin = Val(wert)NETGLOBL.BAS - 3
+
+            DSein = 1
+        Case 5
+            u(y).w = Val(wert)
+            DSein = 1
+    End Select
+End Sub
+
+
+Sub einsetzen (X As Integer, y As Integer)
+' Ubertragen der Eingabe in die Tabelle
+        grid_in.Liste.Col = posx
+        grid_in.Liste.Row = posy
+
+        If (grid_in.Liste.Text <> "") And (grid_in.txtin.Text = "") Then
+            Text = grid_in.Liste.Text
+        Else
+            Text = grid_in.txtin.Text
+        End If
+
+        grid_in.Liste.Text = Text
+        grid_in.txtin.Text = ""
+End Sub
+
+
+Sub speichern_hd ()
+'SUB Speichert Daten aus der Datenstruktur in TEXTfile mit einer
+'bestimmten Kennung = &&#ne1, der Anzahl der Tatigkeiten und Die Kosten
+MousePointer = 11
+    Open startformnetzplan.StdDialog1.Filename For Output As #1
+    Print #1, "&&#ne1";
+    Print #1, tatigkinput$
+    Print #1, EntschKnotenInput$
+    For dsnr = 1 To Val(tatigkinput$)
+        Print #1, u(dsnr).do_i
+        Print #1, u(dsnr).do_j
+        Print #1, u(dsnr).dnom
+        Print #1, u(dsnr).dmin
+        Print #1, u(dsnr).w
+    Next dsnr
+Close #1
+MousePointer = 0
+End Sub
+
+
+Sub status_aktualisieren ()
+'Hier wird der Dateiname in die Statuszeile am unteren Bildrand
+'des Hauptform geschrieben!
+
+   startformnetzplan.StatusDatei.Caption = "Datei: " + UCase$(startformnetzplan.StdDialog1.Filename)
+End Sub
+
+
+Sub Steuerung ()
+'Hier wird die Steuerung der Marke in der Tabelle vorgenommen, und
+'Die Ubernahme der im Spalte-Zeilen-Editor eingegebenen Werte in die
+'Datenstruktur und sichtbar an die richtige Position in der Tabelle
+
+        CursorAnzeige
+        If posx <= 5 Then                               'IF nr2
+'------Eintragen des geschriebenen Textes in die Tabelle (nur visuell)-------------
+
+        einsetzen posx, posy                                     'UnterSUB zum Positionieren des Textes
+        DStr_ein posx, posy, Text               'UnterSUB zum AUfbau der DTSR(flag noch nicht abgefragt
+
+        posy = posy
+                                                        'ELSE nr2
+        Else
+            posx = 1
+            If posy = Val(tatigkinput$) Then            'IF nr3 + MaxAnzahl von Tatigkeiten
+                posy = 1
+                einsetzen posx, posy
+                DStr_ein posx, posy, Text
+
+            Else                                        'ELSE nr3
+                posy = posy + 1
+                einsetzen posx, posy
+                DStr_ein posx, posy, Text
+
+            End If                                       'END IF nr3
+        End If                                           'END IF nr2
+
+        posx = posx + 1
+End Sub
+
+
+Sub write_constraints ()
+'Umsetzung der Eingabedaten in das mathematische Modell, Umformung in XA-Syntax, Aufruf XA
+'Dabei werden folgende Dateien erzeugt:
+' nett.kot  = Kontrollausgabe fur korrekte Knotentypermittlung (zu Test- u. Kontrollzwecken)
+' netz.clp  = XA CLP File   fur Parametereinstellungen
+' netz.lp   = XA LP  File   beschreibt das LP-Modell
+' xa.bat    = Batchdatei zum XA-Aufruf: verhindert, daB XA ins Netzplan-Direktory "umziehen" muB
+'Das Modell berucksichtigt Netzplane mit beliebig vielen Entscheidungsknoten, die auch parallel
+'verlaufen konnen. Folgende Einschrankungen sind zu berucksichtigen:
+'Entscheidungsknoten (EK) = binare Verzweigung
+'Nach den beiden Kanten die auf den EK folgen wird unmittelbar wieder zu einem Knoten zusammengefuhrt,
+'dieser kann jedoch erneut EK sein!
+'On Error GoTo dreck
+'Kill XAPATH + "netz.prn"
+'dreck:
+'MsgBox Error$ + Str(Err), , "tttttt"
+'Beginn Schreiben des XA CLP FILE
+Open XAPath + "netz.clp" For Output As #2
+Print #2, "  netz.lp          LISTINPUT  NO"
+Print #2, "                    OUTPUT netz.prn  PAGESIZE  24"
+Print #2, "                    LINESIZE  79  TMARGINS   0"
+Print #2, "                    BMARGINS   0  FIELDSIZE  11"
+Print #2, "                    DECIMALS   5  EUROPEAN  NO"
+Print #2, "                    LMARGINS   0  COPIES     1"
+Print #2, "                    WAIT      NO  MUTE  NO"
+Print #2, "                    LISTINPUT NO  WARNING NO"
+Print #2, "                    SOLUTION  YES CONSTRAINTS  YES"
+Print #2, "                    COSTANALYSIS  YES MARGINANALYSIS  YES"
+Print #2, "                    MATLIST  NO   DEFAULTS NO"
+Close #2
+'Ende Schreiben des XA CLP FILE
+'Beginn Knotenanalyse
+
+'Insgesamt werden folgende Knotenarten ermittelt:
+'start : bekommt Startknoten zugewiesen (nur auf linker Seite der Kanten)
+'ende  : bekommt Endknoten zugewiesen   (nur auf rechter Seite der Kanten und dabei hochste Nr.)
+'Knotentypen werden jeweils aus der Sicht der entsprechenden Kante gesehen, d.h. ein
+'Knoten kann in bezug auf unterschiedliche Kanten auch von unterschiedlichem Typ sein!
+'Knotentyp      0 = Hundsnormaler Knoten
+'Knotentyp      3 = Entscheidungsknoten (EK)    (vor Scheinknoten - auf zwei Kanten!)
+'Knotentyp      4 = Scheinknoten         (nur auf rechter Seite der Kanten und nicht hochste Nr.)
+'Knotentyp      5 = Endknoten (ENDK)
+'Knotentyp      6 = Ruckkehrpunkt nach einer getroffenen Entscheidung  (hinter EK und <> Scheinknoten)
+'Knotentyp      7 = ScheiBknoten, resultiert aus erkannten Fehleingaben (etwa eines DAUs)
+'Beginn Initialisieren und ScheiBknoten suchen!
+For i = 1 To Val(tatigkinput)
+    u(i).iTyp = 0
+    u(i).jTyp = 0
+    If u(i).dnom = 0 Then  'ScheiBknoten ermitteln
+        u(i).iTyp = 7      'Die Kante ist von lauter ScheiBknoten (nicht Scheinknoten!)
+        u(i).jTyp = 7      'umgeben und scheidet aus dem Spiel aus!
+        u(i).do_i = -1
+        u(i).do_j = -1
+     End If
+Next i
+'Ende Initialisieren und ScheiBknoten suchen!
+'Beginn ENDK suchen
+ende = 0
+For i = 1 To Val(tatigkinput)  'Endknoten Suchen
+    If u(i).do_j > ende Then ende = u(i).do_j
+Next i
+For i = 1 To Val(tatigkinput)  'Endknoten Kennzeichnen
+    If u(i).do_j = ende Then u(i).jTyp = 5
+Next i
+'Ende ENDK suchen
+'Beginn Weitere Klassifizierung der Knoten
+'Suche nach knotenTypen
+For i = 1 To Val(tatigkinput)
+ If u(i).iTyp <> 7 Then
+    Schein = 1
+    StartTest = 1
+    For j = 1 To Val(tatigkinput)
+        If u(i).do_j = u(j).do_i Or u(i).do_j = ende Then Schein = 0   'Scheinknoten ermitteln (negativ)
+        If u(i).do_i = u(j).do_j Then StartTest = 0    'Startknoten ermitteln
+    Next j
+    If Schein = 1 Then
+        u(i).jTyp = 4
+        u(i).iTyp = 3   'Entscheidungsknoten ermitteln
+        j = 1
+        While (u(i).do_i <> u(j).do_i Or i = j)   'Suche der 2. Gabel des EntschKnotens (<> Sackgasse)
+            j = j + 1
+        Wend
+        u(j).iTyp = 3                               'Entscheidungsknoten ermitteln
+        If u(j).jTyp <> 5 Then u(j).jTyp = 6        'Ruckkehrknoten ermitteln
+    End If
+    If StartTest = 1 Then start = u(i).do_i
+
+ End If
+Next i
+'Ende Weitere Klassifizierung der Knoten
+
+'Beginn Ausgabe der ermittelten Knotentypen in Datei (zu Kontrollzwecken)
+Open XAPath + "nett.kot" For Output As #4
+Print #4, start, ende
+Print #4, "Aber Hallo"
+For i = 1 To Val(tatigkinput)
+    Print #4, u(i).do_i; u(i).iTyp, u(i).do_j; u(i).jTyp, u(i).dnom; u(i).dmin; u(i).w
+Next i
+Close #4
+'Ende Ausgabe der ermittelten Knotentypen in Datei (zu Kontrollzwecken)
+
+'Beginn: Generierung mathematisches Modell in XA-Syntax - schreiben XA-File
+Open XAPath + "netz.lp" For Output As #1
+Print #1, "..TITLE"
+Print #1, "   Netzplan"
+Print #1, "..OBJECTIVE MINIMIZE"
+'Beginn: Code zur Erzeugung der Zielfunktion
+Merke = 0
+ZF = ""
+For i = 1 To Val(tatigkinput$)
+ If u(i).iTyp <> 7 Then
+    'Auswirkung von stetiger Zeitverkurzung
+    If (u(i).dnom - u(i).dmin) <> 0 Then
+       ZF = ZF + Trim(Str(u(i).w)) + " Y" + Trim(Str(u(i).do_i)) + Trim(Str(u(i).do_j)) + " + "
+    End If
+    ' Auswirkung von diskreter Zeitverkurzung bei Entscheidungsknoten
+    If u(i).iTyp = 3 And u(i).dnom = u(i).dmin Then
+       ZF = ZF + Trim(Str(u(i).w)) + " [X" + Trim(Str(u(i).do_i)) + Trim(Str(u(i).do_j)) + "]" + " + "
+      Else
+        'Alle weiteren X's (Schaltervariablen) werden (mit 0 gewichtet) bekanntgemacht
+        If u(i).iTyp = 3 Then
+          ZF = ZF + "0 [X" + Trim(Str(u(i).do_i)) + Trim(Str(u(i).do_j)) + "]" + " + "
+        End If
+    End If
+    'Alle U's werden der Zielfunktion (mit 0 gewichtet) bekanntgemacht
+    i_hamascho = 0
+    j_hamascho = 0
+    For j = 1 To i - 1
+        If u(i).do_j = u(j).do_j Or u(i).do_j = u(j).do_i Then j_hamascho = 1
+        If u(i).do_i = u(j).do_i Or u(i).do_i = u(j).do_j Then i_hamascho = 1
+    Next j
+    If i_hamascho = 0 And u(i).iTyp <> 5 Then
+        ZF = ZF + "0 U" + Trim(Str(u(i).do_i)) + " + "
+    End If
+    If j_hamascho = 0 And u(i).jTyp <> 4 And u(i).jTyp <> 5 Then
+         ZF = ZF + "0 U" + Trim(Str(u(i).do_j)) + " + "
+    End If
+
+    'Die gesamte Projektdauer (U des Endknotens) wird mit den Gesamtprojektkosten je Tag bewertet
+    If u(i).do_j = ende And Merke = 0 Then
+       ZF = ZF + Trim(EntschKnotenInput) + " U" + Trim(Str(u(i).do_j)) + " + "
+       Merke = 1
+    End If
+ End If
+Next i
+
+Print #1, Left(ZF, Len(ZF) - 3)
+' Ende: Code zur Erzeugung der Zielfunktion
+' Beginn: Code zur Erzeugung der Nebenbedingungen (..Constraints), auf (..Bounds) wird verzichtet
+Print #1, "..BOUNDS"
+Print #1, "..CONSTRAINTS"
+For i = 1 To Val(tatigkinput$)
+ If u(i).iTyp <> 7 Then
+    Lteilx1 = ""
+    LTeil1 = ""
+    LTeil2 = ""
+    LTeil3 = ""
+    LTeil4 = ""
+    Rteil2 = 0
+
+    If u(i).jTyp <> 4 Then
+        LTeil1 = "U" + Trim(Str(u(i).do_j))
+    Else
+       For j = 1 To Val(tatigkinput$)
+            If u(j).do_i = u(i).do_i And i <> j Then
+                 LTeil1 = "U" + Trim(Str(u(j).do_j))
+                 Lteilx1 = " X" + Trim(Str(u(i).do_i)) + Trim(Str(u(i).do_j))
+            End If
+       Next j
+       Rteil2 = (-MM)
+    End If
+'-----------------------------------------------------------------------------------------
+    T2 = u(i).iTyp
+    If T2 = 0 Then T2 = 2
+    Select Case T2
+        Case 1
+            'LTeil2 = ""
+        Case 2
+            LTeil2 = " - U" + Trim(Str(u(i).do_i))
+        Case 3
+            LTeil2 = " - U" + Trim(Str(u(i).do_i))
+            If u(i).jTyp = 4 Then
+                LTeil4 = " - " + Trim(Str(MM)) + Lteilx1
+            Else
+                Lteilx1 = " X" + Trim(Str(u(i).do_i)) + Trim(Str(u(i).do_j))
+                LTeil4 = " - " + Trim(Str(MM)) + Lteilx1
+                Rteil2 = (-MM) ' + u(i).dnom
+                'Binares Schalten der beiden Alternativwege:
+                j = 1
+                For j = 1 To Val(tatigkinput)
+                    If u(j).do_i = u(i).do_i And i <> j Then
+                        Print #1, "X" + Trim(Str(u(i).do_i)) + Trim(Str(u(j).do_j))
+                        + " + X" + Trim(Str(u(i).do_i)) + Trim(Str(u(i).do_j)) + " = 1"
+                    End If
+                Next j
+                'Ende Binares Schalten der beiden Alternativwege
+            End If
+          '  M = 1
+        Case 4
+            Kenz = "xx4"
+    End Select
+'-------------------------------------------------------------------------------
+    ' Einbau von stetiger Zeitersparnis
+    If u(i).dnom <> 0 And u(i).dmin <> 0 And ((u(i).dnom - u(i).dmin) <> 0) Then
+        LTeil3 = " + Y" + Trim(Str(u(i).do_i)) + Trim(Str(u(i).do_j))
+    Else
+        LTeil3 = ""
+    End If
+'-------------------------------------------------------------------------------
+
+    VOp = " >= "
+    Rteil2 = Rteil2 + u(i).dnom
+
+    'Beginn: Uli's neuer Code fur Schranken aller Art (Bounds)
+    If u(i).dmin < u(i).dnom Then
+        'Festlegen der technischen Grenzen fur die _Zeiteinsparung
+        Print #1, "Y" + Trim(Str(u(i).do_i)) + Trim(Str(u(i).do_j)) + " <= " + Trim(Str(u(i).dnom - u(i).dmin))
+        Print #1, "Y" + Trim(Str(u(i).do_i)) + Trim(Str(u(i).do_j)) + " >= 0"
+    End If
+    'setzen der NNB's
+    i_hamascho = 0
+    j_hamascho = 0
+    For j = 1 To i - 1
+        If u(i).do_j = u(j).do_j Then j_hamascho = 1
+
+        If u(i).do_i = u(j).do_i Then i_hamascho = 1
+
+    Next j
+    If i_hamascho = 0 Then
+        Print #1, "U" + Trim(Str(u(i).do_i)) + " >= 0"
+    End If
+    If j_hamascho = 0 And u(i).jTyp <> 4 Then
+        Print #1, "U" + Trim(Str(u(i).do_j)) + " >= 0"
+    End If
+    'Ende Uli's neuer Code fur Schranken aller Art (Bounds)
+    '--------------------------------------------------------------------------------------------
+    'Schreiben der XA LP-Modell Nebenbedingungen
+    If Kenz <> "xx4" Then
+        Print #1, Kenz;
+        Print #1, LTeil1;
+        Print #1, LTeil2;
+        Print #1, LTeil3;
+        Print #1, LTeil4;
+        Print #1, VOp;
+        Print #1, Rteil2
+    End If
+ End If
+Next i
+
+' Ende: Code zur Erzeugung der Nebenbedingungen (..Constraints), auf (..Bounds) wird verzichtet
+Close #1
+'Ende: Generierung mathematisches Modell in XA-Syntax - schreiben XA-File
+'Beginn: Erzeugen der Batch-Datei fur XA-Aufruf
+Open PROGPATH + "xa.bat" For Output As #3
+Print #3, Left(XAPath, 2)
+Print #3, "CD " + Mid(XAPath, 3, Len(XAPath) - 3)
+Print #3, "XA NETZ.CLP"
+Close #3
+variable = Shell(PROGPATH + "xa.bat", 1)
+'Ende: Erzeugen der Batch-Datei fur XA-Aufruf
+'DoEvents
+End Sub
+

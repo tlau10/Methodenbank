@@ -1,0 +1,75 @@
+package absf1;
+
+/**
+ * <p>Title: </p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author unascribed
+ * @version 1.0
+ */
+
+import java.io.*;
+import javax.swing.table.TableModel;
+import javax.swing.table.DefaultTableModel;
+import java.util.Vector;
+import java.beans.XMLEncoder;
+
+
+public class Speichern {
+
+  //Klassenattribute
+  TableModel LkwModell;
+  TableModel GebindeModell;
+
+
+  public Speichern(TableModel pLkwModell, TableModel pGebindeModell) {
+
+    LkwModell = pLkwModell;
+    GebindeModell = pGebindeModell;
+  }
+
+  /**
+   * Diese Methode dient zum speichern von Modellen. Sie erwartet einen Datei-Pfad, wo sich die zu
+   * speichernde Datei befinden soll.
+   *
+   * @param path - wo sich die zu speichernde Datei befinden soll
+   */
+
+  public void speichernObjekt( File path ) {
+
+    try {
+      if( path != null ) {
+        String[][] valuesLKW = new String[LkwModell.getRowCount()][LkwModell.getColumnCount()];
+        for (int i = 0; i < LkwModell.getRowCount(); i++) {
+          for (int j = 0; j < LkwModell.getColumnCount(); j++) {
+            valuesLKW[i][j] = (String) LkwModell.getValueAt(i, j);
+          }
+        }
+
+        String[][] valuesGebinde = new String[GebindeModell.getRowCount()][
+            GebindeModell.getColumnCount()];
+        for (int i = 0; i < GebindeModell.getRowCount(); i++) {
+          for (int j = 0; j < GebindeModell.getColumnCount(); j++) {
+            valuesGebinde[i][j] = (String) GebindeModell.getValueAt(i, j);
+          }
+        }
+
+        FileOutputStream file = new FileOutputStream(path);
+        ObjectOutputStream out = new ObjectOutputStream(file);
+        out.writeInt(LkwModell.getRowCount());
+        out.writeInt(GebindeModell.getRowCount());
+        out.writeObject(valuesLKW);
+        out.writeObject(valuesGebinde);
+        out.flush();
+        out.close();
+
+      }
+    }
+    catch( IOException ex ) {
+      ex.printStackTrace();
+    }
+
+  }
+
+}

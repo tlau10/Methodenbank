@@ -1,0 +1,758 @@
+package pflegestation;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.table.*;
+import java.util.*;
+import java.sql.Time;
+import pflegestation.*;
+import java.io.*;
+
+/**
+ * <p>Title: Leitstand Pflegestation</p>
+ * <p>Description: Optimiert die Pflegevorgänge einer Krankenhausstation</p>
+ * <p>Copyright: Copyright (c) 2002</p>
+ * <p>Company: FH Konstanz</p>
+ * @author Sebastian Hagen, Jonathan Feuerstein, Birgit Engler
+ * @version 1.0
+ */
+
+public class FrameMain extends JFrame {
+    int time = 0;
+
+    JPanel contentPane;
+    JPanel jPanelMain = new JPanel();
+    BorderLayout borderLayout2 = new BorderLayout();
+    JLabel jLabelHeader = new JLabel();
+    JScrollPane jScrollPaneInput = new JScrollPane();
+    JTable jTableInput = new JTable();
+    JPanel jPanelButtons = new JPanel();
+    JButton jButtonOptimize = new JButton();
+    JButton jButtonRemoveRow = new JButton();
+    JButton jButtonAddRow = new JButton();
+    InputTableModel objInputModel;
+    Vector objTimesVector;
+    Vector objDurationsVector;
+    JButton jButtonVisualize = new JButton();
+    JPanel jPanelResult = new JPanel();
+    JPanel jPanelChart = new JPanel();
+    BorderLayout borderLayout3 = new BorderLayout();
+    JPanel jPanelTable = new JPanel();
+    BorderLayout borderLayout4 = new BorderLayout();
+    BorderLayout borderLayout5 = new BorderLayout();
+    JScrollPane jScrollPane1 = new JScrollPane();
+    JTable jTableServiceLevel = new JTable();
+
+    private ChartColourScheme chartCols;
+    private Chart chart;
+    ChartPanel chartPan;
+    private static int UPDATE_INITIALIZE = 0;
+    private static int UPDATE_SUM = 1;
+    private static int UPDATE_OPTIMIZE = 2;
+    GridBagLayout gridBagLayout1 = new GridBagLayout();
+    JButton jButtonFileExport = new JButton();
+    private Vector m_objDemandPerUnit;
+
+
+    //Construct the frame
+    public FrameMain() {
+        enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+        try {
+            jbInit();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //Component initialization
+    private void jbInit() throws Exception  {
+        //setIconImage(Toolkit.getDefaultToolkit().createImage(FrameMain.class.getResource("[Your Icon]")));
+        contentPane = (JPanel) this.getContentPane();
+        contentPane.setLayout(gridBagLayout1);
+        this.setSize(new Dimension(800, 500));
+        this.setTitle("Leitstand Pflegestation");
+        jPanelMain.setLayout(borderLayout2);
+        jLabelHeader.setFont(new java.awt.Font("Dialog", 0, 30));
+        jLabelHeader.setText("Bitte Pflegevorgänge eintragen:");
+        jButtonOptimize.setMaximumSize(new Dimension(113, 27));
+        jButtonOptimize.setMinimumSize(new Dimension(113, 27));
+        jButtonOptimize.setPreferredSize(new Dimension(113, 27));
+        jButtonOptimize.setText("Optimieren");
+        jButtonOptimize.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                jButtonOptimize_actionPerformed(e);
+            }
+        });
+        jButtonRemoveRow.setMaximumSize(new Dimension(113, 27));
+        jButtonRemoveRow.setMinimumSize(new Dimension(113, 27));
+        jButtonRemoveRow.setPreferredSize(new Dimension(113, 27));
+        jButtonRemoveRow.setText("Zeile löschen");
+        jButtonRemoveRow.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                jButtonRemoveRow_actionPerformed(e);
+            }
+        });
+        jButtonAddRow.setText("Zeile einfügen");
+        jButtonAddRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                jButtonAddRow_actionPerformed(e);
+            }
+        });
+        jButtonVisualize.setMaximumSize(new Dimension(113, 27));
+        jButtonVisualize.setMinimumSize(new Dimension(113, 27));
+        jButtonVisualize.setPreferredSize(new Dimension(113, 27));
+        jButtonVisualize.setText("Summieren");
+        jButtonVisualize.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                jButtonVisualize_actionPerformed(e);
+            }
+        });
+        jPanelResult.setMinimumSize(new Dimension(477, 104));
+        jPanelResult.setPreferredSize(new Dimension(477, 480));
+        jPanelResult.setLayout(borderLayout3);
+        jPanelChart.setBorder(BorderFactory.createEtchedBorder());
+        jPanelChart.setMinimumSize(new Dimension(235, 52));
+        jPanelChart.setPreferredSize(new Dimension(535, 240));
+        jPanelChart.setLayout(borderLayout4);
+        jPanelTable.setBorder(BorderFactory.createEtchedBorder());
+        jPanelTable.setMinimumSize(new Dimension(247, 52));
+        jPanelTable.setPreferredSize(new Dimension(247, 240));
+        jPanelTable.setLayout(borderLayout5);
+        jPanelMain.setMinimumSize(new Dimension(477, 104));
+        jPanelMain.setPreferredSize(new Dimension(477, 880));
+        jButtonFileExport.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                jButtonFileExport_actionPerformed(e);
+            }
+        });
+        jButtonFileExport.setText("Datei Export");
+        jButtonFileExport.setPreferredSize(new Dimension(113, 27));
+        jButtonFileExport.setActionCommand("Datei Export");
+        jButtonFileExport.setMinimumSize(new Dimension(113, 27));
+        jButtonFileExport.setMaximumSize(new Dimension(113, 27));
+        contentPane.add(jPanelMain,  new GridBagConstraints(0, 0, 1, 1, 1.0, 1.0
+            ,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 323, -460));
+        jPanelMain.add(jLabelHeader, BorderLayout.NORTH);
+        jPanelMain.add(jScrollPaneInput,  BorderLayout.CENTER);
+        jPanelMain.add(jPanelButtons,  BorderLayout.SOUTH);
+        jScrollPaneInput.getViewport().add(jTableInput, null);
+        jPanelButtons.add(jButtonAddRow, null);
+        jPanelButtons.add(jButtonRemoveRow, null);
+        jPanelButtons.add(jButtonOptimize, null);
+        jPanelButtons.add(jButtonVisualize, null);
+        jPanelButtons.add(jButtonFileExport, null);
+        contentPane.add(jPanelResult,  new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0
+            ,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 323, 0));
+        jPanelResult.add(jPanelChart,  BorderLayout.WEST);
+        jPanelResult.add(jPanelTable, BorderLayout.EAST);
+
+        objInputModel = new InputTableModel();
+        jTableInput.setModel(objInputModel);
+        objTimesVector = new Vector(48);
+        objTimesVector.add(new String("00:00:00"));
+        objTimesVector.add(new String("00:30:00"));
+        objTimesVector.add(new String("01:00:00"));
+        objTimesVector.add(new String("01:30:00"));
+        objTimesVector.add(new String("02:00:00"));
+        objTimesVector.add(new String("02:30:00"));
+        objTimesVector.add(new String("03:00:00"));
+        objTimesVector.add(new String("03:30:00"));
+        objTimesVector.add(new String("04:00:00"));
+        objTimesVector.add(new String("04:30:00"));
+        objTimesVector.add(new String("05:00:00"));
+        objTimesVector.add(new String("05:30:00"));
+        objTimesVector.add(new String("06:00:00"));
+        objTimesVector.add(new String("06:30:00"));
+        objTimesVector.add(new String("07:00:00"));
+        objTimesVector.add(new String("07:30:00"));
+        objTimesVector.add(new String("08:00:00"));
+        objTimesVector.add(new String("08:30:00"));
+        objTimesVector.add(new String("09:00:00"));
+        objTimesVector.add(new String("09:30:00"));
+        objTimesVector.add(new String("10:00:00"));
+        objTimesVector.add(new String("10:30:00"));
+        objTimesVector.add(new String("11:00:00"));
+        objTimesVector.add(new String("11:30:00"));
+        objTimesVector.add(new String("12:00:00"));
+        objTimesVector.add(new String("12:30:00"));
+        objTimesVector.add(new String("13:00:00"));
+        objTimesVector.add(new String("13:30:00"));
+        objTimesVector.add(new String("14:00:00"));
+        objTimesVector.add(new String("14:30:00"));
+        objTimesVector.add(new String("15:00:00"));
+        objTimesVector.add(new String("15:30:00"));
+        objTimesVector.add(new String("16:00:00"));
+        objTimesVector.add(new String("16:30:00"));
+        objTimesVector.add(new String("17:00:00"));
+        objTimesVector.add(new String("17:30:00"));
+        objTimesVector.add(new String("18:00:00"));
+        objTimesVector.add(new String("18:30:00"));
+        objTimesVector.add(new String("19:00:00"));
+        objTimesVector.add(new String("19:30:00"));
+        objTimesVector.add(new String("20:00:00"));
+        objTimesVector.add(new String("20:30:00"));
+        objTimesVector.add(new String("21:00:00"));
+        objTimesVector.add(new String("21:30:00"));
+        objTimesVector.add(new String("22:00:00"));
+        objTimesVector.add(new String("22:30:00"));
+        objTimesVector.add(new String("23:00:00"));
+        objTimesVector.add(new String("23:30:00"));
+
+        objDurationsVector = new Vector(3);
+        objDurationsVector.add(new String("30"));
+        objDurationsVector.add(new String("60"));
+        objDurationsVector.add(new String("90"));
+        jPanelTable.add(jScrollPane1,  BorderLayout.CENTER);
+        jScrollPane1.getViewport().add(jTableServiceLevel, null);
+
+        JComboBox objTimesComboBox = new JComboBox(objTimesVector);
+        objTimesComboBox.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(ItemEvent e)
+            {
+               objTimeComboBox_itemStateChanged(e);
+            }
+        });
+        JTextField objDurationsComboBox = new JTextField();
+        jTableInput.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(objTimesComboBox));
+        jTableInput.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(objTimesComboBox));
+        jTableInput.getColumnModel().getColumn(4).setCellEditor(new DefaultCellEditor(objTimesComboBox));
+        jTableInput.getColumnModel().getColumn(5).setCellEditor(new DefaultCellEditor(objTimesComboBox));
+        jTableInput.getColumnModel().getColumn(6).setCellEditor(new DefaultCellEditor(objDurationsComboBox));
+
+        chartCols = new ChartColourScheme(2,2,1);
+        chartCols.setChartAreaColor(SystemColor.window.getRGB());
+
+        updateDemandTable(this.UPDATE_INITIALIZE);
+
+        chart = new Chart(jTableServiceLevel,chartCols,jTableServiceLevel.getRowCount(),0,false);
+        chart.setSeriesLabels(false);
+        chartPan = chart.getPanel();
+        jPanelChart.add(chartPan, BorderLayout.CENTER);
+
+    }
+
+    //Overridden so we can exit when window is closed
+    protected void processWindowEvent(WindowEvent e) {
+        super.processWindowEvent(e);
+        if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+            System.exit(0);
+        }
+    }
+
+    void jButtonAddRow_actionPerformed(ActionEvent e)
+    {
+        // Zeile einfuegen
+        objInputModel.addElement();
+        //updateDemandTable(false);
+        updateChart();
+    }
+
+    void jButtonRemoveRow_actionPerformed(ActionEvent e)
+    {
+        // Zeile loeschen
+        objInputModel.removeElement(jTableInput.getSelectedRow());
+        //updateDemandTable(false);
+        updateChart();
+    }
+
+    void jButtonOptimize_actionPerformed(ActionEvent e)
+    {
+        if(checkData() == true)
+        {
+            updateDemandTable(this.UPDATE_OPTIMIZE);
+            updateChart();
+        }
+    }
+
+    void jButtonVisualize_actionPerformed(ActionEvent e)
+    {
+        updateDemandTable(this.UPDATE_SUM);
+        updateChart();
+    }
+
+    void objTimeComboBox_itemStateChanged(ItemEvent e)
+    {
+        if(e.getStateChange() == ItemEvent.SELECTED)
+       {
+          //System.out.println("Item Event ausgelöst");
+       }
+       //updateDemandTable(false);
+        //updateChart();
+    }
+
+    private void updateDemandTable(int in_intOption)
+    {
+        int intIntervalSize = 30;
+        int i = 0;
+        int j = 0;
+        int intRowCount = 0;
+        Time timIntervalStart;
+        Time timIntervalEnd;
+        // String fuer die Zeitangaben
+        String strRowHeader = new String();
+        Vector objDemandPerUnit;
+
+
+        objDemandPerUnit = getDemandVector(in_intOption);
+
+        // Anzahl Zeilen berechnen
+        intRowCount = 48;
+
+        // neues Model fuer Tabelle erzeugen
+        DefaultTableModel objNewWorkerCountTableModel = new DefaultTableModel(intRowCount,2);
+
+        // Werte ins Model schreiben
+        for ( i = 0; i < intRowCount; i++ )
+        {
+            // new Time( -3600000 ) liefert 00:00:00, dann jeweils die restliche Zeit draufaddieren
+            timIntervalStart = new Time( -3600000  + (i*intIntervalSize*60000));
+            timIntervalEnd = new Time( -3600000  + (i*intIntervalSize*60000) + (intIntervalSize*60000) );
+            strRowHeader = timIntervalStart.toString() + " - " + timIntervalEnd.toString();
+            objNewWorkerCountTableModel.setValueAt(strRowHeader,i,0);
+            objNewWorkerCountTableModel.setValueAt(objDemandPerUnit.get(i),i,1);
+        }
+        jTableServiceLevel.setModel(objNewWorkerCountTableModel);
+    }
+
+    private Vector getDemandVector(int in_intOption)
+    {
+        Vector objDemandPerUnit = new Vector();
+        if(in_intOption == this.UPDATE_OPTIMIZE)
+        {
+            System.out.println("Der optimierte Vektor würde zurückgegeben");
+
+            LpData objLpData = new LpData(objInputModel.getData());
+            ReadConfigIni objReadConfigIni = new ReadConfigIni();
+
+            LpSolve objLpSolve = new LpSolve(objLpData.getVectorData(),objReadConfigIni.getLPsolvePath());
+            objDemandPerUnit = objLpData.representSolution(objLpSolve.getSolutionVector(),objLpSolve.getSolutionVectorVariable());
+        }
+        else if(in_intOption == this.UPDATE_SUM)
+        {
+            objDemandPerUnit = getCumulatedDemandAsVector();
+        }
+        else
+        {
+            for(int i = 0; i <= 47; i++)
+            {
+                objDemandPerUnit.add(0, new String(new Integer(0).toString()));
+            }
+        }
+            m_objDemandPerUnit = objDemandPerUnit;
+            return m_objDemandPerUnit;
+    }
+
+    /**
+    * Aktualisiert die Anzeige des Chsrt, in dem sie das alte Chart-Panel entfernt und ein neues erzeugt und setzt.
+    */
+    private void updateChart()
+    {
+        // das Panel mit dem chart erst entfernen und dann neu erstellen und wieder draufsetzen, damit es neu
+        // gezeichnet wird - ist nicht gerade die eleganteste Loesung, aber anders hab ich's nicht hinbekommen
+        jPanelChart.remove(chartPan);
+        chart = new Chart(jTableServiceLevel,chartCols,jTableServiceLevel.getRowCount(),0,false);
+        chart.setSeriesLabels(false);
+        chartPan = chart.getPanel();
+        jPanelChart.add(chartPan, BorderLayout.CENTER);
+        chartPan.revalidate();
+        chartPan.repaint();
+    }
+
+    private Vector getCumulatedDemandAsVector()
+    {
+        Vector vectorWorkingStep = objInputModel.getData();
+        Vector objDemandPerUnit = new Vector();
+        int intOldDuration, intNewDuration;
+        int intSumDuration = 0;
+        int intPeriodeStart,intPeriodeStart2;
+        int intPeriodeEnd;
+        String tmpString;
+        boolean blnValueSet = false;
+
+        for(int i = 0; i <= 47; i++)
+        {
+            objDemandPerUnit.add(0, new String(new Integer(0).toString()));
+        }
+
+        for(int i=0;i<vectorWorkingStep.size();i++)
+        {
+
+            WorkingStep objWorkingStep = (WorkingStep)vectorWorkingStep.elementAt(i);
+            intPeriodeStart = (Integer.parseInt(objWorkingStep.getRegularStartHour())*60+Integer.parseInt(objWorkingStep.getRegularStartMinute()))/30;
+
+            intNewDuration = Integer.parseInt(objWorkingStep.getDuration());
+            tmpString = (String)objDemandPerUnit.get(intPeriodeStart);
+            intOldDuration = Integer.parseInt(tmpString);
+            intSumDuration += intOldDuration + intNewDuration;
+            objDemandPerUnit.remove(intPeriodeStart);
+            objDemandPerUnit.add(intPeriodeStart,new String(new Integer(intSumDuration).toString()));
+            intSumDuration = 0;
+        }
+        return objDemandPerUnit;
+        /*
+        //zunächst alles den Vektor mit "0" Strings füllen
+        for(int i = 0; i <= 47; i++)
+        {
+            objDemandPerUnit.add(0, new String(new Integer(0).toString()));
+        }
+        for(int i=0;i<vectorWorkingStep.size();i++)
+        {
+
+            WorkingStep objWorkingStep = (WorkingStep)vectorWorkingStep.elementAt(i);
+            intPeriodeStart = (Integer.parseInt(objWorkingStep.getRegularStartHour())*60+Integer.parseInt(objWorkingStep.getRegularStartMinute()))/30;
+
+            for(int j=i;j<vectorWorkingStep.size();j++)
+            {
+                if(i!=j)
+                {
+
+                    WorkingStep objWorkingStep2 = (WorkingStep)vectorWorkingStep.elementAt(j);
+                    intPeriodeStart2 = (Integer.parseInt(objWorkingStep2.getRegularStartHour())*60+Integer.parseInt(objWorkingStep2.getRegularStartMinute()))/30;
+                    if(intPeriodeStart == intPeriodeStart2)
+                    {
+                        intNewDuration = Integer.parseInt(objWorkingStep2.getDuration());
+                        intSumDuration += intNewDuration;
+                        blnValueSet = true;
+                    }
+                }
+            }
+            tmpString = (String)objDemandPerUnit.get(intPeriodeStart);
+            intOldDuration = Integer.parseInt(tmpString);
+            intSumDuration += intOldDuration;
+            if(blnValueSet == false)
+                intSumDuration += Integer.parseInt(objWorkingStep.getDuration());
+
+
+            objDemandPerUnit.remove(intPeriodeStart);
+            objDemandPerUnit.add(intPeriodeStart,new String(new Integer(intSumDuration).toString()));
+            intSumDuration = 0;
+            blnValueSet = false;
+
+        }
+        return objDemandPerUnit;
+        */
+
+    }
+    void jButtonFileExport_actionPerformed(ActionEvent e)
+    {
+
+
+            String strPath = "c:/temp/export.bdf";
+             try
+             {
+                FileWriter out_file = new FileWriter(strPath);
+                BufferedWriter writer=new BufferedWriter(out_file);
+
+                //writer.write("es funktioniert");
+
+                //m_objDemandPerUnit
+                writer.write("1;");
+                for(int i=0;i<m_objDemandPerUnit.size();i++)
+                {
+                    writer.write((String)m_objDemandPerUnit.elementAt(i));
+                    writer.write(";");
+                }
+                writer.newLine();
+                writer.write("#");
+                writer.newLine();
+
+                writer.close();
+                out_file.close();
+                JOptionPane.showMessageDialog(this, "Datei wurde unter "+strPath+" gespeichert");
+            }
+            catch (Exception ex)
+           {
+
+               JOptionPane.showMessageDialog(this, "Datei konnte nicht gespeichert werden!");
+           }
+    }
+    private boolean checkData()
+    {
+        Vector vectorWorkingStep = objInputModel.getData();
+        for(int i=0;i<vectorWorkingStep.size();i++)
+        {
+            WorkingStep objWorkingStep = (WorkingStep)vectorWorkingStep.elementAt(i);
+
+            int intPeriodeStart = (Integer.parseInt(objWorkingStep.getRegularStartHour())*60+Integer.parseInt(objWorkingStep.getRegularStartMinute()))/30+1;
+            int intPeriodeEnd =   (Integer.parseInt(objWorkingStep.getRegularEndHour())*60+Integer.parseInt(objWorkingStep.getRegularEndMinute()))/30+1;
+
+            if(intPeriodeStart >= intPeriodeEnd)
+            {
+                JOptionPane.showMessageDialog(this, "Der reguläre Start muss jeweils vor dem regulärem Ende liegen");
+                return false;
+            }
+            int intPeriodeStartAlt = (Integer.parseInt(objWorkingStep.getAlternativeStartHour())*60+Integer.parseInt(objWorkingStep.getAlternativeEndMinute()))/30+1;
+            int intPeriodeEndAlt = (Integer.parseInt(objWorkingStep.getAlternativeEndHour())*60+Integer.parseInt(objWorkingStep.getAlternativeEndMinute()))/30+1;
+            if(intPeriodeStartAlt >= intPeriodeEndAlt)
+            {
+                // außer, wenn beide auf 00:00 stehen, dann ist es so, als ob sie nicht optimiert sind
+                if(!(intPeriodeStartAlt == 1 && intPeriodeEndAlt == 1))
+                {
+                    JOptionPane.showMessageDialog(this, "Die reguläre Startalternative muss jeweils vor der regulären Endealternative liegen");
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+}
+
+class InputTableModel extends AbstractTableModel
+{
+    final String[] columnNames = { "Nr.", "Beschreibung", "Reg.Start", "Reg.Ende", "Alt.Start", "Alt.Ende", "Dauer" };
+    private Vector objData;
+    private int intIndex = 1;
+
+    public InputTableModel()
+    {
+        objData = new Vector(0);
+    }
+
+    public int getColumnCount()
+    {
+        return columnNames.length;
+    }
+
+    public int getRowCount()
+    {
+        return objData.size();
+    }
+
+    public String getColumnName(int col)
+    {
+        return columnNames[col];
+    }
+
+    public Object getValueAt(int row, int col)
+    {
+        WorkingStep objCurrentWorkingStep = (WorkingStep)objData.elementAt(row);
+        switch (col)
+        {
+            case 0:
+                return new Integer(objCurrentWorkingStep.getNumber());
+            case 1:
+                return objCurrentWorkingStep.getDescription();
+            case 2:
+                return objCurrentWorkingStep.getRegularStartHour() + ":" + objCurrentWorkingStep.getRegularStartMinute();
+            case 3:
+                return objCurrentWorkingStep.getRegularEndHour() + ":" + objCurrentWorkingStep.getRegularEndMinute();
+            case 4:
+                return objCurrentWorkingStep.getAlternativeStartHour() + ":" + objCurrentWorkingStep.getAlternativeStartMinute();
+            case 5:
+                return objCurrentWorkingStep.getAlternativeEndHour() + ":" + objCurrentWorkingStep.getAlternativeEndMinute();
+            case 6:
+                return objCurrentWorkingStep.getDuration();
+            case 7:
+                return objCurrentWorkingStep.getExecutionTime();
+            default:
+                System.out.println("invalid column!");
+                return null;
+        }
+
+    }
+
+    /*
+     * JTable uses this method to determine the default renderer/
+     * editor for each cell.  If we didn't implement this method,
+     * then the last column would contain text ("true"/"false"),
+     * rather than a check box.
+     */
+    public Class getColumnClass(int c)
+    {
+        WorkingStep objCurrentWorkingStep = (WorkingStep)objData.elementAt(0);
+        switch (c)
+        {
+            case 0:
+                try
+                {
+                    return Class.forName("java.lang.Integer");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("getColumnClass: error");
+                }
+            case 1:
+                try
+                {
+                    return Class.forName("java.lang.String");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("getColumnClass: error");
+                }
+            case 2:
+                try
+                {
+                    return Class.forName("java.lang.String");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("getColumnClass: error");
+                }
+            case 3:
+                try
+                {
+                    return Class.forName("java.lang.String");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("getColumnClass: error");
+                }
+            case 4:
+                try
+                {
+                    return Class.forName("java.lang.String");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("getColumnClass: error");
+                }
+            case 5:
+                try
+                {
+                    return Class.forName("java.lang.String");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("getColumnClass: error");
+                }
+            case 6:
+                try
+                {
+                    return Class.forName("java.lang.String");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("getColumnClass: error");
+                }
+            case 7:
+                try
+                {
+                    return Class.forName("java.lang.String");
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("getColumnClass: error");
+                }
+            default:
+                System.out.println("getColumnClass: invalid column!");
+                return null;
+        }
+    }
+
+    /*
+     * Don't need to implement this method unless your table's
+     * editable.
+     */
+    public boolean isCellEditable(int row, int col)
+    {
+        // die Nummer und das optimierte Ergebnis sind nicht editierbar
+        if (col == 0 || col == 7)
+            return false;
+        else
+            return true;
+    }
+
+    public void addElement()
+    {
+        objData.add(new WorkingStep(intIndex++));
+        fireTableDataChanged();
+    }
+
+    public void removeElement( int in_intRow )
+    {
+        if ( in_intRow >= 0 )
+        {
+            objData.removeElementAt( in_intRow );
+            fireTableDataChanged();
+        }
+    }
+
+    public Vector getData()
+    {
+        return objData;
+    }
+
+    /*
+     * Don't need to implement this method unless your table's
+     * data can change.
+     */
+    public void setValueAt(Object value, int row, int col)
+    {
+        WorkingStep objCurrentWorkingStep = (WorkingStep)objData.elementAt(row);
+        String strValue;
+        switch (col)
+        {
+            case 1:
+                if (value instanceof String)
+                    objCurrentWorkingStep.setDescription((String)value);
+                else
+                    System.out.println("setValueAt: invalid class!");
+                break;
+            case 2:
+                if (value instanceof String)
+                {
+                    strValue = (String)value;
+                    objCurrentWorkingStep.setRegularStartHour(strValue.substring(0,2));
+                    objCurrentWorkingStep.setRegularStartMinute(strValue.substring(3,5));
+                }
+                else
+                    System.out.println("setValueAt: invalid class!");
+                break;
+            case 3:
+                if (value instanceof String)
+                {
+                    strValue = (String)value;
+                    objCurrentWorkingStep.setRegularEndHour(strValue.substring(0,2));
+                    objCurrentWorkingStep.setRegularEndMinute(strValue.substring(3,5));
+                }
+                else
+                    System.out.println("setValueAt: invalid class!");
+                break;
+            case 4:
+                if (value instanceof String)
+                {
+                    strValue = (String)value;
+                    objCurrentWorkingStep.setAlternativeStartHour(strValue.substring(0,2));
+                    objCurrentWorkingStep.setAlternativeStartMinute(strValue.substring(3,5));
+                }
+                else
+                    System.out.println("setValueAt: invalid class!");
+                break;
+            case 5:
+                if (value instanceof String)
+                {
+                    strValue = (String)value;
+                    objCurrentWorkingStep.setAlternativeEndHour(strValue.substring(0,2));
+                    objCurrentWorkingStep.setAlternativeEndMinute(strValue.substring(3,5));
+                }
+                else
+                    System.out.println("setValueAt: invalid class!");
+                break;
+            case 6:
+                if (value instanceof String)
+                {
+                    objCurrentWorkingStep.setDuration((String)value);
+                }
+                else
+                    System.out.println("setValueAt: invalid class!");
+                break;
+            default:
+                System.out.println("setValueAt: invalid column!");
+        }
+        fireTableCellUpdated(row, col);
+    }
+
+}

@@ -1,0 +1,13 @@
+# Sample ResourceBundle properties file
+
+LP_PATH=D\:\\FH\\ABSF\\OR\\Prototyp\\solver
+
+LP_WORKING_PATH=D\:\\FH\\ABSF\\OR\\Prototyp\\solver
+
+LP_FILENAME=LP_SOLVE.exe
+
+XA_PATH=C\:\\BESF\\BESF\\SOLVER\\XA
+
+XA_FILENAME=XA.EXE
+
+XA_WORKING_PATH=C\:\\BESF\\BESF\\SOLVER\\XA

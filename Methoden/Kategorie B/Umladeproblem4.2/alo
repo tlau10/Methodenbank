@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<umladeproblem>
+    <anbieterArray>2.1</anbieterArray>
+    <anbieterArray>0.0</anbieterArray>
+    <nachfragerArray>3.6</nachfragerArray>
+    <nachfragerArray>0.0</nachfragerArray>
+    <kostenmatrix>
+        <item>1.6</item>
+        <item>7.8</item>
+    </kostenmatrix>
+    <kostenmatrix>
+        <item>5.9</item>
+        <item>0.0</item>
+    </kostenmatrix>
+</umladeproblem>

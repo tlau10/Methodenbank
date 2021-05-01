@@ -1,0 +1,23 @@
+; This file is maintained by HCW. Do not modify this file directly.
+
+[OPTIONS]
+HCW=0
+; CONTENTS = index
+COMPRESS=12 Hall Zeck
+ERRORLOG=hilfetxt.err
+LCID=0x407 0x0 0x0 ;Deutsch (Deutschland)
+REPORT=Yes
+TITLE=Hilfe zur Maschinenbelegungsplanung
+COPYRIGHT=Fachhochschule Konstanz
+HLP=.\Hilfetxt.hlp
+
+[FILES]
+hilfetxt.rtf
+
+[MAP]
+MASCHINENDATEN 10
+AUFTRAGSDATEN 20
+MASCHINENBELEGUNG 30
+
+[CONFIG]
+;BrowseButtons()

@@ -1,0 +1,38 @@
+<?jsx version="1"?>
+<java.util.Vector alias-ID="0">
+  <ptss.KnotenListe alias-ID="1"
+   kId="-1"
+   marked="0"
+   enum="false"
+   iName="1">
+    <java.util.Vector alias-ID="2" obj-name="kList">
+      <ptss.Knoten alias-ID="3"
+       x="93"
+       y="79"
+       id="0"
+       isMarked="true"
+       start="false"
+       ziel="false"
+       simuId="-1"
+       eventAnzahl="1000"
+       eventProEinheit="5"
+       scheduledEvents="0">
+        <java.lang.String alias-ID="4" obj-name="name" valueOf="Knoten0"/>
+      </ptss.Knoten>
+    </java.util.Vector>
+    <null obj-name="e"/>
+    <null obj-name="lnkKnoten"/>
+  </ptss.KnotenListe>
+  <ptss.KantenListe alias-ID="5"
+   kId="-1"
+   marked="-1"
+   iName="0">
+    <java.util.Vector alias-ID="6" obj-name="kList"/>
+    <alias-ref obj-name="knotenListe" alias="1"/>
+    <null obj-name="lnkKante"/>
+  </ptss.KantenListe>
+  <ptss.RoutenListe alias-ID="7">
+    <java.util.Vector alias-ID="8" obj-name="routenListe"/>
+  </ptss.RoutenListe>
+</java.util.Vector>
+

@@ -1,0 +1,190 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import com.borland.jbcl.layout.*;
+import javax.swing.border.*;
+
+public class mainFrame extends JFrame {
+  JPanel contentPane;
+  JMenuBar jMenuBar1 = new JMenuBar();
+  JMenu jMenuFile = new JMenu();
+  JMenuItem jMenuFileExit = new JMenuItem();
+  JMenu jMenuHelp = new JMenu();
+  JMenuItem jMenuHelpAbout = new JMenuItem();
+  JLabel statusBar = new JLabel();
+  BorderLayout borderLayout1 = new BorderLayout();
+  JMenuItem jMenuPlanErstellen = new JMenuItem();
+  JPanel JPanelEIngabeWerte = new JPanel();
+  XYLayout xYLayout1 = new XYLayout();
+  JLabel jLabelBegruessung = new JLabel();
+  JLabel jLabelEingabeText = new JLabel();
+  JLabel jLabelEingabe2 = new JLabel();
+  JLabel jLabelAlter = new JLabel();
+  TitledBorder titledBorder1;
+  JLabel jLabelGroesse = new JLabel();
+  JLabel jLabelGewicht = new JLabel();
+  JButton jButton1 = new JButton();
+  JTextField jTextFieldAlter = new JTextField();
+  JTextField jTextFieldGroesse = new JTextField();
+  JTextField jTextFieldGewicht = new JTextField();
+
+  //Construct the frame
+  public mainFrame() {
+    enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+  //Component initialization
+  private void jbInit() throws Exception  {
+    contentPane = (JPanel) this.getContentPane();
+    titledBorder1 = new TitledBorder("");
+    contentPane.setLayout(borderLayout1);
+    this.getContentPane().setBackground(SystemColor.control);
+    this.setSize(new Dimension(800, 600));
+    this.setTitle("Frame Title");
+    statusBar.setText(" ");
+    jMenuFile.setText("Diätplanung");
+    jMenuFileExit.setText("Exit");
+    jMenuFileExit.addActionListener(new mainFrame_jMenuFileExit_ActionAdapter(this));
+    jMenuHelp.setText("Help");
+    jMenuHelpAbout.setText("About");
+    jMenuHelpAbout.addActionListener(new mainFrame_jMenuHelpAbout_ActionAdapter(this));
+    contentPane.setMaximumSize(new Dimension(2147483647, 2147483647));
+    contentPane.setMinimumSize(new Dimension(640, 480));
+    contentPane.setPreferredSize(new Dimension(640, 180));
+    jMenuPlanErstellen.setText("Plan Erstellen");
+    JPanelEIngabeWerte.setLayout(xYLayout1);
+    jLabelBegruessung.setBorder(BorderFactory.createRaisedBevelBorder());
+    jLabelBegruessung.setHorizontalAlignment(SwingConstants.CENTER);
+    jLabelBegruessung.setText("Willkommen bei Diätplaner 1.0");
+    jLabelEingabeText.setHorizontalAlignment(SwingConstants.LEADING);
+    jLabelEingabeText.setText("Um die für Sie passende Diätzusammenstellung berechnen zu können ");
+    jLabelEingabe2.setHorizontalAlignment(SwingConstants.CENTER);
+    jLabelEingabe2.setText("geben Sie bitte Ihr Alter, Körpergröße und Gewicht ein!");
+    JPanelEIngabeWerte.setBorder(BorderFactory.createRaisedBevelBorder());
+    JPanelEIngabeWerte.setDebugGraphicsOptions(0);
+    JPanelEIngabeWerte.setMaximumSize(new Dimension(800, 600));
+    JPanelEIngabeWerte.setMinimumSize(new Dimension(640, 480));
+    JPanelEIngabeWerte.setPreferredSize(new Dimension(640, 480));
+    jLabelAlter.setBorder(BorderFactory.createRaisedBevelBorder());
+    jLabelAlter.setHorizontalAlignment(SwingConstants.CENTER);
+    jLabelAlter.setText("Alter");
+    jLabelGroesse.setBorder(BorderFactory.createRaisedBevelBorder());
+    jLabelGroesse.setDebugGraphicsOptions(0);
+    jLabelGroesse.setHorizontalAlignment(SwingConstants.CENTER);
+    jLabelGroesse.setText("Größe");
+    jLabelGewicht.setBorder(BorderFactory.createRaisedBevelBorder());
+    jLabelGewicht.setHorizontalAlignment(SwingConstants.CENTER);
+    jLabelGewicht.setText("Gewicht");
+    jButton1.setText("Weiter");
+    jButton1.addActionListener(new mainFrame_jButton1_actionAdapter(this));
+    jTextFieldAlter.addActionListener(new mainFrame_jTextFieldAlter_actionAdapter(this));
+    jTextFieldAlter.setText("");
+    jTextFieldGroesse.addActionListener(new mainFrame_jTextFieldGroesse_actionAdapter(this));
+    jTextFieldGroesse.setText("");
+    jTextFieldGewicht.setText("");
+    jMenuFile.add(jMenuPlanErstellen);
+    jMenuFile.add(jMenuFileExit);
+    jMenuHelp.add(jMenuHelpAbout);
+    jMenuBar1.add(jMenuFile);
+    jMenuBar1.add(jMenuHelp);
+    contentPane.add(statusBar, BorderLayout.SOUTH);
+    contentPane.add(JPanelEIngabeWerte, BorderLayout.CENTER);
+    this.setJMenuBar(jMenuBar1);
+    JPanelEIngabeWerte.add(jLabelBegruessung, new XYConstraints(194, 33, 218, 23));
+    JPanelEIngabeWerte.add(jLabelEingabeText, new XYConstraints(111, 68, 371, 27));
+    JPanelEIngabeWerte.add(jLabelEingabe2,  new XYConstraints(84, 96, 381, -1));
+    JPanelEIngabeWerte.add(jLabelAlter, new XYConstraints(169, 134, 67, -1));
+    JPanelEIngabeWerte.add(jLabelGewicht, new XYConstraints(170, 203, 66, -1));
+    JPanelEIngabeWerte.add(jLabelGroesse,  new XYConstraints(170, 171, 65, -1));
+    JPanelEIngabeWerte.add(jButton1, new XYConstraints(256, 259, -1, -1));
+    JPanelEIngabeWerte.add(jTextFieldAlter, new XYConstraints(284, 134, 50, 18));
+    JPanelEIngabeWerte.add(jTextFieldGewicht,  new XYConstraints(284, 203, 52, -1));
+    JPanelEIngabeWerte.add(jTextFieldGroesse, new XYConstraints(284, 168, 50, -1));
+  }
+  //File | Exit action performed
+  public void jMenuFileExit_actionPerformed(ActionEvent e) {
+    System.exit(0);
+  }
+  //Help | About action performed
+  public void jMenuHelpAbout_actionPerformed(ActionEvent e) {
+  }
+  //Overridden so we can exit when window is closed
+  protected void processWindowEvent(WindowEvent e) {
+    super.processWindowEvent(e);
+    if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+      jMenuFileExit_actionPerformed(null);
+    }
+  }
+
+  void jButton1_actionPerformed(ActionEvent e) {
+
+  }
+
+  void jTextFieldAlter_actionPerformed(ActionEvent e) {
+
+  }
+
+  void jTextFieldGroesse_actionPerformed(ActionEvent e) {
+
+  }
+}
+
+class mainFrame_jMenuFileExit_ActionAdapter implements ActionListener {
+  mainFrame adaptee;
+
+  mainFrame_jMenuFileExit_ActionAdapter(mainFrame adaptee) {
+    this.adaptee = adaptee;
+  }
+  public void actionPerformed(ActionEvent e) {
+    adaptee.jMenuFileExit_actionPerformed(e);
+  }
+}
+
+class mainFrame_jMenuHelpAbout_ActionAdapter implements ActionListener {
+  mainFrame adaptee;
+
+  mainFrame_jMenuHelpAbout_ActionAdapter(mainFrame adaptee) {
+    this.adaptee = adaptee;
+  }
+  public void actionPerformed(ActionEvent e) {
+    adaptee.jMenuHelpAbout_actionPerformed(e);
+  }
+}
+
+class mainFrame_jButton1_actionAdapter implements java.awt.event.ActionListener {
+  mainFrame adaptee;
+
+  mainFrame_jButton1_actionAdapter(mainFrame adaptee) {
+    this.adaptee = adaptee;
+  }
+  public void actionPerformed(ActionEvent e) {
+    adaptee.jButton1_actionPerformed(e);
+  }
+}
+
+class mainFrame_jTextFieldAlter_actionAdapter implements java.awt.event.ActionListener {
+  mainFrame adaptee;
+
+  mainFrame_jTextFieldAlter_actionAdapter(mainFrame adaptee) {
+    this.adaptee = adaptee;
+  }
+  public void actionPerformed(ActionEvent e) {
+    adaptee.jTextFieldAlter_actionPerformed(e);
+  }
+}
+
+class mainFrame_jTextFieldGroesse_actionAdapter implements java.awt.event.ActionListener {
+  mainFrame adaptee;
+
+  mainFrame_jTextFieldGroesse_actionAdapter(mainFrame adaptee) {
+    this.adaptee = adaptee;
+  }
+  public void actionPerformed(ActionEvent e) {
+    adaptee.jTextFieldGroesse_actionPerformed(e);
+  }
+}

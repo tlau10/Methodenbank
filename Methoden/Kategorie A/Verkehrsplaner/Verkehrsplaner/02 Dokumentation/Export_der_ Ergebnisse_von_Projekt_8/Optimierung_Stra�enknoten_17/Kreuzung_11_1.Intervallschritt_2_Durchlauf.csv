@@ -1,0 +1,376 @@
+Ergebnisübersicht:
+
+Kreuzungs-ID: 27; Kreuzungs-Name: Ampel27
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;56;43,36;60;559,0;88,73;42,33
+1;Vorgelagert-Ost ;0;0,0;0;0,0;0,0;0,0
+2;Vorgelagert-Süd ;0;0,02;3;19,0;0,15;0,0
+3;Vorgelagert-West;5;11,47;24;133,0;92,75;52,51
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts/Gerade;3;3,22;5;608,0;111,06
+1;Nord: Links;0;2,7;5;593,0;94,95
+2;Ost: Rechts/Gerade;0;0,0;0;0,0;0,0
+3;Ost: Links;0;0,0;0;0,0;0,0
+4;Süd: Rechts/Gerade;2;0,12;2;24,0;3,88
+5;Süd: Links;1;0,39;4;52,0;13,85
+6;West: Rechts/Gerade;3;3,38;5;176,0;113,02
+7;West: Links;0;1,9;5;164,0;61,61
+
+
+
+Kreuzungs-ID: 16; Kreuzungs-Name: Ampel16
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0,0;0;0,0;0,0;0,0
+1;Vorgelagert-Ost ;0;0,36;7;21,0;1,84;0,0
+2;Vorgelagert-Süd ;0;0,0;0;0,0;0,0;0,0
+3;Vorgelagert-West;22;18,38;31;326,0;98,88;62,2
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts/Gerade;0;0,04;2;18,0;1,15
+1;Nord: Links;0;0,04;1;32,0;1,46
+2;Ost: Rechts/Gerade;1;1,05;5;27,0;35,27
+3;Ost: Links;0;0,0;0;0,0;0,0
+4;Süd: Rechts/Gerade;0;0,0;0;0,0;0,0
+5;Süd: Links;0;0,0;0;0,0;0,0
+6;West: Rechts/Gerade;4;3,23;5;362,0;111,87
+7;West: Links;0;1,55;3;306,0;51,62
+
+
+
+Kreuzungs-ID: 17; Kreuzungs-Name: Ampel17
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;6;2,84;15;63,0;22,47;0,7
+1;Vorgelagert-Ost ;0;0,0;0;0,0;0,0;0,0
+2;Vorgelagert-Süd ;0;0,0;0;0,0;0,0;0,0
+3;Vorgelagert-West;0;0,0;0;0,0;0,0;0,0
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts/Gerade;3;2,4;5;70,0;75,84
+1;Nord: Links;0;0,76;4;54,0;23,94
+2;Ost: Rechts/Gerade;0;0,0;0;0,0;0,0
+3;Ost: Links;0;0,0;0;0,0;0,0
+4;Süd: Rechts/Gerade;0;0,0;0;0,0;0,0
+5;Süd: Links;0;0,0;0;0,0;0,0
+6;West: Rechts/Gerade;0;0,0;0;0,0;0,0
+7;West: Links;0;0,0;0;0,0;0,0
+
+
+
+Kreuzungs-ID: 18; Kreuzungs-Name: Ampel18
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0,0;0;0,0;0,0;0,0
+1;Vorgelagert-Ost ;0;0,0;0;0,0;0,0;0,0
+2;Vorgelagert-Süd ;0;0,09;5;11,0;0,22;0,0
+3;Vorgelagert-West;0;0,0;0;0,0;0,0;0,0
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts/Gerade;0;0,0;0;0,0;0,0
+1;Nord: Links;0;0,0;0;0,0;0,0
+2;Ost: Rechts/Gerade;0;0,0;0;0,0;0,0
+3;Ost: Links;0;0,0;0;0,0;0,0
+4;Süd: Rechts/Gerade;0;0,94;5;26,0;29,97
+5;Süd: Links;0;0,68;5;18,0;22,35
+6;West: Rechts/Gerade;0;0,0;0;0,0;0,0
+7;West: Links;0;0,0;0;0,0;0,0
+
+
+
+Kreuzungs-ID: 19; Kreuzungs-Name: Ampel19
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;1,74;13;73,0;1,98;0,0
+1;Vorgelagert-Ost ;0;0,0;0;0,0;0,0;0,0
+2;Vorgelagert-Süd ;448;218,36;448;1141,0;1851,91;95,85
+3;Vorgelagert-West;0;0,0;1;4,0;0,0;0,0
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts/Gerade;0;1,85;6;76,0;60,5
+1;Nord: Links;0;0,0;0;0,0;0,0
+2;Ost: Rechts/Gerade;0;0,0;0;0,0;0,0
+3;Ost: Links;0;0,0;0;0,0;0,0
+4;Süd: Rechts/Gerade;0;2,84;5;1133,0;96,97
+5;Süd: Links;3;3,15;5;1169,0;106,25
+6;West: Rechts/Gerade;1;0,45;4;27,0;13,99
+7;West: Links;0;0,49;4;24,0;15,99
+
+
+
+Kreuzungs-ID: 10; Kreuzungs-Name: Ampel10
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;1,63;14;173,0;12,96;0,6
+1;Vorgelagert-Ost ;0;0,08;6;14,0;0,44;0,0
+2;Vorgelagert-Süd ;0;0,0;0;0,0;0,0;0,0
+3;Vorgelagert-West;7;11,59;19;189,0;97,13;57,91
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts;1;1,31;4;126,0;43,64
+1;Nord: Gerade;0;0,0;0;0,0;0,0
+2;Nord: Links;0;2,0;5;221,0;66,66
+3;Ost: Rechts;0;0,22;3;27,0;7,47
+4;Ost: Gerade;0;0,75;5;23,0;25,65
+5;Ost: Links;0;0,0;0;0,0;0,0
+6;Süd: Rechts;0;0,0;0;0,0;0,0
+7;Süd: Gerade;0;0,0;0;0,0;0,0
+8;Süd: Links;0;0,0;0;0,0;0,0
+9;West: Rechts;0;0,0;0;0,0;0,0
+10;West: Gerade;4;3,54;5;249,0;117,26
+11;West: Links;0;1,74;3;212,0;66,09
+
+
+
+Kreuzungs-ID: 12; Kreuzungs-Name: Ampel12
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0,0;0;0,0;0,0;0,0
+1;Vorgelagert-Ost ;0;0,01;1;14,0;0,06;0,0
+2;Vorgelagert-Süd ;0;0,0;0;0,0;0,0;0,0
+3;Vorgelagert-West;0;0,03;3;7,0;0,04;0,0
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts;0;0,0;0;0,0;0,0
+1;Nord: Gerade;0;0,0;0;0,0;0,0
+2;Nord: Links;0;0,0;0;0,0;0,0
+3;Ost: Rechts;0;0,09;3;18,0;2,76
+4;Ost: Gerade;0;0,25;5;16,0;8,23
+5;Ost: Links;0;0,0;0;0,0;0,0
+6;Süd: Rechts;0;0,0;0;0,0;0,0
+7;Süd: Gerade;0;0,0;0;0,0;0,0
+8;Süd: Links;0;0,0;0;0,0;0,0
+9;West: Rechts;0;0,0;0;0,0;0,0
+10;West: Gerade;0;0,63;6;15,0;18,57
+11;West: Links;0;0,35;4;18,0;11,38
+
+
+
+Kreuzungs-ID: 13; Kreuzungs-Name: Ampel13
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0,07;4;15,0;0,67;0,0
+1;Vorgelagert-Ost ;0;0,0;0;0,0;0,0;0,0
+2;Vorgelagert-Süd ;0;0,01;3;9,0;0,01;0,0
+3;Vorgelagert-West;0;0,0;0;0,0;0,0;0,0
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts;0;0,12;3;20,0;4,1
+1;Nord: Gerade;1;0,7;5;26,0;20,97
+2;Nord: Links;1;0,31;4;28,0;9,57
+3;Ost: Rechts;0;0,0;0;0,0;0,0
+4;Ost: Gerade;0;0,0;0;0,0;0,0
+5;Ost: Links;0;0,0;0;0,0;0,0
+6;Süd: Rechts;0;0,29;3;27,0;9,7
+7;Süd: Gerade;2;0,5;5;24,0;16,61
+8;Süd: Links;1;0,06;1;22,0;1,96
+9;West: Rechts;0;0,07;2;22,0;2,47
+10;West: Gerade;0;0,04;1;24,0;1,23
+11;West: Links;0;0,07;2;24,0;2,2
+
+
+
+Kreuzungs-ID: 14; Kreuzungs-Name: Ampel14
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;1,88;11;43,0;29,75;10,06
+1;Vorgelagert-Ost ;0;0,0;0;0,0;0,0;0,0
+2;Vorgelagert-Süd ;8;5,45;24;86,0;6,16;0,0
+3;Vorgelagert-West;0;0,0;0;0,0;0,0;0,0
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts;0;2,3;5;73,0;72,9
+1;Nord: Gerade;2;1,88;6;46,0;63,54
+2;Nord: Links;0;0,0;0;0,0;0,0
+3;Ost: Rechts;0;0,0;0;0,0;0,0
+4;Ost: Gerade;0;0,0;0;0,0;0,0
+5;Ost: Links;0;0,0;0;0,0;0,0
+6;Süd: Rechts;0;0,0;0;0,0;0,0
+7;Süd: Gerade;3;2,25;5;106,0;76,79
+8;Süd: Links;0;2,3;5;105,0;75,04
+9;West: Rechts;0;0,0;0;0,0;0,0
+10;West: Gerade;0;0,0;0;0,0;0,0
+11;West: Links;0;0,0;0;0,0;0,0
+
+
+
+Kreuzungs-ID: 15; Kreuzungs-Name: Ampel15
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0,0;0;0,0;0,0;0,0
+1;Vorgelagert-Ost ;0;0,3;7;20,0;0,98;0,0
+2;Vorgelagert-Süd ;700;347,29;700;1722,0;2822,4;96,89
+3;Vorgelagert-West;0;0,0;0;0,0;0,0;0,0
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts;0;0,0;0;0,0;0,0
+1;Nord: Gerade;0;0,0;0;0,0;0,0
+2;Nord: Links;0;0,0;0;0,0;0,0
+3;Ost: Rechts;0;1,42;5;40,0;46,29
+4;Ost: Gerade;0;0,35;3;34,0;11,13
+5;Ost: Links;0;1,12;4;31,0;35,7
+6;Süd: Rechts;4;3,63;6;1742,0;113,65
+7;Süd: Gerade;1;2,47;5;1716,0;82,87
+8;Süd: Links;0;1,36;4;1614,0;44,76
+9;West: Rechts;0;0,0;0;0,0;0,0
+10;West: Gerade;0;0,0;0;0,0;0,0
+11;West: Links;0;0,0;0;0,0;0,0
+
+
+
+Kreuzungs-ID: 20; Kreuzungs-Name: Ampel20
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0,0;1;2,0;0,0;0,0
+1;Vorgelagert-Ost ;0;0,0;0;0,0;0,0;0,0
+2;Vorgelagert-Süd ;0;0,04;5;11,0;0,08;0,0
+3;Vorgelagert-West;0;0,0;0;0,0;0,0;0,0
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts;0;0,0;0;0,0;0,0
+1;Nord: Gerade;0;0,36;4;15,0;12,18
+2;Nord: Links;1;0,1;3;12,0;3,24
+3;Ost: Rechts;0;0,0;0;0,0;0,0
+4;Ost: Gerade;0;0,0;0;0,0;0,0
+5;Ost: Links;0;0,0;0;0,0;0,0
+6;Süd: Rechts;1;0,71;4;24,0;23,54
+7;Süd: Gerade;0;0,41;5;15,0;13,2
+8;Süd: Links;0;0,0;0;0,0;0,0
+9;West: Rechts;0;0,0;0;0,0;0,0
+10;West: Gerade;0;0,0;0;0,0;0,0
+11;West: Links;0;0,0;0;0,0;0,0
+
+
+
+Kreuzungs-ID: 21; Kreuzungs-Name: Ampel21
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0,04;3;21,0;0,09;0,0
+1;Vorgelagert-Ost ;0;0,0;0;0,0;0,0;0,0
+2;Vorgelagert-Süd ;551;248,46;551;1235,0;2046,45;97,14
+3;Vorgelagert-West;710;370,18;710;1988,0;2991,96;97,78
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts;4;0,55;4;54,0;20,61
+1;Nord: Gerade;0;0,45;4;42,0;13,86
+2;Nord: Links;1;0,18;2;30,0;5,57
+3;Ost: Rechts;0;0,0;0;0,0;0,0
+4;Ost: Gerade;0;0,0;0;0,0;0,0
+5;Ost: Links;0;0,0;0;0,0;0,0
+6;Süd: Rechts;3;3,2;5;1306,0;105,77
+7;Süd: Gerade;0;2,48;5;1246,0;81,06
+8;Süd: Links;1;2,69;5;1227,0;89,02
+9;West: Rechts;3;3,14;5;1986,0;99,76
+10;West: Gerade;2;2,86;5;1985,0;90,31
+11;West: Links;1;2,67;5;2039,0;88,19
+
+
+
+Kreuzungs-ID: 86; Kreuzungs-Name: Ampel86
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0,11;7;39,0;0,19;0,0
+1;Vorgelagert-Ost ;725;377,08;729;1968,0;3155,28;97,55
+2;Vorgelagert-Süd ;0;0,07;5;16,0;1,02;0,0
+3;Vorgelagert-West;23;18,02;28;397,0;97,43;62,33
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts;0;0,28;2;51,0;8,55
+1;Nord: Gerade;0;0,95;4;53,0;29,34
+2;Nord: Links;1;0,44;3;58,0;13,0
+3;Ost: Rechts;1;1,85;4;2066,0;63,79
+4;Ost: Gerade;2;2,86;5;2008,0;96,8
+5;Ost: Links;3;3,39;5;1954,0;111,37
+6;Süd: Rechts;0;0,77;4;49,0;24,88
+7;Süd: Gerade;0;0,51;5;39,0;16,09
+8;Süd: Links;1;0,62;5;46,0;20,88
+9;West: Rechts;4;3,13;5;522,0;113,96
+10;West: Gerade;0;1,67;4;385,0;56,45
+11;West: Links;2;1,89;4;449,0;63,85
+
+
+
+Kreuzungs-ID: 9; Kreuzungs-Name: Ampel9
+Daten der vorgelagerten WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Vorgelagert-Nord;0;0,0;0;0,0;0,0;0,0
+1;Vorgelagert-Ost ;0;0,01;2;11,0;0,01;0,0
+2;Vorgelagert-Süd ;0;0,08;5;80,0;0,63;0,0
+3;Vorgelagert-West;319;81,39;319;481,0;676,18;50,71
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung
+0;Nord: Rechts;0;0,0;0;0,0;0,0
+1;Nord: Gerade;0;0,0;0;0,0;0,0
+2;Nord: Links;0;0,0;0;0,0;0,0
+3;Ost: Rechts;0;0,0;0;0,0;0,0
+4;Ost: Gerade;1;0,49;4;31,0;16,45
+5;Ost: Links;1;0,08;1;27,0;2,61
+6;Süd: Rechts;2;0,79;4;89,0;25,91
+7;Süd: Gerade;0;0,0;0;0,0;0,0
+8;Süd: Links;0;0,44;3;41,0;14,09
+9;West: Rechts;0;1,25;4;394,0;44,39
+10;West: Gerade;4;2,74;6;349,0;93,49
+11;West: Links;0;0,0;0;0,0;0,0
+
+
+
+Kreuzungs-ID: 23; Kreuzungs-Name: Kreisverkehr23
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord;0;1,35;10;104,0;9,92;0,0
+1;Ost;0;0,68;14;28,0;5,14;0,02
+2;Süd;1;0,72;7;80,0;4,32;0,0
+3;West;776;379,76;776;1938,0;2480,68;95,4
+
+
+
+Kreuzungs-ID: 24; Kreuzungs-Name: Kreisverkehr24
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord;0;3,11;16;156,0;22,25;6,96
+1;Ost;0;3,37;16;109,0;4,41;0,0
+2;Süd;4;1,28;15;31,0;8,63;0,0
+3;West;997;489,57;1001;2299,0;3250,84;90,25
+
+
+
+Kreuzungs-ID: 22; Kreuzungs-Name: Vorfahrt22
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord;0;0,01;2;5,0;0,03;0,0
+1;Ost;0;0,0;0;0,0;0,0;0,0
+2;Süd;0;0,01;2;2,0;0,03;0,0
+3;West;0;0,0;0;0,0;0,0;0,0
+
+
+
+Kreuzungs-ID: 96; Kreuzungs-Name: Kreisverkehr96
+
+Daten der WS:
+WS-ID;Beschreibung;Länge;durchs. Länge;max Länge;durchs. Wartezeit;proz. Straßenauslastung;proz. Stau
+0;Nord;0;0,0;0;0,0;0,0;0,0
+1;Ost;5;0,85;9;51,0;1,44;0,0
+2;Süd;0;0,35;6;29,0;0,62;0,0
+3;West;65;40,92;78;287,0;68,1;27,45
+
+
+

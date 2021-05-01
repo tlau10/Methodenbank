@@ -1,0 +1,22 @@
+[OPTIONS]
+title = NAVIGATOR - Hilfe
+contents = Inhalt
+compress = true
+copyright = 1996, A. Merz & C. Moosherr
+warning = 3
+report = on
+errorlog = help_err.txt
+
+[FILES]
+taxi01.rtf
+
+[MAP]
+METHODE   0001
+ABLAUF    0002
+
+;[CONFIG]
+;BrowseButtons()
+
+[WINDOWS]
+main = "Navigator - Hilfe", (360,0,663,1023),,,(192,192,192)
+

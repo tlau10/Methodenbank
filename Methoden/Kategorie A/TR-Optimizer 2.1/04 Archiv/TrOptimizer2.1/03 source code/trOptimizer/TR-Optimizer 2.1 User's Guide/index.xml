@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE index PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Index Version 2.0//EN"
+                       "http://java.sun.com/products/javahelp/index_2_0.dtd">
+
+<index version="2.0">
+	<indexitem text="FrontPage" target="FrontPage" />
+	<indexitem text="(1) Einleitung" target="Einleitung" />
+	<indexitem text="(2) Die bisherige Version" target="Die bisherige Version">
+		<indexitem text="(2.1) Ist-Analyse" target="Ist-Analyse" />
+		<indexitem text="(2.2) Benutzerschnittstellen" target="Benutzerschnittstellen" />
+		<indexitem text="(2.3) Nachteile" target="Nachteile" />
+	</indexitem>
+	<indexitem text="(3) LP-Ansatz">
+		<indexitem text="(3.1) Aufgabenstellung" target="Aufgabenstellung" />
+		<indexitem text="(3.2) Lösung">
+			<indexitem text="(3.2.1) Aufstellen des Transportmodells" target="Aufstellen des Transportmodells" />
+			<indexitem text="(3.2.2) Einfügen der Restriktionen zur Bestimmung des Transporters" target="Einfügen der Restriktionen zur Bestimmung des Transporters" />
+			<indexitem text="(3.2.3) Bestimmen der Zielfunktion" target="Bestimmen der Zielfunktion" />
+		</indexitem>
+	</indexitem>
+	<indexitem text="(4) Planung der Verbesserungsmaßnahmen">
+		<indexitem text="(4.1) Anforderungs-Analyse" target="Anforderungs-Analyse" />
+		<indexitem text="(4.2) Projektziel" target="Projektziel" />
+	</indexitem>
+	<indexitem text="(5) Projektverlauf" target="Projektverlauf" />
+	<indexitem text="(6) Resultat">
+		<indexitem text="(6.1) Geänderte Klassen" target="Geänderte Klassen" />
+		<indexitem text="(6.2) Neue Features" target="Neue Features" />
+		<indexitem text="(6.3) Benutzerschnittstellen" target="Benutzerschnittstellen1" />
+	</indexitem>
+	<indexitem text="(7) Installationshinweise" target="(7) Installationshinweise" />
+	<indexitem text="(8) Projektaufwand und Erfahrungen">
+		<indexitem text="(8.1) Allgemeine Projekterfahrungen" target="Allgemeine Projekterfahrungen" />
+		<indexitem text="(8.2) Projektaufwand" target="Projektaufwand" />
+	</indexitem>
+	<indexitem text="(9) Ausblick" target="Ausblick" />
+	<indexitem text="Die bisherige Version" target="Die bisherige Version" />
+</index>

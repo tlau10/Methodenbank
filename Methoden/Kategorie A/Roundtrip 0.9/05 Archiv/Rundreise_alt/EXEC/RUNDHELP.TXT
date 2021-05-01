@@ -1,0 +1,100 @@
+
+
+
+                     Rundreiseproblem
+
+
+
+
+  Das Programm ermittelt den krzesten Weg zwischen den anzu-
+
+  fahrenden St„dten, mit graphischer Darstellung am Bildschirm.
+
+  Die St„dte sind mit  X - und  Y - Position, wie in einem 
+  
+  Koordinatensystem, einzugeben.
+
+
+
+  Vorgehensweise:
+
+
+        - Zuerst ist die Anzahl der St„dte anzugeben. 
+        
+
+        - Danach werden die Koordinaten (X,Y) eingegeben. 
+        
+
+        - Am Ende der Eingabe besteht die M”glichkeit die Positionen 
+        
+          der St„dte nochmals zu „ndern, indem die Richtigkeit der
+
+          Koordinaten, durch das Programm abgefragt wird.
+
+
+        - Nachdem die Richtigkeit der Eingabe best„tigt wurde,
+
+          wird die Graphik am Bildschirm erstellt.
+
+
+
+  Bei der Eingabe gilt zu beachten :
+
+
+         - Durch die Eingabe der Null, bei Anzahl anzufahrender 
+
+           St„dte, kann das Programm verlassen werden.
+
+
+         - Durch die Eingabe <Ctrl/Break> kann das Programm an
+
+           jeder Stelle, auáer w„hrend der Berechnung verlassen
+
+           werden.
+
+
+         - Die Anzahl der anzufahrenden St„de muá mindestens 
+
+           zwei sein.
+
+
+         - Es k”nnen maximal 300 St„dte angefahren werden. Eine
+
+           h”here Eingabe wird angenommen, die Berechnung
+
+           nach Eingeben der Koordinaten wird jedoch nicht
+
+           ausgefhrt
+
+
+         - Nach der Best„tigung der eingegebenen Koordinaten,
+
+           kann die Berechnung der krzesten Verbindung der
+
+           St„dte nicht mehr gestoppt werden.
+
+
+
+  Abbruch des Programmes: 
+  
+
+         - Eingabe einer negativen Zahl oder Dezimalzahl bei
+
+           Anzahl anzufahrende St„dte
+
+
+         - Eingabe eines Buchstabens
+
+
+         - Eine Dezimalzahl bei der Koordinateneingabe darf nicht
+
+           mit einem Komma dargestellt werden, sondern mit einem
+
+           Punkt
+
+
+         - Bet„tigen von <Ctrl/Break>.
+
+
+
+  Ende des Hilfetextes.

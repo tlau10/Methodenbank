@@ -1,0 +1,81 @@
+
+Benîtigte Dateien
+------------------
+
+     - UMLADEP.EXE
+     - UMLADE.INI
+     - UMLADE.HLP
+     - XA.EXE
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+                         Neues Problem
+-----------------------------------------------------------------------
+
+Das Umladeproblem wird neu erstellt.
+
+Bei der Eingabe der Kostenmatrix ist zu beachten:
+
+- Beispiele :
+    -  Feld 2,4 bedeutet  -  Transportkosten von Knoten 2 nach Knoten 4
+    -  Feld 2,2 bedeutet  -  Umladekosten von Knoten 2
+         ( UMLADEORTE sind alle Xii, (von = nach)    )
+         Jeder Knoten kann verschiedene Umladekosten haben.
+
+
+- AusgefÅllt werden nur die relevanten Felder der Matrix bzw. nur diejenigen
+  Strecken bei denen auch Kosten entstehen.
+
+
+- Kostenlose Transportstrecken sind nicht zugelassen !
+
+
+- Bei ungerichteten Graphen (Hin- und ZurÅckstrecken) mÅssen die Kosten
+  in beiden Feldern eingetragen werden. z.B x13=5 , x31=5
+
+- Bei gerichteten Graphen (Strecken die nur in eine Richtung zugelassen sind),
+  werden nur die Kosten fÅr die zugelassene Richtung eingetragen.
+  z.B.  x24=13 , x42=0
+
+
+- Die Daten werden nach Verlassen der Kostenmatrix in einer Datei
+  abgespeichert.  Der Dateiname ist beliebig wÑhlbar.
+
+
+- Das Programm erzeugt danach einen LP-Ansatz und speichert diesen dann
+  als UMLADE.LP ab.
+  Danach bearbeitet XA dieses File und schreibt die Auswertung in das
+  Textfile XA.OUT.
+  Dieses File wird durch das Programm ausgewertet und die korrigierten
+  Ergebnisse am Bildschirm angezeigt.
+
+- UMLADE.LP und XA.OUT kînnen vom Benutzer editiert werden.
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------
+                         Alte Datei einladen
+-----------------------------------------------------------------------
+
+- Die Knotenanzahl kann nicht geÑndert werden.
+
+- Die Korrekturen werden automatisch nach Verlassen der Kostenmatrix
+  unter dem selben Dateinamen gespeichert.
+
+
+
+  --- ENDE DER HILFESTELLUNG  -----
+

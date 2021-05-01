@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- jsx.org, (c) -->
+<jsx major='1' minor='1' format='JSX.DataReader'>
+ <collection id='i0' class='java.util.Vector'>
+  <object id='i1' class='ptss.KnotenListe' superclasses=''>
+   <declaredClass class='ptss.KnotenListe'>
+    <default>
+     <collection field='kList' id='i2' class='java.util.Vector'/>
+     <primitive field='kId' type='int' value='-1'/>
+     <primitive field='marked' type='int' value='-1'/>
+     <primitive field='enum_var' type='boolean' value='false'/>
+     <null field='e'/>
+     <null field='lnkKnoten'/>
+     <primitive field='iName' type='int' value='0'/>
+    </default>
+   </declaredClass>
+  </object>
+  <object id='i3' class='ptss.KantenListe' superclasses=''>
+   <declaredClass class='ptss.KantenListe'>
+    <default>
+     <collection field='kList' id='i4' class='java.util.Vector'/>
+     <reference field='knotenListe' idref='i1'/>
+     <primitive field='kId' type='int' value='-1'/>
+     <primitive field='marked' type='int' value='-1'/>
+     <null field='lnkKante'/>
+     <primitive field='iName' type='int' value='0'/>
+    </default>
+   </declaredClass>
+  </object>
+  <object id='i5' class='ptss.RoutenListe' superclasses=''>
+   <declaredClass class='ptss.RoutenListe'>
+    <default>
+     <collection field='routenListe' id='i6' class='java.util.Vector'/>
+    </default>
+   </declaredClass>
+  </object>
+ </collection>
+</jsx>

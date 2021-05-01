@@ -1,0 +1,10 @@
+Installation
+#############################################
+Windows 32 Bit
+
+Dateien aus dem Ordner "Installationsdateien" in den Ordner "\WINDOWS\SYSTEM32" kopieren.
+
+#############################################
+Windows 64 Bit / mac / linux 
+
+Den Anweisungen aus der README des Archivs "lp_solve_5.5.0.15_java.zip" folgen.

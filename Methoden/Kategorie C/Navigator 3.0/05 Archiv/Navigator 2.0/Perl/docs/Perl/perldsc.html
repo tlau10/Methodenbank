@@ -1,0 +1,965 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perldsc</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perldsc_name_0">
+NAME</A>
+</H1>
+perldsc - Perl Data Structures Cookbook
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_description_0">
+DESCRIPTION</A>
+</H1>
+The single feature most sorely lacking in the Perl programming language
+prior to its 5.0 release was complex data structures.  Even without direct
+language support, some valiant programmers did manage to emulate them, but
+it was hard work and not for the faint of heart.  You could occasionally
+get away with the <CODE><STRONG>$m</STRONG>{<STRONG>$LoL</STRONG>,<STRONG>$b</STRONG>}</CODE> notation borrowed from <EM>awk</EM> in which the
+keys are actually more like a single concatenated string <CODE>``<STRONG>$LoL</STRONG><STRONG>$b</STRONG>''</CODE>, but
+traversal and sorting were difficult.  More desperate programmers even
+hacked Perl's internal symbol table directly, a strategy that proved hard
+to develop and maintain--to put it mildly.
+<p>The 5.0 release of Perl let us have complex data structures.  You
+may now write something like this and all of a sudden, you'd have a array
+with three dimensions!
+<p>
+<XMP>
+    for $x (1 .. 10) {
+        for $y (1 .. 10) {
+            for $z (1 .. 10) {
+                $LoL[$x][$y][$z] =
+                    $x ** $y + $z;
+            }
+        }
+    }
+
+</XMP>
+<p>Alas, however simple this may appear, underneath it's a much more
+elaborate construct than meets the eye!
+<p>How do you print it out?  Why can't you just say <CODE>print <STRONG>@LoL</STRONG></CODE>?  How do
+you sort it?  How can you pass it to a function or get one of these back
+from a function?  Is is an object?  Can you save it to disk to read
+back later?  How do you access whole rows or columns of that matrix?  Do
+all the values have to be numeric?
+<p>As you see, it's quite easy to become confused.  While some small portion
+of the blame for this can be attributed to the reference-based
+implementation, it's really more due to a lack of existing documentation with
+examples designed for the beginner.
+<p>This document is meant to be a detailed but understandable treatment of
+the many different sorts of data structures you might want to develop.  It should
+also serve as a cookbook of examples.  That way, when you need to create one of these
+complex data structures, you can just pinch, pilfer, or purloin
+a drop-in example from here.
+<p>Let's look at each of these possible constructs in detail.  There are separate
+documents on each of the following:
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* arrays of arrays</EM>
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+<EM>* hashes of arrays</EM>
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+<EM>* arrays of hashes</EM>
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+<EM>* hashes of hashes</EM>
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+<EM>* more elaborate constructs</EM>
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+<EM>* recursive and self-referential data structures</EM>
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+<EM>* objects</EM>
+</STRONG>
+<DD>
+<p>
+</DL>
+But for now, let's look at some of the general issues common to allof these types of data structures.
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_references_0">
+REFERENCES</A>
+</H1>
+The most important thing to understand about all data structures in Perl
+-- including multidimensional arrays--is that even though they might
+appear otherwise, Perl <CODE><STRONG>@ARRAY</STRONG></CODE>s and <CODE><STRONG>%HASH</STRONG></CODE>es are all internally
+one-dimensional.  They can only hold scalar values (meaning a string,
+number, or a reference).  They cannot directly contain other arrays or
+hashes, but instead contain <EM>references</EM> to other arrays or hashes.
+<p>You can't use a reference to a array or hash in quite the same way that
+you would a real array or hash.  For C or C++ programmers unused to distinguishing
+between arrays and pointers to the same, this can be confusing.  If so,
+just think of it as the difference between a structure and a pointer to a
+structure.
+<p>You can (and should) read more about references in the perlref(1) man
+page.  Briefly, references are rather like pointers that know what they
+point to.  (Objects are also a kind of reference, but we won't be needing
+them right away--if ever.)  This means that when you have something which
+looks to you like an access to a two-or-more-dimensional array and/or hash,
+what's really going on is that the base type is
+merely a one-dimensional entity that contains references to the next
+level.  It's just that you can <EM>use</EM> it as though it were a
+two-dimensional one.  This is actually the way almost all C
+multidimensional arrays work as well.
+<p>
+<XMP>
+    $list[7][12]                        # array of arrays
+    $list[7]{string}                    # array of hashes
+    $hash{string}[7]                    # hash of arrays
+    $hash{string}{'another string'}     # hash of hashes
+
+</XMP>
+<p>Now, because the top level only contains references, if you try to print
+out your array in with a simple <EM>print()</EM> function, you'll get something
+that doesn't look very nice, like this:
+<p>
+<XMP>
+    @LoL = ( [2, 3], [4, 5, 7], [0] );
+    print $LoL[1][2];
+  7
+    print @LoL;
+  ARRAY(0x83c38)ARRAY(0x8b194)ARRAY(0x8b1d0)
+
+</XMP>
+<p>That's because Perl doesn't (ever) implicitly dereference your variables.
+If you want to get at the thing a reference is referring to, then you have
+to do this yourself using either prefix typing indicators, like
+<CODE>${<STRONG>$blah</STRONG>}</CODE>, <CODE>@{<STRONG>$blah</STRONG>}</CODE>, <CODE>@{<STRONG>$blah</STRONG>[<STRONG>$i</STRONG>]}</CODE>, or else postfix pointer arrows,
+like <CODE><STRONG>$a</STRONG>-&gt;[3]</CODE>, <CODE><STRONG>$h</STRONG>-&gt;{fred}</CODE>, or even <CODE><STRONG>$ob</STRONG>-&gt;<EM>method()</EM>-&gt;[3]</CODE>.
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_common_0">
+COMMON MISTAKES</A>
+</H1>
+The two most common mistakes made in constructing something like
+an array of arrays is either accidentally counting the number of
+elements or else taking a reference to the same memory location
+repeatedly.  Here's the case where you just get the count instead
+of a nested array:
+<p>
+<XMP>
+    for $i (1..10) {
+        @list = somefunc($i);
+        $LoL[$i] = @list;       # WRONG!
+    }
+
+</XMP>
+<p>That's just the simple case of assigning a list to a scalar and getting
+its element count.  If that's what you really and truly want, then you
+might do well to consider being a tad more explicit about it, like this:
+<p>
+<XMP>
+    for $i (1..10) {
+        @list = somefunc($i);
+        $counts[$i] = scalar @list;     
+    }
+
+</XMP>
+<p>Here's the case of taking a reference to the same memory location
+again and again:
+<p>
+<XMP>
+    for $i (1..10) {
+        @list = somefunc($i);
+        $LoL[$i] = \@list;      # WRONG!
+    }
+
+</XMP>
+<p>So, just what's the big problem with that?  It looks right, doesn't it?
+After all, I just told you that you need an array of references, so by
+golly, you've made me one!
+<p>Unfortunately, while this is true, it's still broken.  All the references
+in <STRONG>@LoL</STRONG> refer to the <EM>very same place</EM>, and they will therefore all hold
+whatever was last in <STRONG>@list</STRONG>!  It's similar to the problem demonstrated in
+the following C program:
+<p>
+<XMP>
+    #include <pwd.h>
+    main() {
+        struct passwd *getpwnam(), *rp, *dp;
+        rp = getpwnam("root");
+        dp = getpwnam("daemon");
+        printf("daemon name is %s\nroot name is %s\n",
+                dp->pw_name, rp->pw_name);
+    }
+
+</XMP>
+<p>Which will print
+<p>
+<XMP>
+    daemon name is daemon
+    root name is daemon
+
+</XMP>
+<p>The problem is that both <CODE>rp</CODE> and <CODE>dp</CODE> are pointers to the same location
+in memory!  In C, you'd have to remember to <EM>malloc()</EM> yourself some new
+memory.  In Perl, you'll want to use the array constructor <CODE>[]</CODE> or the
+hash constructor <CODE>{}</CODE> instead.   Here's the right way to do the preceding
+broken code fragments:
+<p>
+<XMP>
+    for $i (1..10) {
+        @list = somefunc($i);
+        $LoL[$i] = [ @list ];
+    }
+
+</XMP>
+<p>The square brackets make a reference to a new array with a <EM>copy</EM>
+of what's in <STRONG>@list</STRONG> at the time of the assignment.  This is what
+you want.
+<p>Note that this will produce something similar, but it's
+much harder to read:
+<p>
+<XMP>
+    for $i (1..10) {
+        @list = 0 .. $i;
+        @{$LoL[$i]} = @list;
+    }
+
+</XMP>
+<p>Is it the same?  Well, maybe so--and maybe not.  The subtle difference
+is that when you assign something in square brackets, you know for sure
+it's always a brand new reference with a new <EM>copy</EM> of the data.
+Something else could be going on in this new case with the <CODE>@{<STRONG>$LoL</STRONG>[<STRONG>$i</STRONG>]}}</CODE>
+dereference on the left-hand-side of the assignment.  It all depends on
+whether <CODE><STRONG>$LoL</STRONG>[<STRONG>$i</STRONG>]</CODE> had been undefined to start with, or whether it
+already contained a reference.  If you had already populated <STRONG>@LoL</STRONG> with
+references, as in
+<p>
+<XMP>
+    $LoL[3] = \@another_list;
+
+</XMP>
+<p>Then the assignment with the indirection on the left-hand-side would
+use the existing reference that was already there:
+<p>
+<XMP>
+    @{$LoL[3]} = @list;
+
+</XMP>
+<p>Of course, this <EM>would</EM> have the ``interesting'' effect of clobbering
+<STRONG>@another_list</STRONG>.  (Have you ever noticed how when a programmer says
+something is ``interesting'', that rather than meaning ``intriguing'',
+they're disturbingly more apt to mean that it's ``annoying'',
+``difficult'', or both?  :-)
+<p>So just remember to always use the array or hash constructors with <CODE>[]</CODE>
+or <CODE>{}</CODE>, and you'll be fine, although it's not always optimally
+efficient.
+<p>Surprisingly, the following dangerous-looking construct will
+actually work out fine:
+<p>
+<XMP>
+    for $i (1..10) {
+        my @list = somefunc($i);
+        $LoL[$i] = \@list;
+    }
+
+</XMP>
+<p>That's because <EM>my()</EM> is more of a run-time statement than it is a
+compile-time declaration <EM>per se</EM>.  This means that the <EM>my()</EM> variable is
+remade afresh each time through the loop.  So even though it <EM>looks</EM> as
+though you stored the same variable reference each time, you actually did
+not!  This is a subtle distinction that can produce more efficient code at
+the risk of misleading all but the most experienced of programmers.  So I
+usually advise against teaching it to beginners.  In fact, except for
+passing arguments to functions, I seldom like to see the gimme-a-reference
+operator (backslash) used much at all in code.  Instead, I advise
+beginners that they (and most of the rest of us) should try to use the
+much more easily understood constructors <CODE>[]</CODE> and <CODE>{}</CODE> instead of
+relying upon lexical (or dynamic) scoping and hidden reference-counting to
+do the right thing behind the scenes.
+<p>In summary:
+<p>
+<XMP>
+    $LoL[$i] = [ @list ];       # usually best
+    $LoL[$i] = \@list;          # perilous; just how my() was that list?
+    @{ $LoL[$i] } = @list;      # way too tricky for most programmers
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_caveat_0">
+CAVEAT ON PRECEDENCE</A>
+</H1>
+Speaking of things like <CODE>@{<STRONG>$LoL</STRONG>[<STRONG>$i</STRONG>]}</CODE>, the following are actually the
+same thing:
+<p>
+<XMP>
+    $listref->[2][2]    # clear
+    $$listref[2][2]     # confusing
+
+</XMP>
+<p>That's because Perl's precedence rules on its five prefix dereferencers
+(which look like someone swearing: <CODE>$ @ * % &amp;</CODE>) make them bind more
+tightly than the postfix subscripting brackets or braces!  This will no
+doubt come as a great shock to the C or C++ programmer, who is quite
+accustomed to using <CODE>*a[i]</CODE> to mean what's pointed to by the <EM>i'th</EM>
+element of <CODE>a</CODE>.  That is, they first take the subscript, and only then
+dereference the thing at that subscript.  That's fine in C, but this isn't C.
+<p>The seemingly equivalent construct in Perl, <CODE><STRONG>$$</STRONG>listref[<STRONG>$i</STRONG>]</CODE> first does
+the deref of <CODE><STRONG>$listref</STRONG></CODE>, making it take <STRONG>$listref</STRONG> as a reference to an
+array, and then dereference that, and finally tell you the <EM>i'th</EM> value
+of the array pointed to by <STRONG>$LoL</STRONG>. If you wanted the C notion, you'd have to
+write <CODE>${<STRONG>$LoL</STRONG>[<STRONG>$i</STRONG>]}</CODE> to force the <CODE><STRONG>$LoL</STRONG>[<STRONG>$i</STRONG>]</CODE> to get evaluated first
+before the leading <CODE>$</CODE> dereferencer.
+<p><p><hr>
+
+<H1> WHY YOU SHOULD ALWAYS <CODE>use strict</CODE></H1>
+If this is starting to sound scarier than it's worth, relax.  Perl has
+some features to help you avoid its most common pitfalls.  The best
+way to avoid getting confused is to start every program like this:
+<p>
+<XMP>
+    #!/usr/bin/perl -w
+    use strict;
+
+</XMP>
+<p>This way, you'll be forced to declare all your variables with <EM>my()</EM> and
+also disallow accidental ``symbolic dereferencing''.  Therefore if you'd done
+this:
+<p>
+<XMP>
+    my $listref = [
+        [ "fred", "barney", "pebbles", "bambam", "dino", ],
+        [ "homer", "bart", "marge", "maggie", ],
+        [ "george", "jane", "alroy", "judy", ],
+    ];
+    print $listref[2][2];
+
+</XMP>
+<p>The compiler would immediately flag that as an error <EM>at compile time</EM>,
+because you were accidentally accessing <CODE><STRONG>@listref</STRONG></CODE>, an undeclared
+variable, and it would thereby remind you to instead write:
+<p>
+<XMP>
+    print $listref->[2][2]
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_debugging_0">
+DEBUGGING</A>
+</H1>
+Before 5.002, the standard Perl debugger didn't do a very nice job of
+printing out complex data structures.  With version 5.002 or above, the
+debugger includes several new features, including command line editing as
+well as the <CODE>x</CODE> command to dump out complex data structures.  For
+example, given the assignment to <STRONG>$LoL</STRONG> above, here's the debugger output:
+<p>
+<XMP>
+    DB<1> X $LoL
+    $LoL = ARRAY(0x13b5a0)
+       0  ARRAY(0x1f0a24)
+          0  'fred'
+          1  'barney'
+          2  'pebbles'
+          3  'bambam'
+          4  'dino'
+       1  ARRAY(0x13b558)
+          0  'homer'
+          1  'bart'
+          2  'marge'
+          3  'maggie'
+       2  ARRAY(0x13b540)
+          0  'george'
+          1  'jane'
+          2  'alroy'
+          3  'judy'
+
+</XMP>
+<p>There's also a lower-case <STRONG>x</STRONG> command which is nearly the same.
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_code_0">
+CODE EXAMPLES</A>
+</H1>
+Presented with little comment (these will get their own man pages someday)
+here are short code examples illustrating access of various
+types of data structures.
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_lists_0">
+LISTS OF LISTS</A>
+</H1>
+<p>
+<H2> 
+<A NAME="perldsc_declaration_0">
+Declaration of a LIST OF LISTS</A>
+</H2>
+
+<XMP>
+ @LoL = (
+        [ "fred", "barney" ],
+        [ "george", "jane", "elroy" ],
+        [ "homer", "marge", "bart" ],
+      );
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_generation_0">
+Generation of a LIST OF LISTS</A>
+</H2>
+
+<XMP>
+ # reading from file
+ while ( <> ) {
+     push @LoL, [ split ];
+ }
+ # calling a function
+ for $i ( 1 .. 10 ) {
+     $LoL[$i] = [ somefunc($i) ];
+ }
+ # using temp vars
+ for $i ( 1 .. 10 ) {
+     @tmp = somefunc($i);
+     $LoL[$i] = [ @tmp ];
+ }
+ # add to an existing row
+ push @{ $LoL[0] }, "wilma", "betty";
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_access_0">
+Access and Printing of a LIST OF LISTS</A>
+</H2>
+
+<XMP>
+ # one element
+ $LoL[0][0] = "Fred";
+ # another element
+ $LoL[1][1] =~ s/(\w)/\u$1/;
+ # print the whole thing with refs
+ for $aref ( @LoL ) {
+     print "\t [ @$aref ],\n";
+ }
+ # print the whole thing with indices
+ for $i ( 0 .. $#LoL ) {
+     print "\t [ @{$LoL[$i]} ],\n";
+ }
+ # print the whole thing one at a time
+ for $i ( 0 .. $#LoL ) {
+     for $j ( 0 .. $#{$LoL[$i]} ) {
+         print "elt $i $j is $LoL[$i][$j]\n";
+     }
+ }
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_hashes_0">
+HASHES OF LISTS</A>
+</H1>
+<p>
+<H2> 
+<A NAME="perldsc_declaration_1">
+Declaration of a HASH OF LISTS</A>
+</H2>
+
+<XMP>
+ %HoL = (
+        "flintstones"        => [ "fred", "barney" ],
+        "jetsons"            => [ "george", "jane", "elroy" ],
+        "simpsons"           => [ "homer", "marge", "bart" ],
+      );
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_generation_1">
+Generation of a HASH OF LISTS</A>
+</H2>
+
+<XMP>
+ # reading from file
+ # flintstones: fred barney wilma dino
+ while ( <> ) {
+     next unless s/^(.*?):\s*//;
+     $HoL{$1} = [ split ];
+ }
+ # reading from file; more temps
+ # flintstones: fred barney wilma dino
+ while ( $line = <> ) {
+     ($who, $rest) = split /:\s*/, $line, 2;
+     @fields = split ' ', $rest;
+     $HoL{$who} = [ @fields ];
+ }
+ # calling a function that returns a list
+ for $group ( "simpsons", "jetsons", "flintstones" ) {
+     $HoL{$group} = [ get_family($group) ];
+ }
+ # likewise, but using temps
+ for $group ( "simpsons", "jetsons", "flintstones" ) {
+     @members = get_family($group);
+     $HoL{$group} = [ @members ];
+ }
+ # append new members to an existing family
+ push @{ $HoL{"flintstones"} }, "wilma", "betty";
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_access_1">
+Access and Printing of a HASH OF LISTS</A>
+</H2>
+
+<XMP>
+ # one element
+ $HoL{flintstones}[0] = "Fred";
+ # another element
+ $HoL{simpsons}[1] =~ s/(\w)/\u$1/;
+ # print the whole thing
+ foreach $family ( keys %HoL ) {
+     print "$family: @{ $HoL{$family} }\n"
+ }
+ # print the whole thing with indices
+ foreach $family ( keys %HoL ) {
+     print "family: ";
+     foreach $i ( 0 .. $#{ $HoL{$family} ) {
+         print " $i = $HoL{$family}[$i]";
+     }
+     print "\n";
+ }
+ # print the whole thing sorted by number of members
+ foreach $family ( sort { @{$HoL{$b}} <=> @{$HoL{$b}} } keys %HoL ) {
+     print "$family: @{ $HoL{$family} }\n"
+ }
+ # print the whole thing sorted by number of members and name
+ foreach $family ( sort { @{$HoL{$b}} <=> @{$HoL{$a}} } keys %HoL ) {
+     print "$family: ", join(", ", sort @{ $HoL{$family}), "\n";
+ }
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_lists_1">
+LISTS OF HASHES</A>
+</H1>
+<p>
+<H2> 
+<A NAME="perldsc_declaration_2">
+Declaration of a LIST OF HASHES</A>
+</H2>
+
+<XMP>
+ @LoH = (
+        {
+            Lead     => "fred",
+            Friend   => "barney",
+        },
+        {
+            Lead     => "george",
+            Wife     => "jane",
+            Son      => "elroy",
+        },
+        {
+            Lead     => "homer",
+            Wife     => "marge",
+            Son      => "bart",
+        }
+  );
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_generation_2">
+Generation of a LIST OF HASHES</A>
+</H2>
+
+<XMP>
+ # reading from file
+ # format: LEAD=fred FRIEND=barney
+ while ( <> ) {
+     $rec = {};
+     for $field ( split ) {
+         ($key, $value) = split /=/, $field;
+         $rec->{$key} = $value;
+     }
+     push @LoH, $rec;
+ }
+ # reading from file
+ # format: LEAD=fred FRIEND=barney
+ # no temp
+ while ( <> ) {
+     push @LoH, { split /[\s+=]/ };
+ }
+ # calling a function  that returns a key,value list, like
+ # "lead","fred","daughter","pebbles"
+ while ( %fields = getnextpairset() ) {
+     push @LoH, { %fields };
+ }
+ # likewise, but using no temp vars
+ while (<>) {
+     push @LoH, { parsepairs($_) };
+ }
+ # add key/value to an element
+ $LoH[0]{pet} = "dino";
+ $LoH[2]{pet} = "santa's little helper";
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_access_2">
+Access and Printing of a LIST OF HASHES</A>
+</H2>
+
+<XMP>
+ # one element
+ $LoH[0]{lead} = "fred";
+ # another element
+ $LoH[1]{lead} =~ s/(\w)/\u$1/;
+ # print the whole thing with refs
+ for $href ( @LoH ) {
+     print "{ ";
+     for $role ( keys %$href ) {
+         print "$role=$href->{$role} ";
+     }
+     print "}\n";
+ }
+ # print the whole thing with indices
+ for $i ( 0 .. $#LoH ) {
+     print "$i is { ";
+     for $role ( keys %{ $LoH[$i] } ) {
+         print "$role=$LoH[$i]{$role} ";
+     }
+     print "}\n";
+ }
+ # print the whole thing one at a time
+ for $i ( 0 .. $#LoH ) {
+     for $role ( keys %{ $LoH[$i] } ) {
+         print "elt $i $role is $LoH[$i]{$role}\n";
+     }
+ }
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_hashes_1">
+HASHES OF HASHES</A>
+</H1>
+<p>
+<H2> 
+<A NAME="perldsc_declaration_3">
+Declaration of a HASH OF HASHES</A>
+</H2>
+
+<XMP>
+ %HoH = (
+        "flintstones" => {
+            "lead"    => "fred",
+            "pal"     => "barney",
+        },
+        "jetsons"     => {
+            "lead"    => "george",
+            "wife"    => "jane",
+            "his boy" => "elroy",
+        },
+        "simpsons"    => {
+             "lead"   => "homer",
+             "wife"   => "marge",
+             "kid"    => "bart",
+        },
+ );
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_generation_3">
+Generation of a HASH OF HASHES</A>
+</H2>
+
+<XMP>
+ # reading from file
+ # flintstones: lead=fred pal=barney wife=wilma pet=dino
+ while ( <> ) {
+     next unless s/^(.*?):\s*//;
+     $who = $1;
+     for $field ( split ) {
+         ($key, $value) = split /=/, $field;
+         $HoH{$who}{$key} = $value;
+     }
+ # reading from file; more temps
+ while ( <> ) {
+     next unless s/^(.*?):\s*//;
+     $who = $1;
+     $rec = {};
+     $HoH{$who} = $rec;
+     for $field ( split ) {
+         ($key, $value) = split /=/, $field;
+         $rec->{$key} = $value;
+     }
+ }
+ # calling a function  that returns a key,value hash
+ for $group ( "simpsons", "jetsons", "flintstones" ) {
+     $HoH{$group} = { get_family($group) };
+ }
+ # likewise, but using temps
+ for $group ( "simpsons", "jetsons", "flintstones" ) {
+     %members = get_family($group);
+     $HoH{$group} = { %members };
+ }
+ # append new members to an existing family
+ %new_folks = (
+     "wife" => "wilma",
+     "pet"  => "dino";
+ );
+ for $what (keys %new_folks) {
+     $HoH{flintstones}{$what} = $new_folks{$what};
+ }
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_access_3">
+Access and Printing of a HASH OF HASHES</A>
+</H2>
+
+<XMP>
+ # one element
+ $HoH{flintstones}{wife} = "wilma";
+ # another element
+ $HoH{simpsons}{lead} =~ s/(\w)/\u$1/;
+ # print the whole thing
+ foreach $family ( keys %HoH ) {
+     print "$family: { ";
+     for $role ( keys %{ $HoH{$family} } ) {
+         print "$role=$HoH{$family}{$role} ";
+     }
+     print "}\n";
+ }
+ # print the whole thing  somewhat sorted
+ foreach $family ( sort keys %HoH ) {
+     print "$family: { ";
+     for $role ( sort keys %{ $HoH{$family} } ) {
+         print "$role=$HoH{$family}{$role} ";
+     }
+     print "}\n";
+ }
+ # print the whole thing sorted by number of members
+ foreach $family ( sort { keys %{$HoH{$b}} <=> keys %{$HoH{$b}} } keys %HoH ) {
+     print "$family: { ";
+     for $role ( sort keys %{ $HoH{$family} } ) {
+         print "$role=$HoH{$family}{$role} ";
+     }
+     print "}\n";
+ }
+ # establish a sort order (rank) for each role
+ $i = 0;
+ for ( qw(lead wife son daughter pal pet) ) { $rank{$_} = ++$i }
+ # now print the whole thing sorted by number of members
+ foreach $family ( sort { keys %{$HoH{$b}} <=> keys %{$HoH{$b}} } keys %HoH ) {
+     print "$family: { ";
+     # and print these according to rank order
+     for $role ( sort { $rank{$a} <=> $rank{$b} keys %{ $HoH{$family} } } ) {
+         print "$role=$HoH{$family}{$role} ";
+     }
+     print "}\n";
+ }
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_more_0">
+MORE ELABORATE RECORDS</A>
+</H1>
+<p>
+<H2> 
+<A NAME="perldsc_declaration_4">
+Declaration of MORE ELABORATE RECORDS</A>
+</H2>
+Here's a sample showing how to create and use a record whose fields are of
+many different sorts:
+<p>
+<XMP>
+     $rec = {
+         TEXT      => $string,
+         SEQUENCE  => [ @old_values ],
+         LOOKUP    => { %some_table },
+         THATCODE  => \&some_function,
+         THISCODE  => sub { $_[0] ** $_[1] },
+         HANDLE    => \*STDOUT,
+     };
+     print $rec->{TEXT};
+     print $rec->{LIST}[0];
+     $last = pop @ { $rec->{SEQUENCE} };
+     print $rec->{LOOKUP}{"key"};
+     ($first_k, $first_v) = each %{ $rec->{LOOKUP} };
+     $answer = &{ $rec->{THATCODE} }($arg);
+     $answer = &{ $rec->{THISCODE} }($arg1, $arg2);
+     # careful of extra block braces on fh ref
+     print { $rec->{HANDLE} } "a string\n";
+     use FileHandle;
+     $rec->{HANDLE}->autoflush(1);
+     $rec->{HANDLE}->print(" a string\n");
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_declaration_5">
+Declaration of a HASH OF COMPLEX RECORDS</A>
+</H2>
+
+<XMP>
+     %TV = (
+        "flintstones" => {
+            series   => "flintstones",
+            nights   => [ qw(monday thursday friday) ],
+            members  => [
+                { name => "fred",    role => "lead", age  => 36, },
+                { name => "wilma",   role => "wife", age  => 31, },
+                { name => "pebbles", role => "kid",  age  =>  4, },
+            ],
+        },
+        "jetsons"     => {
+            series   => "jetsons",
+            nights   => [ qw(wednesday saturday) ],
+            members  => [
+                { name => "george",  role => "lead", age  => 41, },
+                { name => "jane",    role => "wife", age  => 39, },
+                { name => "elroy",   role => "kid",  age  =>  9, },
+            ],
+         },
+        "simpsons"    => {
+            series   => "simpsons",
+            nights   => [ qw(monday) ],
+            members  => [
+                { name => "homer", role => "lead", age  => 34, },
+                { name => "marge", role => "wife", age => 37, },
+                { name => "bart",  role => "kid",  age  =>  11, },
+            ],
+         },
+      );
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perldsc_generation_4">
+Generation of a HASH OF COMPLEX RECORDS</A>
+</H2>
+
+<XMP>
+     # reading from file
+     # this is most easily done by having the file itself be
+     # in the raw data format as shown above.  perl is happy
+     # to parse complex datastructures if declared as data, so
+     # sometimes it's easiest to do that
+     # here's a piece by piece build up
+     $rec = {};
+     $rec->{series} = "flintstones";
+     $rec->{nights} = [ find_days() ];
+     @members = ();
+     # assume this file in field=value syntax
+     while (<>) {
+         %fields = split /[\s=]+/;
+         push @members, { %fields };
+     }
+     $rec->{members} = [ @members ];
+     # now remember the whole thing
+     $TV{ $rec->{series} } = $rec;
+     ###########################################################
+     # now, you might want to make interesting extra fields that
+     # include pointers back into the same data structure so if
+     # change one piece, it changes everywhere, like for examples
+     # if you wanted a {kids} field that was an array reference
+     # to a list of the kids' records without having duplicate
+     # records and thus update problems.
+     ###########################################################
+     foreach $family (keys %TV) {
+         $rec = $TV{$family}; # temp pointer
+         @kids = ();
+         for $person ( @{$rec->{members}} ) {
+             if ($person->{role} =~ /kid|son|daughter/) {
+                 push @kids, $person;
+             }
+         }
+         # REMEMBER: $rec and $TV{$family} point to same data!!
+         $rec->{kids} = [ @kids ];
+     }
+     # you copied the list, but the list itself contains pointers
+     # to uncopied objects. this means that if you make bart get
+     # older via
+     $TV{simpsons}{kids}[0]{age}++;
+     # then this would also change in
+     print $TV{simpsons}{members}[2]{age};
+     # because $TV{simpsons}{kids}[0] and $TV{simpsons}{members}[2]
+     # both point to the same underlying anonymous hash table
+     # print the whole thing
+     foreach $family ( keys %TV ) {
+         print "the $family";
+         print " is on during @{ $TV{$family}{nights} }\n";
+         print "its members are:\n";
+         for $who ( @{ $TV{$family}{members} } ) {
+             print " $who->{name} ($who->{role}), age $who->{age}\n";
+         }
+         print "it turns out that $TV{$family}{'lead'} has ";
+         print scalar ( @{ $TV{$family}{kids} } ), " kids named ";
+         print join (", ", map { $_->{name} } @{ $TV{$family}{kids} } );
+         print "\n";
+     }
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_database_0">
+Database Ties</A>
+</H1>
+You cannot easily tie a multilevel data structure (such as a hash of
+hashes) to a dbm file.  The first problem is that all but GDBM and
+Berkeley DB have size limitations, but beyond that, you also have problems
+with how references are to be represented on disk.  One experimental
+module that does attempt to partially address this need is the MLDBM
+module.  Check your nearest CPAN site as described in the <EM>perlmod</EM>  manpage
+ for
+source code to MLDBM.
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_see_0">
+SEE ALSO</A>
+</H1>
+perlref(1), perllol(1), perldata(1), perlobj(1)
+<p><p><hr>
+
+<H1> 
+<A NAME="perldsc_author_0">
+AUTHOR</A>
+</H1>
+Tom Christiansen &lt;<EM><A HREF="MAILTO:tchrist@perl.com">tchrist@perl.com</A></EM>&gt;
+<p>Last update:
+Mon Jul  8 05:22:49 MDT 1996
+<p>
+</BODY>
+</HTML>
