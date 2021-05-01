@@ -1,0 +1,252 @@
+<html xmlns:o>
+	<head>
+		<title>ClearView Hilfe</title>
+	</head>
+	<body>
+		<P align="center"><FONT size="5"><U>ClearView Hilfedatei</U></FONT></P>
+		<H1><A name="_Toc76270396">Systemvoraussetzungen</A></H1>
+		<P class="MsoNormal">ClearView läuft auf jedem Windows PC, der die folgenden 
+			Bedingungen erfüllt:</P>
+		<OL style="MARGIN-TOP: 0cm" type="1" start="1">
+			<LI class="MsoNormal" style="mso-list: l5 level1 lfo2; tab-stops: list 36.0pt">
+			Eine Installation vom Visual Studio .Net,
+			<LI class="MsoNormal" style="mso-list: l5 level1 lfo2; tab-stops: list 36.0pt">
+			Eine Version des Internet Explorers muss auf dem System,
+			<LI class="MsoNormal" style="mso-list: l5 level1 lfo2; tab-stops: list 36.0pt">
+				Das Verzeichnis
+				<SPAN style="FONT-FAMILY: 'Courier New'">c:\temp</SPAN>
+			muss vorhanden sein und der Lesen und Schreiben muss darauf erlaubt sein.
+			<LI class="MsoNormal" style="mso-list: l5 level1 lfo2; tab-stops: list 36.0pt">
+				Java muss in der Version 1.4.2_03 installiert sein und als aktuelle Standard 
+				Java Anwendung definiert worden sein.</LI></OL>
+		<H2><A name="_Toc76270397">Installation</A></H2>
+		<P class="MsoNormal">ClearView wird durch das Kopieren der nötigen Dateien in ein 
+			beliebiges Verzeichnis auf der lokalen Festplatte installiert. Es werden keine 
+			Einträge in die Systemregistrierung vorgenommen.</P>
+		<P class="MsoNormal">&nbsp;
+			<o:p></o:p></P>
+		<P class="MsoNormal">Die folgenden Dateien werden für den Einsatz von ClearView 
+			benötigt</P>
+		<OL style="MARGIN-TOP: 0cm" type="1" start="1">
+			<LI class="MsoNormal" style="mso-list: l8 level1 lfo3; tab-stops: list 36.0pt">
+				<SPAN style="FONT-FAMILY: 'Courier New'">ClearView.exe</SPAN>
+			: die eigentliche Anwendung
+			<LI class="MsoNormal" style="mso-list: l8 level1 lfo3; tab-stops: list 36.0pt">
+				<SPAN style="FONT-FAMILY: 'Courier New'">Transformer.jar
+<o:p></o:p></SPAN>
+			<LI class="MsoNormal" style="mso-list: l8 level1 lfo3; tab-stops: list 36.0pt">
+				<SPAN style="FONT-FAMILY: 'Courier New'">jakarta-regexp-1.3.jar
+<o:p></o:p></SPAN>
+			<LI class="MsoNormal" style="mso-list: l8 level1 lfo3; tab-stops: list 36.0pt">
+				<SPAN style="FONT-FAMILY: 'Courier New'">dom4j-full.jar
+<o:p></o:p></SPAN>
+			<LI class="MsoNormal" style="mso-list: l8 level1 lfo3; tab-stops: list 36.0pt">
+				<SPAN style="FONT-FAMILY: 'Courier New'">LP-Schema.xsd</SPAN>
+			: Das XML Schema zur Prüfung der XML Dateien
+			<LI class="MsoNormal" style="mso-list: l8 level1 lfo3; tab-stops: list 36.0pt">
+				<SPAN style="FONT-FAMILY: 'Courier New'">genhtml.xslt</SPAN>: Das XSLT 
+			Stylesheet zur Erstellung der HTML Statistiken
+			<LI class="MsoNormal" style="mso-list: l8 level1 lfo3; tab-stops: list 36.0pt">
+				<SPAN style="FONT-FAMILY: 'Courier New'">hilfe.html</SPAN>
+				: die Hilfedatei</LI></OL>
+		<P class="MsoIndexHeading">&nbsp;
+			<o:p></o:p></P>
+		<H2><A name="_Toc76270398">Bedienung</A></H2>
+		<P class="MsoNormal">Die Oberfläche von ClearView besteht aus drei Anzeigeseiten 
+			und vier Menüs.
+		</P>
+		<P class="MsoNormal">Beim Anzeigen von den XML Daten ist zu beachten, dass nur die 
+			Daten angezeigt werden können, welche der Transformer aus der Ausgabedatei des 
+			Solvers erstellen konnte.</P>
+		<H3><A name="_Toc76270399">Anzeigeseite Einfach</A></H3>
+		<P class="MsoNormal">Auf dieser Seite erscheint in der Liste die Variablen und 
+			deren Ergebnisse.</P>
+		<P class="MsoNormal">Im Feld „Zielfunktion“ erscheint das Ergebnis der 
+			Zielfunktion.</P>
+		<P class="MsoNormal">Im Feld „Solver“ erscheint der Name des verwendeten Solvers 
+			und des Ausgabeformats</P>
+		<P class="MsoNormal">Das Feld „Nachricht“ zeigt eventuelle Nachrichten des Solvers 
+			an, wie z.B. wenn das Ergebnis nicht gültig ist.</P>
+		<P class="MsoNormal">&nbsp;
+			<o:p></o:p></P>
+		<H3><A name="_Toc76270400">Anzeigeseite System</A></H3>
+		<P class="MsoNormal">Auf dieser Seite wird das Ausgangssystem dargestellt.
+		</P>
+		<P class="MsoNormal">Die Spalten sind:</P>
+		<P class="MsoNormal"><U>Name
+				<o:p></o:p></U></P>
+		<P class="MsoNormal"><SPAN style="mso-spacerun: yes">&nbsp;</SPAN>Hier steht der 
+			Name der Restriktion, und die Zielfunktion wird als „ZF“ gekennzeichnet.</P>
+		<P class="MsoNormal">„Min“ und „Max“ bezeichnen die Ober- und Untergrenzen der 
+			Variablen. Diese werden nur angezeigt, falls diese definiert wurden.</P>
+		<P class="MsoNormal"><U>Namen der Variablen
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">Nach den Namen der Funktion folgen die Bezeichnungen der 
+			Variablen. In dieser Spalte stehen bei den Restriktionen den jeweiligen Faktor 
+			der Variable. Ist das Feld leer, so gilt in der Regel, dass der Wert implizit 0 
+			dort ist. Sollte jedoch auch der Operator und der B Wert fehlen, so wurde die 
+			Restriktionen deklariert, aber nicht definiert. Dies kommt hauptsächlich bei 
+			Ergebnissen vom LP-Solve vor.</P>
+		<P class="MsoNormal"><U>Operator</U></P>
+		<P class="MsoNormal"><SPAN style="mso-spacerun: yes">&nbsp;</SPAN>Bei den 
+			Restriktionen wird dort angezeigt, wie der Operator dort ist. Gültige Werte 
+			sind: &lt;, &lt;=, =, &gt;, &gt;=. Bei der Zielfunktion wird hier fest „-&gt;“ 
+			angezeigt.</P>
+		<P class="MsoNormal"><U>B</U></P>
+		<P class="MsoNormal"><SPAN style="mso-spacerun: yes">&nbsp;</SPAN>In dieser Spalte 
+			werden bei der Zielfunktion die Optimierungsrichtung, also „Min!“ oder „Max!“ 
+			angezeigt. Bei den Restriktionen erscheint dort der jeweilige B Wert.</P>
+		<P class="MsoNormal">Als Zeilen erscheinen</P>
+		<OL style="MARGIN-TOP: 0cm" type="1" start="1">
+			<LI class="MsoNormal" style="mso-list: l3 level1 lfo4; tab-stops: list 36.0pt">
+			Die Zielfunktion
+			<LI class="MsoNormal" style="mso-list: l3 level1 lfo4; tab-stops: list 36.0pt">
+			Eventuell vorhandene Restriktionen
+			<LI class="MsoNormal" style="mso-list: l3 level1 lfo4; tab-stops: list 36.0pt">
+				Eventuell vorhandene Unter- und Obergrenzen.</LI></OL>
+		<H3><A name="_Toc76270401">Anzeigeseite Details</A></H3>
+		<P class="MsoNormal">Auf dieser Seite werden alle relevanten Daten dargestellt.</P>
+		<P class="MsoNormal">Die ersten Spalten sind wie bei der Anzeigeseite System 
+			aufgebaut, mit dem Unterschied, dass bei der Zielfunktion in der Spalte 
+			Operator nun die Optimierungsrichtung angezeigt wird und in der B Spalte der 
+			Zielfunktionswert. Dazu kommen noch weiter Spalten:</P>
+		<P class="MsoNormal"><U>Dualwert
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">Hier werden die Werte der Dualwerten zu der jeweiligen 
+			Restriktion angezeigt.</P>
+		<P class="MsoNormal"><U>Slack</U></P>
+		<P class="MsoNormal">Sollte die Restriktion definiert worden sein, so wird hier der 
+			Wert des Slacks angezeigt. Sollte der Wert negativ oder Operator der 
+			Restriktion =, &gt; oder &gt;= sein, so ist der Wert immer 0.</P>
+		<P class="MsoNormal">Außerdem wird eine weitere Zeile hinzugefügt, welche die 
+			Reduced Costs der Variablen ausgibt.</P>
+		<P class="MsoNormal">Die letzte Zeile „Variablenwerte“ nennt nochmal die Ergebnisse 
+			der jeweiligen Variablen.</P>
+		<H3><A name="_Toc76270402">Menü Datei</A></H3>
+		<P class="MsoNormal"><U>Öffnen
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">Dieser Befehl öffnet einen Dialog, in dem sie eine XML Datei 
+			mit LP Daten öffnen können. Sobald die Datei ausgewählt und bestätigt wurde, 
+			wird intern das Dokument mit dem vorhandenen Schema geprüft. Stimmt die Datei 
+			nicht mit den dort definierten Regeln überein, so wird eine Fehlermeldung 
+			ausgegeben.
+		</P>
+		<P class="MsoNormal">Die in der XML Datei vorhandenen Daten werden dann in den drei 
+			Anzeigeseiten dargestellt.</P>
+		<P class="MsoNormal"><U>Speichern
+				<o:p></o:p></U></P>
+		<P>Hier kann eine vorhandene XML Datei unter einem anderen Namen gesichert werden, 
+			oder eine neu erstellte Datei gesichert werden. Wenn eine Datei angezeigt wird, 
+			kann der neue Name und der Speicherort im Dialog ausgewählt werden. Dann wird 
+			die Datei dorthin kopiert.</P>
+		<P><U>Einstellungen...
+				<o:p></o:p></U></P>
+		<P>In dem sich öffnenden Dialog können die Pfade zu der benötigten Java Anwendung 
+			und zum Transformer angesehen und geändert werden. Mit der Schaltfläche „OK“ 
+			werden die Einstellungen übernommen und der Dialog geschlossen, mit „Abbrechen“ 
+			wird nur der Dialog beendet.</P>
+		<P><U>Schließen
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">Die aktuelle Datei wird geschlossen.</P>
+		<P class="MsoNormal"><U>Export nach HTML
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">Dies hat die selbe Wirkung wie das gleichnamige Menü.</P>
+		<H3><A name="_Toc76270403">Menü Bearbeiten</A></H3>
+		<P class="MsoNormal">Dieses Menü hat einen einzigen Punkt:</P>
+		<P class="MsoNormal"><U>System aus Zwischenablage kopieren
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">Das Erstellen eines Systems über die Zwischenablage erfolgt 
+			so:</P>
+		<OL style="MARGIN-TOP: 0cm" type="1" start="1">
+			<LI class="MsoNormal" style="mso-list: l1 level1 lfo5; tab-stops: list 36.0pt">
+			Eine Solver Ausgabedatei wird in einem beliebigen Editor geöffnet.
+			<LI class="MsoNormal" style="mso-list: l1 level1 lfo5; tab-stops: list 36.0pt">
+			Der gesamte Inhalt wird ausgewählt. Modernere Editoren erlauben hier den 
+			Tastaturkürzel „STRG+A“.
+			<LI class="MsoNormal" style="mso-list: l1 level1 lfo5; tab-stops: list 36.0pt">
+			Der ausgewählte Text wird kopiert. Normalerweise reicht hier der Tastaturkürzel 
+			„STRG+C“
+			<LI class="MsoNormal" style="mso-list: l1 level1 lfo5; tab-stops: list 36.0pt">
+				ClearView wird aufgerufen und der Menüpunkt ausgewählt. Alternativ kann der 
+				Tastaturkürzel „STRG+V“ aufgerufen werden.</LI></OL>
+		<P class="MsoNormal" style="MARGIN-LEFT: 18pt">Nun wird im Verzeichnis
+			<SPAN style="FONT-FAMILY: 'Courier New'">c:\temp</SPAN>
+			die Datei
+			<SPAN style="FONT-FAMILY: 'Courier New'">clearview.xml</SPAN>
+			erstellt, die alle Daten aus dem Zwischenspeicher enthält. Das Ergebnis sollte 
+			jedoch abgespeichert werden, da diese Datei bei jeder Operation neu angelegt 
+			wird.</P>
+		<P class="MsoNormal" style="MARGIN-LEFT: 18pt">Sollte es zu einem Fehler kommen, so 
+			erscheint eine Fehlermeldung.</P>
+		<P class="MsoNormal">&nbsp;
+			<o:p></o:p></P>
+		<H3><A name="_Toc76270404">Menü Export nach HTML</A></H3>
+		<P class="MsoNormal">Beim Anklicken des Menüs oder der Schaltfläche wird ein Dialog 
+			geöffnet, in dem der Name und er Pfad der zu neu erstellenden HTML Datei mit 
+			den LP Daten eingetragen werden können. Nach dem Bestätigen wird die HTML Datei 
+			erstellt und, falls der Internet Explorer auf dem System installiert ist, wird 
+			dieser geöffnet und die Datei angezeigt.</P>
+		<P class="MsoNormal">&nbsp;
+			<o:p></o:p></P>
+		<H3><A name="_Toc76270405">Menü ?</A></H3>
+		<P class="MsoNormal"><U>Info…
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">In einer Dialogbox stehen die Entwickler, die Version und das 
+			Copyright.</P>
+		<P class="MsoNormal"><U>Hilfe…
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">Mit dem Internet Explorer wird die Datei
+			<SPAN style="FONT-FAMILY: 'Courier New'">hilfe.html</SPAN>
+			aufgerufen.</P>
+		<P class="MsoNormal">&nbsp;
+			<o:p></o:p></P>
+		<H2><A name="_Toc76270406">Fehler</A></H2>
+		<P class="MsoNormal">Es gibt Umstände, in denen ClearView nicht das macht, was zu 
+			erwarten wäre. Folgende Fehlerfälle wurden beobachtet:</P>
+		<P class="MsoNormal"><U>Beim Einlesen aus der Zwischenablage erscheint die 
+				Fehlermeldung „Temporäre Datei kann nicht gefunden werden“
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">In diesem Fall war der Inhalt in der Zwischenablage kein 
+			lineares Programm, welches der transformer verarbeiten konnte. Dadurch erzeugte 
+			dieser nicht die Datei
+			<SPAN style="FONT-FAMILY: 'Courier New'">Clearview.xml</SPAN>, die nun 
+			aufgerufen wird.
+		</P>
+		<P class="MsoNormal"><U>Beim Anzeigen der Hilfe erscheint eine Fehlermeldung</U></P>
+		<P class="MsoNormal">Die Datei
+			<SPAN style="FONT-FAMILY: 'Courier New'">Hilfe.htm</SPAN>“ muss sich im 
+			Verzeichnis mit der
+			<SPAN style="FONT-FAMILY: 'Courier New'">Clearview.exe</SPAN>
+			befinden. Außerdem muss der Internet Explorer auf dem Rechner zur Verfügung 
+			stehen.</P>
+		<P class="MsoNormal"><U>Beim Erstellen der HTML Statistik erscheint eine Fehlermeldung
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">Die Datei
+			<SPAN style="FONT-FAMILY: 'Courier New'">genhtml.xslt</SPAN>
+			muss sich im Verzeichnis mit der
+			<SPAN style="FONT-FAMILY: 'Courier New'">Clearview.exe</SPAN>
+			befinden.
+		</P>
+		<P class="MsoNormal"><U>Beim Öffnen einer XML Datei erscheint eine Fehlermeldung
+				<o:p></o:p></U></P>
+		<P class="MsoIndexHeading">Beim Öffnen einer vorhandenen XML Datei wird diese mit 
+			dem Schema aus
+			<SPAN style="mso-spacerun: yes">&nbsp;</SPAN><SPAN style="FONT-FAMILY: 'Courier New'">LP-Schema.xsd</SPAN>
+			<SPAN style="mso-spacerun: yes">&nbsp;</SPAN>verglichen, die sich<SPAN style="mso-spacerun: yes">&nbsp; </SPAN>Verzeichnis 
+			mit der
+			<SPAN style="FONT-FAMILY: 'Courier New'">Clearview.exe</SPAN>
+			befinden muss.
+		</P>
+		<P class="MsoIndex1" style="MARGIN-LEFT: 0cm; TEXT-INDENT: 0cm">Befindet sich in 
+			der Fehlermeldung der Hinweis „Validationsfehler“, dann wird danach erklärt, 
+			warum diese XML Datei nicht gültig ist. Öffnen Sie eine andere Datei oder 
+			korrigieren Sie den Fehler in der Datei.</P>
+		<P class="MsoNormal"><U>Bei der Ausgabe sind einige Felder leer
+				<o:p></o:p></U></P>
+		<P class="MsoNormal">Die Qualität der Ausgabe ist nur so gut wie die Daten, die in 
+			der XML Datei stehen. Diese Daten wiederum stammen von verschiedenen Solvern, 
+			welche unterschiedlich viele Daten zur Verfügung stehen. Leere Felder können in 
+			der Regel als „0“ interpretiert werden. Da es jedoch Ausnahmefälle gibt, wird 
+			auf eine Vorbelegung mit „0“ verzichtet, um keine Fehler anzuzeigen.</P>
+	</body>
+</html>

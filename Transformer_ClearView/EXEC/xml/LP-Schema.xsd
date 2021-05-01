@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Test (Test) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="LinearProgram">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Input" minOccurs="0">
+					<xs:complexType>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="ObjectiveFunction">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Variable" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:double">
+														<xs:attribute name="name" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Optimization">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="MAXIMIZE"/>
+													<xs:pattern value="MINIMIZE"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Bound">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Operator" type="xs:string"/>
+										<xs:element name="Value" type="xs:double"/>
+									</xs:sequence>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Constraint">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Variable" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:double">
+														<xs:attribute name="name" type="xs:string" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Operator" type="xs:string"/>
+										<xs:element name="b-Value" type="xs:double"/>
+									</xs:sequence>
+									<xs:attribute name="name" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Output">
+					<xs:complexType>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="ObjectiveFunction-Value" type="xs:double"/>
+							<xs:element name="Message" type="xs:string"/>
+							<xs:element name="Variable-Value">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:double">
+											<xs:attribute name="name" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ReducedCost">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:double">
+											<xs:attribute name="name" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Dual-Value">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:double">
+											<xs:attribute name="name" type="xs:string" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Slack" type="xs:double"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="sourceFormat" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

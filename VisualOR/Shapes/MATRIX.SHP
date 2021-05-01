@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Thomas Dietrich">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.01 [en] (Win95; I) [Netscape]">
+   <TITLE>Matrix Page</TITLE>
+</HEAD>
+<BODY BACKGROUND="bg.jpg">
+
+<center>
+<IMG SRC="MatrixPage.gif" HEIGHT=40 WIDTH=450>
+</center>
+<BR>
+<BR>
+
+<IMG SRC="LP_State.gif">
+<PRE>
+<#LP-Statement Param1=Par1 Param2=Par2 Param3=Par3 >
+</PRE>
+<BR>
+<BR>
+
+<! IMG SRC="SOL_MAT.gif">
+<! #LP-Equation Param1=Par1 Param2=Par2 Param3=Par3 >
+<! BR>
+<! BR>
+
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=10 WIDTH="450" HEIGHT="20" BGCOLOR="#CCCCCC" >
+<TR VALIGN=CENTER>
+<TD VALIGN=TOP HEIGHT="100%">
+<CENTER><B><FONT FACE="Arial,Helvetica"><FONT SIZE=+2>Select Solver:</FONT></FONT></B></CENTER>
+</TD>
+<TD VALIGN=CENTER HEIGHT="100%">
+<#SolverList Param1=Par1 Param2=Par2 Param3=Par3 >
+</TD>
+</TR>
+</TABLE>
+
+<! FORM>
+<! SELECT NAME="list">
+<! #SelectList Param1=Par1 Param2=Par2 Param3=Par3 >
+<! INPUT TYPE="SUBMIT" NAME="SOLVE" VALUE="Solve">
+<! /SELECT>
+<! /FORM>
+</BODY>
+</HTML>
