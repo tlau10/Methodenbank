@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<TITLE>PowerLP_073 - PutLPToLPIFile</TITLE>
+<script type="text/javascript">
+  var relPathToCommmon = "common/";
+  var relPathToHelpDir = "common/help/";
+</script>
+<script type="text/javascript" src="common/jsdyn.js" language="JavaScript"></script>
+<script type="text/javascript" src="common/js.js" language="JavaScript"></script>
+<script type="text/javascript" src="leftmenu.js" language="JavaScript"></script>
+<script type="text/javascript">
+  var toSearchPage     = "_search','search";
+  Body1();
+</script>
+<div class="headerPage">PutLPToLPIFile</div>
+<div class="path"><a href="#" OnMouseOver="link('','index',this)" class="pathLink">Default mainpage</A><img src="common/path-arrow.gif" class="path-arrow"><a href="#" OnMouseOver="link('_dir','SOURCE0',this)" class="pathLink">SOURCE</A><img src="common/path-arrow.gif" class="path-arrow"><span class="pathNonLink">PutLPToLPIFile</span></div>
+<script type="text/javascript">
+ Body2();
+ BodyLeftMenuStart();
+WriteLeftMenu("","","","");
+ BodyLeftMenuEnd();
+ Body3();
+</script>
+<span class="tabInActive"><a href="#" OnMouseOver="linkTab('_member','PutLPToLPIFile3714498969','_description',this)" class="tabLinkInActive">Description</a></span>
+<span class="tabActive"><a href="#" OnMouseOver="linkTab('_member','PutLPToLPIFile3714498969','_source',this)" class="tabLinkActive">Source</a></span>
+<span class="tabInActiveGrayout"><span class="tabLinkGrayout">Call Graph</span></span>
+<script type="text/javascript">
+ Body4();
+</script>
+<div class="contentAirTop"></div>
+<div class="paragraph2NoTopPadding">Start Line: 78</div>
+<pre class="codeExamples">
+bool __fastcall <a href="#" onMouseOver="link('_member','PutLPToLPIFile3714498969',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>bool __fastcall&nbsp;&nbsp;PutLPToLPIFile&nbsp;&nbsp;(LPModell * LPM, char * filename)',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">PutLPToLPIFile</a>(LPModell *LPM, char *filename)
+                                                              {
+  int f = OpenCreateFile(LPM, filename);
+  if (f &lt; 0) return false;
+  <a href="#" onMouseOver="link('_class','Tlpdata0',this); overLibDiagram();return overlib('<strong>Public Attributes</strong><BR><TABLE><TR><TD>cc</TD><TD>d1</TD></TR><TR><TD>d2</TD><TD>d3</TD></TR><TR><TD>d5</TD><TD>d6</TD></TR><TR><TD>d7</TD><TD>hbound</TD></TR><TR><TD>integer</TD><TD>lbound</TD></TR><TR><TD>maximize</TD><TD>nb</TD></TR><TR><TD>restr</TD><TD>vars</TD></TR><TR><TD>zf</TD><TD>zfb</TD></TR></TABLE>',CAPTION,'<strong>Brief description</strong><BR>Klasse mit deren Daten das LP-Modell erzeugt wird.');" onMouseOut="return nd();">Tlpdata</a> d;
+  memset(&amp;d, 0, sizeof(d));
+
+  d.<a href="#" onMouseOver="link('_member','vars446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;vars ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">vars</a> = LPM-&gt;getVarCount();
+  if (d.<a href="#" onMouseOver="link('_member','vars446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;vars ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">vars</a> &gt; 75) {
+    LPM-&gt;PutError("LPI-Dateiformat: Zuviele Variablen. Maximum ist 75.");
+    d.<a href="#" onMouseOver="link('_member','vars446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;vars ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">vars</a> = 75;
+  }
+  d.<a href="#" onMouseOver="link('_member','restr446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;restr ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">restr</a> = LPM-&gt;getResCount();
+  if (d.<a href="#" onMouseOver="link('_member','restr446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;restr ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">restr</a> &gt; 100) {
+    LPM-&gt;PutError("LPI-Dateiformat: Zuviele Restriktionen. Maximum ist 100.");
+    d.<a href="#" onMouseOver="link('_member','vars446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;vars ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">vars</a> = 100;
+  }
+  d.<a href="#" onMouseOver="link('_member','maximize446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>bool&nbsp;&nbsp;maximize ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">maximize</a> = !LPM-&gt;getMinimize();
+  for (int x = 0; x &lt; d.<a href="#" onMouseOver="link('_member','vars446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;vars ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">vars</a> ;x++) {
+    d.<a href="#" onMouseOver="link('_member','zf446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>float&nbsp;&nbsp;zf [75]',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">zf</a>[x] = LPM-&gt;getZF(x);
+    d.<a href="#" onMouseOver="link('_member','integer446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;integer [75]',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">integer</a>[x] = LPM-&gt;getInteger(x);
+    d.<a href="#" onMouseOver="link('_member','lbound446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>float&nbsp;&nbsp;lbound [76]',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">lbound</a>[x] = LPM-&gt;getLBound(x);
+    d.<a href="#" onMouseOver="link('_member','hbound446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>float&nbsp;&nbsp;hbound [76]',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">hbound</a>[x] = LPM-&gt;getHBound(x);
+  }
+  for (int x = 0; x&lt;d.<a href="#" onMouseOver="link('_member','restr446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;restr ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">restr</a>; x++) {
+    for (int y = 0; y&lt;d.<a href="#" onMouseOver="link('_member','vars446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;vars ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">vars</a>; y++) {
+      d.<a href="#" onMouseOver="link('_member','nb446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>float&nbsp;&nbsp;nb [75][101]',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">nb</a>[y][x] = LPM-&gt;getRes(y, x);
+    }
+    d.<a href="#" onMouseOver="link('_member','zfb446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>float&nbsp;&nbsp;zfb [100]',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">zfb</a>[x] = LPM-&gt;getBV(x);
+    <a href="#" onMouseOver="link('_member','ccond0',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>enum ccond&nbsp;&nbsp;ccond ',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">ccond</a> rel =<a href="#" onMouseOver="link('_member','LPI_EQUAL0',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>enumval&nbsp;&nbsp;LPI_EQUAL',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">LPI_EQUAL</a>;
+    switch (LPM-&gt;getRel(x)) {
+      case EQUAL:   rel = <a href="#" onMouseOver="link('_member','LPI_EQUAL0',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>enumval&nbsp;&nbsp;LPI_EQUAL',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">LPI_EQUAL</a>;   break;
+      case LTEQUAL: rel = <a href="#" onMouseOver="link('_member','LPI_LTEQUAL0',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>enumval&nbsp;&nbsp;LPI_LTEQUAL',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">LPI_LTEQUAL</a>; break;
+      case STEQUAL: rel = <a href="#" onMouseOver="link('_member','LPI_STEQUAL0',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>enumval&nbsp;&nbsp;LPI_STEQUAL',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">LPI_STEQUAL</a>; break;
+      case LARGER:  rel = <a href="#" onMouseOver="link('_member','LPI_LARGER0',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>enumval&nbsp;&nbsp;LPI_LARGER',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">LPI_LARGER</a>;  break;
+      case SMALLER: rel = <a href="#" onMouseOver="link('_member','LPI_SMALLER0',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>enumval&nbsp;&nbsp;LPI_SMALLER',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">LPI_SMALLER</a>; break;
+    }
+    d.<a href="#" onMouseOver="link('_member','cc446829',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>short&nbsp;&nbsp;cc [100]',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">cc</a>[x] = rel;
+  }
+
+  write(f, &amp;d, sizeof(d));
+  close(f);
+  return true;
+}
+</pre><div class="contentAirBottom"></div>
+<script type="text/javascript">
+ Body5();
+Statistics("","","","","");
+ Body6();
+SetPageTab('_member','_source');
+</script>

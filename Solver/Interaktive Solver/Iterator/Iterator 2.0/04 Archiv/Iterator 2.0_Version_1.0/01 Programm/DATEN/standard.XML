@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<iterator>
+    <header>
+        <createdProgramm>Iterator II</createdProgramm>
+        <createdVersion>1.0</createdVersion>
+        <createdDate>2013-06-24 / 02:26:16</createdDate>
+        <createdUser>hansh</createdUser>
+    </header>
+    <tableau>
+        <id>0</id>
+        <aMatrix>
+            <item>3</item>
+            <item>1</item>
+        </aMatrix>
+        <aMatrix>
+            <item>2</item>
+            <item>3</item>
+        </aMatrix>
+        <aMatrix>
+            <item>1</item>
+            <item>0</item>
+        </aMatrix>
+        <aMatrix>
+            <item>0</item>
+            <item>1</item>
+        </aMatrix>
+        <aMatrixVariable>4</aMatrixVariable>
+        <aMatrixRestriction>2</aMatrixRestriction>
+        <bVektor>12</bVektor>
+        <bVektor>9</bVektor>
+        <zielfunktion>-1</zielfunktion>
+        <zielfunktion>-2</zielfunktion>
+        <zielfunktion>0</zielfunktion>
+        <zielfunktion>0</zielfunktion>
+        <zielfunktionskoeffizient>0</zielfunktionskoeffizient>
+        <isOptimized>false</isOptimized>
+        <numberOfIterates>0</numberOfIterates>
+    </tableau>
+</iterator>

@@ -1,0 +1,14 @@
+MOPS V7.06, (C) Uwe H. Suhl, 14.06.2004 01.12.2016 14.39                        
+ integer solution                                  
+        iteration number =          0
+           ...name...    ...activity...        defined as
+           functional           3.00000        ZF                              
+           restraints                          MYRHS                           
+     SECTION 1 - ROWS
+   NUMBER  ...ROW..  AT  ...ACTIVITY...  SLACK ACTIVITY  ..LOWER LIMIT.  ..UPPER LIMIT.  .DUAL ACTIVITY
+        3  R1        BS         5.00000         7.00000            none        12.00000         0.00000
+        4  R2        BS         4.00000         5.00000            none         9.00000         0.00000
+  SECTION 2 - COLUMNS
+   NUMBER  .COLUMNS  AT  ...ACTIVITY...  ..INPUT COST..  ..LOWER LIMIT.  ..UPPER LIMIT.  .REDUCED COST.
+        1  X1        IV         1.00000         1.00000         0.00000         1.00000         1.00000
+        2  X2        IV         1.00000         2.00000         0.00000         1.00000         2.00000

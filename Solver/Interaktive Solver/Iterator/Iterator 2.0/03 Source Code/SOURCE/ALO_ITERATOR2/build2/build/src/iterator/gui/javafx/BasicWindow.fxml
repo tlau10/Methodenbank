@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="474.0" prefWidth="685.0" xmlns:fx="http://javafx.com/fxml" fx:controller="iterator.gui.javafx.BasicWindowController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <BorderPane prefHeight="474.0" prefWidth="685.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="title, titled-pane">
+          <children>
+            <Accordion layoutX="-1.0" layoutY="-31.0">
+              <expandedPane>
+                <TitledPane fx:id="x1" animated="false" prefHeight="62.0" prefWidth="389.0">
+                  <content>
+                    <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="26.0" prefWidth="550.0">
+                      <children>
+                        <Button fx:id="btnNew" layoutX="4.0" layoutY="2.0" mnemonicParsing="false" />
+                        <Button fx:id="btnSave" layoutX="54.0" layoutY="2.0" mnemonicParsing="false" />
+                        <Button fx:id="btnOpen" layoutX="104.0" layoutY="2.0" mnemonicParsing="false" />
+                        <Button id="btnOptimize" fx:id="btnIterate" layoutX="310.0" layoutY="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Iteration">
+                          <tooltip>
+                            <Tooltip text="Iteration over a selected (!) cell" />
+                          </tooltip>
+                        </Button>
+                        <Button id="btnIterate" fx:id="btnOptimize" layoutX="420.0" layoutY="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Optimize">
+                          <stylesheets>
+                            <URL value="@IteratorStyles.css" />
+                          </stylesheets>
+                          <tooltip>
+                            <Tooltip text="Automatically iteration over Pivot elements until optimum is reached" />
+                          </tooltip>
+                        </Button>
+                        <Button id="btnOptimize" fx:id="btnPivot" layoutX="200.0" layoutY="5.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Pivot">
+                          <tooltip>
+                            <Tooltip text="Iteration over a selected (!) cell" />
+                          </tooltip>
+                        </Button>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </TitledPane>
+              </expandedPane>
+              <panes>
+                <fx:reference source="x1" />
+              </panes>
+            </Accordion>
+          </children>
+          <stylesheets>
+            <URL value="@IteratorStyles.css" />
+          </stylesheets>
+        </AnchorPane>
+      </center>
+      <top>
+        <MenuBar id="menubar" prefHeight="26.0" prefWidth="685.0" BorderPane.alignment="CENTER">
+          <menus>
+            <Menu mnemonicParsing="false" text="File" fx:id="menuFile">
+              <items>
+                <MenuItem mnemonicParsing="false" text="New" fx:id="itemNew" />
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" text="Save" fx:id="itemSave" />
+                <MenuItem mnemonicParsing="false" text="Open..." fx:id="itemOpen" />
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" text="Exit" fx:id="itemExit" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit" fx:id="menuEdit">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Find Pivot" fx:id="itemPivot" />
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" text="Iteration" fx:id="itemIteration" />
+                <MenuItem mnemonicParsing="false" text="Optimize" fx:id="itemOptimize" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Settings" fx:id="menuSetting">
+              <items>
+                <Menu mnemonicParsing="false" text="Language" fx:id="itemLanguage">
+                  <items>
+                    <RadioMenuItem mnemonicParsing="false" text="Deutsch" fx:id="radioGerman" />
+                    <RadioMenuItem mnemonicParsing="false" text="English" fx:id="radioEnglish" />
+                  </items>
+                </Menu>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help" fx:id="menuHelp">
+              <items>
+                <MenuItem mnemonicParsing="false" text="About" fx:id="itemAbout" />
+                <MenuItem mnemonicParsing="false" text="Documentation" fx:id="itemDocumentation" />
+                <SeparatorMenuItem mnemonicParsing="false" />
+                <MenuItem mnemonicParsing="false" text="Debug Modus" fx:id="itemDebug" />
+              </items>
+            </Menu>
+          </menus>
+          <BorderPane.margin>
+            <Insets bottom="9.0" />
+          </BorderPane.margin>
+        </MenuBar>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>

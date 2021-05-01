@@ -1,0 +1,6 @@
+max: X2;
+max: -X1 - X2;
+max: X3;
+
+row1: X2 <= 2;
+row2: X3 <= 3;

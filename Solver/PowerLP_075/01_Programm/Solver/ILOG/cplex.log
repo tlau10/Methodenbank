@@ -1,0 +1,135 @@
+
+Log started (V12.5.0.0) Thu Jan 09 12:50:52 2014
+
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual infeasibility =             0.000000
+Iteration:     2   Dual objective     =           260.000000
+
+Dual simplex - Optimal:  Objective = 2.6000000000e+002
+Solution time =    0.00 sec.  Iterations = 2 (1)
+Deterministic time = 0.00 ticks  (4.03 ticks/sec)
+
+
+Log started (V12.5.0.0) Thu Jan 09 12:56:15 2014
+
+Row 'c2' infeasible, all entries at implied bounds.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+
+MIP - Integer infeasible.
+Current MIP best bound = 5.0000000000e+000 (gap is infinite)
+Solution time =    0.00 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 0.00 ticks  (4.49 ticks/sec)
+
+
+Log started (V12.5.0.0) Mon Jan 13 12:28:08 2014
+
+
+Problem written to file 'beisp.txt'.
+Not a mixed integer problem.
+No file read.
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 2 columns.
+All rows and columns eliminated.
+Presolve time = 0.02 sec. (0.00 ticks)
+
+Dual simplex - Optimal:  Objective = 6.0000000000e+000
+Solution time =    0.02 sec.  Iterations = 0 (0)
+Deterministic time = 0.00 ticks  (0.09 ticks/sec)
+
+
+Log started (V12.5.0.0) Mon Jan 13 12:32:34 2014
+
+
+Problem written to file 'beisp.txt'.
+CPLEX Error  1608: Line 5: Expected '+','-' or sense, found 'x'.
+
+Problem written to file 'beisp.txt'.
+Dual infeasible due to empty column 'y'.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+Log started (V12.5.0.0) Mon Jan 13 12:39:15 2014
+
+
+Problem 'c:\beisp.txt' read.
+Read time = 0.02 sec. (0.00 ticks)
+
+Log started (V12.5.0.0) Mon Jan 13 12:54:27 2014
+
+Warning, line 6: Unfinished constraint is discarded.
+Maximize
+ obj: x + y
+Subject To
+ c1: 2 x + y <= 12
+Bounds
+ 0 <= x <= 1
+ 0 <= y <= 1
+Binaries
+ x  y 
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Found incumbent of value 2.000000 after 0.00 sec. (0.00 ticks)
+
+Solution pool: 1 solution saved.
+
+MIP - Integer optimal solution:  Objective = 2.0000000000e+000
+Solution time =    0.05 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 0.00 ticks  (0.07 ticks/sec)
+
+
+Log started (V12.5.0.0) Mon Jan 13 12:57:40 2014
+
+Infeasibility row 'c1':  0  = -0.5.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+
+MIP - Integer infeasible.
+Current MIP best bound = 3.0000000000e+000 (gap is infinite)
+Solution time =    0.02 sec.  Iterations = 0  Nodes = 0
+Deterministic time = 0.00 ticks  (0.25 ticks/sec)
+
+
+CPLEX Error  1217: No solution exists.
+No file written.
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 2 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+Dual simplex - Optimal:  Objective = 2.5000000000e+000
+Solution time =    0.00 sec.  Iterations = 0 (0)
+Deterministic time = 0.00 ticks  (1.58 ticks/sec)
+
+
+Log started (V12.5.0.0) Wed Nov 26 16:02:36 2014
+
+
+Problem written to file 'standardbeispiel'.
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 1 columns.
+Aggregator did 1 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+Dual simplex - Optimal:  Objective = 6.8571428571e+000
+Solution time =    0.03 sec.  Iterations = 0 (0)
+Deterministic time = 0.00 ticks  (0.09 ticks/sec)
+
+
+Log started (V12.5.0.0) Thu Nov 27 22:39:21 2014
+
+
+Problem written to file 'standardbeipiel'.
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 1 columns.
+Aggregator did 1 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.05 sec. (0.00 ticks)
+
+Dual simplex - Optimal:  Objective = 6.8571428571e+000
+Solution time =    0.13 sec.  Iterations = 0 (0)
+Deterministic time = 0.00 ticks  (0.02 ticks/sec)
+

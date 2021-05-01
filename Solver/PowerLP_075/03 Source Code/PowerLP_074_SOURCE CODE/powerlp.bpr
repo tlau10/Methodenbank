@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- C++Builder XML Project -->
+<PROJECT>
+  <MACROS>
+    <VERSION value="BCB.06.00"/>
+    <PROJECT value="powerlp.exe"/>
+    <OBJFILES value="powerlp.obj main.obj ChildWin.obj About.obj registry.obj lpmodell.obj 
+      common.obj lp_lpi.obj lp_xaeq.obj solver.obj lp_mps.obj lp_lpsolvi.obj 
+      options.obj"/>
+    <RESFILES value="powerlp.res"/>
+    <IDLFILES value=""/>
+    <IDLGENFILES value=""/>
+    <DEFFILE value=""/>
+    <RESDEPEN value="$(RESFILES) main.dfm ChildWin.dfm About.dfm options.dfm"/>
+    <LIBFILES value=""/>
+    <LIBRARIES value="vcl.lib rtl.lib"/>
+    <SPARELIBS value="rtl.lib vcl.lib"/>
+    <PACKAGES value="rtl.bpi vcl.bpi vclx.bpi"/>
+    <PATHCPP value=".;"/>
+    <PATHPAS value=".;"/>
+    <PATHRC value=".;"/>
+    <PATHASM value=".;"/>
+    <DEBUGLIBPATH value="$(BCB)\lib\debug"/>
+    <RELEASELIBPATH value="$(BCB)\lib\release"/>
+    <LINKER value="ilink32"/>
+    <USERDEFINES value="_DEBUG"/>
+    <SYSDEFINES value="NO_STRICT"/>
+    <MAINSOURCE value="powerlp.cpp"/>
+    <INCLUDEPATH value="..\..\..\..\DASuite3;E:\FHKCD\Besf\lp2lpi;C:\Programme\Borland\CBuilder5\Projects;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="..\..\..\..\DASuite3;E:\FHKCD\Besf\lp2lpi;C:\Programme\Borland\CBuilder5\Projects;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <WARNINGS value="-w-par"/>
+    <OTHERFILES value=""/>
+  </MACROS>
+  <OPTIONS>
+    <IDLCFLAGS value="-I..\..\..\..\DASuite3 -IE:\FHKCD\Besf\lp2lpi 
+      -IC:\Programme\Borland\CBuilder5\Projects -I$(BCB)\include 
+      -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG"/>
+    <CFLAG1 value="-Od -H=c:\PROGRA~2\borland\CBUILD~1\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 
+      -b- -k -y -v -vi- -c -tW -tWM"/>
+    <PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/>
+    <RFLAGS value=""/>
+    <AFLAGS value="/mx /w2 /zi"/>
+    <LFLAGS value="-D&quot;&quot; -aa -Tpe -x -Gn -v"/>
+    <OTHERFILES value=""/>
+  </OPTIONS>
+  <LINKER>
+    <ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/>
+    <ALLRES value="$(RESFILES)"/>
+    <ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/>
+    <OTHERFILES value=""/>
+  </LINKER>
+  <FILELIST>
+      <FILE FILENAME="powerlp.cpp" FORMNAME="" UNITNAME="powerlp" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="main.cpp" FORMNAME="MainForm" UNITNAME="Main" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="ChildWin.cpp" FORMNAME="MDIChild" UNITNAME="ChildWin" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="powerlp.res" FORMNAME="" UNITNAME="powerlp" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="About.cpp" FORMNAME="AboutBox" UNITNAME="about" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="registry.cpp" FORMNAME="" UNITNAME="registry" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lpmodell.cpp" FORMNAME="" UNITNAME="lpmodell" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="common.cpp" FORMNAME="" UNITNAME="common" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lp_lpi.cpp" FORMNAME="" UNITNAME="lp_lpi" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lp_xaeq.cpp" FORMNAME="" UNITNAME="lp_xaeq" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="solver.cpp" FORMNAME="" UNITNAME="solver" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lp_mps.cpp" FORMNAME="" UNITNAME="lp_mps" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="lp_lpsolvi.cpp" FORMNAME="" UNITNAME="lp_lpsolvi" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="options.cpp" FORMNAME="OptionsForm" UNITNAME="options" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+  </FILELIST>
+  <BUILDTOOLS>
+  </BUILDTOOLS>
+
+  <IDEOPTIONS>
+[Version Info]
+IncludeVerInfo=0
+AutoIncBuild=0
+MajorVer=1
+MinorVer=0
+Release=0
+Build=0
+Debug=0
+PreRelease=0
+Special=0
+Private=0
+DLL=0
+Locale=1033
+CodePage=1252
+
+[Version Info Keys]
+CompanyName=
+FileDescription=
+FileVersion=1.0.0.0
+InternalName=
+LegalCopyright=
+LegalTrademarks=
+OriginalFilename=
+ProductName=
+ProductVersion=1.0.0.0
+Comments=
+
+[Debugging]
+DebugSourceDirs=$(BCB)\source\vcl
+
+[Parameters]
+RunParams=
+Launcher=
+UseLauncher=0
+DebugCWD=
+HostApplication=
+RemoteHost=
+RemotePath=
+RemoteLauncher=
+RemoteCWD=
+RemoteDebug=0
+
+[Compiler]
+ShowInfoMsgs=0
+LinkDebugVcl=0
+LinkCGLIB=0
+
+[CORBA]
+AddServerUnit=1
+AddClientUnit=1
+PrecompiledHeaders=1
+
+[Language]
+ActiveLang=
+ProjectLang=
+RootDir=
+  </IDEOPTIONS>
+</PROJECT>

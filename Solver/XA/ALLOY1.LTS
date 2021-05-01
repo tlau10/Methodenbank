@@ -1,0 +1,15 @@
+   ..TITLE                  *
+     ALLOY1.WK1(TITLE)      *       TITLE        A2..A2
+   ..OBJECTIVE MINIMIZE     *
+     ALLOY1.WK1(VARIABLES)  *   VARIABLES        B4..H4
+     ALLOY1.WK1(COST)       *        COST        B5..H5
+   ..BOUNDS                 *
+     ALLOY1.WK1(LOWER)      *       LOWER        B6..H6
+     ALLOY1.WK1(UPPER)      *       UPPER        B7..H7
+   ..CONSTRAINT             *
+     ALLOY1.WK1(MATRIX)     *      MATRIX        A10..K16
+   ..ACTIVITY               *
+     ALLOY1.WK1(ANSWERS)    *     ANSWERS        B8..H8
+   ..REDUCEDCOST            *
+     ALLOY1.WK1(REDUCED)    *     REDUCED        B9..H9
+

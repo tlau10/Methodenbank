@@ -1,0 +1,72 @@
+Usage of LP_SOLVE.EXE version 4.0.1.0:
+
+LP_SOLVE.EXE [options] [[<]input_file]
+
+List of options:
+-h		prints this message
+-v <level>	verbose mode, gives flow through the program.
+		 if level not provided (-v) then -v2 (NORMAL) is taken.
+	 -v0: CRITICALSTOP
+	 -v1: CRITICAL
+	 -v2: SEVERE
+	 -v3: IMPORTANT (default)
+	 -v4: NORMAL
+	 -v5: DETAILED
+	 -v6: FULL
+-d		debug mode, all intermediate results are printed,
+		and the branch-and-bound decisions
+-p		print the values of the dual variables
+-b <bound>	specify a lower bound for the objective function
+		to the program. If close enough, may speed up the
+		calculations.
+-i		print all intermediate valid solutions.
+		Can give you useful solutions even if the total run time
+		is too long
+-e <number>	specifies the epsilon which is used to determine whether a
+		floating point number is in fact an integer.
+		Should be < 0.5
+-c		during branch-and-bound, take the ceiling branch first
+-ca		during branch-and-bound, the algorithm chooses branch
+-B <rule>	specify branch-and-bound rule
+	 -B0: Select Lowest indexed non-integer column (default)
+	 -B1: Select Random non-integer column
+	 -B2: Select Largest deviation from an integer value
+	 -B3: Select Best ???
+	 -B4: Select Median value deviation from an integer value
+	 -B5: Select Greedy ???
+-s <mode>	use automatic problem scaling.
+	  -s:
+	 -s0: Numerical range-based scaling
+	 -s1: Geometric scaling
+	 -s2: Curtis-reid scaling
+-sp		also do power scaling.
+		This option must come AFTER -s <mode> option
+-sl		also do Lagrange scaling.
+		This option must come AFTER -s <mode> option
+-si		also do Integer scaling.
+		This option must come AFTER -s <mode> option
+-I		print info after reinverting
+-t		trace pivot selection
+-lp		read from LP file (default)
+-mps		read from MPS file
+-degen		use perturbations to reduce degeneracy,
+		can increase numerical instability
+-trej <Trej>	set minimum pivot value
+-parse_only	parse input file but do not calculate (ie check)
+-presolve	presolve problem before start optimizing
+-improve <level>	iterative improvement level
+	 -improve0: none (default)
+	 -improve1: FTRAN only
+	 -improve2: BTRAN only
+	 -improve3: FTRAN + BTRAN
+-time		Print CPU time to parse input and to calculate result
+-min		Minimize the lp problem (overrules setting in file)
+-max		Maximize the lp problem (overrules setting in file)
+-S <detail>	Print solution. If detail ommited, then -S2 is used.
+	 -S0: Print nothing
+	 -S1: Only objective value
+	 -S2: Objective value + variables (default)
+	 -S3: Objective value + variables + constraints
+	 -S4: Objective value + variables + constraints + duals
+	 -S5: Objective value + variables + constraints + duals + lp model
+	 -S6: Objective value + variables + constraints + duals + lp model + lp scales

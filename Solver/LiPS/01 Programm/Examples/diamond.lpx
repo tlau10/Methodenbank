@@ -1,0 +1,17 @@
+// DIAMOND
+
+// Objective function
+min: -X;
+
+// Constraints
+ROW1: +X +Y >= 0.5;
+ROW2: +X +Y <= 1.5;
+ROW3: +X -Y <= 0.5;
+ROW4: -X +Y <= 0.5;
+
+// Variable bounds 
+X <= 1;
+Y <= 1;
+
+// Integer definitions
+int X,Y;

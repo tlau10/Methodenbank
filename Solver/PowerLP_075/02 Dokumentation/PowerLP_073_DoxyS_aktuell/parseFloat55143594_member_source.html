@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<TITLE>PowerLP_073 - parseFloat</TITLE>
+<script type="text/javascript">
+  var relPathToCommmon = "common/";
+  var relPathToHelpDir = "common/help/";
+</script>
+<script type="text/javascript" src="common/jsdyn.js" language="JavaScript"></script>
+<script type="text/javascript" src="common/js.js" language="JavaScript"></script>
+<script type="text/javascript" src="leftmenu.js" language="JavaScript"></script>
+<script type="text/javascript">
+  var toSearchPage     = "_search','search";
+  Body1();
+</script>
+<div class="headerPage">parseFloat</div>
+<div class="path"><a href="#" OnMouseOver="link('','index',this)" class="pathLink">Default mainpage</A><img src="common/path-arrow.gif" class="path-arrow"><a href="#" OnMouseOver="link('_dir','SOURCE0',this)" class="pathLink">SOURCE</A><img src="common/path-arrow.gif" class="path-arrow"><span class="pathNonLink">parseFloat</span></div>
+<script type="text/javascript">
+ Body2();
+ BodyLeftMenuStart();
+WriteLeftMenu("","","","");
+ BodyLeftMenuEnd();
+ Body3();
+</script>
+<span class="tabInActive"><a href="#" OnMouseOver="linkTab('_member','parseFloat55143594','_description',this)" class="tabLinkInActive">Description</a></span>
+<span class="tabActive"><a href="#" OnMouseOver="linkTab('_member','parseFloat55143594','_source',this)" class="tabLinkActive">Source</a></span>
+<span class="tabInActiveGrayout"><span class="tabLinkGrayout">Call Graph</span></span>
+<script type="text/javascript">
+ Body4();
+</script>
+<div class="contentAirTop"></div>
+<div class="paragraph2NoTopPadding">Start Line: 139</div>
+<pre class="codeExamples">
+int <a href="#" onMouseOver="link('_member','parseFloat55143594',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>int&nbsp;&nbsp;parseFloat&nbsp;&nbsp;(char * z, float * value)',CAPTION,'<strong>Brief description</strong><BR>');" onMouseOut="return nd();">parseFloat</a>(char *z, float *value)
+                                      {
+  char tmp[2048];
+  strcpy(tmp, z);
+  strreplace(tmp,",",".");
+  if (z[0] == '.') {
+    strcpy(&amp;tmp[1],z);
+    tmp[0] = '0';
+  }
+  return sscanf(z,"%f", value);
+}
+</pre><div class="contentAirBottom"></div>
+<script type="text/javascript">
+ Body5();
+Statistics("","","","","");
+ Body6();
+SetPageTab('_member','_source');
+</script>

@@ -1,0 +1,28 @@
+// CASH x1 C
+// MARKETABLE SECURITIES x2
+// ACCOUNTS RECEIVABLE x3 AR
+// INVENTORY x4 I
+// CURRENT LIABILITIES x5 CL
+// FIXED ASSETS xf FA
+// SALES y S
+// PROFIT ð P
+// CURRENT RATIO theta
+// PROFIT MARGIN m
+// WORKING CAPITAL TURNOVER RATIO w
+// FIXED ASSETS TURNOVER RATIO phi = 15
+min: dm1 + dp1 + dm2 + dp2 + dm3 + dp3 + dm4 + dp4 + dm5 + dp5 + dm6 + dp6 + dm7 + dp7 + dm8 + dp8 + dm9 + dp9 + dm10 + dp10 + dm11 + dp11 + dm12 + dp12 + dm13 + dp13;
+totalAssets: x1 + x2 + x3 + x4 - x5 + xf = 164722395;
+liquidity: x1 + x2 + x3 + x4 + dm1 - dp1 = 66866692;
+wcTurnover: y - 2.5*x1 + 2.5*x2 + 2.5*x3 - 2.5*x5 + dm2 - dp2 = 0;
+faTurnover: y - 15*xf + dm3 - dp3 = 0;
+profitMargin: pi - 0.1*y + dm4 - dp4 = 0;
+oppCost: pi - 1.5*x1 - 1.5*x2 - 1.5*x3 - 1.5*x4 + 1.5*x5 + 0.6*y + dm5 - dp5 = 0;
+cash: x1 + dm6 - dp6 = 3721056;
+marketSecurities: x2 + dm7 - dp7 = 33098161;
+accsReceivable: x3 + dm8 - dp8 = 89186217;
+inventories: x4 + dm9 - dp9 = 51884584;
+currLiabilities: x5 + dm10 - dp10 = 33433346;
+fixedAssets: xf + dm11 - dp11 = 20265723;
+sales: y + dm12 - dp12 = 322370524;
+profit: pi + dm13 - dp13 = 31782509;
+

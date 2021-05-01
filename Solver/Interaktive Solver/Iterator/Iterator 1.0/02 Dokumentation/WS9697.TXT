@@ -1,0 +1,11 @@
+WS 96/97
+
+
+In die Applikation wurden die Pfade DBPath (Datenpfad) und 
+EXEPath eingefuegt.
+
+Der DBPath wird der im EXEPath liegenden Inidatei entnommen.
+Dieser wird fuer den Open-Dialog gebraucht. Zuvor wurde der
+DBPath fuer den Open-Dialog ueber folgendes Hilfskonstrukt
+voreingestellt:  OpenDlg.InitialDir :=  '..\daten'
+

@@ -1,0 +1,23 @@
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Debug\GlpkSharp.dll
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Debug\GlpkSharp.pdb
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\ResolveAssemblyReference.cache
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\GlpkGui.MainForm.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\GlpkGui.Properties.Resources.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\GlpkGui.resources.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\GlpkGui.SolverView.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\GlpkGui.TableauView.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\GlpkGui.resources.de.resources
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\GLPK-GUI.csproj.GenerateResource.Cache
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Debug\GlpkGui.exe
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Debug\GlpkGui.pdb
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\bin\Debug\de\GlpkGui.resources.dll
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\de\GlpkGui.resources.dll
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\GlpkGui.exe
+D:\Studium\Semester6\OR\Anwendungen\_vs\Solver\WindowsFormsApplication2\obj\Debug\GlpkGui.pdb
+C:\Methodenbank\Solver\Glpk Gui 1.0\03 Source Code\GlpkGui-Src\GlpkGui\obj\Debug\GLPK-GUI.csprojResolveAssemblyReference.cache
+C:\Methodenbank\Solver\Glpk Gui 1.0\03 Source Code\GlpkGui-Src\GlpkGui\obj\Debug\GlpkGui.MainForm.resources
+C:\Methodenbank\Solver\Glpk Gui 1.0\03 Source Code\GlpkGui-Src\GlpkGui\obj\Debug\GlpkGui.Properties.Resources.resources
+C:\Methodenbank\Solver\Glpk Gui 1.0\03 Source Code\GlpkGui-Src\GlpkGui\obj\Debug\GlpkGui.SolverView.resources
+C:\Methodenbank\Solver\Glpk Gui 1.0\03 Source Code\GlpkGui-Src\GlpkGui\obj\Debug\GlpkGui.TableauView.resources
+C:\Methodenbank\Solver\Glpk Gui 1.0\03 Source Code\GlpkGui-Src\GlpkGui\obj\Debug\GlpkGui.Properties.Resources.de.resources
+C:\Methodenbank\Solver\Glpk Gui 1.0\03 Source Code\GlpkGui-Src\GlpkGui\obj\Debug\GLPK-GUI.csproj.GenerateResource.Cache

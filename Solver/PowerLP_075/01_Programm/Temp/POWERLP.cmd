@@ -1,0 +1,4 @@
+LOADMATRIX C:\Methodenbank\Solver\PowerLP_075\01_Programm\Temp\POWERLP.mat
+MAXIMISE
+SAVESOLUTION
+QUIT
