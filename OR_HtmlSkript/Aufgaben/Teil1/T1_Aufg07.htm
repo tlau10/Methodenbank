@@ -1,0 +1,58 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>T1_Aufg07</title>
+</head>
+<body>
+<font face="Arial" color="#666666" size=-1>Aufgabenteil 1</font>
+
+<p align="center">
+<font size="+2" color="#3366c8"><b>Aufgabe 7</b></font></p>
+<hr>
+
+
+<p><u><b>Aufgabenstellung:</b></u>
+<p align=justify>
+In einem Betrieb wird ein Erzeugnis produziert, das sowohl offen, als
+auch abgepackt verkauft wird. Die Verpackungseinheit ist 1 kg. Zur Produktion
+von 100 kg sind vom Rohstoff A 60 kg und vom Rohstoff B 40 kg erforderlich.
+Die Maschinen zur Aufbereitung der Rohstoffe liefern pro Stunde maximal
+252 kg A bzw. 120 kg B. Jede Maschine kann nur zur Aufbereitung eines Rohstoffes
+herangezogen werden. Eine weitere Maschine produziert die Verpackungen
+und zwar maximal 4 St&uuml;ck pro Minute.
+
+<p align=justify>Wieviel soll von dem Produkt offen bzw. abgepackt je Monat 
+hergestellt werden, damit der Deckungsbeitrag maximiert wird?
+
+<p align=justify>Der Deckungsbeitrag des abgepackten Erzeugnisses ist doppelt 
+so hoch wie der des offen verkauften Erzeugnisses. Der Markt stellt keinen 
+Engpass dar.
+
+<p>Formulieren Sie einen entsprechenden LP-Ansatz.</p>
+
+<p><u><b>Musterl&ouml;sung:</b></u>
+
+<p>Bezeichnungen:
+
+<ul>
+x<sub>1</sub> : &nbsp; offen verkauftes Erzeugnis in kg<br>
+x<sub>2</sub> : &nbsp; verpackt verkauftes Erzeugnis in kg<br>
+c &nbsp; : &nbsp; Deckungsbeitrag
+</ul>
+
+<p><br>Modell:
+<pre>
+     cx<sub>1</sub> + 2cx<sub>2</sub> --&gt; max !
+
+     0,6x<sub>1</sub> + 0,6x<sub>2</sub>  &lt;=  4,2
+     0,4x<sub>1</sub> + 0,4x<sub>2</sub>  &lt;=  2
+                x<sub>2 </sub> &lt;=  4 
+
+     x<sub>1</sub>, x<sub>2</sub> &gt;= 0
+</pre>
+
+<input type="button" value="LP-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe07\\lp_solve.bat');"/>
+<input type="button" value="XA-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe07\\xa.bat');"/>
+</body>
+</html>

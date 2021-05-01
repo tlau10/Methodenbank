@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<TITLE>LP90-HTMLFile</TITLE>
+</HEAD>
+<BODY background="backgrnd.gif">
+
+<CENTER>
+<p><IMG SRC="lp90.gif"></p>
+<h1>LP90</H1>
+</CENTER>
+<hr>
+
+
+<p align=center>
+<font face="courier new" color="7e00FF" size="+0">
+***********************************************<br>
+Läuft nicht unter Windows NT !<br>
+***********************************************
+</font>
+</p>
+
+
+<p>Das LP-Programm beinhaltet eine Benutzerführung. 
+Eine Kurzanleitung zum Programm enthält die Datei DokuLp90.doc. 
+
+Das Buch <strong>Lineare Programmierung auf dem PC</strong> 
+von Herrn Prof. P. Stahlknecht enthält neben einer ausführlichen
+Dokumentation auch den Quellcode.<br>
+Es ist in der FH Bibliothek ausleihbar (WCL 6).</p>
+
+<p><font face="Arial" size="-1" color="FF007E"><b>Hinweis:</b></font><br>
+Das Programm wird vom Server in das Verzeichnis c:\temp\lp90
+kopiert. Starten müssen Sie das Programm manuell im Explorer.
+Doppelklick auf LP90.COM.</p>
+<br>
+
+<p><font face="Arial" size="-1" color="FF007E">
+<b>Das OR-Standardbeispiel in LP90:</b></font>
+
+<pre>
+1x1 + 2x2 ---&gt; max
+3x1 + 2x2 &lt;= 12
+1x1 + 3x2 &lt;=  9
+
++------------------------------------------------------+
+|ALLGEMEINE INFORMATION|NAME             x1       x2   |
+|VOM PROGRAMM          |KONSTANT                       |
+|                      |UNTERGRENZE                    |
+|                      |OBERGRENZE                     |
+|                      |ZIEL             1        2    |
++------------------------------------------------------+
+|NAME     TYP     RHS1      RHS2    |                  |
+|                                   |                  |
+|r1       &lt;                  12     |    3        2    |
+|r2       &lt;                  9      |    1        3    |
++------------------------------------------------------+
+
+
+Folgende Parameter sind optional:
+
+Name         Variablennamen
+Konstant     Konstantwerte der Variablen
+Untergrenze  Untergrenze der Variablen
+Obergrenze   Obergrenze der Variablen
+RHS1         nur bei zweiseitigen Restriktionen
+
+
+Folgende Parameter sind Musseingaben:
+
+RHS2         B-Vektor
+Typ          Gleichungstyp (&lt;, &gt; und =);
+             (":" bei zweiseitigen Restriktionen)
+Ziel         Zielfunktionswerte
+
+</pre>
+
+</BODY>
+</HTML>

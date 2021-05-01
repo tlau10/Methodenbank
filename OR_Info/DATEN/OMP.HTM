@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+	<TITLE>OMP</TITLE>	
+</HEAD>
+<BODY BACKGROUND="bg.gif" bgproperties="fixed">
+
+<P ALIGN=CENTER><IMG SRC="omp.gif" WIDTH=256 HEIGHT=130></P>
+
+
+<h2 align="center">
+<font Face="tahoma" color="#585858">- O M P -</font></h2>
+
+<font  size="1" face="arial">Dos-Programm, Tutorial-Version</font>
+
+<hr noshade size=1>
+
+
+<P>OMP ist ein Programm zur L&ouml;sung linearer (LP) und
+gemischtganzzahliger Modelle (MIP). Verarbeitet werden OMP- und
+MPS-Dateien.<br>
+Leider zeigt das Programm nicht an, ob alternative Optimallösungen
+existieren. Bei MIP-Modellen wird je nach <i>Baumabarbeitung</i> die
+eine oder andere ganzzahlige Lösung gefunden.
+<P>
+In F111 ist das Handbuch zum Programm ausleihbar.
+Kurzbeschreibungen 
+(<samp><b>Omp_kurz.doc</b>, <b>Omp_i2.doc</b></samp>) sind im 
+Besf-Info-Verzeichnis auf dem Server zu finden.</p>
+
+
+<H4>MODULE</H4>
+<UL>
+	<LI>LP: revidierter Simplex-Algorithmus 
+	<LI>Gemischtganzzahlige Programmierung (MIP, Branch &amp; Bound
+	Verfahren) 
+	<LI>Modell Generator: zur Beschreibung umfassender Modelle 
+	<LI><P>Autopilot: Bildschirmgenerator, Berichtsgenerator und
+	Schnittstelle zu Lotus 1-2-3, sowie zu verschiedenen Datenbanken 
+</UL>
+<br>
+
+<H4>PROGRAMMLAUF</H4>
+<UL>
+	<LI><B>AUFRUF</B><BR>omp4tutw.exe bzw. ompstart.bat im Verzeichnis
+	\B&amp;P (..siehe unten). 
+	<LI><B>MODELL EINGEBEN (bei Neueingabe)</B><BR>'Edit Text' unter dem
+	Men&uuml;punkt 'File'. Speichern mit [ALT-S]. Zur&uuml;ck mit
+	[ALT-X]. 
+	<LI><B>MODELL EINLESEN</B><BR>'Input' unter dem Men&uuml;punkt
+	'Model'. 
+	<LI><B>L&Ouml;SEN DES MODELLS</B><BR>'Solve Model' unter dem
+	Men&uuml;punkt 'Optimizer'. Je nach Version ist jetzt 'Execute'
+	auszuf&uuml;hren. Zur&uuml;ck mit [ALT-X]. 
+	<LI><P><B>ERGEBNISSE EINSEHEN</B><BR>'Show Report' unter dem
+	Men&uuml;punkt 'Reports'. Zur&uuml;ck mit [ALT-X]. 
+</UL>
+<BR>
+
+<H4>RECHNERKONFIGURATION (für Win9x/NT)</H4>
+<UL>
+	<LI>OMP kann unter Win9x nur im Verzeichnis ..\B&amp;P 
+	installiert werden. Weil 'B&amp;P' unter WinNT nicht
+	darstellbar ist, wurde die Exe so 'gepatched', daß nun auch eine
+	Installation im Verzeichnis ..\OMP möglich ist. 
+	Auf jeden Fall wird aber ein Ansi-Treiber benötigt.
+	<LI>In den Laborräumen wird der Ansi-Treiber nicht automatisch
+	geladen (siehe config.sys), deshalb wird mittels OMPSTART.BAT 
+	der alternative Treiber ANSI.COM 'nachgeladen'. 
+	<LI>Temp. Anpassung der Umgebungsvariable PATH in der
+	OMPSTART.BAT
+</UL>
+<P><I>Aufruf von OMP ausschlie&szlig;lich via ompstart.bat.</I></P>
+
+<p><b>Hinweis für NT-Nutzer:</b><br>
+Der Pfad <tt>\b&amp;p</tt> ist unter NT nicht darstellbar. Eine 
+für NT verträgliche Version ist im Verzeichnis OMP_NT zu finden. 
+Die Exe wurde so geändert, dass nun der Pfad-Eintrag "omp" gesucht
+wird.<br>
+Bei Verwendung der zugehörigen Batch-Datei, wird automatisch
+das Verzeichnis <tt>c:\temp\omp</tt> angelegt.</p>
+
+
+<H4>RECHNERKONFIGURATION (f&uuml;r Dos/Win 3.x)</H4>
+<UL>
+	<LI>Hauptspeicherbedarf: kleiner 400 KB im unteren Bereich (Version 4). 
+	<LI>OMP kann nur im Verzeichnis [root]\B&amp;P installiert werden. 
+	<LI>Die Umgebungsvariable PATH muss dieses Verzeichnis enthalten. 
+	<LI>Der Bildschirmtreiber ANSI.SYS wird ben&ouml;tigt (config.sys).
+</UL>
+<br>
+
+<hr noshade size=1>
+
+<p><FONT FONT SIZE="-2" face="arial">&copy; Fachhochschule Konstanz</FONT></p>
+</BODY>
+</HTML>

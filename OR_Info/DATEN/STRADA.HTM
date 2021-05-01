@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Strada</title>
+</head>
+<body background="bg.gif">
+
+<p align="center">
+<font size="6" color="#cc3399"><b>STRADA</font></b></p>
+
+<hr noshade size=1>
+
+
+<p>Der Solver Strada eignet sich zur Lösung nicht-ganzzahliger
+Modelle der Linearen Programmierung. Verarbeitet werden
+MPS-Dateien. Die Ausgabe erfolgt auf den Bildschirm (STDOUT) 
+oder in eine Datei. Hierbei können alle Iterationen des Lösungsweges
+ausgegeben werden. Zusätzlich ist die Genauigkeit für die Zahl
+Null als 1*10<sup>-x</sup> angebbar.</p>
+
+<p><font color="#cc3399"><strong>Aufruf:</strong></font><br>
+<samp>Programmname MPS-Datei Problemtyp [Ausgabedatei] [Schrittfolge]
+[Genauigkeit]</samp></p>
+
+<ul type="disc">
+    <li>Programmname: <b>Strada.exe</b></li>
+    <li>MPS-Datei: Name der Eingabedatei (beliebig)</li>
+    <li>Problemtyp: min bzw. max</li>
+    <li>Ausgabedatei: fehlt die Angabe, erfolgt die Ausgabe auf
+        STDOUT</li>
+    <li>Schrittfolge:<br>
+        <tt>solve:</tt>&nbsp;&nbsp;&nbsp;&nbsp; normale Ausgabe<br>
+        <tt>iterate:</tt> Ausgabe aller Iterationen (default)</li>
+    <li>Genauigkeit: Integerzahl (&lt;= 308)</li>
+</ul>
+
+<p>Die Parameter Ausgabedatei, Schrittfolge und Genauigkeit sind
+optional.</p>
+
+<p><font color="#cc3399"><strong>Beispiel:</strong></font><br>
+<samp>strada.exe prodplan.mps max strada.out iterate 10</samp></p>
+
+<p><font color="#cc3399"><strong>Einschränkungen:<br>
+</strong></font>Bounds werden nicht erkannt. Deshalb sind
+Beschränkungen von Variablenwerten in die Restriktionen zu 
+übernehmen. Und ganzzahlige Modelle können nicht als solche 
+gelöst werden.</p>
+
+<hr noshade size=1>
+<FONT SIZE="-2" face="arial">&#169; &nbsp;Fachhochschule Konstanz</FONT>
+</body>
+</html>

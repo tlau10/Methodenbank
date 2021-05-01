@@ -1,0 +1,111 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>T1_Aufg11</title>
+</head>
+<body>
+<font face="Arial" color="#666666" size="-1">Aufgabenteil 1</font>
+
+<p align="center">
+<font size="+2" color="#3366c8"><b>Aufgabe 11</b></font></p>
+<hr>
+
+
+<p><font face="Arial" size="-1">
+<b><u>Aufgabenstellung:</u></b></font>
+
+<P align=justify><font color="#306880">
+<b>Mischungsplanung</b></font><br>
+<br>
+Derartige Aufgaben kommen bei der Bestimmung von Metalllegierungen,
+aber auch bei der Zusammensetzung von z. B. Futtermittelmischungen vor.
+Eine vereinfachte Problemstellung aus diesem Bereich, die zu einer Minimumaufgabe
+f&uuml;hrt:</P>
+
+<P align=justify>Aus 2 Futtermittelsorten F<SUB>1</SUB> und F<SUB>2</SUB>
+soll eine Mischung mit minimalen Kosten zusammengestellt werden, wobei
+mindestens 3000 cal und 100 g Eiwei&szlig; in der Mischung enthalten sein
+sollen; auf 500 g bezogen koste F<SUB>1</SUB> 0,60 EUR und F<SUB>2</SUB>
+2,10 EUR. F<SUB>1</SUB> enthalte je 500 g 1000 cal und 25 g Eiwei&szlig;;
+F<SUB>2</SUB> enthalte 2000 cal und 100 g Eiwei&szlig;. Es sind Zielfunktion,
+Restriktionen und Nichtnegativit&auml;tsbedingungen zu formulieren. Gefragt
+ist nach den Mengen x<SUB>1</SUB> und x<sub>2</sub> (Einheiten 500 g).</P>
+
+<P>F&uuml;r die Zielfunktion ergibt sich: </P>
+
+<Pre>
+    K = 0,6 x<SUB>1</SUB> + 2,1 x<SUB>2</SUB> --&gt; Min    (1)</Pre>
+
+<P align=justify>
+Um die Restriktionen aufzustellen, hilft folgende &Uuml;berlegung:
+Es sollen mindestens 3000 cal in der Mischung enthalten sein, d. h. die
+Anzahl cal muss &ge; 3000 sein. Kalorien sind enthalten in F1 und
+F2, und zwar 1000 bzw. 2000 je Mengeneinheit von 500 g. Damit gilt:</P>
+
+<Pre>
+    1000 x<sub>1</sub> + 2000 x<sub>2</sub> &ge; 3000       (2)</Pre>
+
+<P>F&uuml;r den Eiwei&szlig;gehalt gilt analog:
+
+<pre>
+    25 x<sub>1</sub> + 100 x<sub>2</sub> &ge; 100           (3)</pre>
+
+<p>(2) und (3) werden umgeformt zu:
+
+<pre>
+    x<sub>1</sub> + 2 x<sub>2</sub> &ge; 3                  (4)  
+    x<sub>1</sub> + 4 x<sub>2</sub> &ge; 4</Pre>
+
+
+
+<P align=justify>Auch hier m&uuml;ssen die Nichtnegativit&auml;tsbedingungen
+erf&uuml;llt sein:</P>
+
+<Pre>
+    x<SUB>i</SUB> &ge; 0 (i = 1, 2)              (5)</Pre>
+
+<P align=justify>Um eine L&ouml;sung zu finden, benutzt man wieder ein
+Koordinatensystem mit den Achsen x<sub>1</sub> und x<sub>2</sub>. 
+Indem man zun&auml;chst nur die Gleichheitszeichen in (4) betrachtet 
+und wechselweise x<sub>1</sub> bzw. x<sub>2</sub> Null setzt, 
+erh&auml;lt man die Restriktionsgeraden (siehe Abb.). 
+Wegen der Gr&ouml;&szlig;erzeichen in (4) ist zudem der Bereich 
+oberhalb dieser Geraden interessant, wodurch in Verbindung mit (5) 
+der aus der Abbildung ersichtliche L&ouml;sungsraum entsteht.</P>
+
+<P align=center>
+<IMG SRC="11_bild.gif"></P>
+
+<P class="Abb" align=center>L&ouml;sungsraum und optimale L&ouml;sung
+der Minimumaufgabe</P>
+<BR>
+
+<P align=justify>Um das Minimum an Kosten zu erreichen, l&ouml;st man
+die Zielfunktion nach x<sub>2</sub> auf, setzt K z. B. gleich 4,2 und 
+erh&auml;lt:</P>
+
+<b>
+<Pre>
+    x<sub>2</sub> = -2/7 x<sub>1</sub> + 2</Pre></b>
+
+<P align=justify>Diese Gerade liegt zwar im L&ouml;sungsraum, ihr Wert
+K entspricht jedoch nicht dem Minimum. Dieses erh&auml;lt man vielmehr
+dann, wenn man die Gerade so lange parallel zu sich selbst in Richtung
+Koordinatenursprung verschiebt, bis sie den L&ouml;sungsraum gerade noch
+ber&uuml;hrt. Dies ist im Punkte (2 /0,5) der Fall, womit die gestellte
+Aufgabe gel&ouml;st ist, d. h. 1 kg der Sorte F<SUB>1</SUB> und 250 g der
+Sorte F<SUB>2</SUB> ergeben die Mischung mit minimalen Gesamtkosten von
+2,25 EUR.</P>
+
+<! Programm-Aufruf ------------------------------------------>
+<! p><! FONT SIZE=-1><! B><! i
+Start des Methodenbankprogramms
+ A HREF="PrgMI kap10_1.mi"  Mischungsplanung  /A 
+mit dem obigen Beispiel.   /i  /b  /font  /p    >
+
+<br>
+<input type="button" value="LP-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe11\\lp_solve.bat');"/>
+<input type="button" value="XA-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe11\\xa.bat');"/>
+</body>
+</html>

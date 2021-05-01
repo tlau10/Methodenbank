@@ -1,0 +1,687 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>7</TITLE>
+   <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+<body class="script" background="../bg_kapitel.gif" bgproperties="fixed">
+
+
+<h1>7. Transport models, transshipment problems, allocation models</h1>
+<br>
+
+<P><a name="7.1"></a>
+<h2>7.1 The transport model</h2>
+
+<P ALIGN="JUSTIFY">
+We speak of a transport problem if the following setting of a task is given:</P>
+
+<P ALIGN="JUSTIFY">
+Goods in the quantities a<SUB>1</SUB>, a<SUB>2</SUB>, ..., a<SUB>n</SUB> are 
+produced at n different production sites
+(A<SUB>1</SUB>,A<SUB>2</SUB>, ... A<SUB>n</SUB>). 
+Further, there are m demand places (B<SUB>1</SUB>, B<SUB>2</SUB>, ..., 
+B<SUB>m</SUB>) where the produced goods are needed in the quantities 
+b<SUB>1</SUB>, b<SUB>2</SUB>, ..., b<SUB>m</SUB>.</P>
+<br>
+
+
+<! Internet-Link ------------------------------------------>
+
+<div align="center">
+<div style="background:#f0f0f0; margin:6; padding:12; 
+            width:530; border-style:solid; border-width:1;
+            text-align:left">
+
+<p style="font-family:arial; font-size:10pt">
+There is an interactive demonstration for the transport problem 
+(from David Larson, Gothenburg University) on the internet at 
+<a href="http://www.dd.chalmers.se/~f92dala/transport" target="_blank">
+http://www.dd.chalmers.se/~f92dala/transport</a>.<br>
+<br>
+&raquo; The link opens a new window. &laquo;</p>
+
+</div></div>
+<br>
+<br>
+
+
+<P align=justify>From the point of view of minimising the transport costs, it 
+obviously matters which quantities from which production sites are transported 
+to which demand places. Altogether, there are n x m transport routes, which is 
+illustrated in fig. 16 (n = 3, m = 5):</P>
+
+<br>
+
+<P align="center"><IMG SRC="P4.png" HEIGHT=188 WIDTH=520>
+<P align="center" class="Abb">Fig. 16: transport routes for 3 production sites 
+and 5 demand places</P>
+
+<P ALIGN="JUSTIFY">Let each individual transport route be allocated to a cost factor 
+that does not depend on quantity; this cost factor is indicated by  c<SUB>ik</SUB> 
+(i = 1,...,n; k = 1,...,m).<BR>
+We further presuppose that the whole amount of production is equal to the whole 
+amount in demand. With the aid of Linear Programming, we can formulate the task as 
+follows, if we indicate the unknown transport quantities with x<SUB>ik</SUB>:</P>
+
+
+<P>objective function:
+
+<table><tr>
+<td>&nbsp;<IMG SRC="Img7003.gif" HEIGHT=45 WIDTH=30>
+    <IMG SRC="Img7004.gif" HEIGHT=45 WIDTH=30>
+<td>c<SUB>ik</SUB> X<SUB>ik</SUB> <IMG SRC="rarr.gif"> Min
+</table>
+</P>
+
+<P>restrictions:
+
+<table>
+<tr>
+<td>&nbsp;<IMG SRC="Img7004.gif" HEIGHT=45 WIDTH=30>
+<td>X<SUB>ik</SUB> = a<SUB>1</SUB> 
+    &nbsp; &nbsp; (i = 1,...,n)
+
+<tr>
+<td>&nbsp;<IMG SRC="Img7003.gif" HEIGHT=45 WIDTH=30>
+<td>X<SUB>ik</SUB> = b<SUB>k</SUB>
+    &nbsp; &nbsp; (k = 1,...,m)
+</table>
+
+<table>
+<tr>
+<td>&nbsp;<IMG SRC="Img7004.gif" HEIGHT=45 WIDTH=30> 
+<td>b<SUB>k</SUB> = 
+<td><IMG SRC="Img7003.gif" HEIGHT=45 WIDTH=30>
+<td>a<SUB>i</SUB>
+
+</table>
+</p><br>
+
+<P>non negativity restriction: x<SUB>ik</SUB> <IMG SRC="..\ge.gif"> 0 
+(for all i and all k)</P>
+
+
+<P align=justify><font face="arial" size="-1"><b><i>
+In contrast to the tasks of Linear Programming, we have so far seen that we can 
+state two things:</i></b></font></P>
+
+<P align=justify>First, the restrictions are given in the form of equations. Second, 
+only the coefficients 0 and 1 occur in the restrictions.<br>
+These unusual features suggest that we do not employ the Simplex method for solving 
+the transport problem, but opt for a specific - easier - alternative.
+This alternative shall be illustrated with a numerical example. The following specific 
+problem shall be given:</P>
+
+<P align=justify>
+Three production sites A<SUB>1</SUB>, A<SUB>2</SUB>, 
+A<SUB>3</SUB> with the quantities 
+a<SUB>1</SUB> = 60, a<SUB>2</SUB> = 35, a<SUB>3</SUB> = 40.
+Further, five demand places B<SUB>1</SUB>,...,B<SUB>5</SUB> with
+b<SUB>1</SUB> = 22, b<SUB>2</SUB> = 45,
+b<SUB>3</SUB> = 20, b<SUB>4</SUB> = 18, b<SUB>5</SUB> = 30.<br>
+
+The cost factors c<SUB>ik</SUB> are each given in the scheme (fig. 17). 
+What we want are the transport quantities X<SUB>ik</SUB>
+(i = 1,...,3; k = 1,...,5), that lead to minimal transport costs.</P>
+<br>
+
+
+<P align="center">
+<IMG SRC="P5.png" HEIGHT=308 WIDTH=507><br>
+<span class="Abb">
+Fig. 17: schematic depiction of the transport connections with corresponding cost 
+factors.</span>
+</p>
+<br>
+
+<P align=justify>Similar to the Simplex method, where we strive for the optimal 
+solution through iteration, starting from an initial basic solution, here, we also 
+look for a basic solution that we can then improve step by step. <u>Three questions</u>
+need to be taken into account:</P>
+
+<DIR>
+<P ALIGN="JUSTIFY">1. How do we get an initial solution ?</P>
+<P ALIGN="JUSTIFY">2. How do we know what an optimal solution is ?</P>
+<P ALIGN="JUSTIFY">3. How can we achieve an improved solution ?</P>
+</DIR>
+
+<br>
+
+
+<HR WIDTH="60%">
+<p><a name="7.1.1"></a>
+<h3>7.1.1 Initial solution</h3>
+
+<P align=justify>
+Generally, nothing prevents us from starting with an arbitrary initial solution. Nevertheless, it is not entirely arbitrary on which <I>quantity distribution</I> this<I> </I>is based. An "arbitrary initial solution" can be found by employing the north-west corner method. This method begins the allocation at the top left corner (hence north-west), covering (if possible) the demands of B<SUB>1</SUB>. Then the remainder of the production of A<SUB>1</SUB> (if such a remainder still exists) is distributed onto B<SUB>2</SUB>, etc., moving along the diagonal. Eventually, we get the quantity distribution illustrated in fig. 18.</P>
+
+
+<P Align="center"><IMG SRC="P6.png" HEIGHT=320 WIDTH=502><br>
+<span class="Abb">Fig. 18: initial solution employing the north-west method</span></P>
+
+<br>
+
+<P align=justify>This method is easy to handle, but in comparison to another method, which we shall discuss later, we see that the initial position is rather weak, because this procedure has not taken into account the objective of minimising the transport costs.</P>
+
+<P align=justify>In the following, we are therefore going to illustrate a method 
+that within a row of the scheme allocates, in order, reduced cost factors to the 
+demand places. Then it goes on to the next row: method with fixed row order. The 
+result of this procedure is depicted in fig. 19.</P>
+
+<br>
+
+
+<CENTER>
+<P><IMG SRC="P7.png" HEIGHT=355 WIDTH=650>
+<br>
+<span class="Abb">
+Fig. 19: initial solution employing the method with fixed row order,<br>
+with the "remaining quantities"
+<IMG SRC="alpha.gif"><SUB>i</SUB> = a<SUB>i</SUB> - x<SUB>ik </SUB> 
+&nbsp; and &nbsp;
+<IMG SRC="beta.gif"><SUB>k</SUB> = b<SUB>k</SUB> - x<SUB>ik</SUB>
+</span>
+</P></CENTER>
+
+
+<P align=justify>The individual numbers yield as follows, beginning with the first row of the cost matrix:</P>
+
+<p align=justify>The position A<SUB>1</SUB>/B<SUB>2</SUB> has the lowest cost factor. 
+The demand of B<SUB>2</SUB> is b<SUB>2</SUB> = 45. This demand can be met by the 
+production of A<SUB>1</SUB>, namely a<SUB>1</SUB> = 60. With x<SUB>12</SUB> = 45, 
+we get <IMG SRC="beta.gif"><SUB>2</SUB> = 0 and <img src="alpha.gif"><SUB>1</SUB> = 15. 
+The next highest cost factor can be found in A<SUB>1</SUB>/B<SUB>3</SUB>. The demand of 
+B<SUB>3</SUB>, namely b<SUB>3</SUB> = 20, however, cannot be fully met by the remaining
+<img src="alpha.gif"><SUB>1</SUB> = 15; therefore we get x<SUB>13</SUB> = 15. This leads 
+to <IMG SRC="beta.gif"><SUB>3</SUB> = 5 and <img src="alpha.gif"><SUB>1</SUB> = 0. That 
+means we have completed row 1, because the production of A<SUB>1</SUB> has completely 
+been reduced.</P>
+
+<p align=justify>In the second row, we begin with A<SUB>2</SUB>/B<SUB>1</SUB>, 
+let x<SUB>21</SUB> = 22, <IMG SRC="beta.gif"><SUB>1</SUB> = 0, 
+and <IMG SRC="alpha.gif"><SUB>2</SUB> = 13. 
+Then x<SUB>23</SUB> = 5, <IMG SRC="beta.gif"><SUB>3</SUB> = 0, 
+and <IMG SRC="alpha.gif"><SUB>2</SUB> = 8. 
+Eventually, x<SUB>24</SUB> = 8, <IMG SRC="beta.gif"><SUB>4</SUB> = 10, 
+and <IMG SRC="alpha.gif"><SUB>2</SUB> = 0. 
+That means that the production of A<SUB>2</SUB> has also become zero.</P>
+
+<P ALIGN="JUSTIFY">The third row is treated in the same way.</P>
+<br>
+
+<P align=justify>This second initial solution is usually better than the one we get 
+with the north-west corner method, because the latter amounts to a total cost of 
+K<SUB>1</SUB> = <SUB><IMG SRC="Img7013.gif" HEIGHT=36 WIDTH=30> 
+<IMG SRC="Img7014.gif" HEIGHT=36 WIDTH=30></SUB> 
+c<SUB>ij</SUB> x<SUB>ij</SUB> = 363, whereas here we get K<SUB>2</SUB> = 320.</P>
+
+<p align=justify>Now we can see why the first solution was described as weak, in the sense of being "too far away from the optimal solution".
+As we will transform the initial solution, improving it step by step, into the optimal solution, and understandably keeping the number of steps to a minimum, it is obvious that we select the best initial solution as <I>basis/base</I>, here the solution with the method of fixed row order.</P>
+
+
+<p><HR WIDTH="60%">
+<a name="7.1.2"></a>
+<h3>7.1.2 Stepping stone method</h3>
+
+<P align=justify>If we now want to improve the current solution, we can only do so by altering the quantity distribution plan that we have arranged. This alteration, of course, needs to be carried out with the objective of reducing the total transport costs. The question arises, though, whether the existing transport plan may already be optimal. To ascertain this, we analyse whether we can achieve a reduction of the costs by including transport connections we have so far not considered.<br>
+With this aim in view, we select the positions with X<SUB>ik</SUB> = 0 in the above schema; we then calculate which costs occur or can be saved, if we let these X<SUB>ik</SUB> = 1. This arrangement, though, affects the restrictions, because the corresponding a<SUB>i </SUB>and b<SUB>k</SUB> are also both increased by 1.<br>
+To adjust this, we need to subtract the amount 1 from the already existing transport amounts. An example (position A<SUB>1</SUB>/B<SUB>1</SUB>) from the above schema will illustrate this:<br>
+Adding 1 in A<SUB>1</SUB>/B<SUB>1</SUB> implies subtracting 1 in A<SUB>1</SUB>/B<SUB>3</SUB>. Therefore, we need to increase A<SUB>2</SUB>/B<SUB>3</SUB> by 1, which, in turn, implies subtracting 1 in A<SUB>2</SUB>/B<SUB>1</SUB> (see fig. 20). For this "jumping" over occupied positions, there is always only one position per route.</P>
+
+
+<CENTER><P><IMG SRC="P66.png" HEIGHT=262 WIDTH=350><BR>
+<span class="Abb">Fig. 20: alteration of the quantity distribution with activation<br>
+of a further transport route.</span>
+</P></CENTER>
+
+<P align=justify>Adding and subtracting 1, respectively, is balanced, i.e. the restrictions are not affected. Of interest now are the new costs, which are generally indicated by V<SUB>ik</SUB>; thus, in our case, V<SUB>11</SUB>:</P>
+
+
+<ul><font face="arial" size="-1" color="#009020"><b>
+   V<SUB>11</SUB> = 1 * c<SUB>11</SUB> - 1 * c<SUB>13</SUB> + 1 * 
+      c<SUB>23</SUB> - 1 * c<SUB>21</SUB><br>
+   V<SUB>11</SUB> = 4 - 3 + 2 - 2<br>
+   V<SUB>11</SUB> = 1<br>
+</b></font>
+</ul>
+<br>
+
+<p align=justify>In this case, the costs have been increased, that is by including these transport connections that have so far not been considered, additional costs of one transportation unit per quantity unit occur. The objective, however, was to save costs.
+<BR>
+The above method now needs to be carried out for all positions where x<SUB>ik</SUB> = 0. This yields to the scheme (fig. 21) where the v<SUB>ik</SUB> are printed in small.</P>
+<br>
+
+<P align="center">
+<IMG SRC="P67I.png" HEIGHT=270 WIDTH=440><br>
+<span class="Abb">Fig. 21: initial solution with inserted coefficients V<SUB>k</SUB> .<br>
+In the framed position lies min (V<SUB>k</SUB>)</span>
+</P>
+
+
+<P align=justify>We can see that saving is only possible in two positions, namely 
+A<sub>3</sub>/B<sub>1</sub> (V<SUB>31</SUB> = -1) and 
+A<sub>3</sub>/B<sub>3</sub> (V<sub>33</sub> = -2). 
+If we limit each iteration step to one alteration, we will, of course, attempt to 
+transport as many quantity units as possible along the route A<SUB>3</SUB>/B<SUB>3</SUB>, 
+as we can save the most here. However, we have an upper limit, since, due to the 
+restrictions, we also need to alter the quantities in those positions whose cost 
+factors have been used in ascertaining V<SUB>33</SUB>. Even here, we still cannot 
+proceed arbitrarily. If, for example, we want to transfer six units from A<SUB>3</SUB> 
+to B<SUB>3</SUB>, we would need to have - for not exceeding the demand of B<SUB>3</SUB>, 
+namely 20 - the value -1 in position A<SUB>2</SUB>/B<SUB>3</SUB>; this, however, 
+violates the non-negativity retriction. Generally we can say that the new 
+x<SUB>ik</SUB> is only permitted to be as high as the lowest amount whose cost 
+factor with negative sign was included in calculating V<SUB>33</SUB>; thus, 
+on our case, x<SUB>33</SUB> = 5.</P>
+
+
+<P align=justify>Inserting this, while simultaneously altering the other positions in such a way that the restrictions are still satisfied, yields the first improved solution (the new V<SUB>ik</SUB> have already been entered) in the schema (fig. 22).</P>
+
+<br>
+
+<CENTER><P><IMG SRC="P67II.png" HEIGHT=257 WIDTH=440><BR>
+<span class="Abb">Fig. 22: first improved solution</span>
+</P></CENTER>
+<br>
+
+
+<P align=justify>For this improved solution, K = 310 yields, that is a reduction by 10 transportation units. However, we can see from the negative V<SUB>ik</SUB>, that an improvement is possible again. (The additional arrows in the last schema illustrate the route that has been followed for the slightly more difficult calculation of V<SUB>22</SUB>).</P>
+
+<P>The method outlined here:
+<ul>
+<li>calculation of V<SUB>ik</SUB>, and
+<li>activation of transport connections with min (V<SUB>ik</SUB>)
+</ul>
+
+<P>is the so-called stepping stone method.</P>
+
+<P align=justify>We now want to further improve the scheme (fig. 22). We only indicate the results in tabular form, without a detailed outline of the individual operations (fig. 23).</P>
+
+
+<CENTER><P><IMG SRC="P68I.png" HEIGHT=270 WIDTH=440><BR>
+<span class="Abb">Fig. 23: improved solution</span>
+</P></CENTER>
+
+<br><BR>
+
+<p>This solution K = 295, too, can be improved, because of V<SUB>31</SUB> = -1. 
+The next iteration (fig. 24) yields the optimal solution, as no V<SUB>ik</SUB> &lt; 0.</P>
+<BR>
+
+<CENTER><P><IMG SRC="P68II.png" HEIGHT=270 WIDTH=440><BR>
+<span class="Abb">Fig. 24: 3rd improved solution (optimum)</span>
+</P></CENTER>
+
+<BR><BR>
+
+<P>The minimal transport costs are K = 290.</P>
+
+<P align=justify>In addition, because of V<SUB>25</SUB> = 0, there is an alternative optimal plan to this optimal transport plan. V<SUB>25</SUB> indicates that the total costs neither increase nor decrease, if we activate the transport connection A<SUB>2</SUB>/B<SUB>5</SUB>. This case would lead to the plan (fig. 25) where, too, K = 290.</P>
+
+
+<P ALIGN=center><IMG SRC="P69.png" HEIGHT=270 WIDTH=440><BR>
+<span class="Abb">Fig 25: alternative optimal solution</span></P>
+
+<br>
+
+         
+<div style="background:#cfe7f9; line-height:20pt;
+          border-style:ridge; border-width:thin;
+          padding-left:10pt; padding-right:10pt;
+          margin-left:10pt; margin-right:10pt">
+
+<p><b>To summarise the procedure:</b></P>
+
+<P align=justify><font color="00007f" size="-1"><b>
+1. How do we get an initial solution ?</b></font><br>
+
+According to the "method with fixed row order", we allocate - beginning with the first row (i = 1) - the highest possible amount to the transport connection with min (c<SUB>ik</SUB>); then the position with the next highest c<SUB>ik</SUB> to the remainder of the <I>production</I>, etc.</P>
+
+
+<P align=justify><font color="00007f" size="-1"><b>
+2. How do we know what an optimal solution is ?</b></font><br>
+
+For all the positions where x<SUB>ik</SUB> = 0, we calculate the value V<SUB>ik</SUB>. 
+As long as there is at least one V<SUB>ik</SUB> &lt; 0, the solution is not optimal (part 1 of the stepping stone method).</P>
+
+
+<P align=justify><font color="00007f" size="-1"><b>
+3. How can we achieve an improved solution ?</b></font><br>
+
+We allocate a preferably high amount to the transport connection with min (V<SUB>ik</SUB>). the new x<SUB>ik</SUB> is only permitted to be as high as the lowest amount whose cost factor c<SUB>ik</SUB> has been included in calculating the min (V<SUB>ik</SUB>) with negative sign (part2 of the stepping stone method).</P>
+</div>
+
+<br>
+ 
+<HR WIDTH="60%">
+<p><a name="7.1.3"></a>
+<h3>7.1.3 Additional thoughts</h3>
+
+<P align=justify>
+In the setting of the task, we presupposed that the amount of production and the 
+amount of demand were equal. This precondition is not always given, and we do not 
+want to analyse the case where the the amount of production is higher than the total 
+demand. 
+In numbers: a<sub>1</sub> = 60, a<sub>2</sub> = 100, 
+a<sub>3</sub> = 40; b<sub>1</sub> = 22, b<sub>2</sub> = 45, b<sub>3</sub> = 20, 
+b<sub>4</sub> = 18, b<sub>5</sub> = 30. 
+The production exceeds the demand by 65 transportation units. Applying the <I>convention</I> of Linear Programming yields:</P>
+
+
+<P>objective function:</P>
+
+<table><tr>
+<td>&nbsp;<IMG SRC="Img7015.gif" HEIGHT=45 WIDTH=49>
+<td>c<SUB>ik</SUB> x<SUB>ik</SUB>
+<td><IMG SRC="rarr.gif"> Min
+</table>
+<br>
+
+<P>restrictions:</P>
+
+<table><tr>
+<td>&nbsp;<IMG SRC="Img7017.gif" HEIGHT=45 WIDTH=30>
+<td>x<SUB>ik</SUB> <IMG SRC="../le.gif" HEIGHT=16 WIDTH=13>a<SUB>i</SUB>
+    &nbsp; &nbsp; (i = 1,2,3)
+<tr>
+<td>&nbsp;<IMG SRC="Img7019.gif" HEIGHT=45 WIDTH=30>
+<td>x<SUB>ik</SUB> = b<SUB>k</SUB> &nbsp; &nbsp;(k = 1,...,5)
+</table>
+
+
+<P><br>
+non negativity conditions:</P>
+<dir>
+<P>x<SUB>ik</sub> <IMG SRC="..\ge.gif"> 0 (for all i and all k)</P>
+</dir>
+<br>
+
+
+<p><b>
+To be able to apply the stepping stone method here as well, we need to consider 
+the following:</b></P>
+
+<P align=justify>If the production is higher than the demand, it only makes sense that quantities are stocked at the production sites. In order to ascertain these quantities, we can establish a fictive storage place L that serves as a common storage for the 3 <I>production sites</I> A<SUB>1</SUB>, A<SUB>2</SUB>, A<SUB>3.</SUB> The quantities that are "transported" to L from A<SUB>1</SUB>, A<SUB>2</SUB>, A<SUB>3</SUB> will, of course, be included in the calculation with the cost factors zero.
+In reality, they are the quantities that are kept at the production sites.</P>
+
+<P align=justify>The two schemes (fig. 26 and 27) depict the initial solution and the optimal solution, which is achieved after 4 iteration steps.</P>
+
+
+<br>
+
+<P align="center"><IMG SRC="P70.png" HEIGHT=268 WIDTH=500><BR>
+<span class="Abb">Fig. 26: initial solution</span></P>
+<br>
+
+<P align=justify>To get a better idea, we have left out the V<SUB>ik</SUB> in this 
+depiction. The result can be interpreted as follows:<br>
+15 transprotation units remain at production site A<SUB>1</SUB>, 30 at A<SUB>2</SUB>, 
+and 20 at A<SUB>3</SUB>. The rest in each production site is distributed to the 
+demand places according to the above scheme.</P>
+
+<P align=justify>This example presupposed that the amount of production is higher 
+than the amount of demand. Of course, this can also be the other way round. In that 
+case, we establish a fictive production site to which we allocate the deficit of the 
+total amount. By including this fictive production site into the calculation schema, 
+the final result yields quantities that need to be transported from these fictive 
+production sites to the individual demand places. We then interpret these quantities 
+as the deficit of the individual demand places.</P>
+<br>
+
+<P align="center"><IMG SRC="P71I.png" HEIGHT=251 WIDTH=500><br>
+<br>
+<span class="Abb">Abb. 27: optimale solution</span></p>
+<br>
+
+<! Programm-Aufruf ------------------------------------------>
+<p>
+<table border=1 width="90%" align=center cellpadding=7 cellspacing=0 
+       BGColor="#ebebd8">
+<tr>
+  <td><FONT SIZE=-1 face="arial">
+  The method bank program
+  <A HREF="PrgTR Kap7_b1.tra"><b>transport planning</b></A>
+  formulates the difficulties, contrary to the method outlined above, in a 
+  linear model and solves them with the Simplex method.</font></td>
+</tr>
+</table></p>
+
+<br>
+
+
+<HR WIDTH="60%">
+
+<p><a name="7.1.4"></a>
+<h3>7.1.4 The steps of the transport method</h3>
+
+<dl>
+   <dt><b><i>Step 1:</i></b>
+   <dd>initial solution with NW corner method 
+       (BV <! IMG SRC="ne.gif">&ne; 0)
+       <br><br>
+   <dt><b><i>Step 2:</i></b>
+   <dd>stepping stone method:<BR>
+       calculate redistribution costs <IMG SRC="delta_gr.gif">
+       <b><i>k<sub>ij</sub></i></b>
+       for positions that are not occupied
+       <br><br>
+   <dt><b><i>Step 3:</i></b>
+   <dd><IMG SRC="delta_gr.gif"> <b><i>k<sub>ij</sub></i></b>
+       <IMG SRC="..\ge.gif"> 0
+       <IMG SRC="rarr_dop.gif"> 
+       <b><font color="#0000a8">&nbsp;optimal solution</font> ;&nbsp;
+          stop.</b><BR>
+       <IMG SRC="delta_gr.gif"> <b><i>k<sub>ij</sub></i></b> &lt; &nbsp;0
+       <IMG SRC="rarr_dop.gif"> &nbsp;Step 4
+       <br><br>
+   <dt><b><i>Step 4:</i></b>
+   <dd>in the position found, program as many units as the lowest amount whose 
+       cost factor with negative sign has been included in the calculation of 
+       <IMG SRC="delta_gr.gif"> <b><i>k<sub>ij</sub></i></b>.
+       Go to step 2, if <sub><IMG SRC="Image64.gif" HEIGHT=38 WIDTH=110></sub>
+       fictive i ' or j ', respectively.<br><br>
+</dl>
+<br>
+
+
+<! ----------------------------------------------------------------------------- >
+<hr width="80%">
+<br><br>
+
+<P><a name="7.2"></a>
+<h2>7.2 The transshipment problem</h2>
+
+
+<P align=justify>
+With the <b>transshipment problem</b>, transport is possible "within" a knot (the 
+transship process!). Every transship problem can be formulated as LP model, and be 
+solved with the Simplex method. If we want to employ the transport method for the 
+solution, we need to provide the transship variables with negative signs through 
+substitution.</P>
+
+
+<P><u>Example:</u></P>
+
+
+<ul>
+
+<!-- Blindtab. 2 Spalten -->
+
+<table border=0 width=570>   
+<tr>
+<td><IMG SRC="Umlade.gif" HEIGHT="198" WIDTH="254">
+<td>t<sub>i</sub> = quantities that are transshipped at place i<br>
+    <br>
+    transship costs: c<sub>ii</sub><br>    
+    <br> 
+    <!-- Innentab -->
+    <table><tr>
+    <td>precondition: &nbsp;
+    <td align="center">
+       <font size="-2">2</font><br>
+       <font size="+2">&sum;<br>
+       <font size="-2">i = 1
+    <td>b<sub>i</sub>
+    <td>&nbsp; = &nbsp;
+    <td align="center">
+       <font size="-2">4</font><br>
+       <font size="+2">&sum;<br>
+       <font size="-2">i = 3
+    <td>b<sub>i</sub>
+    </table>
+</table>
+<br>
+
+
+
+<table border=0 CellSpacing=3 CellPadding=4 BorderColor="#FFFFFF"
+       style="font-family:arial; font-size:10pt">
+
+<tr BGColor="#cfe7f9">
+<td nowrap>Leaving place 1 :&nbsp;
+<b>x<SUB>12</SUB> + x<SUB>13</SUB> + x<SUB>14</SUB> = 
+b<SUB>1 </SUB>+ t<SUB>1</SUB></b>&nbsp;
+<td>
+Arriving at place 1:&nbsp;
+<b>x<SUB>21</SUB> + x<SUB>31</SUB> + x<SUB>41</SUB> = t<SUB>1</SUB><b>
+
+<tr BGColor="#f0f0f0">
+<td>Leaving place 2:&nbsp; 
+<b>x<SUB>21</SUB> + x<SUB>23 </SUB>+ x<SUB>24 </SUB>= b<SUB>2</SUB> + t<SUB>2</SUB></b>
+<td>Arriving at place 2:&nbsp;
+<b>x<SUB>12</SUB> + x<SUB>32 </SUB>+ x<SUB>42 </SUB> = t<SUB>2</SUB></b>
+
+<tr BGColor="#cfe7f9">
+<td>Leaving place 3:&nbsp; 
+<b>x<SUB>31 </SUB>+ x<SUB>32 </SUB>+ x<SUB>34
+</SUB> = t<SUB>3</SUB></b>
+<td nowrap>Arriving at place 3:&nbsp;
+<b>x<SUB>13 </SUB>+ x<SUB>23 </SUB>+ x<SUB>43</SUB> 
+= b<SUB>3 </SUB>+ t<SUB>3</SUB></b>
+
+<tr BGColor="#f0f0f0">
+<td>Leaving place 4:&nbsp; 
+<b>x<SUB>41 </SUB>+ x<SUB>42 </SUB>+ x<SUB>43 </SUB>= t<SUB>4</SUB></b>
+<td nowrap>Arriving at place 4:&nbsp;
+<b> x<SUB>14 </SUB>+ x<SUB>24 </SUB>+ x<SUB>34</SUB> 
+= b<SUB>4 </SUB>+ t<SUB>4</SUB></b>&nbsp;
+
+</table>
+<br>
+
+
+<table border=0>   <!-- wg. der Darstellung -->
+<tr>
+<td><b>Objective:</b> &nbsp; &nbsp;
+<td><IMG SRC="Image66.gif" HEIGHT=48 WIDTH=230> &nbsp; &nbsp; &nbsp;
+<td>i <! IMG SRC="ne.gif">&ne; j, &nbsp;x<sub>ij</sub>, &nbsp;t<sub>i</sub> 
+    <IMG SRC="..\ge.gif"> 0
+</table>
+<br>
+
+</ul>
+
+possible to solve with LP,<br>
+<font color="#a80000"><b>better</b></font>
+with transport model: for this, t<SUB>i</SUB> with "positive" 
+sign needs to be on the left side: substitution with&nbsp; 
+x<sub>ii</sub> = T - t<sub>i</sub>
+
+
+<ul>
+
+<table border=0>
+<tr>
+<td>T high value, best T = 
+<td><IMG SRC="Image69.gif" HEIGHT=45 WIDTH=37>
+<td>total offer
+</tr>
+</table></p>
+
+<P><pre style="font-size:11pt">
+  x<SUB>11</SUB> + x<SUB>12</SUB> + x<SUB>13</SUB> + x<SUB>14</SUB> = b<SUB>1</SUB> + T; 
+  x<SUB>11</SUB> + x<SUB>21</SUB> + x<SUB>31</SUB> + x<SUB>41</SUB> = T
+</pre></P>
+<br>
+
+
+<table border=0>
+<tr>
+<td width=250><IMG SRC="Image70.gif" HEIGHT=48 WIDTH=104>
+<td width=250><IMG SRC="Image71.gif" HEIGHT=45 WIDTH=72>
+</tr>
+
+<tr>
+<td><IMG SRC="Image72.gif" HEIGHT=48 WIDTH=72>
+<td><IMG SRC="Image73.gif" HEIGHT=45 WIDTH=102>
+</tr>
+
+<tr>
+<td><IMG SRC="Image74.gif" HEIGHT=48 WIDTH=73>
+<td><IMG SRC="Image75.gif" HEIGHT=45 WIDTH=104>
+</tr>
+</table>
+
+
+<P><b>Objective:</b> &nbsp; &nbsp; &nbsp; c<sub>ii</sub> * t<sub>i</sub> = 
+e<sub>ii</sub> * T - c<sub>ii</sub> * x<sub>ii</sub></P>
+<P><b>Precondition:</b>&nbsp; c<sub>ij</sub> = -c<sub>ii</sub> f&uuml;r i = j</P>
+<br>
+
+
+<P><IMG SRC="Img7076.gif">  <! HEIGHT=72 WIDTH=210> 
+&nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; 
+<IMG SRC="Img7077.gif"> &nbsp; constant !
+</P>
+<br>
+
+<P><IMG SRC="Image78.gif" HEIGHT=72 WIDTH=138><br>
+c<sub>ij</sub> = - c<sub>ii</sub> 
+&nbsp;&nbsp; for &nbsp;&nbsp;
+i = j !
+</P>
+
+</ul>
+<br>
+
+
+<! -------------------------------------------------------------------------------->
+<hr width="80%">
+<br><br>
+
+<P><a name="7.3"></a>
+<h2>7.3 The allocation model</h2>
+
+<P align=justify>
+<b>Allocation models</b> are defined in analogy to the transport models. However, 
+the so-called individual rows are provided with " = 1 ".</P>
+
+
+
+<! Programm-Aufruf ------------------------------------------>
+<p>
+<table border=1 width="88%" align=center cellpadding=7 cellspacing=0 
+       BGColor="#fbebd8">
+<tr>
+  <td align="center"><FONT SIZE="-1" face="arial">
+  The method bank contains a <A HREF="PrgZuord"><b>program</b></A> 
+  (named <b>Zuordnungsplanung</b>) that outlines the allocation planning
+  in the personnel sector. The program generates an LP formulation 
+  and calls an external LP program (solver) for the calculation.
+  </font></td>
+</tr>
+</table></p>
+
+<br>
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="Kap6_en.Htm">chapter 6</a><BR>
+<A HREF="Kap8_en.Htm">chapter 8</A><br>
+<br>
+<A HREF="../PCStart_en.Htm">start screen</A></B></font>
+
+</BODY>
+</HTML>

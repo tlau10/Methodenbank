@@ -1,0 +1,386 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html><head>
+
+
+   <title> </title>
+   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <link rel="stylesheet" href="Kap10_en-Dateien/skript.css">
+</head><body class="script" bgproperties="fixed" background="Kap10_en-Dateien/bg_kapitel.gif">
+
+
+<h1>10. The offcut problem</h1>
+
+<p align="justify">The offcut problem, in terms of the setting of the
+task, is a wholly different cattle of fish; there are two variants, a
+one-dimensional and a two-dimensional offcut problem. Both settings of
+the task have in common that previous to formulating the linear model,
+and therefore also previous to the solution with the Simplex method, we
+need to determine the so-called <i>cutting variants</i>.</p>
+<br>
+
+
+<p><a name="10.1"></a>
+</p><h2>10.1 The one-dimensional offcut-problem</h2>
+
+<p align="justify">Here, the idea is to manufacture strips with a given
+width and a given number of reels with a certain width in such a way
+that the offcut is minimal (see fig. 28).</p>
+
+
+<center>
+<p><img src="Kap10_en-Dateien/P71II.gif" width="500" height="434"><br>
+<span class="abb">Fig. 28: reel <i>distribution</i> with the one-dimensional <i>cutting</i> problem
+</span></p>
+</center>
+
+<br><br>
+
+<p align="justify">An example shall explain this:<br><br>
+As source material w have reels with a width of 3,000 mm. The following order is given, with the following required cuttings:</p>
+
+
+<dir>
+<p><font size="-1" face="arial"><b>
+250 reels with a width of 900 mm<br>
+150 reels with a width of 690 mm<br>
+120 reels with a width of 280 mm</b></font></p>
+</dir>
+
+<p align="justify"><br>
+Question: how does the source material need to be "cut" to fulfil the order - with minimal offcut?</p>
+
+
+<p align="justify">To get a first overview of the possible <i>cutting variants</i>, the table in figure 29 is a good aid: it is constructed as follows:</p>
+
+
+<p align="justify">First, we try (1. row) to "fit in" the largest width that has been 
+ordered as often as possible. This leads to an offcut of 300 mm. Then (2. row) we 
+reduce the number of pieces for the largest width by one and try to fit it in the 
+next width as often as possible. We see that this way, the number of pieces steadily 
+follows along the diagonal from left to right. There are 12 combinations altogether, 
+and their frequency shall be decided by x1, ..., x12.</p>
+
+<br>
+
+<p>
+<table style="font-family: arial; font-size: 9pt;" width="550" align="center" border="1" cellpadding="3" cellspacing="0">
+<colgroup>
+   <col width="17%" align="center">
+   <col width="17%" align="center">
+   <col width="16%" align="center">
+   <col width="16%" align="center">
+   <col width="16%" align="center">
+   <col width="17%" align="center">
+</colgroup>
+
+<tbody><tr style="background-color: rgb(231, 249, 255);">
+<td rowspan="2"><b>number of combination</b></td>
+<td rowspan="2"><b>frequency of combination</b></td>
+<td colspan="3"><b>width in mm</b></td>
+<td rowspan="2"><b>offcut</b></td>
+</tr>
+<tr style="background-color: rgb(231, 249, 255);">
+<td><b>900</b></td>
+<td><b>600</b></td>
+<td><b>385</b></td>
+</tr>
+
+<tr style="background-color: rgb(255, 255, 255);">
+<td>1</td>
+<td>x<sub>1</sub></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>300</td>
+</tr>
+<tr style="background-color: rgb(240, 240, 240);">
+<td>2</td>
+<td>x<sub>2</sub></td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>125</td>
+</tr>
+<tr style="background-color: rgb(255, 255, 255);">
+<td>3</td>
+<td>x<sub>3</sub></td>
+<td>2</td>
+<td>0</td>
+<td>3</td>
+<td>45</td>
+</tr>
+<tr style="background-color: rgb(240, 240, 240);">
+<td>4</td>
+<td>x<sub>4</sub></td>
+<td>1</td>
+<td>3</td>
+<td>0</td>
+<td>30</td>
+</tr>
+<tr style="background-color: rgb(255, 255, 255);">
+<td>5</td>
+<td>x<sub>5</sub></td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>335</td>
+</tr>
+<tr style="background-color: rgb(240, 240, 240);">
+<td>6</td>
+<td>x<sub>6</sub></td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>225</td>
+</tr>
+<tr style="background-color: rgb(255, 255, 255);">
+<td>7</td>
+<td>x<sub>7</sub></td>
+<td>1</td>
+<td>0</td>
+<td>5</td>
+<td>175</td>
+</tr>
+<tr style="background-color: rgb(240, 240, 240);">
+<td>8</td>
+<td>x<sub>8</sub></td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>240</td>
+</tr>
+<tr style="background-color: rgb(255, 255, 255);">
+<td>9</td>
+<td>x<sub>9</sub></td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>160</td>
+</tr>
+<tr style="background-color: rgb(240, 240, 240);">
+<td>10</td>
+<td>x<sub>10</sub></td>
+<td>0</td>
+<td>2</td>
+<td>4</td>
+<td>80</td>
+</tr>
+<tr style="background-color: rgb(255, 255, 255);">
+<td>11</td>
+<td>x<sub>11</sub></td>
+<td>0</td>
+<td>1</td>
+<td>6</td>
+<td>0</td>
+</tr>
+<tr style="background-color: rgb(240, 240, 240);">
+<td>12</td>
+<td>x<sub>12</sub></td>
+<td>0</td>
+<td>0</td>
+<td>7</td>
+<td>305</td>
+</tr>
+</tbody></table>
+
+
+</p><p class="abb" align="center">Fig. 29: <i>cutting variants</i> (one-dimensional offcut 
+problem)</p>
+
+
+<p><br>
+Now to establish the linear model:</p>
+
+<p align="justify">objective function: the objective is to minimise the
+offcut. The total offcut is the sum of the product of reel length (L),
+width of the offcut and (unknown) number of pieces (x<sub>i</sub>).</p>
+
+<p>
+<tt>Z<sup>*</sup> = L 300 x1 + L 125 x2 + ... + L 305 x12 
+<img src="Kap10_en-Dateien/rarr.gif"> Min</tt>
+
+</p><p>
+Dividing by L yields:<br>
+<br>
+<tt>Z = 300 x1 + 125 x2 + ... + 305 x12 <img src="Kap10_en-Dateien/rarr.gif"> Min</tt></p>
+<br>
+
+<p align="justify">The restrictions, due to combinatory reasons, can usually not be established in form of equations:
+</p><pre>3x1 + 2x2 + 2x3 + x4 + x5 + x6 + x7                   &#8805; 250
+x2 + 3x4 + 2x5 + x6 + 4x8 + 3x9 + 2x10 + x11          &#8805; 150
+x2 + 3x3 + x5 + 3x6 + 5x7 + 2x9 + 4x10 + 6x11 + 7x12  &#8805; 120
+</pre>
+<p></p>
+
+<p>The non-negativity restrictions:
+</p><pre>x<sub>i</sub> &#8805; 0
+  (i = 1,...,12)
+</pre><p></p>
+
+<p align="justify">As our prime interest lies in the setting of the task and the mathematical formulation, we can neglect the solution here.</p>
+
+
+
+<!-- Programm-Aufruf ------------------------------------------>
+<p>
+<table width="90%" align="center" bgcolor="#fff9e7" border="1" cellpadding="8" cellspacing="0">
+<tbody><tr>
+  <td><font size="-1" face="arial">
+  The method bank program
+  <a href="file://///Merkur/lehre/Gruetz/BESF/OR_HtmlSkript/KAP10/PrgVR%20kap10_1.vrs"><b>Verschnittplanung</b></a> (offcut planning)
+  encapsulates the aforementioned mathematical formulation of the problem as 
+  user programs.
+  </font></td>
+</tr></tbody></table>
+</p>
+
+<br>
+<p align="justify"><font size="-1" face="arial">
+The same problem has also been solved employing a genetic algorithm program:
+<a href="file://///Merkur/lehre/Gruetz/BESF/OR_HtmlSkript/KAP10/PrgGAVerschn"><b>GA-Verschnittplanung</b></a><br>
+(see also OR-Methodenbank InfoSystem, Verzeichnis AND).
+</font></p>
+
+
+<br>
+
+<hr width="80%">
+<p><a name="10.2"></a>
+</p><h2>10.2 The two-dimensional offcut problem</h2>
+
+<p align="justify">Here the idea is to gain products of a given length
+and width with minimal offcut from metal slabs. To have a concrete
+setting of the task, the following numbers are given:</p>
+<p align="justify">source product are slabs with the measurements 2m x 1m.<br>
+<br>
+To deliver is the following:</p>
+
+<dir>
+<p><font size="-1" face="arial"><b>
+100 slabs 0,5 x 0,6 m (type of slap I),<br>
+&nbsp; 50 slabs 0,8 x 0,4 m (type of slap II),<br>
+100 slabs 0,3 x 1,0 m (type of slap III).</b></font></p>
+</dir>
+
+<p><font size="-1">
+<b><i>What we want is the offcut plan with minimal offcut!</i></b></font></p>
+<br>
+
+<p align="justify">Before attending to the mathematical formulation, we first need to decide on the "<i>cutting variants</i>"
+here, too. This problem has nothing to do with Linear programming, and
+we only want to consider - for not stretching the setting of the task
+too far - the 6 <i>cutting variants</i> listed (fig. 30). The majority of the other variants are excluded for reasons concerning production.</p>
+
+<br>
+
+<ol>
+<p><img src="Kap10_en-Dateien/P73.gif" width="540" height="450"></p>
+
+<p class="abb">Fig. 30: <i>cutting variants</i> (two-dimensional offcut problem)</p>
+</ol>
+<br>
+
+
+<p>For this we can establish the following 
+<font color="#0000c0"><b>combination table</b></font>:</p>
+<br>
+
+<ol>
+<p>
+<table style="font-family: arial; font-size: 13px; line-height: 16pt;" border="1" cellpadding="4" cellspacing="0">
+    <tbody><tr>
+        <td rowspan="2" width="90" align="center"><b>variant v<sub>i</sub></b></td>
+        <td colspan="3" align="center"><b>occuring types of slabs</b></td>
+        <td rowspan="2" width="90" align="center"><b>offcut</b></td>
+    </tr>
+    <tr>
+        <td align="center"><b>&nbsp;I&nbsp;</b></td>
+        <td align="center"><b>&nbsp;II</b></td>
+        <td align="center"><b>III</b></td>
+    </tr>
+    <tr>
+        <td align="center">
+        1<br>
+        2<br>
+        3<br>
+        4<br>
+        5<br>
+        6</td>
+
+        <td align="center">
+        6<br>-<br>2<br>-<br>4<br>-</td>
+
+        <td align="center">
+        -<br>2<br>2<br>5<br>2<br>-</td>
+
+        <td align="center">
+        -<br>4<br>2<br>-<br>-<br>6</td>
+
+        <td align="center">
+        0,20 m<sup>2</sup><br>
+        0,16 m<sup>2</sup><br>
+        0,16 m<sup>2</sup><br>
+        0,40 m<sup>2</sup><br>
+        0,16 m<sup>2</sup><br>
+        0,20 m<sup>2</sup></td>       
+    </tr>
+</tbody></table>
+
+</p><p class="Abb">Fig. 31: combination table</p>
+</ol>
+<br>
+
+<p>First the objective function:<br>
+<br>
+<tt>Z<sup>*</sup> = 0,20x1 + 0,16x2 + 0,16x3 + 0,40.x4 + 0,16x5 + 0,20x6
+<img src="Kap10_en-Dateien/rarr.gif"> Min</tt></p>
+
+
+<p align="justify">The requirements for keeping the offcut minimal can
+be formulated - slightly simplified - as follows: the number of
+initially required metal slabs is to be kept as low as possible; this
+leads to the following objective function:</p>
+
+<p><tt>Z = x1 + x2 + x3 + x4 + x5 + x6 
+<img src="Kap10_en-Dateien/rarr.gif"> Min</tt></p>
+
+<p align="justify">The restrictions yield from the following
+reflection: we want to manufacture at least 100 pieces of the type of
+slab I, but for this we can only use the variants V1, V3, V5, that is:</p>
+
+
+<p><tt>6x1 + 2x3 + 4x5 &#8805; 100</tt></p>
+
+<br>
+
+<p>Analogously for the types of slab II and III:</p>
+
+<p><br>
+<tt>2 x2 + 2 x3 + 5 x4 + 2 x5 &#8805; 50</tt></p>
+
+<p><tt>4 x2 + 2 x3 + 6 x6 &#8805; 100</tt></p>
+
+<p><br>
+Non-negativity condition:</p>
+
+<p><tt>x<sub>i</sub> &#8805; 0 (i = 1,...,6)</tt></p>
+
+<p><br>
+The solution employing the Simplex method is:</p>
+
+<p><tt>x1 = 17, x2 = 25</tt> ;</p>
+
+<p align="justify">That is, 17 slabs of variant I and 25 slabs of variant II result 
+in minimal offcut (7.4 m<sup>2</sup>).</p>
+
+<br>
+
+
+<p></p><hr width="100%">
+<font size="-1" face="arial"><b>
+<a href="file://///Merkur/lehre/Gruetz/BESF/OR_HtmlSkript/KAP9/Kap9_en.Htm">chapter 9</a><br>
+<a href="file://///Merkur/lehre/Gruetz/BESF/OR_HtmlSkript/KAP11/Kap11_en.Htm">chapter 11</a><br>
+<br>
+<a href="file://///Merkur/lehre/Gruetz/BESF/OR_HtmlSkript/PcStart_en.Htm">start screen</a></b></font><p></p>
+
+</body></html>

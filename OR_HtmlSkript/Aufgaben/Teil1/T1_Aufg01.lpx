@@ -1,0 +1,71 @@
+;  VisualOR Matrixdatei: Aufgabe 1 (Aufgabenteil 1)
+;
+;  Wird ein Semicolon als Zeilenabschluss benoetigt, so kann 
+;  dies durch das Substitut °&semicolon° angegeben werden.
+;  -> siehe LP-SOLVE 
+
+[LP-STATEMENT]
+2x1 + 4x2 <= 16
+2x1 + 1x2 <= 10
+4x1       <= 16
+      4x2 <= 12
+
+2x1 + 3x2 --> Max !
+
+[LP-Type]
+Type=MAX
+
+[SOLVER]
+Solver1=XA
+Solver2=LP-SOLVE
+;Solver3=MOPS
+;Solver4=STRADA
+
+[LP-SOLVE]
+max: 2x1 + 3x2°&semicolon°
+
+2x1 + 4x2 <= 16°&semicolon°
+2x1 + 1x2 <= 10°&semicolon°
+4x1       <= 16°&semicolon°
+      4x2 <= 12°&semicolon°
+
+
+[XA]          
+..TITLE
+  Aufgabe 1 (Teil 1)
+..OBJECTIVE MAXIMIZE
+  2 x1 + 3 x2
+..BOUNDS
+  x1>=0
+  x2>=0
+..CONSTRAINTS
+  R1: 2 x1 + 4 x2 <= 16
+  R2: 2 x1 + 1 x2 <= 10
+  R3: 4 x1        <= 16
+  R4:        4 x2 <= 12
+
+
+[MPS]
+NAME          -          noch fertigzustellen !!!
+ROWS
+ N  ZF
+ L  R1
+ L  R2
+.....
+COLUMNS
+    X1        ZF        2.
+    X1        R1        2.
+    X1        R2        2.
+
+
+    X2        ZF        3.
+    X2        R1        2.
+    X2        R2        3.
+
+
+RHS
+    MYRHS     R1        16.
+    MYRHS     R2        10.
+
+
+ENDATA

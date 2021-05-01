@@ -1,0 +1,103 @@
+<html>
+<head>
+  <title>XMLSolved</title>
+</head>
+<body background="bg.gif" bgproperties="fixed">
+
+<center>
+<h2>XMLSolved</h2>
+<h3>XML-Abindung von Solvern</h3>
+</center>
+<hr>
+<p>
+<p><font size="-1" face="Arial" color="d84040"><b>
+Wichtiger Hinweis:</b></font>
+<p>XMLSolved ist ein Kommandozeilen basiertes Tool welches eine Konfigurationsdatei sowie eine aktuelle Problemstellung (LP-Ansatz) in Form eines XML-Dokumentes ben&ouml;tigt.
+Um das Tool ausführen zu können ist also entsprechende Vorarbeit zu leisten. Das Tool, sowie die zugehörige Dokumentation sind unter "L:\BESF\Werkzeuge\XMLsolved" zu finden.
+<p>
+<hr>
+
+<h2>Die Idee</h2>
+Die Idee, die Solver per XML anzubinden, stammt von Oliver Bühler, einem Komilitonen, der während eines Mittagessens in der Mensa bemerkte, dass das bisherige Verfahren, die Solver in jedem einzelnen Projekt mühsam einzubinden, unnötig wäre, wenn es eine einheitliche und zeitgemäße Schnittstelle für alle Solver gäbe, zum Beispiel XML.
+Die Idee gefiel mir sofort, so dass sie umsetzten wollte. Die Grundidee war einfach: zukünftig sollten die Programme der Methodendatenbank ein einzige, für alle Solver brauchbare XML-Datei mit dem LP-Ansatz generieren und die Lösung des Solvers ebenfalls in Form einer einheitlichen XML-Datei zurück geliefert bekommen. Mit XML und XSLT sollte das kein Problem sein. Ganz so einfach war es dann aber doch nicht...
+<p>
+<h2>LP-Ansatz in XML</h2>
+<p>
+Der LP-Ansatz wird in einem XML-Dokument dargestellt:
+<p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;lpProblem&gt;
+	 &lt;objectiveFunction name="obj"&gt;
+      &lt;coefficient variable="x1"&gt;1.0&lt;/coefficient&gt;
+      &lt;coefficient variable="x2"&gt;2.0&lt;/coefficient&gt;
+      &lt;type&gt;maximized&lt;/type&gt;
+	 &lt;/objectiveFunction&gt;
+
+	 &lt;constraint name="R1"&gt;
+      &lt;coefficient variable="x1"&gt;3.0&lt;/coefficient&gt;
+      &lt;coefficient variable="x2"&gt;2.0&lt;/coefficient&gt;
+      &lt;type&gt;L&lt;/type&gt;
+      &lt;rhs&gt;12.0&lt;/rhs&gt;
+	 &lt;/constraint&gt;
+
+	 &lt;constraint name="R2"&gt;
+      &lt;coefficient variable="x1"&gt;1.0&lt;/coefficient&gt;
+      &lt;coefficient variable="x2"&gt;3.0&lt;/coefficient&gt;
+      &lt;type&gt;L&lt;/type&gt;
+      &lt;rhs&gt;9.0&lt;/rhs&gt;
+	 &lt;/constraint&gt;
+&lt;/lpProblem&gt;
+</pre>
+<br>
+Dabei werden die Zielfunktion und alle Restriktionen nacheinander aufgeführt und mit einem Attribut versehen, dass den Namen der Zielfunktion, bzw. Restriktion enthält. Innerhalb dieser Elemente werden die Koeffizienten aufgeführt, die jeweils als Attribut den Namen der Variablen und als Kindelement den Wert des jeweiligen Koeffizienten enthalten. Die Zuordnung zur entsprechenden Restriktion ist durch dir Baumstruktur des XML-Dokuments gewährleistet. Zielfunktion und Restriktionen enthalten ein weiteres Element, das den Typ  der Gleichung angibt. In der Zielfunktion stehen "minimized" und "maximized" zur Verfügung, in den Restriktionen die Buchstaben "L" (less than or equal), "G" (greater than or equal) und "E" (equal). Diese Buchstaben wurden aus dem MPS-Format übernommen, weil sie zweckmäßig sind und im Gegensatz zu <= und >= in einem XML-Dokument verwendet werden können (die spitzen Klammern sind in XML reservierte Zeichen). Die Restriktionen enthalten außerdem ein Element, das den Wert auf der rechten Seite der (Un-)Gleichung enthält ("Right-Hand-Side").
+<br>
+Die Reihenfolge von Zielfunktion und Restriktionen, sowie die Reihenfolge der Elemente innerhalb von Zielfunktion und Restriktionen ist im Prinzip beliebig, solange die korrekte Schachtelung der Elemente beachtet wird. Theoretisch kann auch jeder Koeffizient in einem eigenen Restriktions-Element stehen. Das bringt allerdings keine Vorteile und erschwert die lesbarkeit des Dokuments für Menschen.
+<p>
+
+<h2>Solver-Ausgabe => XML</h2>
+Der Umgekehrte Weg, von einer Textdatei zu einem XML-Dokument zu gelangen ist im Prinzip einfach, solange die Ausgabedatei jedesmal dem selben Muster folgt. Diese Datei zu parsen und die Informationen auszulesen ist größtenteils Fleißarbeit und wird vor allem durch die Art der Formatierung (Form und Inhalt sind miteinander verbunden) erschwert. Stehen die Informationen erst einmal zur Verfügung, kann das XML-Dokument erzeugt werden:
+<p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;lpSolution&gt;
+   &lt;valueOfObjective&gt;-6.857142857&lt;/valueOfObjective&gt;
+   &lt;variable name="X1"&gt;2.5714&lt;/variable&gt;
+   &lt;variable name="X2"&gt;2.1429&lt;/variable&gt;
+&lt;/lpSolution&gt;
+</pre>
+<p>
+<h2>Konfigurations-Datei</h2>
+Da die Software Dateien einliest und schreibt, sowie externe Programme ausführt, sind einige Angaben zur Konfiguration notwendig. Die Übergabe dieser Informationen als Parameter ist einerseits mühsam (es werden z.Zt. 6 Parameter benötigt) und zum anderen schwierig, da der Solveraufruf ebenfalls als Information übergeben wird. Da der Solveraufruf Leerzeichen enthält, ist die Übergabe als Parameter schwierig.
+Da für die Nutzung des Programms ohnehin XML-Kenntnisse notwendig sind, fiel die Entscheidung, die Konfiguration in einem XML-Dokument zu speichern:
+<p>
+
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;configuration&gt;
+    &lt;SolverName&gt;LP-Solve&lt;/SolverName&gt;
+    &lt;XMLProblemFile&gt;C:\Temp\standard.xml&lt;/XMLProblemFile&gt;
+    &lt;MPSFile&gt;C:\Temp\problem.mps&lt;/MPSFile&gt;
+    &lt;SolverOutputFile&gt;C:\Temp\Solver.out&lt;/SolverOutputFile&gt;
+    &lt;XMLSolutionFile&gt;C:\Temp\Solution.xml&lt;/XMLSolutionFile&gt;
+    &lt;SolverExecutionCommand&gt;
+        		cmd /C L:\BESF\Solver\LP_SOLVE\EXEC\LP_SOLVE -mps
+        		&lt;C:\Temp\problem.mps&gt;C:\Temp\Solver.out
+    &lt;/SolverExecutionCommand&gt;
+&lt;/configuration&gt;
+</pre>
+<br>
+
+Der Name dieser Konfigurationsdatei wird als einziger Parameter an das Programm übergeben und dort entsprechend verarbeitet.
+<p>
+<h2>Ausblick</h2>
+
+<h3>Verbesserungsmöglichkeiten</h3>
+<ul>
+<li>XMLsolved unterstützt noch nicht alle Solver die üblicherweise zu Einsatz kommen. Teilweise liegt an Problemen beim Solveraufruf aus der Software heraus. Außerdem können noch nicht alle Solver-Ausgabedateien verarbeitet werden.</li>
+<li>XMLsolved nutzt momentan ausschließlich MPS als Schnittstelle zu den Solvern. Die Implementierung weiterer Dateiformate könnte nützlich sein.</li>
+<li>Der XML-Parser könnte durch den Einsatz von JAXP flexibler eingebunden werden.</li>
+</ul>
+<p>
+</body>
+</html>

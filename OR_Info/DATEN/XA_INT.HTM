@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>xa</title>
+</head>
+<body background="bg.gif" bgproperties="fixed">
+
+<h2 align="center">Binarität / Ganzzahligkeit</h2>
+<hr noshade size=1>
+
+<p><b>Binärwerte</b>
+
+<p>Variablen für Binärwerte werden in der Zielfunktion in eckigen
+Klammern angegeben.<br>
+Bsp.: &nbsp; <samp> 3 x1 [ + 1 x2 ]</samp></p>
+
+
+<p><b>Ganzzahligkeit</b>
+
+<p>Will man hingegen mit <b><i>echten</i></b> Ganzzahlen arbeiten, 
+so müssen Hilfskonstrukte verwendet werden.<br>
+In einem Modell soll die Variable x1 letztendlich einen ganzzahligen 
+Wert annehmen. Zunächst wird der nichtganzzahlige Wert von x1 errechnet
+(siehe LP-Ansatz I). Als Ergebnis für x1 erhält man 5,21127. 
+
+<pre>
+..TITLE
+  LP-Ansatz I
+..OBJECTIVE MAXIMIZE
+  1 x1 + 2 x2
+..BOUNDS
+  x1 &gt;= 0
+  x2 &gt;= 0
+..CONSTRAINTS
+  R1: -2.1 x1 + 1 x2 &lt; 3
+  R2: 1 x1 + .2 x2 &lt; 8
+  R3: 4 x1 -1.5 x2 &lt; 0
+</pre>
+
+<p>Nun wird ein 2. Ansatz erstellt, um ein ganzzahliges Ergebnis zu
+erhalten. Zwei mögliche Varianten werden vorgestellt.</p>
+
+
+<p><u>Variante a:</u><br>
+x1 wird durch 6 Variablen für Binärwerte ersetzt (x11, x12, ..,x16).
+Alternativ ist auch eine Aufteilung in einen Fixwert u. 2 bis 3 Binärwerte
+denkbar.
+
+<pre>
+..TITLE
+  LP-Ansatz IIa
+..OBJECTIVE MAXIMIZE
+  [ 1 (x11 + x12 + x13 + x14 + x15 + x16) ] + 2 x2
+..BOUNDS
+  x2 &gt;= 0
+..CONSTRAINTS
+  R1: -2.1 (x11 + x12 + x13 + x14 + x15 + x16) + 1 x2 &lt; 3
+  R2: 1 (x11 + x12 + x13 + x14 + x15 + x16) + .2 x2 &lt; 8
+  R3: 4 (x11 + x12 + x13 + x14 + x15 + x16) -1.5 x2 &lt; 0
+</pre>
+
+<p>Als Ergebnis erhält man für x11 bis x15 jeweils den Wert 1 und für x16
+den Wert 0. Damit kann der Variablen x1 der Wert 5 zugeordnet werden.</p>
+
+
+<p><u>Variante b:</u><br>
+Es wird eine zusätzliche Restriktion aufgenommen, die x1 ebenfalls
+in 6 Binärvariablen aufteilt (siehe R4). Die Anmerkung von Variante a 
+zur Aufteilung von x1 gilt auch hier. Die Binärvariablen sind noch als
+solche in der Zielfunktion (mit dem Faktor 0) bekanntzumachen.
+
+<pre>
+..TITLE
+  LP-Ansatz IIb
+..OBJECTIVE MAXIMIZE
+  1 x1 + 2 x2 + [ 0 (x11 + x12 + x13 + x14 + x15 + x16) ]
+..BOUNDS
+  x1 &gt;= 0
+  x2 &gt;= 0
+..CONSTRAINTS
+  R1: -2.1 x1 + 1 x2 &lt;  3
+  R2: 1 x1 + .2 x2 &lt;  8
+  R3: 4 x1 -1.5 x2 &lt;  0
+  R4: x11 + x12 + x13 + x14 + x15 + x16 - x1 = 0
+</pre>
+
+<p>Für die Binärwerte erhält man das selbe Ergebnisse wie bei der
+Variante a.
+Da der Wert für x1 bei dieser Version direkt ausgewiesen wird,
+müssen die einzelnen Binärwerte nicht mehr weiter betrachtet werden.</p> 
+
+
+<p>
+<A HREF="xa.htm">XA-Hauptseite</A>
+&#160; &#160; &#160;
+<A HREF="xa_eqs.htm">EQS-Format</A>
+&#160; &#160; &#160;
+<A HREF="xa_mps.htm">MPS-Format</A>
+&#160; &#160; &#160;
+<A HREF="xa_beson.htm">Besonderheiten</A>
+
+<p><hr noshade size=1>
+<FONT SIZE=-1>&copy; Fachhochschule Konstanz</FONT>
+
+</body>
+</html>

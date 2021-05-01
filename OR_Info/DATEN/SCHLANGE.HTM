@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Warteschlangensimulation</title>
+</head>
+<body background="backgrnd.gif" bgproperties="fixed">
+
+<center>
+<p><img src="schlange.gif" width="260" height="195"></p>
+<h1>Warteschlangensimulation</h1>
+</center>
+<hr>
+
+<p align=center><font face="courier new" color="ff6644" size="+0">
+
+************************************************<br>
+Läuft nicht unter Windows NT !<br>
+************************************************</b>
+</font></p>
+
+
+<! *** original-text *** >
+
+
+<pre>
+1.0    Vorwort
+==============
+
+Dieses Referat entstand im Rahmen der Vorlesung
+Operations Research von Prof. Dr. Grütz
+
+Das Thema dieser Ausarbeitung ist die objekt- und ereignis-orientierte
+Simulation eines  M/M/k/n/m/z - Systems mittels Programmiersprache
+PASCAL 6.0 auf einem Digitalrechner.
+
+Der Schwerpunkt der Aufgabe liegt auf der graphischen Aufbereitung
+bei der Darstellung des Ablaufs. Als Grundlage diente dabei ein
+ausgearbeitetes Programm aus der Vorlesung Simulationssprachen.
+
+Dabei gelten folgende Einschränkungen:
+
+- Die Anzahl der Bedienstationen (k) ist auf 3 beschränkt.
+- Die Anzahl der Systemkapazität (n) ist auf 60 beschränkt.
+- Der Kundenvorrat (m) ist unbeschränkbar und somit unendlich.
+- Die Bedienungsstrategien sind FIFO, LIFO und SIRO.
+
+
+2.0    Eingabedaten
+===================
+
+Um ein bestimmtes Warteschlangensystem simulieren zu können,
+ist die Eingabe folgender Parameter notwendig:
+
+2.1 Bedienungsstrategie:
+------------------------
+
+Sie gibt die Strategie der Warteschlangenabarbeitung an.
+Zulässige Parameter sind [f,F,l,L,s,S].
+[F,f] ist die FIFO-Strategie, d.h. First In First Out (queue).
+[L,l] ist die LIFO-Strategie, d.h. Last In First Out (stack).
+[S,s] ist die SIRO-Strategie, d.h. Service In Random Order.
+
+2.2 Anzahl Bedienstationen:
+---------------------------
+
+Zulässige Werte sind [1,2,3].
+
+2.3 Ankunftsrate:
+-----------------
+
+Sie gibt die Anzahl der Elemente an, die in einer bestimmten Zeit-
+einheit in das System eintreten. Dabei ist zu beachten, daá auch die
+Zeiteinheit bei Bedienrate und Simulationszeit gleich gewählt wird.
+Zulässige Werte sind alle positiven REAL-Zahlen.
+
+2.4 Bedienrate einer Station:
+-----------------------------
+
+Sie gibt die Anzahl der Elemente an, die in einer bestimmten Zeit-
+einheit von einer Station bedient werden. Dabei ist zu beachten,
+daá die Summe der Bedienrate aller Stationen über der Ankunfts-
+rate liegen sollte, da sonst die Warteschlange schnell ihre
+Kapazitätsgrenze erreicht hat.
+
+Vorsicht:
+Liegt die Ankunftsrate erheblich über der Summe der Bedienraten,
+so bricht das Programm ab, da bei der analytischen Berechnung hohe 
+Potenzen zur Basis lamta/mü vorkommen.
+Zulässige Werte sind alle positiven REAL-Zahlen.
+
+2.5 Systemkapazität:
+--------------------
+
+Sie gibt die Anzahl der Elemente an, die maximal im Gesamtsystem
+(Warteschlange und Bedienstationen) sein können.
+Zulässige Werte sind [0,1,...,19,20] bei der graphischen Aufbereitung
+und [0,1,....,59,60] bei der analytischen Aufbereitung.
+
+2.6 Gesamt-Simulationszeit:
+---------------------------
+
+Sie gibt an, wie lange die Simulation durchgeführt werden soll.
+Zulässige Werte sind alle nichtnegativen REAL-Zahlen.
+
+2.7 Abbruch
+-----------
+
+Während des Programmlaufs ist jederzeit eine Beendigung mit der
+Taste ESC möglich.
+
+2.8 Unterbrechnung
+------------------
+
+Um an geeigneter Stelle das Programm schrittweise fortzuführen 
+ist die RETURN - Taste zu betätigen. Jeder weitere Schritt wird 
+mit erneuter Betätigung der Return - Taste ausgeführt.
+Soll das Programm ohne anzuhalten weiterlaufen genügt es eine 
+beliebige Taste zu drücken.
+
+
+3.0    Simulation
+=================
+
+3.1 Ablaufbeschreibung:
+-----------------------
+
+Ist das System leer, so findet ein Wettbewerb zwischen Ankunft und
+Abgang eines Elementes statt (siehe Wettbewerb des Systems).
+Gewinnt die Bedienzeit eines Elementes, wird die Simulationszeit
+um die Bedienzeit erhöht und das System bleibt leer. Gewinnt die
+Ankunft eines Elementes erhöht sich die Simulationszeit um die An-
+kunftszeit und das Element geht in eine der Bedienstationen, die
+durch den Wettbewerb der Bedienstationen ermittelt wurde. Dabei
+bleibt die Warteschlange leer und das System enthält genau ein
+Element. Der nächste Wettbewerb entscheidet ob das System wieder
+leer wird oder die nächste Bedienstation (bzw. Warteschlange) sich füllt.
+Befinden sich ein oder mehrere Elemente in der Warteschlange und die
+Ankunft gewinnt, erhöht sich die Elementenanzahl im System, die
+Elementenanzahl der Warteschlange und die Simulationszeit.
+Bei einem Abgang erhöht sich die Simulationszeit, aber die Anzahl
+der Elemente in der Warteschlange und im System verringern sich um
+ein Element. Durch ein Wettbewerb wird entschieden welche Station
+sein Element entläát und das neue Element aufnimmt.
+Ist das System voll und die Ankunft gewinnt, dann erhöht sich
+die Simulationszeit, die Elementenanzahl bleibt jedoch auf dem maxi-
+malen Wert. Beim Abgang wird der Wettbewerb der Bedienstationen
+durchgeführt und ein Element verlässt die Warteschlange.
+Die Simulationszeit wird auch in dieser Situation um den ermittelten
+Abgangswert erhöht.
+
+3.2 Wettbewerb der Bedienstationen:
+-----------------------------------
+
+Ist in den Bedienstationen mehr als ein Element, wird ein Wettbe-
+werb zwischen allen belegten Stationen mittels exponential-
+verteilten Zufallsvariablen durchgeführt, wobei die Station leer
+wird, welche die kleinste Zufallsvariable hat. Dieser Wettbewerb
+ist notwendig, um für die Graphikausgabe festzustellen, welcher
+Kanal frei ist.
+
+3.3 Wettbewerb des Systems:
+---------------------------
+
+Ein Wettbewerb zwischen exponentialverteilten Zufallsvariablen,
+mit lamta = Ankunftsrate und mü = Summe der Bedienraten, wird
+durchgeführt. Die Simulationszeit erhöht sich nun um die ZV die
+den Wettbewerb zwischen Ankunftszeit und Bedienzeit gewonnen hat.
+</font></pre>
+
+<p><hr>
+<font size="-1">©  Fachhochschule Konstanz</font>
+
+</body>
+</html>

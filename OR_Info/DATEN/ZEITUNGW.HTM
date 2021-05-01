@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>Zeitungsverkäuferproblem</title>
+</head>
+<body background="backgrnd.gif" bgproperties="fixed">
+
+<center>
+<p><img src="zeitungw.gif" width="260" height="195"></p>
+<h2>Zeitungsverkäuferproblem</h2>
+</center>
+
+<hr>
+
+<p>Ein Zeitungsverkäufer kauft Zeitungen für einen Kaufpreis <i>Pk</i>.
+Die Zeitungen werden für einen Verkaufspreis <i>Pv</i> wiederverkauft.
+Die nicht verkauften Zeitungen können für einen bestimmten
+Rückgabepreis <i>Pr</i> an dem Verlag zurückgegeben werden.</p>
+
+<p>Für die Menge der zu bestellenden Zeitungen existiert eine
+gewisse Verteilung. Diese Verteilung gibt die Wahrscheinlichkeit 
+für eine Nachfrage N an.</p>
+
+<p>Es gilt eine Gewinnmaximierung hinsichtlich der gekauften und
+wiederverkauften Zeitungen zu erzielen.</p>
+
+<p>Die <b>Berechnungsformel</b> (vgl. Mayer/Hansen Seiten 200-204) 
+für die Gewinnmaximierung lautet:</p>
+
+<pre>
+     Pv - Pk
+     ------- &lt;= F(q)
+     Pv - Pr
+</pre>
+
+<p>Für das Programm bedeutet dies:<br>
+Die Verteilung, der Einkaufspreis, der Verkaufspreis und 
+der Rückgabepreis müssen bekannt sein. So kann eine
+Kumulierung der Wahrscheinlichkeiten vorgenommen werden,
+bis die Summe größer als der Quotient aus der Division ist.</p>
+
+<p>Siehe <a HRef="zeitung1.htm">Beispiel</a>.</p>
+
+
+<hr>
+<p><font size="-1">© Fachhochschule Konstanz</font></p>
+
+</body>
+</html>

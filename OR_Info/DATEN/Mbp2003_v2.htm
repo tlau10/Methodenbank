@@ -1,0 +1,361 @@
+<html>
+<head>
+<title>MPB</title>
+</head>
+<body background="bg.gif" bgproperties="fixed">
+
+<p align="center">
+<img src="Mbp2003.gif"><br><br>
+<b><font color="778899" face="Candara" size="6">
+Maschinenbelegungsplanung 2003 (V2)</font></b></p>
+<hr>
+
+<font face="arial" size="-1">
+<p><b><font color="#FF0000" face="Candara" size="3">Hinweis :</font></b></p>
+<p><b><font face="Candara" size="3" color="#0000FF">Das Datenverzeichnis
+befindet sich unter C:\Temp\MethodenbankDaten\</font></b></font><b><font face="Candara" size="3" color="#0000FF">Maschinenbelegungsplanung</font></b></p>
+
+<p class="jpkoenig2"><b><i><u><font face="Candara" size="5">Die Methode</font></u></i></b>
+
+<p>
+
+<FONT face="Candara" size="-1">
+
+Die Maschinenbelegungsplanung wird dann eingesetzt, wenn eine
+festgelegte Anzahl von Aufträgen mit entsprechenden
+Produktionszeiten in vorgegebenen Perioden (oder Alternativperioden, 
+hier <i>noch</i> nicht implementiert) abgearbeitet werden soll.
+Den einzelnen Perioden werden Kapazitäten in Form von Maschinen
+unterschiedlicher Typen zugeordnet.<br>
+Die Aufgabe besteht nun darin, die
+Aufträge so auf die Perioden zu verteilen, dass die Auslastung
+der Maschinen über die Perioden (gleichmäßig) minimal ist.
+Weitere Optimierungsfälle sind denkbar, z.B. die möglichst frühe
+Abarbeitung der Aufträge, evtl. unter Einhaltung bestimmter 
+Bedingungen, wie dem Freihalten festgelegter Kapazitäten usw.<br>
+Es lassen sich hier also noch viel Ideen in Arbeit umsetzen.</FONT></p>
+
+<p class="jpkoenig1"><FONT face="Candara" size="-1"><span lang="DE-CH" style="mso-ansi-language:DE-CH"><o:p>
+</o:p>
+</span></FONT></p>
+<p class="jpkoenigStandard"><span lang="DE-CH" style="mso-ansi-language:DE-CH">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+</FONT></span></p>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+Im Mbp2003 wurde in Version 1 das Standard LP Modell zur
+Maschinenbelegungsplanung umgesetzt. Es gibt verschiedene Aufträge mit einer
+festgelegten Bearbeitungszeit und mögliche Perioden, in denen diese Aufträge
+gefertigt werden können. Für jede Periode steht eine bestimmte Anzahl an
+Maschinen zur Verfügung. Die Aufgabe bestand nun darin, die Aufträge derart
+auf Perioden und Maschinen zu verteilen, dass die Auslastung der Maschinen
+minimal wird.</FONT></p>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+</FONT></p>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+In der Version 2 wurde das LP Modell dahingehend geändert, dass nun mehre
+Maschinentypen pro Periode berücksichtigt werden können.</FONT></p>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+</FONT></p>
+<p class="jpkoenig2"><a name="_Toc44469955"><b><i><u><font face="Candara" size="5">Beispiel</font></u></i></b></a></p>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+Auftrag 1 hat eine Bearbeitungsdauer von 80 min., kann nur auf Maschinentyp 1
+gefertigt werden und muss in den Perioden 1 und 2 abgearbeitet werden.</FONT></p>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+Auftrag 2 hat eine Bearbeitungsdauer von 100 min., kann ebenfalls nur auf
+Maschinentyp 1 gefertigt werden und muss in den Perioden 2, 3 und 4 abgearbeitet
+werden.</FONT></p>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+Auftrag 3 hat eine Bearbeitungsdauer von 50 min., kann auf Maschinentyp 1 und 2
+gefertigt werden und muss in den Perioden&nbsp; 3 und 4 abgearbeitet werden.</FONT></p>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+In Periode 1 steht eine Maschine des Typs 1 zur Verfügung, in Periode 2 stehen
+zwei Maschinen des Typs 1 zur Verfügung, in Periode 3 und 4 stehen jeweils eine
+Maschine der Typen 1 und 2 zur Verfügung.</FONT></p>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+Diese Aufträge werden unter Berücksichtigung der vorhandenen Kapazität in den
+einzelnen Perioden so eingeplant, dass die Auslastung der Maschinen minimal ist.</FONT></p>
+
+<FONT face="arial" size="-1">
+
+<p class="jpkoenig3">&nbsp;</p>
+</FONT>
+<p class="jpkoenig2"><a name="_Toc44469956"><b><i><u><font face="Candara" size="5">LP
+Ansatz:</font></u></i></b></a></p>
+<ul>
+  <li>
+    <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+Minimierung der Zielfunktion:</FONT></li>
+</ul>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; min: Y;</FONT></p>
+<ul>
+  <li>
+    <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+Festlegung der Variablen</FONT></li>
+</ul>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<o:p>
+</o:p>
+1xA1P1T1 entspricht Auftrag 1,&nbsp; Periode 1 und Maschinentyp 1.</FONT></p>
+<ul>
+  <li>
+    <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+Restriktionen</FONT></li>
+</ul>
+<blockquote>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R1: 1xA1P1T1 + 1xA1P2T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+= 80;<o:p>
+</o:p>
+  </FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R2: 1xA2P2T1 + 1xA2P3T1 + 1xA2P4T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+= 100;</FONT></p>
+  <p class="jpkoenigStandard"><FONT face="Candara" size="-1">R3: 1xA3P3T1 +
+  1xA3P4T1 + 1xA3P3T2 + 1xA3P4T2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  = 50;</FONT></p>
+</blockquote>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+</FONT></p>
+<blockquote>
+  <p class="jpkoenigStandard" align="left">
+
+<FONT face="Candara" size="-1">
+
+Da in Periode 3 und 4 auf beiden Maschinen gefertigt werden kann, muss eine
+Schaltervariablen für den Maschinentyp eingeführt werden.</FONT></p>
+  <p class="jpkoenigStandard" align="left"><FONT face="Candara" size="-1">&nbsp;<o:p>
+  </o:p>
+  R4: 1xA3P3T1 + 1xA3P4T1 + 10000 - 10000 * MS3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &gt;= 50;</FONT></p>
+  <p class="jpkoenigStandard" align="left">
+
+<FONT face="Candara" size="-1">
+
+R5: 1xA3P3T2 + 1xA3P4T2 + 10000 * MS3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&gt;= 50;</FONT></p>
+</blockquote>
+<ul>
+  <li>
+    <p class="jpkoenigStandard" align="left">
+
+<FONT face="Candara" size="-1">
+
+Periodenorientierte Glättung&nbsp;für Maschinentyp 1:</FONT></li>
+</ul>
+<blockquote>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R6: 1xA1P1T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;=&nbsp; 1Y;<o:p>
+</o:p>
+  </FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R7: 1xA1P2T1 + 1xA2P2T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;=&nbsp; 2Y;<o:p>
+</o:p>
+  </FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R8: 1xA2P3T1 + 1xA3P3T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;=&nbsp; 1Y;<o:p>
+</o:p>
+  </FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R9: 1xA2P4T1 + 1xA3P4T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;=&nbsp; 1Y;<o:p>
+</o:p>
+  </FONT></p>
+</blockquote>
+<ul>
+  <li>
+    <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+Periodenorientierte Glättung&nbsp;für Maschinentyp 2:</FONT></li>
+</ul>
+<blockquote>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R10: 1xA3P3T2&nbsp; &lt;= 1Y;<o:p>
+</o:p>
+  </FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R11: 1xA3P4T2&nbsp; &lt;= 1Y;<o:p>
+</o:p>
+  </FONT></p>
+</blockquote>
+<ul>
+  <li>
+    <p class="jpkoenig4">
+
+<FONT face="Candara" size="-1">
+
+Restriktionen im Zusammenhang mit der maximalen Periodenlänge:<o:p>
+</o:p>
+    </FONT></li>
+</ul>
+<blockquote>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R12: 1xA1P1T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;= 60;</FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R13: 1xA1P2T1 + 1xA2P2T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;= 120;<o:p>
+</o:p>
+  </FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R14: 1xA2P3T1 + 1xA3P3T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;= 60;</FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R15: 1xA2P4T1 + 1xA3P4T1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;= 60;</FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R16: 1xA3P3T2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;= 60;</FONT></p>
+  <p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+R17: 1xA3P4T2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;= 60;</FONT></p>
+</blockquote>
+<p class="jpkoenigStandard">
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+</FONT></p>
+
+<FONT face="arial" size="-1">
+
+<p>&nbsp;</p>
+
+</FONT>
+
+<p class="jpkoenig2"><b><i><u><font face="Candara" size="5">Das Programm</font></u></i></b>
+
+<p>
+
+<FONT face="Candara" size="-1">
+
+Das Programm MBP 2003 entstand im WS 2002/03 als Neuimplementierung 
+in der Programmiersprache C#.<br>
+Im SS 2003 wurde das Programm für die Verwendung von mehreren
+Maschinentypen erweitert.</FONT>
+</p>
+
+<p><i>
+<font color=#cf0000 face="Candara" size="-1">
+--&gt; Leider funktioniert der Aufruf der Berechnungen 
+auf einigen Rechern nicht!</font>
+
+
+</i>
+
+<p><hr>
+<FONT Face="arial" SIZE="-2">&#169; Fachhochschule Konstanz</FONT>
+
+</body>
+</html>

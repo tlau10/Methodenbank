@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>12. Generalized Networks</TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+   <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+<BODY class="script">
+
+<h1>12. Generalized Networks</h1>
+<br>
+
+<P align="center"><img src="LP_Probl.png"></P>
+<br>
+
+<HR WIDTH="80%">
+
+<P align="center"><B><FONT SIZE=+2>Ein Rohrleitungssystem</FONT></B></P>
+
+<P align=center><IMG SRC="img1211.gif" HEIGHT=345 WIDTH=640></P>
+
+
+<pre style="width:392; font-size:11pt; background-color:#eeeeee; 
+     margin-left:20; padding:8">
+  - x<SUB>12</SUB>   -  x<SUB>13</SUB>                  &le;     0
+ 0,8x<SUB>12</SUB>          -  x<SUB>24</SUB>           =     0
+          0,5x<SUB>13</SUB>          - x<SUB>34</SUB>   =     0
+                 0,5x<SUB>24</SUB> + 0,8x<SUB>34</SUB>  &ge;  5000
+</pre>
+<br>
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG SRC="gn_z1.png" HEIGHT=128 WIDTH=152>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<IMG SRC="gn_z2.png" HEIGHT=128 WIDTH=195></p>
+
+<br>
+
+
+<! Programm-Aufruf --------------------------------------------------- >
+<p><font size="-1" face="arial,helvetica">
+Das Methodenbankprogramm <b>Generalized Networks</b> 
+mit dem Rohrleitungsbeispiel.</font></p>
+
+<p><a href="PrgGN kap12_1.dat";
+ onMouseOver="window.status='Start des Programms GN mit obigen Beispiel';return true"
+ onMouseOut="window.status='';return true">
+<img src="btn_gn.gif" border="0"></a></p>
+<br>
+
+
+<! MATRIX-AUFRUF (nur ViOR) ------------------------------------------ >
+
+<! Aussentab. >
+<table border=0 cellpadding=0 cellspacing=0 bgcolor=#404040>
+<tr><td>
+
+ <table border=0 cellpadding=12 cellspacing=1 width=372>
+ <tr><td bgcolor=#f0f0f0>
+
+ <p style="font-family:arial; font-size:10pt">
+ <b>Direkter <A HREF="MATRIX(mat12#01.lpx)">Solver-Aufruf</A> 
+ mit dem Beispiel.</b><br>
+ <br>
+ &raquo; Dieser Aufruf ist ausschließlich mit VisualOR möglich. &laquo;</p>
+
+ </td></tr></table>
+
+</td></tr></table>
+
+
+
+
+<br>&nbsp;
+
+
+<HR WIDTH="80%">
+
+<P><IMG SRC="img12102.gif" HEIGHT="1054" WIDTH="680"><br>
+<span class=abb>
+Abb.: Das &quot;PJ&quot;-Problem als verallgemeinertes Netzwerk</span></P>
+<br>
+
+
+<HR WIDTH="80%">
+<p align="center">
+<B><FONT SIZE=+2>14-Tage Schichtplan</FONT></B></P>
+<br>
+
+<P align=center><IMG SRC="KP12S103.gif" HEIGHT=702 WIDTH=503></P>
+<br>
+
+<HR WIDTH="80%">
+
+
+<P><B><FONT SIZE=+1>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+Auswahlkriterien oder der Konflikt zwischen</FONT></B></P>
+
+<P><B><FONT SIZE=+2 color=#6666ff>
+&nbsp;&nbsp; 
+Effizienz</font>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+und
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<FONT SIZE=+2 color=#6666ff>Abbildungsgenauigkeit</FONT>
+</B></P>
+
+<P><B>
+Rechenzeitbedarf 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+Anzahl der l&ouml;sbaren Modellformulierungen</B></P>
+<br>
+<br>
+
+<P><B><FONT SIZE=+1>ALGORITHMUS</FONT></B></P>
+
+<p><b>
+<ul>
+<li>Anzahl der Variablen/Restriktionen
+<li>Schnelligkeit der Konvergenz (Ganzzahligkeit)
+<li>Speicherbedarf
+<li>Optionen
+<li>Bedienerfreundlichkeit
+<li>Kompatibilit&auml;t (Rechner, Eingabeformat)
+<li>Kosten
+</ul></b></p>
+
+
+<HR WIDTH="80%">
+<br>
+
+<P><IMG SRC="img1214a.gif" HEIGHT=435 WIDTH=570><br>
+<span class=abb>Abb.: Rechenzeiten NETG / APEX III<sup> 1</sup></span><br>
+&nbsp; &nbsp;&nbsp; &nbsp;
+1) Glover: GN fundamental...
+
+<P><IMG SRC="img1214b.gif" HEIGHT=355 WIDTH=570><br>
+<span class=abb>Abb.: Rechenzeiten diverser Netzwerkcodes / APEX 
+III<sup> 2</sup></span><br>
+&nbsp; &nbsp; &nbsp; &nbsp;
+2) Glover: Planning Techniques Part II</p>
+
+<br>
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="../KAP11/Kap11.Htm">Kapitel 11</A><br>
+<A HREF="../Aufgaben.Htm">Übungsaufgaben</A><br>
+<br>
+<A HREF="../PcStart.htm">Startbildschirm</A></b></P>
+
+</BODY>
+</HTML>

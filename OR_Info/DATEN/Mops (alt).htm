@@ -1,0 +1,70 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>Als das Möpschen in Konstanz weilte</title>
+</head>
+<body background="backgrnd.gif" bgproperties="fixed">
+
+<h1 align="center">MOPS</h1>
+<p align="center"><b>Kurzanleitung für den PC-Client</b></p>
+
+<p><font size="1" face="Arial" color="7E00FF">
+Akt. Client-Version: 98</font>
+
+<hr>
+
+<p>MOPS® (Mathematical OPtimization System) ist ein Softwaresystem 
+zur Lösung großer linearer Optimierungsmodelle.
+Die an der FH eingesetzte Version 2.0 läuft auf dem Unix-Rechner 
+(rz-uxazs) und wird vom PC-Netzwerk aus über das Client-Programm 
+Mops_PC gestartet.<br>
+
+<p>Weitergehende Informationen zu MOPS sind u.a. in der Datei
+KURZANL.DOC im Verzeichnis ..\BESF\SOLVER\MOPS_98\DOC\ zu finden.
+Die Datei MOPS_INF.DOC im Verzeichnis ..\BESF\INFO\ enthält
+zusätzlich eine einführende Beschreibung des MPS-Formats.
+Das Benutzerhandbuch ist ausleihbar.</p>
+
+<h4>Vorgehensweise:</h4>
+
+<ul>
+  <li>MPS-Datei erstellen (MPS ist das Standardformat von LP-SW)</li>
+  <li>MOPS-Client mit Parametern (MPS-Datei, MIN | MAX) aufrufen</li>
+  <li>Ergebnisausgabe in die Datei MOPS.OUT (bzw. OUT.TXT bei Win 3.x)</li>
+</ul>
+<br>
+
+<h4>Start von MOPS unter Win 9x/NT</h4>
+
+<p><i>Der MOPS-Client kann nur noch vom Server gestartet werden.</i></p>
+
+<h5>Aufruf vom Server:</h5>
+
+<pre>
+L:\BESF\SOLVER\MOPS_98\EXEC\MOPS_PC.EXE [MPS-Datei] MIN|MAX
+
+Ergebnisdatei: MOPS.OUT
+</pre>
+<br>
+
+<h4>Start von MOPS unter Win 3.x</h4>
+
+<h5>Aufruf vom lokalen Rechner:</h5>
+
+<pre>
+C:\OR\SOLVER\MOPS\CLIENT\MOPS_PC.EXE [MPS-Datei] MIN|MAX
+
+Ergebnisdatei: OUT.TXT
+</pre>
+
+
+<p><font size="2" face="Arial" color="7E00FF"><b>Hinweis:</b></font>
+<br>
+<font size="2" face="Arial">
+Seit dem Versionswechsel des Unix-Betriebssystems HP-UX von 9.x auf 
+10.20 funktioniert der Mops-Aufruf nur noch sporadisch.</font></p>
+
+<hr>
+<p><font size="2">©  Fachhochschule Konstanz </font></p>
+</body>
+</html>

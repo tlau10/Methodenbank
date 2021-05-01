@@ -1,0 +1,495 @@
+<html>
+<body background="bg.gif" bgproperties="fixed">
+
+<p align="center">
+<img src="Leitstand_Pflegestation.gif" width="288" height="180"><br>
+<br>
+<b><font face="Candara" color="#b5ab9a" size="6">Leitstand Pflegestation</font></b></p>
+
+
+<hr noshade size=1>
+
+<p>
+
+<FONT face="Candara" size="-1">
+
+In einer Pflegestation sollen Patienten mit minimalem Personalaufwand 
+optimal versorgt werden. Für jeden Patienten wird der Pflegebedarf 
+individuell festgelegt. 
+Die Versorgungen erfolgen sowohl zu festen Zeiten als auch innerhalb 
+festgelegter Zeitfenster. In beiden Fällen können Alternativzeiten 
+angegeben werden.
+
+</FONT>
+
+</p>
+
+<p>
+
+<FONT face="Candara" size="-1">
+
+Das Programm beherrscht zwei Modi. Dies sind das einfache Aufsummieren
+aller Versorgungszeiten, sowie das Glätten von Zeitspitzen mit einem
+abgewandelten Maschinenbelegungsalgorithmus.<br>
+Als Ergebnis erhält man die leistenden Versorgungszeiten in jeder 
+Periode (Bsp. 70 Min. in Periode 12 bedeuted, dass in dieser Periode
+3 Pflegekräfte benötigt werden, da die Einteilung in 30 Min.-Perioden 
+erfolgt.
+
+</FONT>
+
+</p>
+
+<FONT FACE="arial" size="-1">
+
+<p>&nbsp;</p>
+
+</FONT>
+
+<h2 align="left"><a name="_Toc13936504"><span lang="DE-CH" style="mso-ansi-language:DE-CH"><b><font face="Candara" size="6"><i><u>Lp
+Ansatz</u></i></font></b></span></a><FONT face="Candara" size="-1"><span lang="DE-CH" style="mso-ansi-language:DE-CH"><o:p>
+</o:p>
+</span></FONT></h2>
+<p>
+
+<FONT face="Candara" size="-1">
+
+Der Lp Ansatz ist an den Maschinenbelegungsplan angelehnt.<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+Am besten, ich veranschauliche den Lp Ansatz anhand eines Beispieles.<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+Angenommen der Benutzer hat 2 Pflegetätigkeiten eingegeben:<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<table border="1" cellspacing="0" cellpadding="0" style="margin-left:31.3pt;
+ border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-padding-alt:0cm 3.5pt 0cm 3.5pt">
+  <tr style="height:13.75pt">
+    <td width="87" valign="top" style="width:65.05pt;border:solid windowtext .5pt;
+  padding:0cm 3.5pt 0cm 3.5pt;height:13.75pt">
+
+<FONT face="Candara" size="-1">
+
+Nr.<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+    <td width="87" valign="top" style="width:65.05pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 3.5pt 0cm 3.5pt;
+  height:13.75pt">
+
+<FONT face="Candara" size="-1">
+
+Regulär<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+    <td width="87" valign="top" style="width:65.05pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 3.5pt 0cm 3.5pt;
+  height:13.75pt">
+
+<FONT face="Candara" size="-1">
+
+Alternativ<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+    <td width="87" valign="top" style="width:65.05pt;border:solid windowtext .5pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;padding:0cm 3.5pt 0cm 3.5pt;
+  height:13.75pt">
+
+<FONT face="Candara" size="-1">
+
+Dauer<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+  </tr>
+  <tr style="height:12.9pt">
+    <td width="87" valign="top" style="width:65.05pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 3.5pt 0cm 3.5pt;
+  height:12.9pt">
+
+<FONT face="Candara" size="-1">
+
+1<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+    <td width="87" valign="top" style="width:65.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 3.5pt 0cm 3.5pt;height:12.9pt">
+
+<FONT face="Candara" size="-1">
+
+0 - 4<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+    <td width="87" valign="top" style="width:65.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 3.5pt 0cm 3.5pt;height:12.9pt">
+
+<FONT face="Candara" size="-1">
+
+6 - 10<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+    <td width="87" valign="top" style="width:65.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 3.5pt 0cm 3.5pt;height:12.9pt">
+
+<FONT face="Candara" size="-1">
+
+40<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+  </tr>
+  <tr style="height:12.9pt">
+    <td width="87" valign="top" style="width:65.05pt;border:solid windowtext .5pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;padding:0cm 3.5pt 0cm 3.5pt;
+  height:12.9pt">
+
+<FONT face="Candara" size="-1">
+
+2<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+    <td width="87" valign="top" style="width:65.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 3.5pt 0cm 3.5pt;height:12.9pt">
+
+<FONT face="Candara" size="-1">
+
+0 - 2<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+    <td width="87" valign="top" style="width:65.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 3.5pt 0cm 3.5pt;height:12.9pt">
+
+<FONT face="Candara" size="-1">
+
+5 - 7<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+    <td width="87" valign="top" style="width:65.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext .5pt;border-right:solid windowtext .5pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  padding:0cm 3.5pt 0cm 3.5pt;height:12.9pt">
+
+<FONT face="Candara" size="-1">
+
+20<o:p>
+</o:p>
+
+</FONT>
+
+    </td>
+  </tr>
+</table>
+<p>
+
+<FONT face="Candara" size="-1">
+
+Die Tabelle ist eine vereinfachte Darstellung, auf der grafischen Oberfläche
+sieht es ein wenig anders aus. Die Zeiten sind in Perioden angeben. Z.B. geht
+das reguläre Zeitfenster von Tätigkeit 1 von Periode 0(0 Uhr-0:30 Uhr) bis
+Periode 4(1:30-2:00Uhr).<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+Die Variablen werden in folgender Form gebildet :XA/B<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+A ist dabei die Tätigkeit und B die Periode.<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+Hier nun das Beispiel als Lp Ansatz:<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+Y-&gt;Min<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/01+X01/02+X01/02+X01/03+X01/06+X01/07+X01/08+X01/09 = 40<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/01+X01/02+X01/03+X01/04 +M-M*S1&gt;=&nbsp; 40<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/06+X01/07+X01/08+X01/09+M*S1&gt;= 40<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X02/01+X02/02+X02/05+X02/06 = 20<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X02/01+X02/02 +M-M*S1&gt;=&nbsp; 20<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X02/05+X02/06+M*S1&gt;= 20<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+&nbsp;<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/01+X02/01 &lt;=Y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Periode 1<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/02+X02/02&lt;=Y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //Periode 2<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p><FONT face="Candara" size="-1">X01/03 &lt;=Y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//…<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/04&lt;=Y<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X02/05 &lt;=Y<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/06+X02/06 &lt;=Y<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/07+X02/07 &lt;=Y<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/08 &lt;=Y<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+X01/09 &lt;=Y<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+<p>
+
+<FONT face="Candara" size="-1">
+
+Aufgrund der 2 Alternativen, der regulären Zeit und ihrer Alternative werden
+Schaltervariablen Si verwendet. Diese Variablen dürfen nur die Werte 0 und 1
+annehmen. Das Glätten geschieht durch die&nbsp; Goalvariable Y.<o:p>
+</o:p>
+
+</FONT>
+
+</p>
+
+<FONT face="Candara" size="-1">
+
+M ist hier ein großer Wert(10000).
+
+</FONT>
+
+<FONT FACE="arial" size="-1">
+
+<p>&nbsp;</p>
+
+</FONT>
+
+<hr noshade size=1>
+<FONT SIZE="-2" face="arial">&#169; &nbsp;Fachhochschule Konstanz</FONT>
+
+</body>
+</html>

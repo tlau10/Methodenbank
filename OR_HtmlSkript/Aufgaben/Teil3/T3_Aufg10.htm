@@ -1,0 +1,61 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>Aufgabe</title>
+</head>
+<body>
+<font face="Arial,Helvetica" color="#666666" size=-1>Aufgabenteil
+3 (ehemalige Klausuraufgaben)</font>
+<center>
+<p><b><font color="#000000"><font size=+2>Aufgabe 10</font></font></b></center>
+
+<p><font face="Arial,Helvetica" Size="-1">[SS 90 A9]</font>
+<hr WIDTH="100%">
+
+<p><font face="Arial,Helvetica" Size="-1">
+Im folgenden ist die Eingabedatei für einen MPSX-Lauf angegeben. Welcher 
+Ansatz der Linearen Programmierung liegt hier zugrunde?</font></p>
+
+<pre style="color:#305070">
+NAME          ALULEG
+ROWS
+ N  KOSTEN
+ E  MENGE
+ L  EISEN
+ L  KUPFER
+ L  MANGAN
+ L  MAGNESM
+ G  ALUMINM
+ L  SILIZIM
+COLUMNS
+    SCHROTT1  KOSTEN       0.09        MENGE        1.00
+    SCHROTT1  EISEN        0.15        KUPFER       0.03
+    SCHROTT1  MANGAN       0.02        MAGNESM      0.02
+    SCHROTT1  ALUMINM      0.70        SILIZIM      0.02
+    SCHROTT2  KOSTEN       0.32        MENGE        1.00
+    SCHROTT2  EISEN        0.04        KUPFER       0.05
+    SCHROTT2  MANGAN       0.04        MAGNESM      0.03
+    SCHROTT2  ALUMINM      0.75        SILIZIM      0.06
+    SCHROTT3  KOSTEN       0.78        MENGE        1.00
+    SCHROTT3  EISEN        0.02        KUPFER       0.08
+    SCHROTT3  MANGAN       0.01        ALUMINM      0.80
+    SCHROTT3  SILIZIM      0.08
+RHS
+    BVEKTOR   MENGE     2000.          EISEN       60.
+    BVEKTOR   KUPFER     100.          MANGAN      40.
+    BVEKTOR   MAGNESM     30.          ALUMINM   1500.
+    BVEKTOR   SILIZIM    300.
+RANGES
+    BEREICH   SILIZIM     50.
+BOUNDS
+ UP BEGRENZ   SCHROTT1   200.
+ UP BEGRENZ   SCHROTT2   750.
+ LO BEGRENZ   SCHROTT3   400.
+ UP BEGRENZ   SCHROTT3   800.
+ENDATA
+</pre>
+<br>
+
+</body>
+</html>
