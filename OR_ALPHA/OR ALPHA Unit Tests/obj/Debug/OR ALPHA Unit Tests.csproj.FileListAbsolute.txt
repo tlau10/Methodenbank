@@ -1,0 +1,12 @@
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Debug\Schemata_ORALPHA.xml
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Debug\Properties\Settings.Designer.cs
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Debug\Properties\Settings.settings
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Debug\OR ALPHA Unit Tests.dll
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Debug\OR ALPHA Unit Tests.pdb
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Debug\OR ALPHA.exe
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Debug\OR ALPHA.pdb
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\obj\Debug\OR ALPHA Unit Tests.csprojResolveAssemblyReference.cache
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\obj\Debug\OR ALPHA Unit Tests.dll
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\obj\Debug\OR ALPHA Unit Tests.pdb
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Debug\Moq.dll
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Debug\Moq.xml

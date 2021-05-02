@@ -1,0 +1,26 @@
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Release\Properties\Settings.Designer.cs
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Release\Properties\Settings.settings
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Release\OR ALPHA Unit Tests.dll
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Release\OR ALPHA Unit Tests.pdb
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Release\OR ALPHA.exe
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Release\OR ALPHA.pdb
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\obj\Release\OR ALPHA Unit Tests.csprojResolveAssemblyReference.cache
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\obj\Release\OR ALPHA Unit Tests.dll
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\obj\Release\OR ALPHA Unit Tests.pdb
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Release\Moq.dll
+C:\Users\Teamprojekt\Documents\oralpha_ss15\OR ALPHA Unit Tests\bin\Release\Moq.xml
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\Properties\Settings.Designer.cs
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\Properties\Settings.settings
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\OR ALPHA Unit Tests.dll
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\OR ALPHA Unit Tests.pdb
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\OR ALPHA Unit Tests.dll.CodeAnalysisLog.xml
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\OR ALPHA Unit Tests.dll.lastcodeanalysissucceeded
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\Moq.dll
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\OR ALPHA.exe
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\OR ALPHA.pdb
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\Moq.xml
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\bin\Release\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\obj\Release\OR ALPHA Unit Tests.csprojResolveAssemblyReference.cache
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\obj\Release\OR ALPHA Unit Tests.dll
+C:\Methodenbank\OR_ALPHA\OR ALPHA Unit Tests\obj\Release\OR ALPHA Unit Tests.pdb
