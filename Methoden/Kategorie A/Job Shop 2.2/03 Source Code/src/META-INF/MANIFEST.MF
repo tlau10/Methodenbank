@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Rsrc-Class-Path: ./ AbsoluteLayout.jar appframework-1.0.3.jar swing-wo
+ rker-1.1.jar lpsolve55j.jar
+Class-Path: .
+Rsrc-Main-Class: jobshop.JobShopApp
+Main-Class: org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader
+

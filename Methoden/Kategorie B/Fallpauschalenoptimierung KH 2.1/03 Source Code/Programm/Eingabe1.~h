@@ -1,0 +1,53 @@
+//---------------------------------------------------------------------------
+
+#ifndef eingabe1H
+#define eingabe1H
+//---------------------------------------------------------------------------
+#include <Classes.hpp>
+#include <Controls.hpp>
+#include <StdCtrls.hpp>
+#include <Forms.hpp>
+#include <ComCtrls.hpp>
+#include <ExtCtrls.hpp>
+#include <DBCtrls.hpp>
+#include <DBGrids.hpp>
+#include <Grids.hpp>
+#include <Buttons.hpp>
+//---------------------------------------------------------------------------
+class TFormEingabe1 : public TForm
+{
+__published:	// IDE-managed Components
+        TLabeledEdit *LabelBettenanzahl;
+        TLabeledEdit *LabelBerechnungszeitraum;
+        TLabeledEdit *LabelAnzahlFallpauschalen;
+        TUpDown *UpDownAnzahlFallpauschalen;
+        TBitBtn *ButtonWeiterEingabe1;
+        TBitBtn *ButtonZurueckEingabe1;
+        TBitBtn *ButtonBeendenEingabe1;
+        TStringGrid *StringGridTabelle;
+        TMemo *MemoEingabe1;
+        void __fastcall UpDownAnzahlFallpauschalenClick(TObject *Sender,
+          TUDBtnType Button);
+        void __fastcall ButtonWeiterEingabe1Click(TObject *Sender);
+        void __fastcall ButtonBeendenEingabe1Click(TObject *Sender);
+        void __fastcall ButtonZurueckEingabe1Click(TObject *Sender);
+        void __fastcall StringGridTabelleClick(TObject *Sender);
+private:	// User declarations
+        int zaehler;
+        int anzahl;
+public:		// User declarations
+        __fastcall TFormEingabe1(TComponent* Owner);
+        void setZahl( int elem )
+        {
+                anzahl = elem;
+        };
+        int getZahl( )
+        {
+                return anzahl;
+        };
+
+};
+//---------------------------------------------------------------------------
+extern PACKAGE TFormEingabe1 *FormEingabe1;
+//---------------------------------------------------------------------------
+#endif

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="569.0" prefWidth="754.0" xmlns:fx="http://javafx.com/fxml" fx:controller="iterator.gui.javafx.BasicWindowController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="12.0" prefHeight="81.0" prefWidth="754.0" styleClass="footerAndHeader" text="Debug Modus" textAlignment="CENTER" textFill="#ffe299">
+      <font>
+        <Font name="System Bold Italic" size="30.0" />
+      </font>
+      <stylesheets>
+        <URL value="@IteratorStyles.css" />
+      </stylesheets>
+    </Label>
+    <TextArea fx:id="textarea" layoutX="68.0" layoutY="95.0" prefHeight="448.0" prefWidth="609.0" promptText="debugging" styleClass="debugTextArea" text="debugging..." wrapText="true">
+      <stylesheets>
+        <URL value="@IteratorStyles.css" />
+      </stylesheets>
+    </TextArea>
+  </children>
+</AnchorPane>

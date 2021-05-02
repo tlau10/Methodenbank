@@ -1,0 +1,18 @@
+:Base VERSCHN.HLP
+:Title Hilfe zum Verschnitt/Werkstückproblem
+1 Inhalt=Inhalt
+1 Verschnittproblem
+2 Eine Einführung=Eine_Einf_hrung
+2 Das LP-Modell=Das_LP_Modell
+2 Der zweidimensionale Zuschnitt=Der_zweidimensionale_Zuschnitt
+1 Werkstückoptimierung
+2 Eine Einführung Werkstoffoptimierung=Eine_Einf_hrung_Werkstoffoptimierung
+2 Das LP-Modell Werkstoffoptimierung=Das_LP_Modell_Werkstoffoptimierung
+2 Der zweidimensionale Werkstoffoptimierung=der_zweidimensionale_Werkstoffoptimierung
+1 Das Programm
+2 Der Hauptbildschirm=Der_Hauptbildschirm
+2 Das Eingabefenster=Das_Eingabefenster
+2 Das Variantenfenster=Das_Variantenfenster
+2 Das Ausgabefenster=Das_Ausgabefenster
+1 Über dieses Programm=_ber_dieses_Programm
+1 Bekannte Fehler und mögliche Verbesserungen=Bekannte_Fehler_und_m_gliche_Verbesserungen

@@ -1,0 +1,70 @@
+Ablauf einer Taxifahrtberechnung
+Ausgabefenster
+Beispiel
+Berechn
+Das
+Datei
+Dateimenü
+Daten
+Der Solver
+Die
+Die Menüleiste
+Die Methode
+Eingabefenster
+Equation
+Fenster
+Hilfe
+Hilfemenü
+INI-Datei
+Inhaltsverzeichnis
+Lösung
+Matrizen
+Meldungsfenster
+Menüleiste
+Methode
+Modell
+Online-Hilfe
+Optionen
+Programm
+Sie
+Solver
+Startort
+Startstrecken,
+Style
+TAXI.
+Taxi
+Taxifahrtberechnung
+Verzeichnis
+Wegstrecken
+Ziel
+beende
+bisher
+das
+dem
+den
+der
+die
+ein
+eine
+enthält
+erreichen
+erscheint
+für
+gegeben
+geöffnet
+können
+linearen
+minimal
+mit
+mittels
+nach
+sind
+und
+von
+werden
+wird
+wählen
+zwischen
+Über d
+Über das Dateimenü
+über

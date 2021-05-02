@@ -1,0 +1,3 @@
+In dem Verzeichnis GlpkGui-Src befinden sich die Visual Studio 2008 Projektdateien für die Software GlpKGui.
+Das Projekt hatte unter der englischen Version der IDE keine Fehler und konnte einwandfrei kompiliert werden, jedoch wurde beim Import in die deutsche Version festgestellt, dass die IDE Fehler für manche Werte in den Resource-Dateien anzeigt.
+Dies ist vermutlich auf die Sprachkonfiguration zurückzuführen.

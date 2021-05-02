@@ -1,0 +1,1384 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perlmod</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perlmod_name_0">
+NAME</A>
+</H1>
+perlmod - Perl modules (packages)
+<p><p><hr>
+
+<H1> 
+<A NAME="perlmod_description_0">
+DESCRIPTION</A>
+</H1>
+<p>
+<H2> 
+<A NAME="perlmod_packages_0">
+Packages</A>
+</H2>
+Perl provides a mechanism for alternative namespaces to protect packages
+from stomping on each other's variables.  In fact, apart from certain
+magical variables, there's really no such thing as a global variable in
+Perl.  The package statement declares the compilation unit as being in the
+given namespace.  The scope of the package declaration is from the
+declaration itself through the end of the enclosing block (the same scope
+as the <EM>local()</EM> operator).  All further unqualified dynamic identifiers
+will be in this namespace.  A package statement only affects dynamic
+variables--including those you've used <EM>local()</EM> on--but <EM>not</EM> lexical
+variables created with <EM>my()</EM>.  Typically it would be the first declaration
+in a file to be included by the <CODE>require</CODE> or <CODE>use</CODE> operator.  You can
+switch into a package in more than one place; it merely influences which
+symbol table is used by the compiler for the rest of that block.  You can
+refer to variables and filehandles in other packages by prefixing the
+identifier with the package name and a double colon:
+<CODE><STRONG>$Package::Variable</STRONG></CODE>.  If the package name is null, the <CODE>main</CODE> package
+is assumed.  That is, <CODE><STRONG>$::sail</STRONG></CODE> is equivalent to <CODE><STRONG>$main::sail</STRONG></CODE>.
+<p>(The old package delimiter was a single quote, but double colon
+is now the preferred delimiter, in part because it's more readable
+to humans, and in part because it's more readable to <STRONG>emacs</STRONG> macros.
+It also makes C++ programmers feel like they know what's going on.)
+<p>Packages may be nested inside other packages: <CODE><STRONG>$OUTER::INNER::var</STRONG></CODE>.  This
+implies nothing about the order of name lookups, however.  All symbols
+are either local to the current package, or must be fully qualified
+from the outer package name down.  For instance, there is nowhere
+within package <CODE>OUTER</CODE> that <CODE><STRONG>$INNER::var</STRONG></CODE> refers to <CODE><STRONG>$OUTER::INNER::var</STRONG></CODE>.
+It would treat package <CODE>INNER</CODE> as a totally separate global package.
+<p>Only identifiers starting with letters (or underscore) are stored in a
+package's symbol table.  All other symbols are kept in package <CODE>main</CODE>,
+including all of the punctuation variables like <STRONG>$_</STRONG>.  In addition, the
+identifiers STDIN, STDOUT, STDERR, ARGV, ARGVOUT, ENV, INC and SIG are
+forced to be in package <CODE>main</CODE>, even when used for other purposes than
+their built-in one.  Note also that, if you have a package called <CODE>m</CODE>,
+<CODE>s</CODE> or <CODE>y</CODE>, then you can't use the qualified form of an identifier
+because it will be interpreted instead as a pattern match, a substitution,
+or a translation.
+<p>(Variables beginning with underscore used to be forced into package
+main, but we decided it was more useful for package writers to be able
+to use leading underscore to indicate private variables and method names.
+<STRONG>$_</STRONG> is still global though.)
+<p><EM>Eval()</EM>ed strings are compiled in the package in which the <EM>eval()</EM> was
+compiled.  (Assignments to <CODE><STRONG>$SIG</STRONG>{}</CODE>, however, assume the signal
+handler specified is in the <CODE>main</CODE> package.  Qualify the signal handler
+name if you wish to have a signal handler in a package.)  For an
+example, examine <EM>perldb.pl</EM> in the Perl library.  It initially switches
+to the <CODE>DB</CODE> package so that the debugger doesn't interfere with variables
+in the script you are trying to debug.  At various points, however, it
+temporarily switches back to the <CODE>main</CODE> package to evaluate various
+expressions in the context of the <CODE>main</CODE> package (or wherever you came
+from).  See the <EM>perldebug</EM>  manpage
+.
+<p>See the <EM>perlsub</EM>  manpage
+ for other scoping issues related to <EM>my()</EM> and <EM>local()</EM>, 
+or the <EM>perlref</EM>  manpage
+ regarding closures.
+<p>
+<H2> 
+<A NAME="perlmod_symbol_0">
+Symbol Tables</A>
+</H2>
+The symbol table for a package happens to be stored in the associative
+array of that name appended with two colons.  The main symbol table's
+name is thus <CODE><STRONG>%main::</STRONG></CODE>, or <CODE><STRONG>%::</STRONG></CODE> for short.  Likewise symbol table for
+the nested package mentioned earlier is named <CODE><STRONG>%OUTER::INNER::</STRONG></CODE>.
+<p>The value in each entry of the associative array is what you are referring
+to when you use the <CODE>*name</CODE> typeglob notation.  In fact, the following
+have the same effect, though the first is more efficient because it does
+the symbol table lookups at compile time:
+<p>
+<XMP>
+    local(*main::foo) = *main::bar; local($main::{'foo'}) =
+    $main::{'bar'};
+
+</XMP>
+<p>You can use this to print out all the variables in a package, for
+instance.  Here is <EM>dumpvar.pl</EM> from the Perl library:
+<p>
+<XMP>
+   package dumpvar;
+   sub main::dumpvar {
+       ($package) = @_;
+       local(*stab) = eval("*${package}::");
+       while (($key,$val) = each(%stab)) {
+           local(*entry) = $val;
+           if (defined $entry) {
+               print "\$$key = '$entry'\n";
+           }
+           if (defined @entry) {
+               print "\@$key = (\n";
+               foreach $num ($[ .. $#entry) {
+                   print "  $num\t'",$entry[$num],"'\n";
+               }
+               print ")\n";
+           }
+           if ($key ne "${package}::" && defined %entry) {
+               print "\%$key = (\n";
+               foreach $key (sort keys(%entry)) {
+                   print "  $key\t'",$entry{$key},"'\n";
+               }
+               print ")\n";
+           }
+       }
+   }
+
+</XMP>
+<p>Note that even though the subroutine is compiled in package <CODE>dumpvar</CODE>,
+the name of the subroutine is qualified so that its name is inserted
+into package <CODE>main</CODE>.
+<p>Assignment to a typeglob performs an aliasing operation, i.e.,
+<p>
+<XMP>
+    *dick = *richard;
+
+</XMP>
+<p>causes variables, subroutines and file handles accessible via the
+identifier <CODE>richard</CODE> to also be accessible via the identifier <CODE>dick</CODE>.  If
+you only want to alias a particular variable or subroutine, you can
+assign a reference instead:
+<p>
+<XMP>
+    *dick = \$richard;
+
+</XMP>
+<p>makes <STRONG>$richard</STRONG> and <STRONG>$dick</STRONG> the same variable, but leaves
+<STRONG>@richard</STRONG> and <STRONG>@dick</STRONG> as separate arrays.  Tricky, eh?
+<p>This mechanism may be used to pass and return cheap references
+into or from subroutines if you won't want to copy the whole
+thing.
+<p>
+<XMP>
+    %some_hash = ();
+    *some_hash = fn( \%another_hash );
+    sub fn {
+        local *hashsym = shift;
+        # now use %hashsym normally, and you
+        # will affect the caller's %another_hash
+        my %nhash = (); # do what you want
+        return \%nhash; 
+    }
+
+</XMP>
+<p>On return, the reference wil overwrite the hash slot in the
+symbol table specified by the *some_hash typeglob.  This
+is a somewhat tricky way of passing around references cheaply
+when you won't want to have to remember to dereference variables
+explicitly.
+<p>Another use of symbol tables is for making ``constant''  scalars.
+<p>
+<XMP>
+    *PI = \3.14159265358979;
+
+</XMP>
+<p>Now you cannot alter <STRONG>$PI</STRONG>, which is probably a good thing all in all.
+<p>
+<H2> 
+<A NAME="perlmod_package_0">
+Package Constructors and Destructors</A>
+</H2>
+There are two special subroutine definitions that function as package
+constructors and destructors.  These are the <CODE>BEGIN</CODE> and <CODE>END</CODE>
+routines.  The <CODE>sub</CODE> is optional for these routines.
+<p>A <CODE>BEGIN</CODE> subroutine is executed as soon as possible, that is, the
+moment it is completely defined, even before the rest of the containing
+file is parsed.  You may have multiple <CODE>BEGIN</CODE> blocks within a
+file--they will execute in order of definition.  Because a <CODE>BEGIN</CODE>
+block executes immediately, it can pull in definitions of subroutines
+and such from other files in time to be visible to the rest of the
+file.
+<p>An <CODE>END</CODE> subroutine is executed as late as possible, that is, when the
+interpreter is being exited, even if it is exiting as a result of a
+<EM>die()</EM> function.  (But not if it's is being blown out of the water by a
+signal--you have to trap that yourself (if you can).)  You may have
+multiple <CODE>END</CODE> blocks within a file--they will execute in reverse
+order of definition; that is: last in, first out (LIFO).
+<p>Inside an <CODE>END</CODE> subroutine <CODE>$?</CODE> contains the value that the script is
+going to pass to <CODE><EM>exit()</EM></CODE>.  You can modify <CODE>$?</CODE> to change the exit
+value of the script.  Beware of changing <CODE>$?</CODE> by accident (eg, by
+running something via <CODE>system</CODE>).
+<p>Note that when you use the <STRONG>-n</STRONG> and <STRONG>-p</STRONG> switches to Perl, <CODE>BEGIN</CODE>
+and <CODE>END</CODE> work just as they do in <STRONG>awk</STRONG>, as a degenerate case.
+<p>
+<H2> 
+<A NAME="perlmod_perl_0">
+Perl Classes</A>
+</H2>
+There is no special class syntax in Perl, but a package may function
+as a class if it provides subroutines that function as methods.  Such a
+package may also derive some of its methods from another class package
+by listing the other package name in its <STRONG>@ISA</STRONG> array.  
+<p>For more on this, see the <EM>perlobj</EM>  manpage
+.
+<p>
+<H2> 
+<A NAME="perlmod_perl_1">
+Perl Modules</A>
+</H2>
+A module is just a package that is defined in a library file of
+the same name, and is designed to be reusable.  It may do this by
+providing a mechanism for exporting some of its symbols into the symbol
+table of any package using it.  Or it may function as a class
+definition and make its semantics available implicitly through method
+calls on the class and its objects, without explicit exportation of any
+symbols.  Or it can do a little of both.
+<p>For example, to start a normal module called Fred, create
+a file called Fred.pm and put this at the start of it:
+<p>
+<XMP>
+    package Fred;
+    use Exporter ();
+    @ISA       = qw(Exporter);
+    @EXPORT    = qw(func1 func2);
+    @EXPORT_OK = qw($sally @listabob %harry func3);
+
+</XMP>
+<p>Then go on to declare and use your variables in functions
+without any qualifications.
+See 
+<A HREF="perlmod.html#perlmod_exporter_0"><EM>Exporter</EM></A>
+ and the <EM>Perl Modules File</EM> for details on 
+mechanics and style issues in module creation.
+<p>Perl modules are included into your program by saying
+<p>
+<XMP>
+    use Module;
+
+</XMP>
+<p>or
+<p>
+<XMP>
+    use Module LIST;
+
+</XMP>
+<p>This is exactly equivalent to
+<p>
+<XMP>
+    BEGIN { require "Module.pm"; import Module; }
+
+</XMP>
+<p>or
+<p>
+<XMP>
+    BEGIN { require "Module.pm"; import Module LIST; }
+
+</XMP>
+<p>As a special case
+<p>
+<XMP>
+    use Module ();
+
+</XMP>
+<p>is exactly equivalent to
+<p>
+<XMP>
+    BEGIN { require "Module.pm"; }
+
+</XMP>
+<p>All Perl module files have the extension <EM>.pm</EM>.  <CODE>use</CODE> assumes this so
+that you don't have to spell out ``<EM>Module.pm</EM>'' in quotes.  This also
+helps to differentiate new modules from old <EM>.pl</EM> and <EM>.ph</EM> files.
+Module names are also capitalized unless they're functioning as pragmas,
+``Pragmas'' are in effect compiler directives, and are sometimes called
+``pragmatic modules'' (or even ``pragmata'' if you're a classicist).
+<p>Because the <CODE>use</CODE> statement implies a <CODE>BEGIN</CODE> block, the importation
+of semantics happens at the moment the <CODE>use</CODE> statement is compiled,
+before the rest of the file is compiled.  This is how it is able
+to function as a pragma mechanism, and also how modules are able to
+declare subroutines that are then visible as list operators for
+the rest of the current file.  This will not work if you use <CODE>require</CODE>
+instead of <CODE>use</CODE>.  With require you can get into this problem:
+<p>
+<XMP>
+    require Cwd;                # make Cwd:: accessible
+    $here = Cwd::getcwd();      
+    use Cwd;                    # import names from Cwd:: 
+    $here = getcwd();
+    require Cwd;                # make Cwd:: accessible
+    $here = getcwd();           # oops! no main::getcwd()
+
+</XMP>
+<p>In general <CODE>use Module ();</CODE> is recommended over <CODE>require Module;</CODE>.
+<p>Perl packages may be nested inside other package names, so we can have
+package names containing <CODE>::</CODE>.  But if we used that package name
+directly as a filename it would makes for unwieldy or impossible
+filenames on some systems.  Therefore, if a module's name is, say,
+<CODE>Text::Soundex</CODE>, then its definition is actually found in the library
+file <EM>Text/Soundex.pm</EM>.
+<p>Perl modules always have a <EM>.pm</EM> file, but there may also be dynamically
+linked executables or autoloaded subroutine definitions associated with
+the module.  If so, these will be entirely transparent to the user of
+the module.  It is the responsibility of the <EM>.pm</EM> file to load (or
+arrange to autoload) any additional functionality.  The POSIX module
+happens to do both dynamic loading and autoloading, but the user can
+just say <CODE>use POSIX</CODE> to get it all.
+<p>For more information on writing extension modules, see the <EM>perlxs</EM>  manpage
+
+and the <EM>perlguts</EM>  manpage
+.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlmod_note_0">
+NOTE</A>
+</H1>
+Perl does not enforce private and public parts of its modules as you may
+have been used to in other languages like C++, Ada, or Modula-17.  Perl
+doesn't have an infatuation with enforced privacy.  It would prefer
+that you stayed out of its living room because you weren't invited, not
+because it has a shotgun.
+<p>The module and its user have a contract, part of which is common law,
+and part of which is ``written''.  Part of the common law contract is
+that a module doesn't pollute any namespace it wasn't asked to.  The
+written contract for the module (AKA documentation) may make other
+provisions.  But then you know when you <CODE>use RedefineTheWorld</CODE> that
+you're redefining the world and willing to take the consequences.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlmod_the_0">
+THE PERL MODULE LIBRARY</A>
+</H1>
+A number of modules are included the the Perl distribution.  These are
+described below, and all end in <EM>.pm</EM>.  You may also discover files in 
+the library directory that end in either <EM>.pl</EM> or <EM>.ph</EM>.  These are old
+libraries supplied so that old programs that use them still run.  The
+<EM>.pl</EM> files will all eventually be converted into standard modules, and
+the <EM>.ph</EM> files made by <STRONG>h2ph</STRONG> will probably end up as extension modules
+made by <STRONG>h2xs</STRONG>.  (Some <EM>.ph</EM> values may already be available through the
+POSIX module.)  The <STRONG>pl2pm</STRONG> file in the distribution may help in your
+conversion, but it's just a mechanical process, so is far from bulletproof.
+<p>
+<H2> 
+<A NAME="perlmod_pragmatic_0">
+Pragmatic Modules</A>
+</H2>
+They work somewhat like pragmas in that they tend to affect the compilation of
+your program, and thus will usually only work well when used within a
+<CODE>use</CODE>, or <CODE>no</CODE>.  These are locally scoped, so an inner BLOCK
+may countermand any of these by saying
+<p>
+<XMP>
+    no integer;
+    no strict 'refs';
+
+</XMP>
+<p>which lasts until the end of that BLOCK.
+<p>The following programs are defined (and have their own documentation).
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perlmod_diagnostics_0">
+diagnostics</A>
+
+</STRONG>
+<DD>
+Pragma to produce enhanced diagnostics
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_integer_0">
+integer</A>
+
+</STRONG>
+<DD>
+Pragma to compute arithmetic in integer instead of double
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_less_0">
+less</A>
+
+</STRONG>
+<DD>
+Pragma to request less of something from the compiler
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_ops_0">
+ops</A>
+
+</STRONG>
+<DD>
+Pragma to restrict use of unsafe opcodes
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_overload_0">
+overload</A>
+
+</STRONG>
+<DD>
+Pragma for overloading operators 
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_sigtrap_0">
+sigtrap</A>
+
+</STRONG>
+<DD>
+Pragma to enable stack backtrace on unexpected signals
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_strict_0">
+strict</A>
+
+</STRONG>
+<DD>
+Pragma to restrict unsafe constructs
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_subs_0">
+subs</A>
+
+</STRONG>
+<DD>
+Pragma to predeclare sub names
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_vars_0">
+vars</A>
+
+</STRONG>
+<DD>
+Pragma to predeclare global symbols
+<p>
+</DL>
+
+<H2> 
+<A NAME="perlmod_standard_0">
+Standard Modules</A>
+</H2>
+Standard, bundled modules are all expected to behave in a well-defined
+manner with respect to namespace pollution because they use the
+Exporter module.  See their own documentation for details.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perlmod_anydbm_file_0">
+AnyDBM_File</A>
+
+</STRONG>
+<DD>
+provide framework for multiple DBMs
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_autoloader_0">
+AutoLoader</A>
+
+</STRONG>
+<DD>
+load functions only on demand
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_autosplit_0">
+AutoSplit</A>
+
+</STRONG>
+<DD>
+split a package for autoloading
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_benchmark_0">
+Benchmark</A>
+
+</STRONG>
+<DD>
+benchmark running times of code
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_carp_0">
+Carp</A>
+
+</STRONG>
+<DD>
+warn of errors (from perspective of caller)
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_config_0">
+Config</A>
+
+</STRONG>
+<DD>
+access Perl configuration option
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_cwd_0">
+Cwd</A>
+
+</STRONG>
+<DD>
+get pathname of current working directory
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_db_file_0">
+DB_File</A>
+
+</STRONG>
+<DD>
+Perl access to Berkeley DB
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_devel_selfstubber_0">
+Devel::SelfStubber</A>
+
+</STRONG>
+<DD>
+generate stubs for a SelfLoading module
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_dynaloader_0">
+DynaLoader</A>
+
+</STRONG>
+<DD>
+Dynamically load C libraries into Perl code
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_english_0">
+English</A>
+
+</STRONG>
+<DD>
+use nice English (or <STRONG>awk</STRONG>) names for ugly punctuation variables
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_env_0">
+Env</A>
+
+</STRONG>
+<DD>
+perl module that imports environment variables
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_exporter_0">
+Exporter</A>
+
+</STRONG>
+<DD>
+provide import/export controls for Perl modules
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_extutils_liblist_0">
+ExtUtils::Liblist</A>
+
+</STRONG>
+<DD>
+determine libraries to use and how to use them
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_extutils_makemaker_0">
+ExtUtils::MakeMaker</A>
+
+</STRONG>
+<DD>
+create an extension Makefile
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_extutils_manifest_0">
+ExtUtils::Manifest</A>
+
+</STRONG>
+<DD>
+utilities to write and check a MANIFEST file
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_extutils_mkbootstrap_0">
+ExtUtils::Mkbootstrap</A>
+
+</STRONG>
+<DD>
+make a bootstrap file for use by DynaLoader
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_extutils_miniperl_0">
+ExtUtils::Miniperl</A>
+
+</STRONG>
+<DD>
+!!!GOOD QUESTION!!!
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_fcntl_0">
+Fcntl</A>
+
+</STRONG>
+<DD>
+load the C Fcntl.h defines
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_file_basename_0">
+File::Basename</A>
+
+</STRONG>
+<DD>
+parse file specifications
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_file_checktree_0">
+File::CheckTree</A>
+
+</STRONG>
+<DD>
+run many filetest checks on a tree
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_file_find_0">
+File::Find</A>
+
+</STRONG>
+<DD>
+traverse a file tree
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_filehandle_0">
+FileHandle</A>
+
+</STRONG>
+<DD>
+supply object methods for filehandles
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_file_path_0">
+File::Path</A>
+
+</STRONG>
+<DD>
+create or remove a series of directories
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_getopt_long_0">
+Getopt::Long</A>
+
+</STRONG>
+<DD>
+extended getopt processing
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_getopt_std_0">
+Getopt::Std</A>
+
+</STRONG>
+<DD>
+Process single-character switches with switch clustering
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_i_n_collate_0">
+I18N::Collate</A>
+
+</STRONG>
+<DD>
+compare 8-bit scalar data according to the current locale
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_ipc_open_0">
+IPC::Open2</A>
+
+</STRONG>
+<DD>
+a process for both reading and writing
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_ipc_open_1">
+IPC::Open3</A>
+
+</STRONG>
+<DD>
+open a process for reading, writing, and error handling
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_net_ping_0">
+Net::Ping</A>
+
+</STRONG>
+<DD>
+check a host for upness
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_posix_0">
+POSIX</A>
+
+</STRONG>
+<DD>
+Perl interface to IEEE Std 1003.1
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_selfloader_0">
+SelfLoader</A>
+
+</STRONG>
+<DD>
+load functions only on demand
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_safe_0">
+Safe</A>
+
+</STRONG>
+<DD>
+Creation controlled compartments in which perl code can be evaluated.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_socket_0">
+Socket</A>
+
+</STRONG>
+<DD>
+load the C socket.h defines and structure manipulators
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_test_harness_0">
+Test::Harness</A>
+
+</STRONG>
+<DD>
+run perl standard test scripts with statistics
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_text_abbrev_0">
+Text::Abbrev</A>
+
+</STRONG>
+<DD>
+create an abbreviation table from a list
+<p>
+</DL>
+To find out <EM>all</EM> the modules installed on your system, includingthose without documentation or outside the standard release, do this:
+<p>
+<XMP>
+    find `perl -e 'print "@INC"'` -name '*.pm' -print
+
+</XMP>
+<p>They should all have their own documentation installed and accessible via
+your system man(1) command.  If that fails, try the <EM>perldoc</EM> program.
+<p>
+<H2> 
+<A NAME="perlmod_extension_0">
+Extension Modules</A>
+</H2>
+Extension modules are written in C (or a mix of Perl and C) and get
+dynamically loaded into Perl if and when you need them.  Supported
+extension modules include the Socket, Fcntl, and POSIX modules.
+<p>Many popular C extension modules do not come bundled (at least, not
+completely) due to their size, volatility, or simply lack of time for
+adequate testing and configuration across the multitude of platforms on
+which Perl was beta-tested.  You are encouraged to look for them in
+archie(1L), the Perl FAQ or Meta-FAQ, the WWW page, and even with their
+authors before randomly posting asking for their present condition and
+disposition.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlmod_cpan_0">
+CPAN</A>
+</H1>
+CPAN stands for the Comprehensive Perl Archive Network.  This is a globally
+replicated collection of all known Perl materials, including hundreds 
+of unbundled modules.  Here are the major categories of modules:
+<p>
+<UL>
+<LI>Language Extensions and Documentation Tools 
+<p>
+<LI>Development Support
+<p>
+<LI>Operating System Interfaces
+<p>
+<LI>Networking, Device Control (modems) and InterProcess Communication
+<p>
+<LI>Data Types and Data Type Utilities
+<p>
+<LI>Database Interfaces
+<p>
+<LI>User Interfaces
+<p>
+<LI>Interfaces to / Emulations of Other Programming Languages
+<p>
+<LI>File Names, File Systems and File Locking (see also File Handles)
+<p>
+<LI>String Processing, Language Text Processing, Parsing and Searching
+<p>
+<LI>Option, Argument, Parameter and Configuration File Processing
+<p>
+<LI>Internationalization and Locale
+<p>
+<LI>Authentication, Security and Encryption
+<p>
+<LI>World Wide Web, HTML, HTTP, CGI, MIME
+<p>
+<LI>Server and Daemon Utilities
+<p>
+<LI>Archiving and Compression
+<p>
+<LI>Images, Pixmap and Bitmap Manipulation, Drawing and Graphing
+<p>
+<LI>Mail and Usenet News
+<p>
+<LI>Control Flow Utilities (callbacks and exceptions etc)
+<p>
+<LI>File Handle and Input/Output Stream Utilities
+<p>
+<LI>Miscellaneous Modules
+<p>
+</UL>
+The registered CPAN sites as of this writing include the following.You should try to choose one close to you:
+<p>
+<UL>
+<LI><A HREF="ftp://ftp.sterling.com/programming/languages/perl/">ftp://ftp.sterling.com/programming/languages/perl/</A>
+<p>
+<LI><A HREF="ftp://ftp.sedl.org/pub/mirrors/CPAN/">ftp://ftp.sedl.org/pub/mirrors/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.uoknor.edu/mirrors/CPAN/">ftp://ftp.uoknor.edu/mirrors/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.delphi.com/pub/mirrors/packages/perl/CPAN/">ftp://ftp.delphi.com/pub/mirrors/packages/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://uiarchive.cso.uiuc.edu/pub/lang/perl/CPAN/">ftp://uiarchive.cso.uiuc.edu/pub/lang/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.cis.ufl.edu/pub/perl/CPAN/">ftp://ftp.cis.ufl.edu/pub/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.switch.ch/mirror/CPAN/">ftp://ftp.switch.ch/mirror/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.sunet.se/pub/lang/perl/CPAN/">ftp://ftp.sunet.se/pub/lang/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.ci.uminho.pt/pub/lang/perl/">ftp://ftp.ci.uminho.pt/pub/lang/perl/</A>
+<p>
+<LI><A HREF="ftp://ftp.cs.ruu.nl/pub/PERL/CPAN/">ftp://ftp.cs.ruu.nl/pub/PERL/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.demon.co.uk/pub/mirrors/perl/CPAN/">ftp://ftp.demon.co.uk/pub/mirrors/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.rz.ruhr-uni-bochum.de/pub/programming/languages/perl/CPAN/">ftp://ftp.rz.ruhr-uni-bochum.de/pub/programming/languages/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.leo.org/pub/comp/programming/languages/perl/CPAN/">ftp://ftp.leo.org/pub/comp/programming/languages/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.pasteur.fr/pub/computing/unix/perl/CPAN/">ftp://ftp.pasteur.fr/pub/computing/unix/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.ibp.fr/pub/perl/CPAN/">ftp://ftp.ibp.fr/pub/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.funet.fi/pub/languages/perl/CPAN/">ftp://ftp.funet.fi/pub/languages/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.tekotago.ac.nz/pub/perl/CPAN/">ftp://ftp.tekotago.ac.nz/pub/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.mame.mu.oz.au/pub/perl/CPAN/">ftp://ftp.mame.mu.oz.au/pub/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://coombs.anu.edu.au/pub/perl/">ftp://coombs.anu.edu.au/pub/perl/</A>
+<p>
+<LI><A HREF="ftp://dongpo.math.ncu.edu.tw/perl/CPAN/">ftp://dongpo.math.ncu.edu.tw/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.lab.kdd.co.jp/lang/perl/CPAN/">ftp://ftp.lab.kdd.co.jp/lang/perl/CPAN/</A>
+<p>
+<LI><A HREF="ftp://ftp.is.co.za/programming/perl/CPAN/">ftp://ftp.is.co.za/programming/perl/CPAN/</A>
+<p>
+</UL>
+For an up-to-date listing of CPAN sites, see <A HREF="F<http://www.perl.com/perl/CPAN>">F<http://www.perl.com/perl/CPAN></A> or <A HREF="F<ftp://ftp.perl.com/perl/>">F<ftp://ftp.perl.com/perl/></A>.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlmod_modules_0">
+Modules: Creation, Use and Abuse</A>
+</H1>
+(The following section is borrowed directly from Tim Bunce's modules
+file, available at your nearest CPAN site.)
+<p>Perl 5 implements a class using a package, but the presence of a
+package doesn't imply the presence of a class.  A package is just a
+namespace.  A class is a package that provides subroutines that can be
+used as methods.  A method is just a subroutine that expects, as its
+first argument, either the name of a package (for ``static'' methods),
+or a reference to something (for ``virtual'' methods).
+<p>A module is a file that (by convention) provides a class of the same
+name (sans the .pm), plus an import method in that class that can be
+called to fetch exported symbols.  This module may implement some of
+its methods by loading dynamic C or C++ objects, but that should be
+totally transparent to the user of the module.  Likewise, the module
+might set up an AUTOLOAD function to slurp in subroutine definitions on
+demand, but this is also transparent.  Only the .pm file is required to
+exist.
+<p>
+<H2> 
+<A NAME="perlmod_guidelines_0">
+Guidelines for Module Creation</A>
+</H2>
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perlmod_do_0">
+Do similar modules already exist in some form?</A>
+
+</STRONG>
+<DD>
+If so, please try to reuse the existing modules either in whole or
+by inheriting useful features into a new class.  If this is not
+practical try to get together with the module authors to work on
+extending or enhancing the functionality of the existing modules.
+A perfect example is the plethora of packages in perl4 for dealing
+with command line options.
+<p>If you are writing a module to expand an already existing set of
+modules, please coordinate with the author of the package.  It
+helps if you follow the same naming scheme and module interaction
+scheme as the original author.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_try_0">
+Try to design the new module to be easy to extend and reuse.</A>
+
+</STRONG>
+<DD>
+Use blessed references.  Use the two argument form of bless to bless
+into the class name given as the first parameter of the constructor,
+e.g.:
+<p>
+<XMP>
+ sub new { 
+        my $class = shift;
+        return bless {}, $class;
+ }
+
+</XMP>
+<p>or even this if you'd like it to be used as either a static
+or a virtual method.
+<p>
+<XMP>
+ sub new { 
+        my $self  = shift;
+        my $class = ref($self) || $self;
+        return bless {}, $class;
+ }
+
+</XMP>
+<p>Pass arrays as references so more parameters can be added later
+(it's also faster).  Convert functions into methods where
+appropriate.  Split large methods into smaller more flexible ones.
+Inherit methods from other modules if appropriate.
+<p>Avoid class name tests like: <CODE>die ``Invalid'' unless ref <STRONG>$ref</STRONG> eq 'FOO'</CODE>.
+Generally you can delete the ``<CODE>eq 'FOO'</CODE>'' part with no harm at all.
+Let the objects look after themselves! Generally, avoid hardwired
+class names as far as possible.
+<p>Avoid <CODE><STRONG>$r</STRONG>-&gt;Class::<EM>func()</EM></CODE> where using <CODE><STRONG>@ISA</STRONG>=qw(... Class ...)</CODE> and
+<CODE><STRONG>$r</STRONG>-&gt;<EM>func()</EM></CODE> would work (see the <EM>perlbot</EM>  manpage
+ for more details).
+<p>Use autosplit so little used or newly added functions won't be a
+burden to programs which don't use them. Add test functions to
+the module after __END__ either using AutoSplit or by saying:
+<p>
+<XMP>
+ eval join('',<main::DATA>) || die $@ unless caller();
+
+</XMP>
+<p>Does your module pass the 'empty sub-class' test? If you say
+``<CODE><STRONG>@SUBCLASS::ISA</STRONG> = qw(YOURCLASS);</CODE>'' your applications should be able
+to use SUBCLASS in exactly the same way as YOURCLASS.  For example,
+does your application still work if you change:  <CODE><STRONG>$obj</STRONG> = new YOURCLASS;</CODE>
+into: <CODE><STRONG>$obj</STRONG> = new SUBCLASS;</CODE> ?
+<p>Avoid keeping any state information in your packages. It makes it
+difficult for multiple other packages to use yours. Keep state
+information in objects.
+<p>Always use <STRONG>-w</STRONG>. Try to <CODE>use strict;</CODE> (or <CODE>use strict qw(...);</CODE>).
+Remember that you can add <CODE>no strict qw(...);</CODE> to individual blocks
+of code which need less strictness. Always use <STRONG>-w</STRONG>. Always use <STRONG>-w</STRONG>!
+Follow the guidelines in the perlstyle(1) manual.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_some_0">
+Some simple style guidelines</A>
+
+</STRONG>
+<DD>
+The perlstyle manual supplied with perl has many helpful points.
+<p>Coding style is a matter of personal taste. Many people evolve their
+style over several years as they learn what helps them write and
+maintain good code.  Here's one set of assorted suggestions that
+seem to be widely used by experienced developers:
+<p>Use underscores to separate words.  It is generally easier to read
+<STRONG>$var_names_like_this</STRONG> than <STRONG>$VarNamesLikeThis</STRONG>, especially for
+non-native speakers of English. It's also a simple rule that works
+consistently with VAR_NAMES_LIKE_THIS.
+<p>Package/Module names are an exception to this rule. Perl informally
+reserves lowercase module names for 'pragma' modules like integer
+and strict. Other modules normally begin with a capital letter and
+use mixed case with no underscores (need to be short and portable).
+<p>You may find it helpful to use letter case to indicate the scope
+or nature of a variable. For example:
+<p>
+<XMP>
+ $ALL_CAPS_HERE   constants only (beware clashes with perl vars)
+ $Some_Caps_Here  package-wide global/static
+ $no_caps_here    function scope my() or local() variables
+
+</XMP>
+<p>Function and method names seem to work best as all lowercase.
+E.g., <CODE><STRONG>$obj</STRONG>-&gt;<EM>as_string()</EM></CODE>.
+<p>You can use a leading underscore to indicate that a variable or
+function should not be used outside the package that defined it.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_select_0">
+Select what to export.</A>
+
+</STRONG>
+<DD>
+Do NOT export method names!
+<p>Do NOT export anything else by default without a good reason!
+<p>Exports pollute the namespace of the module user.  If you must
+export try to use <STRONG>@EXPORT_OK</STRONG> in preference to <STRONG>@EXPORT</STRONG> and avoid
+short or common names to reduce the risk of name clashes.
+<p>Generally anything not exported is still accessible from outside the
+module using the ModuleName::item_name (or <CODE><STRONG>$blessed_ref</STRONG>-&gt;method</CODE>)
+syntax.  By convention you can use a leading underscore on names to
+informally indicate that they are 'internal' and not for public use.
+<p>(It is actually possible to get private functions by saying:
+<CODE>my <STRONG>$subref</STRONG> = sub { ... };  &amp;<STRONG>$subref</STRONG>;</CODE>.  But there's no way to call that
+directly as a method, since a method must have a name in the symbol
+table.)
+<p>As a general rule, if the module is trying to be object oriented
+then export nothing. If it's just a collection of functions then
+<STRONG>@EXPORT_OK</STRONG> anything but use <STRONG>@EXPORT</STRONG> with caution.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_select_1">
+Select a name for the module.</A>
+
+</STRONG>
+<DD>
+This name should be as descriptive, accurate and complete as
+possible.  Avoid any risk of ambiguity. Always try to use two or
+more whole words.  Generally the name should reflect what is special
+about what the module does rather than how it does it.  Please use
+nested module names to informally group or categorise a module.
+A module should have a very good reason not to have a nested name.
+Module names should begin with a capital letter.
+<p>Having 57 modules all called Sort will not make life easy for anyone
+(though having 23 called Sort::Quick is only marginally better :-).
+Imagine someone trying to install your module alongside many others.
+If in any doubt ask for suggestions in comp.lang.perl.misc.
+<p>If you are developing a suite of related modules/classes it's good
+practice to use nested classes with a common prefix as this will
+avoid namespace clashes. For example:  Xyz::Control, Xyz::View,
+Xyz::Model etc. Use the modules in this list as a naming guide.
+<p>If adding a new module to a set, follow the original author's
+standards for naming modules and the interface to methods in
+those modules.
+<p>To be portable each component of a module name should be limited to
+11 characters. If it might be used on DOS then try to ensure each is
+unique in the first 8 characters. Nested modules make this easier.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_have_0">
+Have you got it right?</A>
+
+</STRONG>
+<DD>
+How do you know that you've made the right decisions? Have you
+picked an interface design that will cause problems later? Have
+you picked the most appropriate name? Do you have any questions?
+<p>The best way to know for sure, and pick up many helpful suggestions,
+is to ask someone who knows. Comp.lang.perl.misc is read by just about
+all the people who develop modules and it's the best place to ask.
+<p>All you need to do is post a short summary of the module, its
+purpose and interfaces. A few lines on each of the main methods is
+probably enough. (If you post the whole module it might be ignored
+by busy people - generally the very people you want to read it!)
+<p>Don't worry about posting if you can't say when the module will be
+ready - just say so in the message. It might be worth inviting
+others to help you, they may be able to complete it for you!
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_readme_0">
+README and other Additional Files.</A>
+
+</STRONG>
+<DD>
+It's well known that software developers usually fully document the
+software they write. If, however, the world is in urgent need of
+your software and there is not enough time to write the full
+documentation please at least provide a README file containing:
+<p>
+<UL>
+<LI>A description of the module/package/extension etc.
+<p>
+<LI>A copyright notice - see below.
+<p>
+<LI>Prerequisites - what else you may need to have.
+<p>
+<LI>How to build it - possible changes to Makefile.PL etc.
+<p>
+<LI>How to install it.
+<p>
+<LI>Recent changes in this release, especially incompatibilities
+<p>
+<LI>Changes / enhancements you plan to make in the future.
+<p>
+</UL>
+If the README file seems to be getting too large you may wish tosplit out some of the sections into separate files: INSTALL,
+Copying, ToDo etc.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perlmod_adding_0">
+Adding a Copyright Notice.</A>
+
+</STRONG>
+<DD>
+How you choose to license your work is a personal decision.
+The general mechanism is to assert your Copyright and then make
+a declaration of how others may copy/use/modify your work.
+<p>Perl, for example, is supplied with two types of license: The GNU
+GPL and The Artistic License (see the files README, Copying and
+Artistic).  Larry has good reasons for NOT just using the GNU GPL.
+<p>My personal recommendation, out of respect for Larry, Perl and the
+perl community at large is to simply state something like:
+<p>
+<XMP>
+ Copyright (c) 1995 Your Name. All rights reserved.
+ This program is free software; you can redistribute it and/or
+ modify it under the same terms as Perl itself.
+
+</XMP>
+<p>This statement should at least appear in the README file. You may
+also wish to include it in a Copying file and your source files.
+Remember to include the other words in addition to the Copyright.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_give_0">
+Give the module a version/issue/release number.</A>
+
+</STRONG>
+<DD>
+To be fully compatible with the Exporter and MakeMaker modules you
+should store your module's version number in a non-my package
+variable called <STRONG>$VERSION</STRONG>.  This should be a valid floating point 
+number with at least two digits after the decimal (ie hundredths,
+e.g, <CODE><STRONG>$VERSION</STRONG> = ``0.01''</CODE>).  Don't use a ``1.3.2'' style version.
+See Exporter.pm in Perl5.001m or later for details.
+<p>It may be handy to add a function or method to retrieve the number.
+Use the number in announcements and archive file names when
+releasing the module (ModuleName-1.02.tar.Z).
+See perldoc ExtUtils::MakeMaker.pm for details.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_how_0">
+How to release and distribute a module.</A>
+
+</STRONG>
+<DD>
+It's good idea to post an announcement of the availability of your
+module (or the module itself if small) to the comp.lang.perl.announce
+Usenet newsgroup.  This will at least ensure very wide once-off
+distribution.
+<p>If possible you should place the module into a major ftp archive and
+include details of it's location in your announcement.
+<p>Some notes about ftp archives: Please use a long descriptive file
+name which includes the version number. Most incoming directories
+will not be readable/listable, i.e., you won't be able to see your
+file after uploading it. Remember to send your email notification
+message as soon as possible after uploading else your file may get
+deleted automatically. Allow time for the file to be processed
+and/or check the file has been processed before announcing its
+location.
+<p>FTP Archives for Perl Modules:
+<p>Follow the instructions and links on
+<p>
+<XMP>
+   http://franz.ww.tu-berlin.de/modulelist
+
+</XMP>
+<p>or upload to one of these sites: 
+<p>
+<XMP>
+   ftp://franz.ww.tu-berlin.de/incoming
+   ftp://ftp.cis.ufl.edu/incoming  
+
+</XMP>
+<p>and notify <A HREF="MAILTO:upload@franz.ww.tu-berlin.de">upload@franz.ww.tu-berlin.de</A>.
+<p>By using the WWW interface you can ask the Upload Server to mirror
+your modules from your ftp or WWW site into your own directory on
+CPAN!
+<p>Please remember to send me an updated entry for the Module list!
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_take_0">
+Take care when changing a released module.</A>
+
+</STRONG>
+<DD>
+Always strive to remain compatible with previous released versions
+(see 2.2 above) Otherwise try to add a mechanism to revert to the
+old behaviour if people rely on it. Document incompatible changes.
+<p>
+</DL>
+
+</DL>
+
+<H2> 
+<A NAME="perlmod_guidelines_1">
+Guidelines for Converting Perl 4 Library Scripts into Modules</A>
+</H2>
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perlmod_there_0">
+There is no requirement to convert anything.</A>
+
+</STRONG>
+<DD>
+If it ain't broke, don't fix it! Perl 4 library scripts should
+continue to work with no problems. You may need to make some minor
+changes (like escaping non-array <STRONG>@'</STRONG>s in double quoted strings) but
+there is no need to convert a .pl file into a Module for just that.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_consider_0">
+Consider the implications.</A>
+
+</STRONG>
+<DD>
+All the perl applications which make use of the script will need to
+be changed (slightly) if the script is converted into a module.  Is
+it worth it unless you plan to make other changes at the same time?
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_make_0">
+Make the most of the opportunity.</A>
+
+</STRONG>
+<DD>
+If you are going to convert the script to a module you can use the
+opportunity to redesign the interface. The 'Guidelines for Module
+Creation' above include many of the issues you should consider.
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_the_1">
+The pl2pm utility will get you started.</A>
+
+</STRONG>
+<DD>
+This utility will read *.pl files (given as parameters) and write
+corresponding *.pm files. The pl2pm utilities does the following:
+<p>
+<UL>
+<LI>Adds the standard Module prologue lines
+<p>
+<LI>Converts package specifiers from ' to ::
+<p>
+<LI>Converts die(...) to croak(...)
+<p>
+<LI>Several other minor changes
+<p>
+</UL>
+Being a mechanical process pl2pm is not bullet proof. The convertedcode will need careful checking, especially any package statements.
+Don't delete the original .pl file till the new .pm one works!
+<p>
+</UL>
+
+<H2> 
+<A NAME="perlmod_guidelines_2">
+Guidelines for Reusing Application Code</A>
+</H2>
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perlmod_complete_0">
+Complete applications rarely belong in the Perl Module Library.</A>
+
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_many_0">
+Many applications contain some perl code which could be reused.</A>
+
+</STRONG>
+<DD>
+Help save the world! Share your code in a form that makes it easy
+to reuse.
+<p>
+<DT><STRONG>
+<EM>Break-out the reusable code into one or more separate module files.</EM>
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_take_1">
+Take the opportunity to reconsider and redesign the interfaces.</A>
+
+</STRONG>
+<DD>
+<p>
+<DT><STRONG>
+
+<A NAME="perlmod_in_0">
+In some cases the 'application' can then be reduced to a small</A>
+
+</STRONG>
+<DD>
+fragment of code built on top of the reusable modules. In these cases
+the application could invoked as:
+<p>
+<XMP>
+     perl -e 'use Module::Name; method(@ARGV)' ...
+or   
+     perl -mModule::Name ...    (in perl5.002)
+
+</XMP>
+<p>
+</DL>
+
+</BODY>
+</HTML>

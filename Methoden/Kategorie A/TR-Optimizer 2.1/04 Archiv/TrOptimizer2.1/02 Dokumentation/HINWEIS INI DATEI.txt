@@ -1,0 +1,7 @@
+Der Pfad zur Datei "paths.ini" wurde momentan zu:
+
+C:\Methodenbank\Methoden\Kategorie A\TR Optimizer\TrOptimizer2.1\01 programm\paths.ini
+
+konfiguriert.
+
+Bitte die "paths.ini" Datei nicht irgendwo anders schieben.

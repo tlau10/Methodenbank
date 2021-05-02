@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Chapter 5</TITLE>
+   <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+<body class="script" background="../bg_kapitel.gif" bgproperties="fixed">
+
+
+<h1>5. Sensitivity analysis</h1>
+
+<P ALIGN="JUSTIFY">The objective of the sensitivity analysis is to analyse possible 
+variations for the individual coefficients of the LP model, maintaining the optimum 
+in its quality.
+<BR>
+As it is not sensible to allow for the coefficient of the A matrix to vary (it is 
+better to calculate with a new model!), we can concentrate on the</P>
+
+<ul>
+<li>variation of a coefficient of the objective function, and the
+<li>variation of a coefficient of the b vector.
+</ul>
+
+<P ALIGN="JUSTIFY">In other words, we concentrate on the quantitative 
+transformation of the optimal tableau.</P>
+<br>
+
+<P ALIGN="JUSTIFY">If in such "post-optimal" analyses, we are interested in the 
+modification of the optimal tableau beyond the variations that have occurred with 
+the sensibility analysis and with data constellations that are dependent on each 
+other, we employ the <A HREF="KAP6_en.HTM">parametric programming</A>.</P>
+
+
+<br>
+<HR WIDTH="80%"> 
+
+<p><A NAME="5.1"></A>
+<h2>5.1 Difficulties of interpreting dual variables</h2>
+
+<P ALIGN="JUSTIFY">For possible variations of the b vector, an interpretation of the dual variables would be possible. However, this is only acceptable in the "strictly marginal area"; further restrictions could limit the statements of the dual variables. Correct is the following procedure:</P>
+
+<br>
+<HR WIDTH="80%"> 
+
+<p><A NAME="5.2"></A>
+<h2>5.2 Variation of a coefficient of the objective function</h2>
+
+<P align=justify>For the dual variables applies (<A HREF="KAP4_en.HTM">see 4</A>):</P>
+
+<P>The dual variables are also subject to the non-negativity restriction!<br>
+(Only applies when the basic variables in the optimal tableau are equivalent to 
+the structure variables!)</P>
+
+
+<P>It has to apply:
+
+<p><IMG SRC="Img5001.gif" HEIGHT=43 WIDTH=150>
+
+
+<P>Example for the standard model:</P>
+
+<P><IMG SRC="Image41.gif" HEIGHT=49 WIDTH=165></P>
+
+<Pre>
+   with c<sub>2</sub> = 2:   u<sub>1</sub> =  3/7 c<sub>l</sub> - 2 * 1/7 &ge; 0;
+                  u<sub>2</sub> = -2/7 c<sub>l</sub> + 2 * 3/7 &ge; 0;
+</Pre>
+<br>
+
+<P>This results in: c<sub>l</sub> <IMG SRC="..\ge.gif"> 2/3
+and c<sub>l</sub> <IMG SRC="..\le.gif"> 3</P>
+
+<P align="justify">In other words: if c<sub>l</sub> exceeds the value of 3, a basis
+change occurs. If c<sub>l</sub> is between 2/3 and 3, the optimal solution remains 
+its "quality", i.e. the basis remains unchanged.</P>
+
+<P>(Analogous for c<sub>2</sub>!)</P>
+
+
+<br>
+<HR WIDTH="80%">
+
+<p><A NAME="5.3"></A>
+<h2>5.3 Variation of a coefficient of the b vector</h2>
+
+<P>For the optimal solution applies:</P>
+
+<P><IMG SRC="Image45.gif" HEIGHT=32 WIDTH=100></P>
+
+<P>(Non-negativity restriction!)</P>
+
+<P>For the standard example this results in:</P>
+
+<pre>
+   3/7 b<sub>l</sub> - 9 * 2/7 &ge; 0;
+  -1/7 b<sub>l</sub> + 9 * 3/7 &ge; 0;
+</pre>
+
+<P>with b<sub>2</sub> = 9;<BR>
+b<sub>l</sub> <IMG SRC="..\ge.gif"> 6 and b<sub>l</sub> <IMG SRC="..\le.gif"> 27.</P>
+
+<P ALIGN="JUSTIFY">In other words: if the value of b<sub>l</sub> is between 6 and 27, 
+the basis of the optimal solution does not change!</P>
+
+
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="KAP4_en.HTM">chapter 4</a><BR>
+<A HREF="KAP6_en.HTM">chapter 6</A><br>
+<br>
+<A HREF="../PCSTART_en.HTM">start screen</A></B></P>
+
+</BODY>
+</HTML>

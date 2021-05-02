@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>12. Generalized networks</TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+   <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+<body class="script" background="../bg_kapitel.gif" bgproperties="fixed">
+
+<h1>12. Generalized Networks</h1>
+<br>
+
+<P align="center"><! img src="LP_Probl.png">
+<table border=0 style="font-size:12pt; font-weight:bold">
+<colgroup>
+  <col align=center>
+  <col align=center>
+  <col align=center>
+  <col align=center>
+  <col align=center>
+</colgroup>
+<tr>
+<td colspan=3><font size="+1" color="#2020ff">
+    problems of Linear Programming</font><br><br></td></tr>
+<tr>
+<td align=left>&nbsp; &nbsp; &nbsp; &darr;
+<td>&nbsp; &nbsp; &darr;
+<td align=right>&darr; &nbsp; &nbsp; &nbsp;
+<tr>
+<td align=left>simulation &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<td>optimization algorithms
+<td align=right>&nbsp; &nbsp; &nbsp; heuristic methods
+<tr>
+<td colspan=3>&darr;
+<tr>
+<td colspan=3>Simplex method   
+<tr>
+<td colspan=3>&darr;
+<tr>
+<td colspan=3>generalized networks
+<tr>
+<td colspan=3>&darr;
+<tr>
+<td colspan=3>pure networks<br>
+   (stepping stone ...)
+<tr>
+<td colspan=3>&darr;
+<tr>
+<td colspan=3>allocation problems (1 x 1)<br>
+    (Hungarian method)
+</table></P>
+<br>
+
+
+<HR WIDTH="80%">
+
+<P align="center"><B><FONT SIZE=+2>A pipe system</FONT></B></P>
+
+<P align=center><IMG SRC="img1211.gif" HEIGHT=345 WIDTH=640></P>
+
+
+<pre style="width:392; font-size:11pt; background-color:#eeeeee; 
+     margin-left:20; padding:8">
+  - x<SUB>12</SUB>   -  x<SUB>13</SUB>                  &le;     0
+ 0,8x<SUB>12</SUB>          -  x<SUB>24</SUB>           =     0
+          0,5x<SUB>13</SUB>          - x<SUB>34</SUB>   =     0
+                 0,5x<SUB>24</SUB> + 0,8x<SUB>34</SUB>  &ge;  5000
+</pre>
+<br>
+
+<P>
+<table border=0>
+<tr>
+<td>&nbsp; &nbsp;  <IMG SRC="gn_z1.png" HEIGHT=128 WIDTH=152>&nbsp;
+<td><samp>supply,<br>demand<br><br>knot (node)<br><br>edge<br><br>mulitplier</samp>
+
+<td>&nbsp; &nbsp; &nbsp; <IMG SRC="gn_z2.png" HEIGHT=128 WIDTH=195>
+<td><samp>costs per<br>unit<br><br>integer<br><br>upper/lower limit<br>
+    of allowed<br>quantum</samp>
+</table>
+
+<br>
+
+
+<! Programm-Aufruf --------------------------------------------------- >
+<p><font size="-1" face="arial,helvetica">
+The method bank program <b>Generalized Networks</b> 
+with the pipe example.</font></p>
+
+<p><a href="PrgGN kap12_1.dat";
+ onMouseOver="window.status='Start des Programms GN mit obigen Beispiel';return true"
+ onMouseOut="window.status='';return true">
+<img src="btn_gn.gif" border="0"></a></p>
+<br>
+
+
+<! MATRIX-AUFRUF (nur ViOR) ------------------------------------------ >
+<div style="background:#f0f0f0; margin:0; padding:12; width:372; 
+            border-style:solid; border-width:1;text-align:left">
+
+<p style="font-family:arial; font-size:10pt">
+<b>Direct <A HREF="MATRIX(mat12#01.lpx)">solver call</A> 
+with the example.</b><br>
+<br>
+&raquo; This call is only possible with VisualOR. &laquo;</p>
+
+</div>
+
+
+<br>&nbsp;
+
+
+<HR WIDTH="80%">
+
+<P><IMG SRC="img12102.gif" HEIGHT="1054" WIDTH="680"><br>
+<span class=abb>
+Fig: The "PJ" problem as general network<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(PJ = practical year)</span></P>
+<br>
+
+
+<HR WIDTH="80%">
+<p align="center">
+<B><FONT SIZE=+2>Fortnightly shift plan</FONT></B></P>
+<br>
+
+<P align=center><IMG SRC="KP12S103.gif" HEIGHT=702 WIDTH=503></P>
+<br>
+
+<HR WIDTH="80%">
+
+
+<P><B><FONT SIZE=+1>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+Selection criteria or the conflict between</FONT></B></P>
+
+<P><B><FONT SIZE=+2 color=#6666ff>
+&nbsp;&nbsp; 
+effizcency</font>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+and
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<FONT SIZE=+2 color=#6666ff>accuracy of depiction</FONT></B></P>
+
+<P><B>
+Calculation time needed
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; 
+number of solvable model formulations</B></P>
+<br>
+<br>
+
+<P><B><FONT SIZE=+1>ALGORITHMS</FONT></B></P>
+
+<p><b>
+<ul>
+<li>number of variables/restrictions
+<li>rapidity of convergence (integer)
+<li>memory capacity
+<li>options
+<li>user friednliness     
+<li>compatibility (computer, input size)
+<li>costs 
+</ul></b></p>
+
+
+<HR WIDTH="80%">
+<br>
+
+<P><IMG SRC="img1214a.gif" HEIGHT=435 WIDTH=570><br>
+<span class=abb>Fig: calculation times NETG / APEX III<sup> 1</sup></span><br>
+&nbsp; &nbsp;&nbsp; &nbsp;
+1) Glover: GN fundamental...
+
+<P><IMG SRC="img1214b.gif" HEIGHT=355 WIDTH=570><br>
+<span class=abb>Fig: calculation times of various network codes<sup> 2</sup></span><br>
+&nbsp; &nbsp; &nbsp; &nbsp;
+2) Glover: Planning Techniques Part II</p>
+
+<br>
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="../KAP11/Kap11_en.Htm">chapter 11</A><br>
+<A HREF="../Aufgaben.Htm">exercises</A><br>
+<br>
+<A HREF="../PcStart_en.Htm">start screen</A></B></font></P>
+
+</BODY>
+</HTML>

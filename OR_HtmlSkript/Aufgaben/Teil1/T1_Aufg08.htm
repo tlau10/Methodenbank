@@ -1,0 +1,73 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>T1_Aufg08</title>
+</head>
+<body>
+<font face="Arial" color="#666666"  size=-1>Aufgabenteil 1</font>
+
+<p align="center">
+<font size="+2" color="#3366c8"><b>Aufgabe 8</b></font></p>
+<hr>
+
+<div style="font-family:arial; font-size:10pt">
+
+
+<p><u><b>Aufgabenstellung:</b></u></p>
+
+<p align=justify>
+Ein Betrieb mit Kuppelproduktion verarbeitet die Rohstoffe 1 und 2,
+die in den Mengen von maximal 50.000 bzw. 80.000 Mengeneinheiten (ME) beschafft
+werden k&ouml;nnen. Sie kosten EUR 700,- (1) bzw. EUR 1000,- je ME (2). Bei
+der Verarbeitung zerf&auml;llt der erste Rohstoff zu 60 % in das Zwischenprodukt
+3 und zu 40 % in das Zwischenprodukt 5. Aus dem zweiten Rohstoff entstehen
+bei der Verarbeitung zu 30 % das Zwischenprodukt 4 und zu 70 % das Zwischenprodukt
+6. Die Zwischenprodukte 3 und 4 m&uuml;ssen veredelt werden, wodurch Kosten
+von EUR 200,- bzw. EUR 100,- je ME entstehen. Nach der Veredelung werden
+sie zu gleichen Teilen zum Fertigprodukt 7 gemischt. Dies kann in unbegrenzter
+Menge zum Preis von EUR 900,- je ME abgesetzt werden. Schlie&szlig;lich
+werden die Zwischenprodukte 5 und 6 nach bestimmten Rezepturen zu den Fertigprodukten
+8 und 9 verarbeitet. Das Produkt 8 besteht zu 20 % aus Zwischenprodukt
+5 und zu 80 % aus Zwischenprodukt 6. Dagegen setzt sich das Produkt 9 zu
+40 % aus 5 und zu 60 % aus 6 zusammen. Die Produkte 8 und 9 k&ouml;nnen
+zum Preis von EUR 1200,- bzw. EUR 1000,- je ME abgesetzt werden. Formulieren
+Sie ein LP-Modell zur Bestimmung des Produktionsprogramms, wobei lineares
+Mischen vorausgesetzt wird.</p>
+<br>
+
+
+<p><u><b>Musterl&ouml;sung:</b></u></p>
+
+<p>Bezeichnungen:
+<ul>
+x<sub>i</sub> :&nbsp; Produktionsmenge in ME des Produktes i
+</ul>
+
+<p>Modell:
+<ul>
+-700x<sub>1</sub> - 1000x<sub>2</sub> - 200x<sub>3</sub> - 100x<sub>4</sub>
+  + 900x<sub>7</sub> + 1200x<sub>8</sub> + 1000x<sub>9</sub>
+  &nbsp;--&gt;&nbsp; max !<br>
+<br>
+x<sub>3</sub> = 0,6x<sub>1</sub><br>
+x<sub>5</sub> = 0,4x<sub>1</sub><br>
+x<sub>4</sub> = 0,3x<sub>2</sub><br>
+x<sub>6</sub> = 0,7x<sub>2</sub><br>
+
+x<sub>7</sub> = x<sub>3</sub> + x<sub>4</sub><br>
+x<sub>5</sub> = 0,2x<sub>8</sub> + 0,4x<sub>9</sub><br>
+x<sub>6</sub> = 0,8x<sub>8</sub> + 0,6x<sub>9</sub><br>
+<br>
+x<sub>1</sub> &lt;= 50000<br>
+x<sub>2</sub> &lt;= 80000<br>
+<br>
+x<sub>i</sub> &gt;= 0 &nbsp; &nbsp; (i = 1, 2, ..., 9)
+</ul>
+
+</div>
+<br>
+<input type="button" value="LP-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe08\\lp_solve.bat');"/>
+<input type="button" value="XA-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe08\\xa.bat');"/>
+</body>
+</html>

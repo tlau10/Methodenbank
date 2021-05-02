@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Iterator 2013.jnlp">
+  <information>
+    <title>Iterator 2013</title>
+    <vendor>HTWG Konstanz</vendor>
+    <description>Sample JavaFX 2.0 application.</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="libs/commons-logging-1.1.2.jar" size="62051" download="eager" />
+    <jar href="libs/javafx-dialogs-0.0.1.jar" size="116201" download="eager" />
+    <jar href="libs/javafx-dialogs-0.0.2.jar" size="112358" download="eager" />
+    <jar href="libs/javafx-dialogs-0.0.3.jar" size="118212" download="eager" />
+    <jar href="libs/jaxb-api.jar" size="100146" download="eager" />
+    <jar href="libs/jaxb-impl.jar" size="1112659" download="eager" />
+    <jar href="libs/jaxb-xjc.jar" size="2078376" download="eager" />
+    <jar href="libs/jscience-4.3.jar" size="681880" download="eager" />
+    <jar href="libs/log4j-1.2.17.jar" size="489883" download="eager" />
+    <jar href="libs/spring-aop-3.2.2.RELEASE.jar" size="335362" download="eager" />
+    <jar href="libs/spring-aspects-3.2.2.RELEASE.jar" size="51129" download="eager" />
+    <jar href="libs/spring-beans-3.2.2.RELEASE.jar" size="607448" download="eager" />
+    <jar href="libs/spring-build-src-3.2.2.RELEASE.jar" size="72781" download="eager" />
+    <jar href="libs/spring-context-3.2.2.RELEASE.jar" size="861905" download="eager" />
+    <jar href="libs/spring-context-support-3.2.2.RELEASE.jar" size="127653" download="eager" />
+    <jar href="libs/spring-core-3.2.2.RELEASE.jar" size="866788" download="eager" />
+    <jar href="libs/spring-expression-3.2.2.RELEASE.jar" size="195456" download="eager" />
+    <jar href="libs/spring-instrument-3.2.2.RELEASE.jar" size="7185" download="eager" />
+    <jar href="libs/spring-instrument-tomcat-3.2.2.RELEASE.jar" size="10596" download="eager" />
+    <jar href="libs/spring-jdbc-3.2.2.RELEASE.jar" size="405074" download="eager" />
+    <jar href="libs/spring-jms-3.2.2.RELEASE.jar" size="205271" download="eager" />
+    <jar href="libs/spring-orm-3.2.2.RELEASE.jar" size="387126" download="eager" />
+    <jar href="libs/spring-oxm-3.2.2.RELEASE.jar" size="73241" download="eager" />
+    <jar href="libs/spring-struts-3.2.2.RELEASE.jar" size="36166" download="eager" />
+    <jar href="libs/spring-test-3.2.2.RELEASE.jar" size="456143" download="eager" />
+    <jar href="libs/spring-tx-3.2.2.RELEASE.jar" size="242174" download="eager" />
+    <jar href="libs/spring-web-3.2.2.RELEASE.jar" size="626187" download="eager" />
+    <jar href="libs/spring-webmvc-3.2.2.RELEASE.jar" size="636334" download="eager" />
+    <jar href="libs/spring-webmvc-portlet-3.2.2.RELEASE.jar" size="188072" download="eager" />
+  </resources>
+  <applet-desc  width="0" height="0" main-class="com.javafx.main.NoJavaFXFallback"  name="Iterator 2013" >
+    <param name="requiredFXVersion" value="2.2+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="0" height="0" main-class="iterator.gui.javafx.MainBasicWindow"  name="Iterator 2013" />
+  <update check="background"/>
+</jnlp>

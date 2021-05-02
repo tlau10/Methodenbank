@@ -1,0 +1,90 @@
+object OptionsForm: TOptionsForm
+  Left = 383
+  Top = 108
+  Width = 567
+  Height = 488
+  Caption = 'Optionen'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object BitBtn1: TBitBtn
+    Left = 64
+    Top = 224
+    Width = 113
+    Height = 25
+    TabOrder = 0
+    OnClick = BitBtn1Click
+    Kind = bkOK
+  end
+  object BitBtn2: TBitBtn
+    Left = 192
+    Top = 224
+    Width = 113
+    Height = 25
+    TabOrder = 1
+    Kind = bkAbort
+  end
+  object GroupBox1: TGroupBox
+    Left = 8
+    Top = 8
+    Width = 457
+    Height = 201
+    Caption = 'Verzeichnisse'
+    TabOrder = 2
+    object Panel3: TPanel
+      Left = 8
+      Top = 40
+      Width = 92
+      Height = 21
+      BevelOuter = bvLowered
+      Caption = 'LPSolve'
+      TabOrder = 2
+    end
+    object EditLPSolve: TEdit
+      Left = 101
+      Top = 40
+      Width = 348
+      Height = 21
+      TabOrder = 3
+    end
+    object Panel5: TPanel
+      Left = 8
+      Top = 80
+      Width = 92
+      Height = 21
+      BevelOuter = bvLowered
+      Caption = 'Weidenauer'
+      TabOrder = 7
+    end
+    object EditWeid: TEdit
+      Left = 101
+      Top = 80
+      Width = 348
+      Height = 21
+      TabOrder = 9
+    end
+    object Panel6: TPanel
+      Left = 8
+      Top = 120
+      Width = 92
+      Height = 21
+      BevelOuter = bvLowered
+      Caption = 'Temporär'
+      TabOrder = 4
+    end
+    object EditTemp: TEdit
+      Left = 101
+      Top = 120
+      Width = 348
+      Height = 21
+      TabOrder = 5
+    end
+  end
+end

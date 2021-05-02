@@ -1,0 +1,1685 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perltrap</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perltrap_name_0">
+NAME</A>
+</H1>
+perltrap - Perl traps for the unwary
+<p><p><hr>
+
+<H1> 
+<A NAME="perltrap_description_0">
+DESCRIPTION</A>
+</H1>
+The biggest trap of all is forgetting to use the <STRONG>-w</STRONG> switch; see
+the <EM>perlrun</EM>  manpage
+.  The second biggest trap is not making your entire program
+runnable under <CODE>use strict</CODE>.
+<p>
+<H2> 
+<A NAME="perltrap_awk_0">
+Awk Traps</A>
+</H2>
+Accustomed <STRONG>awk</STRONG> users should take special note of the following:
+<p>
+<UL>
+<LI>The English module, loaded via
+<p>
+<XMP>
+    use English;
+
+</XMP>
+<p>allows you to refer to special variables (like <STRONG>$RS</STRONG>) as 
+though they were in <STRONG>awk</STRONG>; see the <EM>perlvar</EM>  manpage
+ for details.
+<p>
+<LI>Semicolons are required after all simple statements in Perl (except
+at the end of a block).  Newline is not a statement delimiter.
+<p>
+<LI>Curly brackets are required on <CODE>if</CODE>s and <CODE>while</CODE>s.
+<p>
+<LI>Variables begin with ``$'' or ``@'' in Perl.
+<p>
+<LI>Arrays index from 0.  Likewise string positions in <EM>substr()</EM> and
+<EM>index()</EM>.
+<p>
+<LI>You have to decide whether your array has numeric or string indices.
+<p>
+<LI>Associative array values do not spring into existence upon mere
+reference.
+<p>
+<LI>You have to decide whether you want to use string or numeric
+comparisons.
+<p>
+<LI>Reading an input line does not split it for you.  You get to split it
+yourself to an array.  And the <EM>split()</EM> operator has different
+arguments.
+<p>
+<LI>The current input line is normally in <STRONG>$_</STRONG>, not <STRONG>$0</STRONG>.  It generally does
+not have the newline stripped.  (<STRONG>$0</STRONG> is the name of the program
+executed.)  See the <EM>perlvar</EM>  manpage
+.
+<p>
+<LI>$&lt;<EM>digit</EM>&gt; does not refer to fields--it refers to substrings matched
+by the last match pattern.
+<p>
+<LI>The <EM>print()</EM> statement does not add field and record separators unless
+you set <CODE>$,</CODE> and <CODE>$\</CODE>.  You can set <STRONG>$OFS</STRONG> and <STRONG>$ORS</STRONG> if you're using
+the English module.
+<p>
+<LI>You must open your files before you print to them.
+<p>
+<LI>The range operator is ``..'', not comma.  The comma operator works as in
+C.
+<p>
+<LI>The match operator is ``=~'', not ``~''.  (``~'' is the one's complement
+operator, as in C.)
+<p>
+<LI>The exponentiation operator is ``**'', not ``^''.  ``^'' is the XOR
+operator, as in C.  (You know, one could get the feeling that <STRONG>awk</STRONG> is
+basically incompatible with C.)
+<p>
+<LI>The concatenation operator is ``.'', not the null string.  (Using the
+null string would render <CODE>/pat/ /pat/</CODE> unparsable, since the third slash
+would be interpreted as a division operator--the tokener is in fact
+slightly context sensitive for operators like ``/'', ``?'', and ``&gt;''.
+And in fact, ``.'' itself can be the beginning of a number.)
+<p>
+<LI>The <CODE>next</CODE>, <CODE>exit</CODE>, and <CODE>continue</CODE> keywords work differently.
+<p>
+<LI><p>The following variables work differently:
+<p><UL><LI>      Awk	Perl</LI>
+<LI>      ARGC	$#ARGV or scalar @ARGV</LI>
+<LI>      ARGV[0]	$0</LI>
+<LI>      FILENAME	$ARGV</LI>
+<LI>      FNR	$. - something</LI>
+<LI>      FS	(whatever you like)</LI>
+<LI>      NF	$#Fld, or some such</LI>
+<LI>      NR	$.</LI>
+<LI>      OFMT	$#</LI>
+<LI>      OFS	$,</LI>
+<LI>      ORS	$\</LI>
+<LI>      RLENGTH	length($&)</LI>
+<LI>      RS	$/</LI>
+<LI>      RSTART	length($`)</LI>
+<LI>      SUBSEP	$;</LI>
+</UL>
+<p>
+<LI>You cannot set <STRONG>$RS</STRONG> to a pattern, only a string.
+<p>
+<LI>When in doubt, run the <STRONG>awk</STRONG> construct through <STRONG>a2p</STRONG> and see what it
+gives you.
+<p>
+</UL>
+
+<H2> 
+<A NAME="perltrap_c_0">
+C Traps</A>
+</H2>
+Cerebral C programmers should take note of the following:
+<p>
+<UL>
+<LI>Curly brackets are required on <CODE>if</CODE>'s and <CODE>while</CODE>'s.
+<p>
+<LI>You must use <CODE>elsif</CODE> rather than <CODE>else if</CODE>.
+<p>
+<LI>The <CODE>break</CODE> and <CODE>continue</CODE> keywords from C become in 
+Perl <CODE>last</CODE> and <CODE>next</CODE>, respectively.
+Unlike in C, these do <EM>NOT</EM> work within a <CODE>do { } while</CODE> construct.
+<p>
+<LI>There's no switch statement.  (But it's easy to build one on the fly.)
+<p>
+<LI>Variables begin with ``$'' or ``@'' in Perl.
+<p>
+<LI><CODE><EM>printf()</EM></CODE> does not implement the ``*'' format for interpolating
+field widths, but it's trivial to use interpolation of double-quoted
+strings to achieve the same effect.
+<p>
+<LI>Comments begin with ``#'', not ``/*''.
+<p>
+<LI>You can't take the address of anything, although a similar operator
+in Perl 5 is the backslash, which creates a reference.
+<p>
+<LI><CODE>ARGV</CODE> must be capitalized.  <CODE><STRONG>$ARGV</STRONG>[0]</CODE> is C's <CODE>argv[1]</CODE>, and <CODE>argv[0]</CODE>
+ends up in <CODE><STRONG>$0</STRONG></CODE>.
+<p>
+<LI>System calls such as <EM>link()</EM>, <EM>unlink()</EM>, <EM>rename()</EM>, etc. return nonzero for
+success, not 0.
+<p>
+<LI>Signal handlers deal with signal names, not numbers.  Use <CODE>kill -l</CODE>
+to find their names on your system.
+<p>
+</UL>
+
+<H2> 
+<A NAME="perltrap_sed_0">
+Sed Traps</A>
+</H2>
+Seasoned <STRONG>sed</STRONG> programmers should take note of the following:
+<p>
+<UL>
+<LI>Backreferences in substitutions use ``$'' rather than ``\''.
+<p>
+<LI>The pattern matching metacharacters ``('', ``)'', and ``|'' do not have backslashes
+in front.
+<p>
+<LI>The range operator is <CODE>...</CODE>, rather than comma.
+<p>
+</UL>
+
+<H2> 
+<A NAME="perltrap_shell_0">
+Shell Traps</A>
+</H2>
+Sharp shell programmers should take note of the following:
+<p>
+<UL>
+<LI>The backtick operator does variable interpolation without regard to
+the presence of single quotes in the command.
+<p>
+<LI>The backtick operator does no translation of the return value, unlike <STRONG>csh</STRONG>.
+<p>
+<LI>Shells (especially <STRONG>csh</STRONG>) do several levels of substitution on each
+command line.  Perl does substitution only in certain constructs
+such as double quotes, backticks, angle brackets, and search patterns.
+<p>
+<LI>Shells interpret scripts a little bit at a time.  Perl compiles the
+entire program before executing it (except for <CODE>BEGIN</CODE> blocks, which
+execute at compile time).
+<p>
+<LI>The arguments are available via <STRONG>@ARGV</STRONG>, not <STRONG>$1</STRONG>, <STRONG>$2</STRONG>, etc.
+<p>
+<LI>The environment is not automatically made available as separate scalar
+variables.
+<p>
+</UL>
+
+<H2> 
+<A NAME="perltrap_perl_0">
+Perl Traps</A>
+</H2>
+Practicing Perl Programmers should take note of the following:
+<p>
+<UL>
+<LI>Remember that many operations behave differently in a list
+context than they do in a scalar one.  See the <EM>perldata</EM>  manpage
+ for details.
+<p>
+<LI>Avoid barewords if you can, especially all lower-case ones.
+You can't tell just by looking at it whether a bareword is 
+a function or a string.  By using quotes on strings and 
+parens on function calls, you won't ever get them confused.
+<p>
+<LI>You cannot discern from mere inspection which built-ins
+are unary operators (like <EM>chop()</EM> and <EM>chdir()</EM>) 
+and which are list operators (like <EM>print()</EM> and <EM>unlink()</EM>).
+(User-defined subroutines can <STRONG>only</STRONG> be list operators, never
+unary ones.)  See the <EM>perlop</EM>  manpage
+.
+<p>
+<LI>People have a hard time remembering that some functions
+default to <STRONG>$_</STRONG>, or <STRONG>@ARGV</STRONG>, or whatever, but that others which
+you might expect to do not.  
+<p>
+<LI>The &lt;FH&gt; construct is not the name of the filehandle, it is a readline
+operation on that handle.  The data read is only assigned to <STRONG>$_</STRONG> if the
+file read is the sole condition in a while loop:
+<p>
+<XMP>
+    while (<FH>)      { }
+    while ($_ = <FH>) { }..
+    <FH>;  # data discarded!
+
+</XMP>
+<p>
+<LI>Remember not to use ``<CODE>=</CODE>'' when you need ``<CODE>=~</CODE>'';
+these two constructs are quite different:
+<p>
+<XMP>
+    $x =  /foo/;
+    $x =~ /foo/;
+
+</XMP>
+<p>
+<LI>The <CODE>do {}</CODE> construct isn't a real loop that you can use 
+loop control on.
+<p>
+<LI>Use <CODE><EM>my()</EM></CODE> for local variables whenever you can get away with 
+it (but see the <EM>perlform</EM>  manpage
+ for where you can't).  
+Using <CODE><EM>local()</EM></CODE> actually gives a local value to a global 
+variable, which leaves you open to unforeseen side-effects
+of dynamic scoping.
+<p>
+<LI>If you localize an exported variable in a module, its exported value will
+not change.  The local name becomes an alias to a new value but the
+external name is still an alias for the original.
+<p>
+</UL>
+
+<H2> 
+<A NAME="perltrap_perl_1">
+Perl4 to Perl5  Traps</A>
+</H2>
+Practicing Perl4 Programmers should take note of the following 
+Perl4-to-Perl5 specific traps.
+<p>They're crudely ordered according to the following list:
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perltrap_discontinuance_1">
+Discontinuance, Deprecation, and BugFix traps</A>
+
+</STRONG>
+<DD>
+Anything that's been fixed as a perl4 bug, removed as a perl4 feature
+or deprecated as a perl4 feature with the intent to encourage usage of
+some other perl5 feature.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_parsing_1">
+Parsing Traps</A>
+
+</STRONG>
+<DD>
+Traps that appear to stem from the new parser.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_numerical_1">
+Numerical Traps</A>
+
+</STRONG>
+<DD>
+Traps having to do with numerical or mathematical operators.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_general_2">
+General data type traps</A>
+
+</STRONG>
+<DD>
+Traps involving perl standard data types.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_context_1">
+Context Traps - scalar, list contexts</A>
+
+</STRONG>
+<DD>
+Traps related to context within lists, scalar statements/declarations.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_precedence_1">
+Precedence Traps</A>
+
+</STRONG>
+<DD>
+Traps related to the precedence of parsing, evaluation, and execution of
+code.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_general_3">
+General Regular Expression Traps using s///, etc.</A>
+
+</STRONG>
+<DD>
+Traps related to the use of pattern matching.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_subroutine_1">
+Subroutine, Signal, Sorting Traps</A>
+
+</STRONG>
+<DD>
+Traps related to the use of signals and signal handlers, general subroutines,
+and sorting, along with sorting subroutines.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_os_1">
+OS Traps</A>
+
+</STRONG>
+<DD>
+OS-specific traps.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_dbm_1">
+DBM Traps</A>
+
+</STRONG>
+<DD>
+Traps specific to the use of <CODE><EM>dbmopen()</EM></CODE>, and specific dbm implementations.
+<p>
+<DT><STRONG>
+
+<A NAME="perltrap_unclassified_1">
+Unclassified Traps</A>
+
+</STRONG>
+<DD>
+Everything else.
+<p>
+</DL>
+If you find an example of a conversion trap that is not listed here,please submit it to Bill Middleton <EM><A HREF="MAILTO:wjm@best.com">wjm@best.com</A></EM> for inclusion.
+Also note that at least some of these can be caught with <CODE>-w</CODE>.
+<p>
+<H2> 
+<A NAME="perltrap_discontinuance_1">
+Discontinuance, Deprecation, and BugFix traps</A>
+</H2>
+Anything that has been discontinued, deprecated, or fixed as
+a bug from perl4.  
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* Discontinuance </EM>
+</STRONG>
+<DD>
+Symbols starting with ``_'' are no longer forced into package main, except
+for <CODE><STRONG>$_</STRONG></CODE> itself (and <CODE><STRONG>@_</STRONG></CODE>, etc.).
+<p>
+<XMP>
+    package test;
+    $_legacy = 1;
+    package main;
+    print "\$_legacy is ",$_legacy,"\n";
+ 
+    # perl4 prints: $_legacy is 1
+    # perl5 prints: $_legacy is
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Deprecation </EM>
+</STRONG>
+<DD>
+Double-colon is now a valid package separator in a variable name.  Thus these
+behave differently in perl4 vs. perl5, since the packages don't exist.
+<p>
+<XMP>
+    $a=1;$b=2;$c=3;$var=4;
+    print "$a::$b::$c ";
+    print "$var::abc::xyz\n";
+ 
+    # perl4 prints: 1::2::3 4::abc::xyz
+    # perl5 prints: 3
+
+</XMP>
+<p>Given that <CODE>::</CODE> is now the preferred package delimiter, it is debatable
+whether this should be classed as a bug or not.
+(The older package delimiter, ' ,is used here)
+<p>
+<XMP>
+    $x = 10 ;
+    print "x=${'x}\n" ;
+ 
+    # perl4 prints: x=10
+    # perl5 prints: Can't find string terminator "'" anywhere before EOF
+
+</XMP>
+<p>Also see precedence traps, for parsing <CODE><STRONG>$:</STRONG></CODE>. 
+<p>
+<DT><STRONG>
+<EM>* BugFix</EM>
+</STRONG>
+<DD>
+The second and third arguments of <CODE><EM>splice()</EM></CODE> are now evaluated in scalar
+context (as the Camel says) rather than list context.
+<p>
+<XMP>
+    sub sub1{return(0,2) }          # return a 2-elem array
+    sub sub2{ return(1,2,3)}        # return a 3-elem array
+    @a1 = ("a","b","c","d","e"); 
+    @a2 = splice(@a1,&sub1,&sub2);
+    print join(' ',@a2),"\n";
+ 
+    # perl4 prints: a b
+    # perl5 prints: c d e 
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Discontinuance </EM>
+</STRONG>
+<DD>
+You can't do a <CODE>goto</CODE> into a block that is optimized away.  Darn.
+<p>
+<XMP>
+    goto marker1;
+    for(1){         
+    marker1:
+        print "Here I is!\n";
+    } 
+ 
+    # perl4 prints: Here I is!
+    # perl5 dumps core (SEGV)
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Discontinuance </EM>
+</STRONG>
+<DD>
+It is no longer syntactically legal to use whitespace as the name
+of a variable, or as a delimiter for any kind of quote construct.
+Double darn. 
+<p>
+<XMP>
+    $a = ("foo bar");
+    $b = q baz ;
+    print "a is $a, b is $b\n";
+ 
+    # perl4 prints: a is foo bar, b is baz
+    # perl5 errors: Bare word found where operator expected
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Discontinuance</EM>
+</STRONG>
+<DD>
+The archaic while/if BLOCK BLOCK syntax is no longer supported.
+<p>
+<XMP>
+    if { 1 } {
+        print "True!";
+    }
+    else {
+        print "False!";
+    }
+ 
+    # perl4 prints: True!
+    # perl5 errors: syntax error at test.pl line 1, near "if {"
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* BugFix</EM>
+</STRONG>
+<DD>
+The <CODE>**</CODE> operator now binds more tightly than unary minus.
+It was documented to work this way before, but didn't.
+<p>
+<XMP>
+    print -4**2,"\n";
+ 
+    # perl4 prints: 16
+    # perl5 prints: -16
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Discontinuance </EM>
+</STRONG>
+<DD>
+The meaning of <CODE>foreach{}</CODE> has changed slightly when it is iterating over a
+list which is not an array.  This used to assign the list to a
+temporary array, but no longer does so (for efficiency).  This means
+that you'll now be iterating over the actual values, not over copies of
+the values.  Modifications to the loop variable can change the original
+values.
+<p>
+<XMP>
+    @list = ('ab','abc','bcd','def');
+    foreach $var (grep(/ab/,@list)){
+        $var = 1;
+    }
+    print (join(':',@list));
+ 
+    # perl4 prints: ab:abc:bcd:def
+    # perl5 prints: 1:1:bcd:def
+
+</XMP>
+<p>To retain Perl4 semantics you need to assign your list
+explicitly to a temporary array and then iterate over that.  For 
+example, you might need to change
+<p>
+<XMP>
+    foreach $var (grep(/ab/,@list)){
+
+</XMP>
+<p>to
+<p>
+<XMP>
+    foreach $var (@tmp = grep(/ab/,@list)){
+
+</XMP>
+<p>Otherwise changing <STRONG>$var</STRONG> will clobber the values of <STRONG>@list</STRONG>.  (This most often
+happens when you use <CODE><STRONG>$_</STRONG></CODE> for the loop variable, and call subroutines in
+the loop that don't properly localize <CODE><STRONG>$_</STRONG></CODE>.)
+<p>
+<DT><STRONG>
+<EM>* Discontinuance</EM>
+</STRONG>
+<DD>
+<CODE>split</CODE> with no arguments now behaves like <CODE>split ' '</CODE> (which doesn't
+return an initial null field if <STRONG>$_</STRONG> starts with whitespace), it used to
+behave like <CODE>split /\s+/</CODE> (which does).
+<p>
+<XMP>
+    $_ = ' hi mom';
+    print join(':', split);
+    # perl4 prints: :hi:mom
+    # perl5 prints: hi:mom
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Deprecation</EM>
+</STRONG>
+<DD>
+Some error messages will be different.
+<p>
+<DT><STRONG>
+<EM>* Discontinuance </EM>
+</STRONG>
+<DD>
+Some bugs may have been inadvertently removed.  :-)
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_parsing_1">
+Parsing Traps</A>
+</H2>
+Perl4-to-Perl5 traps from having to do with parsing.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* Parsing</EM>
+</STRONG>
+<DD>
+Note the space between . and =
+<p>
+<XMP>
+    $string . = "more string";
+    print $string;
+ 
+    # perl4 prints: more string
+    # perl5 prints: syntax error at - line 1, near ". ="
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Parsing</EM>
+</STRONG>
+<DD>
+Better parsing in perl 5
+<p>
+<XMP>
+    sub foo {}
+    &foo
+    print("hello, world\n");
+ 
+    # perl4 prints: hello, world
+    # perl5 prints: syntax error
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Parsing</EM>
+</STRONG>
+<DD>
+``if it looks like a function, it is a function'' rule.
+<p>
+<XMP>
+  print
+    ($foo == 1) ? "is one\n" : "is zero\n";
+ 
+    # perl4 prints: is zero
+    # perl5 warns: "Useless use of a constant in void context" if using -w
+
+</XMP>
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_numerical_1">
+Numerical Traps</A>
+</H2>
+Perl4-to-Perl5 traps having to do with numerical operators,
+operands, or output from same.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* Numerical</EM>
+</STRONG>
+<DD>
+Formatted output and significant digits
+<p>
+<XMP>
+    print 7.373504 - 0, "\n";
+    printf "%20.18f\n", 7.373504 - 0; 
+ 
+    # Perl4 prints:
+    7.375039999999996141
+    7.37503999999999614
+ 
+    # Perl5 prints:
+    7.373504
+    7.37503999999999614
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Numerical</EM>
+</STRONG>
+<DD>
+This specific item has been deleted.  It demonstrated how the autoincrement
+operator would not catch when a number went over the signed int limit.  Fixed
+in 5.003_04.  But always be wary when using large ints.  If in doubt:
+<p>
+<XMP>
+   use Math::BigInt;
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Numerical  </EM>
+</STRONG>
+<DD>
+Assignment of return values from numeric equality tests
+does not work in perl5 when the test evaluates to false (0).
+Logical tests now return an null, instead of 0
+ 
+    <STRONG>$p</STRONG> = (<STRONG>$test</STRONG> == 1);
+    print <STRONG>$p</STRONG>,``\n'';
+  
+    # perl4 prints: 0
+    # perl5 prints:
+<p>Also see the <EM>General Regular Expression Traps</EM> tests for another example 
+of this new feature...
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_general_2">
+General data type traps</A>
+</H2>
+Perl4-to-Perl5 traps involving most data-types, and their usage
+within certain expressions and/or context.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* (Arrays)</EM>
+</STRONG>
+<DD>
+Negative array subscripts now count from the end of the array.
+<p>
+<XMP>
+    @a = (1, 2, 3, 4, 5);
+    print "The third element of the array is $a[3] also expressed as $a[-2] \n";
+  
+    # perl4 prints: The third element of the array is 4 also expressed as
+    # perl5 prints: The third element of the array is 4 also expressed as 4
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (Arrays)</EM>
+</STRONG>
+<DD>
+Setting <CODE><STRONG>$#</STRONG>array</CODE> lower now discards array elements, and makes them
+impossible to recover.
+<p>
+<XMP>
+    @a = (a,b,c,d,e); 
+    print "Before: ",join('',@a);
+    $#a =1; 
+    print ", After: ",join('',@a);
+    $#a =3;
+    print ", Recovered: ",join('',@a),"\n";
+  
+    # perl4 prints: Before: abcde, After: ab, Recovered: abcd
+    # perl5 prints: Before: abcde, After: ab, Recovered: ab
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (Hashes)</EM>
+</STRONG>
+<DD>
+Hashes get defined before use
+<p>
+<XMP>
+    local($s,@a,%h); 
+    die "scalar \$s defined" if defined($s);
+    die "array \@a defined" if defined(@a);
+    die "hash \%h defined" if defined(%h);
+ 
+    # perl4 prints:
+    # perl5 dies: hash %h defined
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (Globs)</EM>
+</STRONG>
+<DD>
+glob assignment from variable to variable will fail if the assigned
+variable is localized subsequent to the assignment
+<p>
+<XMP>
+    @a = ("This is Perl 4");
+    *b = *a;
+    local(@a);
+    print @b,"\n";
+ 
+    # perl4 prints: This is Perl 4
+    # perl5 prints:
+ 
+    # Another example
+ 
+    *fred = *barney; # fred is aliased to barney
+    @barney = (1, 2, 4);
+    # @fred;
+    print "@fred";  # should print "1, 2, 4"
+ 
+    # perl4 prints: 1 2 4
+    # perl5 prints: Literal @fred now requires backslash 
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (Scalar String)</EM>
+</STRONG>
+<DD>
+Changes in unary negation (of strings)
+This change effects both the return value and what it
+does to auto(magic)increment.
+<p>
+<XMP>
+    $x = "aaa";
+    print ++$x," : ";
+    print -$x," : ";
+    print ++$x,"\n";
+ 
+    # perl4 prints: aab : -0 : 1
+    # perl5 prints: aab : -aab : aac
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (Constants)</EM>
+</STRONG>
+<DD>
+perl 4 lets you modify constants:
+<p>
+<XMP>
+    $foo = "x";
+    &mod($foo);
+    for ($x = 0; $x < 3; $x++) {
+        &mod("a");
+    }
+    sub mod {
+        print "before: $_[0]";
+        $_[0] = "m";
+        print "  after: $_[0]\n";
+    }
+ 
+    # perl4:
+    # before: x  after: m
+    # before: a  after: m
+    # before: m  after: m
+    # before: m  after: m
+ 
+    # Perl5:
+    # before: x  after: m
+    # Modification of a read-only value attempted at foo.pl line 12.
+    # before: a
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (Scalars)</EM>
+</STRONG>
+<DD>
+The behavior is slightly different for:
+<p>
+<XMP>
+    print "$x", defined $x
+  
+    # perl 4: 1
+    # perl 5: <no output, $x is not called into existence>
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (Variable Suicide)</EM>
+</STRONG>
+<DD>
+Variable suicide behavior is more consistent under Perl 5.
+Perl5 exhibits the same behavior for associative arrays and scalars,
+that perl4 exhibits only for scalars.
+<p>
+<XMP>
+    $aGlobal{ "aKey" } = "global value";
+    print "MAIN:", $aGlobal{"aKey"}, "\n";
+    $GlobalLevel = 0;
+    &test( *aGlobal );
+    sub test {
+        local( *theArgument ) = @_;
+        local( %aNewLocal ); # perl 4 != 5.001l,m
+        $aNewLocal{"aKey"} = "this should never appear";  
+        print "SUB: ", $theArgument{"aKey"}, "\n";
+        $aNewLocal{"aKey"} = "level $GlobalLevel";   # what should print
+        $GlobalLevel++;
+        if( $GlobalLevel<4 ) {
+            &test( *aNewLocal );
+        }
+    }
+ 
+    # Perl4:
+    # MAIN:global value
+    # SUB: global value
+    # SUB: level 0
+    # SUB: level 1
+    # SUB: level 2
+ 
+    # Perl5:
+    # MAIN:global value
+    # SUB: global value
+    # SUB: this should never appear
+    # SUB: this should never appear
+    # SUB: this should never appear
+
+</XMP>
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_context_1">
+Context Traps - scalar, list contexts</A>
+</H2>
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* (list context)</EM>
+</STRONG>
+<DD>
+The elements of argument lists for formats are now evaluated in list
+context.  This means you can interpolate list values now.
+<p>
+<PRE>
+    <STRONG>@fmt</STRONG> = (``foo'',``bar'',``baz'');
+    format STDOUT=
+    @&lt;&lt;&lt;&lt;&lt; @||||| @&gt;&gt;&gt;&gt;&gt;
+    <STRONG>@fmt</STRONG>;
+    .
+    write;  
+ 
+    # perl4 errors:  Please use commas to separate fields in file
+    # perl5 prints: foo     bar      baz
+
+</PRE>
+<p>
+<DT><STRONG>
+<EM>* (scalar context)</EM>
+</STRONG>
+<DD>
+The <CODE><EM>caller()</EM></CODE> function now returns a false value in a scalar context 
+if there is no caller.  This lets library files determine if they're 
+being required.
+<p>
+<XMP>
+    caller() ? (print "You rang?\n") : (print "Got a 0\n");
+  
+    # perl4 errors: There is no caller
+    # perl5 prints: Got a 0
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (scalar context)</EM>
+</STRONG>
+<DD>
+The comma operator in a scalar context is now guaranteed to give a
+scalar context to its arguments.
+<p>
+<XMP>
+    @y= ('a','b','c');
+    $x = (1, 2, @y);
+    print "x = $x\n";
+ 
+    # Perl4 prints:  x = c   # Thinks list context interpolates list
+    # Perl5 prints:  x = 3   # Knows scalar uses length of list
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (list, builtin)</EM>
+</STRONG>
+<DD>
+<CODE><EM>sprintf()</EM></CODE> funkiness (array argument converted to scalar array count)
+This test could be added to t/op/sprintf.t
+<p>
+<XMP>
+    @z = ('%s%s', 'foo', 'bar');
+    $x = sprintf(@z);
+    if ($x eq 'foobar') {print "ok 2\n";} else {print "not ok 2 '$x'\n";}
+ 
+    # perl4 prints: ok 2
+    # perl5 prints: not ok 2
+
+</XMP>
+<p><CODE><EM>printf()</EM></CODE> works fine, though:
+<p>
+<XMP>
+    printf STDOUT (@z);
+    print "\n"; 
+ 
+    # perl4 prints: foobar
+    # perl5 prints: foobar
+
+</XMP>
+<p>Probably a bug.
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_precedence_1">
+Precedence Traps</A>
+</H2>
+Perl4-to-Perl5 traps involving precedence order.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* Precedence</EM>
+</STRONG>
+<DD>
+LHS vs. RHS when both sides are getting an op.
+<p>
+<XMP>
+    @arr = ( 'left', 'right' );
+    $a{shift @arr} = shift @arr;
+    print join( ' ', keys %a );
+    # perl4 prints: left
+    # perl5 prints: right
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Precedence</EM>
+</STRONG>
+<DD>
+These are now semantic errors because of precedence:
+<p>
+<XMP>
+    @list = (1,2,3,4,5);
+    %map = ("a",1,"b",2,"c",3,"d",4);
+    $n = shift @list + 2;   # first item in list plus 2
+    print "n is $n, ";
+    $m = keys %map + 2;     # number of items in hash plus 2
+    print "m is $m\n";
+ 
+    # perl4 prints: n is 3, m is 6
+    # perl5 errors and fails to compile
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Precedence</EM>
+</STRONG>
+<DD>
+The precedence of assignment operators is now the same as the precedence
+of assignment.  Perl 4 mistakenly gave them the precedence of the associated
+operator.  So you now must parenthesize them in expressions like
+<p>
+<XMP>
+    /foo/ ? ($a += 2) : ($a -= 2);
+    
+Otherwise
+    /foo/ ? $a += 2 : $a -= 2
+
+</XMP>
+<p>would be erroneously parsed as
+<p>
+<XMP>
+    (/foo/ ? $a += 2 : $a) -= 2;
+
+</XMP>
+<p>On the other hand,
+<p>
+<XMP>
+    $a += /foo/ ? 1 : 2; 
+
+</XMP>
+<p>now works as a C programmer would expect.
+<p>
+<DT><STRONG>
+<EM>* Precedence</EM>
+</STRONG>
+<DD>
+
+<XMP>
+    open FOO || die;
+
+</XMP>
+<p>is now incorrect.  You need parens around the filehandle.
+Otherwise, perl5 leaves the statement as it's default precedence:
+<p>
+<XMP>
+    open(FOO || die);
+ 
+    # perl4 opens or dies
+    # perl5 errors: Precedence problem: open FOO should be open(FOO)
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Precedence</EM>
+</STRONG>
+<DD>
+perl4 gives the special variable, <CODE><STRONG>$:</STRONG></CODE> precedence, where perl5
+treats <CODE><STRONG>$::</STRONG></CODE> as main <CODE>package</CODE>
+<p>
+<XMP>
+    $a = "x"; print "$::a";
+     
+    # perl 4 prints: -:a
+    # perl 5 prints: x
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Precedence</EM>
+</STRONG>
+<DD>
+concatenation precedence over filetest operator?  
+<p>
+<XMP>
+    -e $foo .= "q" 
+  
+    # perl4 prints: no output
+    # perl5 prints: Can't modify -e in concatenation
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Precedence</EM>
+</STRONG>
+<DD>
+Assignment to value takes precedence over assignment to key in
+perl5 when using the shift operator on both sides.
+<p>
+<XMP>
+    @arr = ( 'left', 'right' );
+    $a{shift @arr} = shift @arr;
+    print join( ' ', keys %a );
+    # perl4 prints: left
+    # perl5 prints: right
+
+</XMP>
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_general_3">
+General Regular Expression Traps using s///, etc.</A>
+</H2>
+All types of RE traps.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* Regular Expression</EM>
+</STRONG>
+<DD>
+<CODE>s'<STRONG>$lhs</STRONG>'<STRONG>$rhs</STRONG>'</CODE> now does no interpolation on either side.  It used to
+interpolate <CODE><STRONG>$lhs</STRONG></CODE> but not <CODE><STRONG>$rhs</STRONG></CODE>.  (And still does not match a literal 
+'$' in string)
+<p>
+<XMP>
+    $a=1;$b=2;
+    $string = '1 2 $a $b';
+    $string =~ s'$a'$b';
+    print $string,"\n";
+ 
+    # perl4 prints: $b 2 $a $b
+    # perl5 prints: 1 2 $a $b
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Regular Expression</EM>
+</STRONG>
+<DD>
+<CODE>m//g</CODE> now attaches its state to the searched string rather than the
+regular expression.  (Once the scope of a block is left for the sub, the
+state of the searched string is lost)
+<p>
+<XMP>
+    $_ = "ababab";
+    while(m/ab/g){
+        &doit("blah");
+    }
+    sub doit{local($_) = shift; print "Got $_ "}
+ 
+    # perl4 prints: blah blah blah
+    # perl5 prints: infinite loop blah...
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Regular Expression</EM>
+</STRONG>
+<DD>
+If no parentheses are used in a match, Perl4 sets <CODE>$+</CODE> to
+the whole match, just like <CODE>$&amp;</CODE>. Perl5 does not.
+<p>
+<XMP>
+    "abcdef" =~ /b.*e/;
+    print "\$+ = $+\n";
+ 
+    # perl4 prints: bcde
+    # perl5 prints:
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Regular Expression</EM>
+</STRONG>
+<DD>
+substitution now returns the null string if it fails
+<p>
+<XMP>
+    $string = "test";
+    $value = ($string =~ s/foo//);
+    print $value, "\n";
+ 
+    # perl4 prints: 0
+    # perl5 prints:
+
+</XMP>
+<p>Also see 
+<A HREF="perltrap.html#perltrap_numerical_1"><EM>Numerical Traps</EM></A>
+ for another example of this new feature.
+<p>
+<DT><STRONG>
+<EM>* Regular Expression</EM>
+</STRONG>
+<DD>
+<CODE>s`lhs`rhs`</CODE> (using backticks) is now a normal substitution, with no 
+backtick expansion
+<p>
+<XMP>
+    $string = "";
+    $string =~ s`^`hostname`;
+    print $string, "\n";
+ 
+    # perl4 prints: <the local hostname>
+    # perl5 prints: hostname
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Regular Expression</EM>
+</STRONG>
+<DD>
+Stricter parsing of variables used in regular expressions
+<p>
+<XMP>
+    s/^([^$grpc]*$grpc[$opt$plus$rep]?)//o;
+ 
+    # perl4: compiles w/o error
+    # perl5: with Scalar found where operator expected ..., near "$opt$plus"
+
+</XMP>
+<p>an added component of this example, apparently from the same script, is
+the actual value of the s'd string after the substitution.
+<CODE>[<STRONG>$opt</STRONG>]</CODE> is a character class in perl4 and an array subscript in perl5
+<p>
+<XMP>
+    $grpc = 'a'; 
+    $opt  = 'r';
+    $_ = 'bar';
+    s/^([^$grpc]*$grpc[$opt]?)/foo/;
+    print ;
+ 
+    # perl4 prints: foo
+    # perl5 prints: foobar
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Regular Expression</EM>
+</STRONG>
+<DD>
+Under perl5, <CODE>m?x?</CODE> matches only once, like <CODE>?x?</CODE>. Under perl4, it matched
+repeatedly, like <CODE>/x/</CODE> or <CODE>m!x!</CODE>.
+<p>
+<XMP>
+    $test = "once";
+    sub match { $test =~ m?once?; }
+    &match();
+    if( &match() ) {
+        # m?x? matches more then once
+        print "perl4\n";
+    } else { 
+        # m?x? matches only once
+        print "perl5\n"; 
+    }
+ 
+    # perl4 prints: perl4
+    # perl5 prints: perl5
+
+</XMP>
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_subroutine_1">
+Subroutine, Signal, Sorting Traps</A>
+</H2>
+The general group of Perl4-to-Perl5 traps having to do with
+Signals, Sorting, and their related subroutines, as well as
+general subroutine traps.  Includes some OS-Specific traps.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* (Signals)</EM>
+</STRONG>
+<DD>
+Barewords that used to look like strings to Perl will now look like subroutine
+calls if a subroutine by that name is defined before the compiler sees them.
+<p>
+<XMP>
+    sub SeeYa { warn"Hasta la vista, baby!" }
+    $SIG{'TERM'} = SeeYa;
+    print "SIGTERM is now $SIG{'TERM'}\n";
+ 
+    # perl4 prints: SIGTERM is main'SeeYa
+    # perl5 prints: SIGTERM is now main::1
+
+</XMP>
+<p>Use <STRONG>-w</STRONG> to catch this one
+<p>
+<DT><STRONG>
+<EM>* (Sort Subroutine)</EM>
+</STRONG>
+<DD>
+reverse is no longer allowed as the name of a sort subroutine.
+<p>
+<XMP>
+    sub reverse{ print "yup "; $a <=> $b }
+    print sort reverse a,b,c;  
+ 
+    # perl4 prints: yup yup yup yup abc
+    # perl5 prints: abc 
+
+</XMP>
+<p>
+<DT><STRONG>
+* <EM>warn()</EM> won't let you specify a filehandle.
+</STRONG>
+<DD>
+Although it _always_ printed to STDERR, <EM>warn()</EM> would let you specify a
+filehandle in perl4.  With perl5 it does not.
+<p>
+<XMP>
+    warn STDERR "Foo!";
+    # perl4 prints: Foo!
+    # perl5 prints: String found where operator expected 
+
+</XMP>
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_os_1">
+OS Traps</A>
+</H2>
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* (SysV)</EM>
+</STRONG>
+<DD>
+Under HPUX, and some other SysV OS's, one had to reset any signal handler, 
+within  the signal handler function, each time a signal was handled with 
+perl4.  With perl5, the reset is now done correctly.  Any code relying 
+on the handler _not_ being reset will have to be reworked.
+<p>5.002 and beyond uses <EM>sigaction()</EM> under SysV
+<p>
+<XMP>
+    sub gotit {
+        print "Got @_... "; 
+    }  
+    $SIG{'INT'} = 'gotit';
+   
+    $| = 1;
+    $pid = fork;
+    if ($pid) {
+        kill('INT', $pid);
+        sleep(1);
+        kill('INT', $pid);
+    } else { 
+        while (1) {sleep(10);}
+    } 
+ 
+    # perl4 (HPUX) prints: Got INT...
+    # perl5 (HPUX) prints: Got INT... Got INT...
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* (SysV)</EM>
+</STRONG>
+<DD>
+Under SysV OS's, <CODE><EM>seek()</EM></CODE> on a file opened to append <CODE>&gt;&gt;</CODE> now does 
+the right thing w.r.t. the <EM>fopen()</EM> man page. e.g. - When a file is opened
+for append,  it  is  impossible to overwrite information already in
+the file.
+<p>
+<PRE>
+    open(TEST,``&gt;&gt;seek.test'');
+    <STRONG>$start</STRONG> = tell TEST ;  
+    foreach(1 .. 9){
+        print TEST ``<STRONG>$_</STRONG> '';
+    }
+    <STRONG>$end</STRONG> = tell TEST ;
+    seek(TEST,<STRONG>$start</STRONG>,0);
+    print TEST ``18 characters here'';
+ 
+    # perl4 (solaris) seek.test has: 18 characters here
+    # perl5 (solaris) seek.test has: 1 2 3 4 5 6 7 8 9 18 characters here
+
+</PRE>
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_interpolation_0">
+Interpolation Traps</A>
+</H2>
+Perl4-to-Perl5 traps having to do with how things get interpolated
+within certain expressions, statements, contexts, or whatever.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* Interpolation</EM>
+</STRONG>
+<DD>
+<STRONG>@ </STRONG>now always interpolates an array in double-quotish strings.
+<p>
+<XMP>
+    print "To: someone@somewhere.com\n"; 
+ 
+    # perl4 prints: To:someone@somewhere.com
+    # perl5 errors : Literal @somewhere now requires backslash
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Interpolation</EM>
+</STRONG>
+<DD>
+Double-quoted strings may no longer end with an unescaped <STRONG>$ </STRONG>or @.
+<p>
+<XMP>
+    $foo = "foo$";
+    $bar = "bar@";
+    print "foo is $foo, bar is $bar\n";
+     
+    # perl4 prints: foo is foo$, bar is bar@
+    # perl5 errors: Final $ should be \$ or $name
+
+</XMP>
+<p>Note: perl5 DOES NOT error on the terminating <STRONG>@ </STRONG>in <STRONG>$bar</STRONG>
+<p>
+<DT><STRONG>
+<EM>* Interpolation</EM>
+</STRONG>
+<DD>
+Perl now sometimes evaluates arbitrary expressions inside braces that occur
+within double quotes (usually when the opening brace is preceded by <CODE>$</CODE>
+or <CODE>@</CODE>).
+<p>
+<XMP>
+    @www = "buz";
+    $foo = "foo";
+    $bar = "bar";
+    sub foo { return "bar" };
+    print "|@{w.w.w}|${main'foo}|";
+    # perl4 prints: |@{w.w.w}|foo|
+    # perl5 prints: |buz|bar|
+
+</XMP>
+<p>Note that you can <CODE>use strict;</CODE> to ward off such trappiness under perl5.
+<p>
+<DT><STRONG>
+<EM>* Interpolation</EM>
+</STRONG>
+<DD>
+The construct ``this is <STRONG>$$</STRONG>x'' used to interpolate the pid at that
+point, but now apparently tries to dereference <CODE><STRONG>$x</STRONG></CODE>.  <CODE>$$</CODE> by itself still
+works fine, however.
+<p>
+<XMP>
+    print "this is $$x\n";
+    # perl4 prints: this is XXXx   (XXX is the current pid)
+    # perl5 prints: this is
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Interpolation</EM>
+</STRONG>
+<DD>
+Creation of hashes on the fly with <CODE>eval ``EXPR''</CODE> now requires either both 
+<CODE>$</CODE>'s to be protected in the specification of the hash name, or both curlies 
+to be protected.  If both curlies are protected, the result will be compatible
+with perl4 and perl5.  This is a very common practice, and should be changed
+to use the block form of <CODE>eval{}</CODE>  if possible.
+<p>
+<XMP>
+    $hashname = "foobar";
+    $key = "baz";
+    $value = 1234;
+    eval "\$$hashname{'$key'} = q|$value|";
+    (defined($foobar{'baz'})) ?  (print "Yup") : (print "Nope");
+    # perl4 prints: Yup
+    # perl5 prints: Nope
+
+</XMP>
+<p>Changing
+<p>
+<XMP>
+    eval "\$$hashname{'$key'} = q|$value|";
+
+</XMP>
+<p>to
+<p>
+<XMP>
+    eval "\$\$hashname{'$key'} = q|$value|";
+
+</XMP>
+<p>causes the following result:
+<p>
+<XMP>
+    # perl4 prints: Nope
+    # perl5 prints: Yup
+
+</XMP>
+<p>or, changing to
+<p>
+<XMP>
+    eval "\$$hashname\{'$key'\} = q|$value|";
+
+</XMP>
+<p>causes the following result:
+<p>
+<XMP>
+    # perl4 prints: Yup
+    # perl5 prints: Yup
+    # and is compatible for both versions
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Interpolation</EM>
+</STRONG>
+<DD>
+perl4 programs which unconsciously rely on the bugs in earlier perl versions.
+<p>
+<XMP>
+    perl -e '$bar=q/not/; print "This is $foo{$bar} perl5"'
+     
+    # perl4 prints: This is not perl5
+    # perl5 prints: This is perl5
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Interpolation</EM>
+</STRONG>
+<DD>
+You also have to be careful about array references.  
+<p>
+<XMP>
+    print "$foo{"
+    perl 4 prints: {
+    perl 5 prints: syntax error
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* Interpolation</EM>
+</STRONG>
+<DD>
+Similarly, watch out for:
+<p>
+<XMP>
+    $foo = "array";
+    print "\$$foo{bar}\n";
+  
+    # perl4 prints: $array{bar}
+    # perl5 prints: $
+
+</XMP>
+<p>Perl 5 is looking for <CODE><STRONG>$array</STRONG>{bar}</CODE> which doesn't exist, but perl 4 is
+happy just to expand <STRONG>$foo</STRONG> to ``array'' by itself.  Watch out for this
+especially in <CODE>eval</CODE>'s.
+<p>
+<DT><STRONG>
+<EM>* Interpolation</EM>
+</STRONG>
+<DD>
+<CODE><EM>qq()</EM></CODE> string passed to <CODE>eval</CODE>
+<p>
+<XMP>
+    eval qq(
+        foreach \$y (keys %\$x\) {
+            \$count++;
+        }
+    );
+  
+    # perl4 runs this ok
+    # perl5 prints: Can't find string terminator ")" 
+
+</XMP>
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_dbm_1">
+DBM Traps</A>
+</H2>
+General DBM traps.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* DBM</EM>
+</STRONG>
+<DD>
+Existing dbm databases created under perl4 (or any other dbm/ndbm tool)
+may cause the same script, run under perl5, to fail.  The build of perl5
+must have been linked with the same dbm/ndbm as the default for <CODE><EM>dbmopen()</EM></CODE>
+to function properly without <CODE>tie</CODE>'ing to an extension dbm implementation.
+<p>
+<XMP>
+    dbmopen (%dbm, "file", undef);
+    print "ok\n";
+    # perl4 prints: ok
+    # perl5 prints: ok (IFF linked with -ldbm or -lndbm)
+
+</XMP>
+<p>
+<DT><STRONG>
+<EM>* DBM</EM>
+</STRONG>
+<DD>
+Existing dbm databases created under perl4 (or any other dbm/ndbm tool)
+may cause the same script, run under perl5, to fail.  The error generated
+when exceeding the limit on the key/value size will cause perl5 to exit
+immediately.
+<p>
+<XMP>
+    dbmopen(DB, "testdb",0600) || die "couldn't open db! $!";
+    $DB{'trap'} = "x" x 1024;  # value too large for most dbm/ndbm
+    print "YUP\n";
+    # perl4 prints:
+    dbm store returned -1, errno 28, key "trap" at - line 3.
+    YUP
+    # perl5 prints:
+    dbm store returned -1, errno 28, key "trap" at - line 3.
+
+</XMP>
+<p>
+</DL>
+
+<H2> 
+<A NAME="perltrap_unclassified_1">
+Unclassified Traps</A>
+</H2>
+Everything else.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+<EM>* Unclassified</EM>
+</STRONG>
+<DD>
+<CODE>require</CODE>/<CODE>do</CODE> trap using returned value
+<p>If the file doit.pl has:
+<p>
+<XMP>
+    sub foo {
+        $rc = do "./do.pl";
+        return 8;
+    } 
+    print &foo, "\n";
+
+</XMP>
+<p>And the do.pl file has the following single line:
+<p>
+<XMP>
+    return 3;
+
+</XMP>
+<p>Running doit.pl gives the following:
+<p>
+<XMP>
+    # perl 4 prints: 3 (aborts the subroutine early)
+    # perl 5 prints: 8 
+
+</XMP>
+<p>Same behavior if you replace <CODE>do</CODE> with <CODE>require</CODE>.
+<p>
+</DL>
+As always, if any of these are ever officially declared as bugs, they'll be fixed and removed.
+<p>
+</BODY>
+</HTML>

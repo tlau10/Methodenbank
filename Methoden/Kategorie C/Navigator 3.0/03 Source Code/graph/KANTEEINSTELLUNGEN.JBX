@@ -1,0 +1,27 @@
+[PropertyInfo]
+borderLayout1,BorderLayout,false,false, , ,false,<default>
+jButton1,JButton,false,false, , ,false,<default>
+jButton2,JButton,false,false, , ,false,<default>
+jButton3,JButton,false,false, , ,false,<default>
+jButton4,JButton,false,false, , ,false,<default>
+jLabel1,JLabel,false,false, , ,false,<default>
+jLabel2,JLabel,false,false, , ,false,<default>
+jLabel3,JLabel,false,false, , ,false,<default>
+jLabel4,JLabel,false,false, , ,false,<default>
+jLabel5,JLabel,false,false, , ,false,<default>
+jLabel6,JLabel,false,false, , ,false,<default>
+jLabel7,JLabel,false,false, , ,false,<default>
+jPanel1,JPanel,false,false, , ,false,<default>
+jPanel2,JPanel,false,false, , ,false,<default>
+jPanel5,JPanel,false,false, , ,false,<default>
+jTextField1,JTextField,false,false, , ,false,<default>
+jTextField2,JTextField,false,false, , ,false,<default>
+myKante,Kante,false,false, , ,false,<default>
+panel1,JPanel,false,false, , ,false,<default>
+xYLayout1,XYLayout,false,false, , ,false,<default>
+xYLayout3,XYLayout,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

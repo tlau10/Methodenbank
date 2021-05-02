@@ -1,0 +1,1336 @@
+
+{******** Abbruch wenn Grafik nicht installiert werden kann ******************}
+
+procedure abort(msg : string);
+begin
+  writeln(msg, ': ', grapherrormsg(graphresult));
+  halt(1);
+end;
+
+
+{******** Bindet Grafiktreiber in Programm ein und installiert Grafik ********}
+
+procedure grafik_installieren;
+var  grdriver,grmode,error  : integer;
+begin
+  if registerbgidriver(@EGAVGADriverProc) < 0 then  abort('EGA/VGA');
+  if registerbgifont(@GothicFontProc) < 0 then      abort('Gothic');
+  if registerbgifont(@SmallFontProc) < 0 then       abort('Small');
+  grdriver := 9;grmode := 1;
+  initgraph(grdriver,grmode,'');
+  if GraphResult <> grOk then
+  begin
+    Writeln('Grafik-Initialisierungsfehler: ', GraphErrorMsg(GrDriver));
+    Halt(1);
+  end;
+end;
+
+
+{******** Setzt die Inhalte der Åbergebenen Matrix auf Null ******************}
+
+procedure matrix_loeschen (var matrix : matrix_typ);
+var   lv1,lv2  : integer;
+begin
+     for lv1 := 1 to 16 do
+         for lv2 := 1 to 16 do
+             matrix[lv1,lv2] := 0;
+end;
+
+
+{******* Liest ein einzelnes Zeichen von Tastatur ein ************************}
+
+function zeichen_einlesen : char;
+var  char1     : char;
+begin
+     repeat until keypressed;  zeichen_einlesen := upcase(readkey);
+end;
+
+
+{******* Ermittelt Potenz zur Basis 10 (fÅr Skalierung der X-Achse bei Grafik)}
+
+function potenz (exponent : integer) : integer;
+var  lv1,pot : integer;
+begin
+     if (exponent <> 0) then
+     begin
+          pot := 1;
+          for lv1 := 1 to exponent do pot := pot * 10;
+          potenz := pot;
+     end
+     else potenz := 1;
+end;
+
+
+{******* Gibt eine Meldung auf dem Bildschirm aus ****************************}
+
+procedure meldung(texte    : string;    { Auszugebender Text                  }
+                  vm_col   ,            { Textfarbe                           }
+                  hm_col   : integer;   { Texthintergrundfarbe                }
+                  beep1    ,            { Pieps fÅr neue Meldung              }
+                  beep2    ,            { Pieps fÅr Falschmeldung             }
+                  alt                   { Bisherige Nachricht wieder anzeigen }
+                  : boolean);
+var
+     vm_col_alt,
+     hm_col_alt,
+     a,b                   : integer;
+     zeichen               : char;
+     fillset               : fillsettingstype;
+begin
+     zeile_alt := zeile; vm_col_alt := getcolor;
+     getfillsettings(fillset); hm_col_alt := fillset.color;
+     zeile := '';
+     a := (71-length(texte)) div 2;
+     for b:= 1 to a do zeile := zeile + ' ';
+     zeile := zeile + texte; texte := '';
+     setviewport(1,1,639,349,true);
+     setviewport(24,302,609,322,true);
+     clearviewport;
+     setfillstyle(1,hm_col);
+     bar(2,4,582,29);
+     settextstyle(2,0,5);
+     setcolor(vm_col);
+     outtextxy(6,3,zeile);
+     if beep1 then sound(800); delay( 20);nosound;
+     if beep2 then sound(400); delay(100);nosound;
+     textbackground(0);
+     if (alt= true) then
+        begin
+             delay(1000);
+             clearviewport;
+             zeile := zeile_alt;
+             vm_col := vm_col_alt;hm_col := hm_col_alt;
+             setfillstyle(1,hm_col);
+             bar(2,4,582,29);
+             setcolor(vm_col);
+             outtextxy(6,3,zeile);
+        end;
+     setviewport(1,1,639,349,true);
+     setviewport(34,66,609,294,true);
+end;
+
+
+{******* Hebt das erste Zeichen einer MenÅauswahl hervor *********************}
+
+procedure ausw_zeichen_hervor(lv1,nr_max:integer);
+begin
+     setcolor(15);
+     outtextxy(175,50+lv1*15,menuauswahl[lv1]);
+     setcolor(11);
+     if (lv1 <> nr_max) then outtextxy(175,50+lv1*15,menuauswahl[lv1,1])
+     else outtextxy(183,50+lv1*15,'ESC')
+end;
+
+
+{******* Zeigt ein MenÅ mit dem Menutitel der LÑnge Nr_max an und liefert
+         die getroffene Auswahl zurÅck ***************************************}
+
+function menu_anzeigen(menutitel : string; nr_max : integer) : integer;
+var
+     lv1,lv2,lv3,
+     balken        : integer;
+     char1         : char;
+begin
+     meldung('Bitte wÑhlen Sie aus dem MenÅ',15,1,true,false,false);
+     setfillstyle(1,1);
+     setcolor(14);setlinestyle(0,0,3);
+     bar(161,31,389,62+16*nr_max);
+     rectangle(160,30,390,60);
+     rectangle(160,60,390,64+16*nr_max);
+     settextstyle(2,0,6);
+     outtextxy(265-length(menutitel)*4,37,menutitel);
+     settextstyle(2,0,5);
+     for lv1 := 1 to nr_max do ausw_zeichen_hervor(lv1,nr_max);
+     balken := 1;
+     setfillstyle(1,9) ;
+     bar(162,52+balken*15,388,64+15*balken);setcolor(15);
+     ausw_zeichen_hervor(balken,nr_max);
+     repeat
+           char1 := zeichen_einlesen;
+           if (upcase(char1) in auswahlset_kurz) then
+              begin
+                setfillstyle(1,1);bar(162,52+balken*15,388,64+15*balken);
+                ausw_zeichen_hervor(balken,nr_max);
+                case char1 of
+                   chr(27) : balken := nr_max;
+                   chr(72) : dec(balken);
+                   chr(80) : inc(balken);
+                 else if not (ord(char1) in [13,27,72,80]) then
+                         for lv3 := 1 to nr_max do
+                             if(menuauswahl[lv3,1]=upcase(char1)) then
+                             begin
+                                  balken := lv3; char1 := chr(13);
+                             end;
+                end;
+                if (balken =      0) then balken := nr_max;
+                if (balken > nr_max) then balken :=      1;
+                setfillstyle(1,9);bar(162,52+balken*15,388,64+15*balken);
+                ausw_zeichen_hervor(balken,nr_max);
+              end;
+     until (ord(char1) in [13,27]);
+     menu_anzeigen := balken;
+     setviewport(1,1,639,349,true);
+     setviewport(34,66,609,294,true);
+     clearviewport;
+end;
+
+
+{******* Ermîglicht die Eingabe eines Strings Zeigt ein MenÅ mit dem Menutitel
+         der LÑnge Nr_max an und liefert die getroffene Auswahl zurÅck.
+                                                                       *******}
+
+function eingabe(  zeilen_eingabe : boolean; {True wenn in Statuszeile        }
+                   lang,                     {max LÑnge des Einlesestrings    }
+                   wo_x,                     {x-Position ab der einzulesen ist}
+                   wo_y,                     {y-Position ab der einzulesen ist}
+                   v_col,                    {Textfarbe                       }
+                   h_col                     {Texthintergrundfarbe            }
+                   : integer) : string;
+
+var  zeichen       : char;
+     lange         : integer;
+     eingabe_temp  : string;
+
+begin
+      lange := 0;eingabe_temp := '';
+      repeat
+        textbackground(h_col);textcolor(v_col);
+        repeat
+          zeichen := zeichen_einlesen;
+        until ord(zeichen) in [8,13,27,32..165];
+
+        case zeichen of
+            chr(8) : if (lange > 0) then
+                     begin gotoxy(lange+wo_x-1,wo_y);write(' ');
+                           delete(eingabe_temp,lange,1);
+                           dec(lange);
+                           gotoxy(lange+wo_x-1,wherey);
+                     end;
+
+            chr(32)..chr(165) : if lange < lang then
+                                begin
+                                     gotoxy(lange+wo_x,wo_y);
+                                     inc(lange); write(zeichen);
+                                     eingabe_temp := eingabe_temp + zeichen;
+                                end
+                                else begin
+                                     meldung('Lîschen eines Zeichens mit <Backspace> ',15,4,false,true,true);
+                                     if (zeilen_eingabe = true) then
+                                        begin gotoxy(wo_x,23);
+                                              write(eingabe_temp);
+                                        end;
+                                     end;
+
+            chr(27)            : eingabe_temp := zeichen;
+        end;
+      until ((ord(zeichen) in [13,27])and ((ord(zeichen)=13) and (eingabe_temp<>'')or (ord(zeichen)=27)));
+      eingabe := eingabe_temp;
+end;
+
+
+{******* EINGABE2  -> siehe Funktion EINGABE
+
+         Nutzung eines externen Oeffnenprogramms.
+
+         Die betriebssystemabhÑngigen ErgÑnzungen wurden im Jan. 98
+         hinzugefÅgt. Sie ermîglichen den Aufruf von externen Programm
+         zur Datendateieingabe.
+                                                                       *******}
+
+function eingabe2( zeilen_eingabe : boolean; {True wenn in Statuszeile        }
+                   lang,                     {max LÑnge des Einlesestrings    }
+                   wo_x,                     {x-Position ab der einzulesen ist}
+                   wo_y,                     {y-Position ab der einzulesen ist}
+                   v_col,                    {Textfarbe                       }
+                   h_col                     {Texthintergrundfarbe            }
+                   : integer) : string;
+
+var  zeichen       : char;
+     lange         : integer;
+     eingabe_temp  : string;
+     Ablagedatei,
+     OeffnenProg,
+     Datensuchpfad,
+     DEC_Str       : string;
+
+begin
+     OeffnenProg := ReadIni(ini_datei, 'Zugriffe', 'Oeffnenprogramm');
+     Ablagedatei := ReadIni(ini_datei, 'Zugriffe', 'AktDatAblage');
+     Datensuchpfad := ReadIni(ini_datei, 'Zugriffe', 'Datensuchpfad');
+
+     { Dos oder Windows 3.x ------------------------------------------- }
+     if (OS = 'dos') or (OS = 'win3x') then
+     begin
+       { Externe ôffnen-Anwendung }
+       swapvectors;
+       exec(OeffnenProg, Datensuchpfad + ' ' + Ablagedatei);
+       swapvectors;
+
+       (* Weiter-Meldung:                                                 *)
+       (* Das Programm wird hier temp. gestoppt, da Windows-3x-Programme  *)
+       (* "parallel" und nicht sukzesiv abgearbeitet werden               *)
+       meldung('DrÅcken Sie bitte die RETURN-Taste um fortzufahren !',15,2,false,false,false);
+       readln;
+     end;
+
+     { Windows 95 ----------------------------------------------------- }
+     if OS = 'win95' then
+     begin
+       { Externe ôffnen-Anwendung (Aufruf mit START /W) }
+       swapvectors;
+       exec(getenv('COMSPEC'), '/c start /w ' + OeffnenProg + ' '
+          +  Datensuchpfad + ' ' + Ablagedatei);
+       swapvectors;
+     end;
+
+
+     eingabe_temp := ReadIni(Ablagedatei, 'Dateien', 'Eingabedatei');
+
+     if eingabe_temp = '' then
+       (* leere Dateieintrag (z.B. bei Fehler) *)
+       eingabe2 := chr(27)
+     else
+       eingabe2 := eingabe_temp;
+
+end;
+
+
+{******* Hebt die aktuelle (Maschinen) Position hervor ***********************}
+
+procedure highlight_box_x (bx,bh_col,bv_col : integer);
+var  dummy2_str   : string;
+
+begin
+     setfillstyle(1,bh_col);setcolor(bv_col);
+     bar(75+30*(bx-1),6,75+bx-2+29*bx,21);
+     str(bx,dummy2_str);if (length(dummy2_str)<2)then insert('0',dummy2_str,1);
+     dummy2_str := 'M-'+dummy2_str;
+     outtextxy(79+30*(bx-1),8,dummy2_str);
+end;
+
+
+{******* Hebt die aktuelle (Produkt) Position hervor *************************}
+
+procedure highlight_box_y (in_reihe : boolean; txt : string; txt_nr, by,bh_col,bv_col,muster : integer);
+var  dummy2_str   : string;
+begin
+     setfillstyle(muster,bh_col);setcolor(bv_col);
+     bar(7,23+12*(by-1),73,23+by-2+11*by);
+     if in_reihe then
+     begin
+          str(by,dummy2_str);
+          if (length(dummy2_str)<2)then insert('0',dummy2_str,1);
+          dummy2_str := 'Produkt-'+dummy2_str;
+     end
+     else
+     begin
+          str(txt_nr,dummy2_str);
+          if (length(dummy2_str)<2)then insert('0',dummy2_str,1);
+          dummy2_str := txt+dummy2_str;
+     end;
+     outtextxy(11,12+by*12,dummy2_str);
+end;
+
+
+{******* Zeichnet das Raster fÅr die Anzeige der Matrizen auf den Bildschirm**}
+
+procedure raster_aufbauen;
+var
+     lv1,lv2,
+     linienfarbe,textfarbe : integer;
+begin
+     settextstyle(2,0,4);setlinestyle(0,0,1);
+     linienfarbe := 14;textfarbe := 15;
+     setcolor(linienfarbe);
+     rectangle(6,5,74,22);
+     for lv1 := 1 to mox do
+         rectangle(74+30*(lv1-1),5,74+30*lv1,22);
+     for lv1 := 1 to moy do
+         rectangle(6,22+12*(lv1-1),74,22+12*lv1);
+     for lv1 := 1 to moy do
+         for lv2 := 1 to mox do
+             rectangle(74+30*(lv2-1),22+12*(lv1-1),74+30*lv2,22+12*lv1);
+     setcolor(textfarbe);
+     for lv1 :=1 to mox do highlight_box_x (lv1,1,15);
+     for lv1 :=1 to moy do highlight_box_y (true,'',0,lv1,1,15,1);
+end;
+
+
+{******* Schreibt die Werte der Originalmatrix auf den Bildschirm ************}
+
+procedure org_matrix_anzeigen(mit_null : boolean);
+var  char1str : string;
+     lv1,lv2 : integer;
+begin
+     for lv2 := moy downto 1 do
+        for lv1 :=mox downto 1 do
+        begin
+             str(matrix_org[lv2,lv1],char1str);
+             if ((mit_null=false) and (char1str<>'0')) then outtextxy(81+30*(lv1-1),23+12*(lv2-1),char1str)
+             else if (mit_null=true) then outtextxy(81+30*(lv1-1),23+12*(lv2-1),char1str);
+        end;
+end;
+
+
+{******* Schreibt die Werte der Originalmatrix auf den Bildschirm ************}
+
+procedure mat_eingabe( lang  : integer ; {LÑnge eines Feldes in Zeichen       }
+                       v_col : integer ; {Textfarbe                           }
+                       h_col : integer); {Texthintergrundfarbe                }
+var  zeichen      : char;
+     char1str,
+     option       : string  ;
+     option_num,
+     x,y,
+     lange        : integer;
+begin
+     x:=1;y:=1;option :=''; str(matrix_org[1,1],char1str);
+     lange := length(char1str);
+     meldung('Eingabe der Maschinenbelegung in Minuten    |  <ESC>  ==> Weiter',15,1,true,false,false);
+     settextstyle(2,0,4);
+     highlight_box_x (x,8,15);
+     highlight_box_y (true,'',0,x,8,15,1);
+     setcolor(11);
+     org_matrix_anzeigen(false);
+     setfillstyle(1,h_col);setcolor(v_col);
+     bar(75+30*(x-1),23+12*(y-1),75+x-2+29*x,22+y-1+11*y);
+     if (char1str<>'0') then
+     begin
+          outtextxy(81+30*(x-1),23+12*(y-1),char1str); option:=char1str;
+     end;
+     repeat
+       repeat
+         zeichen := zeichen_einlesen;
+         if (ord(zeichen)=0) then zeichen:= readkey;
+         if not(ord(zeichen) in [8,27,48..57,72,75,77,80]) then
+         begin
+              sound(150);delay(100); nosound;
+         end;
+       until ord(zeichen) in [8,27,48..57,72,75,77,80];
+       if ((ord(zeichen) in [48..57]) and (lange < lang)) then
+       begin
+            option := option + zeichen;
+            setcolor(v_col);
+            outtextxy(81+30*(x-1),23+12*(y-1),option);
+            inc(lange);
+       end
+       else
+       if ((ord(zeichen) in [48..57]) and (lange >= lang)) then
+       begin
+            val(option,option_num,dummy1);
+            setfillstyle(1,1);
+            if (option_num=0) then
+             meldung('<Cursortasten>  ==> Feld Wechseln    |   <Backspace>  ==> Zeichen Lîschen',15,4,false,true,true)
+            else meldung('0 <= Zeit < 1000   |   Lîschen eines Zeichens mit <Backspace>',15,4,false,true,true);
+            setfillstyle(1,h_col);
+            settextstyle(2,0,4);
+       end;
+       if ((ord(zeichen) = 8) and (lange > 0)) then
+       begin
+            delete(option,lange,1);
+            setfillstyle(1,h_col);
+            val(option,option_num,dummy1);
+            bar(75+30*(x-1),23+12*(y-1),75+x-2+29*x,22+y-1+11*y);
+            outtextxy(81+30*(x-1),23+12*(y-1),option+' ');
+            dec(lange);
+       end;
+       if ((ord(zeichen) in [72,75,77,80])) then
+       begin
+            val(option,option_num,dummy1);
+            matrix_org[y,x] := option_num;
+            highlight_box_x (x,1,15);
+            highlight_box_y (true,'',0,y,1,15,1);
+            setfillstyle(1,0);
+            bar(75+30*(x-1),23+12*(y-1),75+x-2+29*x,22+y-1+11*y);
+            setcolor(11);
+            outtextxy(81+30*(x-1),23+12*(y-1),option);
+            case zeichen of
+                 chr(72) :  if (y>1) then y:=y-1 else y:=moy;
+
+                 chr(75) :  begin
+                                 if (x>1) then x:=x-1
+                                 else if (y>1) then begin
+                                      x:=mox; y:=y-1;
+                                 end
+                                 else begin
+                                      x:=mox;y:=moy;
+                                 end;
+                            end;
+
+                 chr(77) :  begin
+                                 if (x<mox) then x:=x+1
+                                 else if(y<moy) then begin
+                                      x:=1; y:=y+1;
+                                 end
+                                 else begin
+                                      x:=1;y:=1;
+                                 end;
+                             end;
+
+                             chr(80) : if (y<moy) then y:=y+1 else y:=1;
+            end;
+            if (matrix_org[y,x] <> 0) then begin
+               str(matrix_org[y,x],option);
+               lange := length(option);
+            end
+            else begin lange := 0;option := ''; end;
+            setfillstyle(1,h_col);
+            bar(75+30*(x-1),23+12*(y-1),75+x-2+29*x,22+y-1+11*y);
+            setcolor(v_col);
+            outtextxy(81+30*(x-1),23+12*(y-1),option);
+            highlight_box_x (x,8,15);
+            highlight_box_y (true,'',0,y,8,15,1);
+       end;
+     until (zeichen = chr(27));
+     val(option,option_num,dummy1);
+     matrix_org[y,x] := option_num;
+end;
+
+
+{******* Speichert die Werte einer Originalmatrix auf DatentrÑger ab
+                   und liefert true wenn kein Fehler auftritt          *******}
+
+function daten_abspeichern : boolean;
+var  std_datei             : text;
+     medium_ok             : boolean;
+     lv1,lv2               : integer;
+begin
+     medium_ok := false;
+     assign(std_datei,suchpfad);
+     {$I-} rewrite(std_datei) {$I+};
+     if (ioresult=0) then
+     begin
+        medium_ok := true;
+        writeln(std_datei,mox);
+        writeln(std_datei,moy);
+        for lv1 := 1 to moy do
+         for lv2 := 1 to mox do
+         begin
+           writeln(std_datei,matrix_org[lv1,lv2]);
+         end;
+        close(std_datei);
+     end else medium_ok:= false;
+     if not (medium_ok) then
+     begin
+          daten_abspeichern := false ;
+          meldung('Zugriff auf Speichermedium nicht mîglich ',15,4,false,true,false);
+          delay(1000);
+     end
+     else
+     begin
+          daten_abspeichern := true;
+          for lv1 := 1 to moy do
+            for lv2 := 1 to mox do matrix_org_copy[lv1,lv2] :=matrix_org[lv1,lv2];
+          suchpfad_alt := suchpfad;
+     end;
+end;
+
+
+{******* Vergleicht eine evtl. geÑnderte Matrix mit ihrem Original und
+                   speichert nach Abfrage unter neuem Namen ab         *******}
+
+procedure mat_vergleich_und_abfrage;
+var  weiter,
+     mat_gleich      : boolean;
+     std_datei       : text;
+     lv1,lv2         : integer;
+     char1              : char;
+begin
+     mat_gleich := true; weiter := false;
+     for lv1 := 1 to moy do
+       for lv2 := 1 to mox do
+       begin
+            if (matrix_org[lv1,lv2] <>matrix_org_copy[lv1,lv2]) then
+            begin
+                mat_gleich := false; lv2 := mox; lv1 := moy;
+            end;
+       end;
+       clearviewport;
+       if not (mat_gleich) then
+       begin
+        textcolor(14);
+        gotoxy(7,12);writeln('Dateiname  :');
+        gotoxy(7,14);writeln('Produktzahl:            Maschinenzahl:');
+        textcolor(11);
+        gotoxy(20,14);writeln(moy);gotoxy(46,14);writeln(mox);
+        gotoxy(20,12);writeln(suchpfad);
+        repeat
+             meldung('Matrix entspricht nicht dem Original - énderung speichern ?   <J>a / <N>ein'
+             ,15,4,false,true,false);
+         repeat
+           char1 := zeichen_einlesen;
+         until (char1 in ['J','N']);
+         if(char1='J') then
+         begin
+           meldung('Eingabe des Dateinamens einschlie·lich Zugriffspfad    |   <ESC> ==> Abbruch',11,1,true,false,false);
+           gotoxy(20,12);writeln('                                                  ');
+           suchpfad_alt := suchpfad;
+           suchpfad := eingabe(false,50,20,12,11,0);
+           if(suchpfad<>chr(27))  then
+           begin
+             assign(std_datei,suchpfad);
+             {$I-} reset(std_datei);{$I+}
+             if (ioresult=0) then
+             begin
+               meldung('Datei existiert bereits... öberschreiben ?   <J>a / <N>ein',15,4,false,true,false);
+               repeat
+                 char1 := zeichen_einlesen;
+               until (char1 in ['J','N']);
+               if(char1='J') then begin weiter := daten_abspeichern;  end;
+             end else begin weiter := daten_abspeichern;
+                            if (weiter=true) then optimum_berechnet := false;
+                      end;
+           end else weiter := false;
+         end else
+         begin
+           meldung('énderungen in Zeitmatrix werden nicht abgespeichert...',15,4,false,true,false);
+           delay(1000); weiter := true; suchpfad := suchpfad_alt;
+           meldung('énderungen bei folgenden Berechnungen beibehalten ?  <J>a / <N>ein',15,4,false,true,false);
+           repeat
+             char1 := zeichen_einlesen;
+           until (char1 in ['J','N']);
+           if (char1='N') then
+              for lv1 := 1 to moy do
+                 for lv2 := 1 to mox do matrix_org[lv1,lv2]:=matrix_org_copy[lv1,lv2]
+         else optimum_berechnet := false;
+         end
+
+        until (weiter = true);
+       end;
+end;
+
+
+{******* Liest eine bereits vorhandene Matrix von Datei ein ******************}
+
+procedure datei_einlesen;
+
+var abbruch,char1          : char;
+    std_datei              : text;
+    x,y,
+    lv1,lv2                : integer;
+    OS_Nr                  : integer;
+    OeffnenProg            : string;
+
+begin
+  (* IniDatei-Wert einlesen *)
+  OS := ReadIni(ini_datei, 'Zugriffe', 'Betriebssystem');
+
+  if OS = '' then
+    OS := 'dos';   { Belegung, falls kein Eintrag gefunden wurde }
+
+  (* OS-String in Num-Wert umwandeln *)
+  if OS = 'dos' then OS_Nr := 0;
+  if OS = 'win3x' then OS_Nr := 1;
+  if OS = 'win95' then OS_Nr := 2;
+
+  abbruch  := '9';
+  matrix_loeschen(matrix_org);
+  matrix_loeschen(matrix_ber);
+  matrix_loeschen(matrix_aus);
+  textcolor(14);
+  gotoxy(7,12);writeln('Dateiname  :');
+  gotoxy(7,14);writeln('Produktzahl:            Maschinenzahl:');
+  meldung('Eingabe des Dateinamens einschlie·lich Zugriffspfad    |   <ESC> ==> Abbruch',11,1,true,false,false);
+  repeat
+        gotoxy(20,12);writeln('                                        ');
+
+        (* PrÅfung auf externes ôffnenprog. *)
+        OeffnenProg := ReadIni(ini_datei, 'Zugriffe', 'Oeffnenprogramm');
+
+        if OeffnenProg <> '' then
+        begin
+          case OS_Nr of
+            0,1 : suchpfad := eingabe2(false,50,20,12,11,0);
+            2 : suchpfad := eingabe2(false,50,20,12,11,0);
+          end;
+        end
+        else suchpfad := eingabe(false,50,20,12,11,0);
+
+        if (suchpfad=chr(27)) then abbruch := chr(27)
+        else begin
+                  assign(std_datei,suchpfad);
+                  {$I-} reset(std_datei);{$I+}
+                  if (ioresult=0) then
+                  begin
+                          suchpfad_alt := suchpfad;
+                          readln(std_datei,mox);
+                          readln(std_datei,moy);
+                          for lv1 := 1 to moy do
+                              for lv2 := 1 to mox do
+                              begin
+                                   readln(std_datei,dummy1);
+                                   matrix_org[lv1,lv2]:= dummy1;
+                                   matrix_org_copy[lv1,lv2] := dummy1;
+                              end;
+                     close (std_datei);
+                     abbruch := '0';
+                  end else
+                      meldung('Zugriff auf Datei nicht mîglich',15,4,false,true,true);
+        end;
+  until (abbruch in ['0',chr(27)]);
+
+
+  if (abbruch = '0')then
+  begin
+    (* ..bei Win Dateiname ausgeben *)
+    if OS_Nr in [1,2] then
+    begin
+      gotoxy(20,12);
+      writeln(suchpfad);
+    end;
+
+    gotoxy(20,14);writeln(moy);gotoxy(46,14);writeln(mox);
+
+    meldung('Weiter mit <RETURN>',11,1,true,false,false);
+    repeat
+      char1:=zeichen_einlesen;
+    until (char1=chr(13));
+
+    clearviewport;
+    raster_aufbauen;
+    setcolor(11);
+    mat_eingabe(3,15,8);
+    mat_vergleich_und_abfrage;
+  end;
+
+  clearviewport;
+end;
+
+
+{******* Liest eine Matrix Åber die Tastatur ein *****************************}
+
+procedure manuelle_eingabe;
+var  gesichert,
+     spfad      : boolean;
+     x,y,
+     diskfehler : integer;
+     std_datei  : text;
+begin
+     textcolor(14);
+     gotoxy(7,12);writeln('Dateiname  :');
+     gotoxy(7,14);writeln('Produktzahl:            Maschinenzahl:');
+     meldung('Eingabe des Dateinamens einschlie·lich Zugriffspfad    |   <ESC> ==> Abbruch',11,1,true,false,false);
+     repeat
+           gotoxy(20,12);writeln('                                        ');
+           suchpfad := eingabe(false,50,20,12,11,0);
+           if(suchpfad<>chr(27))  then
+           begin
+                assign(std_datei,suchpfad);
+                {$i-} reset(std_datei); {$I+}
+                diskfehler := ioresult;
+                if (diskfehler in [1,2]) then
+                begin
+                     meldung('Bitte Produktanzahl eingeben',15,1,true,false,false);
+                     repeat
+                     textcolor(11); gotoxy(20,14);writeln('..');
+                     gotoxy(20,14);val(eingabe(false,2,20,14,11,0),moy,dummy1);
+                     if ((moy<2) or (moy>16)) then meldung('1 < Produktanzahl < 17 ',15,4,false,true,true);
+                     until (moy in [2..16]);
+                     repeat
+                     meldung('Bitte Maschinenanzahl eingeben',15,1,true,false,false);
+                     textcolor(11); gotoxy(46,14);writeln('..');
+                     gotoxy(46,14);val(eingabe(false,2,46,14,11,0),mox,dummy1);
+                     if ((mox<1) or (mox>16)) then meldung('1 < Maschinenzahl < 17 ',15,4,false,true,true);
+                     until (mox in [1..16]);
+                     spfad := true;
+                     clearviewport;
+                     raster_aufbauen;
+                     matrix_loeschen(matrix_org);
+                     mat_eingabe(3,15,8);
+                     gesichert := daten_abspeichern;
+                end
+                else if(diskfehler=0) then
+                     begin
+                          meldung('Datei bereits vorhanden', 15,4,false,true,true);
+                          spfad:=false;
+                     end
+                     else
+                     begin
+                          meldung('Datei kann nicht angelegt werden', 15,4,false,true,true);
+                          spfad:=false;
+                     end;
+                end;
+     until ( (spfad=true) or (suchpfad=chr(27)));
+     clearviewport;
+end;
+
+
+{******* Zeichnet die Grundmaske auf den Bildschirms *************************}
+
+procedure grundmaske(v_col,h_col :integer);
+begin
+     textcolor(v_col);textbackground(h_col);
+     write('  …ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕª   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ÃÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕπ   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ∫                                                                         ∫   ');
+     write('  ÃÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕπ   ');
+     write('  ∫                                                                         ∫   ');
+     write('  »ÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕÕº   ');
+     setfillstyle(1,1);
+     bar(24,09,608,59);
+end;
+{-----------------------------------------------------------------------------}
+{******* FÅhrt die Berechnung der Permutationen durch und speichert maximal
+         10 Ñquivalente Minimalvariationen. Falls alle = true werden die
+         Minimalvariationen ÅberprÅft und falls nur_optimum = false die im
+         Moment berechnete Variation am Bildschirm ausgegeben. ***************}
+
+procedure matrix_permu_berechnen(alle : boolean);
+var
+     hilfs_zaehler_str,
+     char1str,
+     position_einzel,
+     position_gesamt    : string;
+     char1              : char;
+     x,y,
+     lv1,lv2,lv3        : integer;
+begin
+       zaehler:= zaehler + 1;
+       if keypressed then
+       begin char1 := readkey; if (ord(char1)=27) then
+             begin   break := true; clearviewport; end;
+       end;
+       if ((zaehler/1000) = int(zaehler/1000)) then
+       begin
+             str(zaehler:2:0,hilfs_zaehler_str);
+             meldung('Permutation Nr. '+hilfs_zaehler_str+' / '+ permu_max_str+'   | <ESC>..Abbruch'
+              ,15,1,false,false,false);
+       end;
+       for lv1 := 1 to moy do
+         for lv2 := 1 to mox do
+           matrix_aus[lv1,lv2] := matrix_org[i[lv1],lv2];
+         for y := 1 to moy do
+           for x := 1 to mox do
+             if ((x<>1) and (y<>1)) then
+             begin
+               dummy1 := matrix_ber[y-1,x] + matrix_aus[y,x];
+               dummy2 := matrix_ber[y  ,x-1] + matrix_aus[y,x];
+               if (dummy1 > dummy2) then matrix_ber[y,x] := dummy1
+                else
+                 matrix_ber[y,x] := dummy2;
+               end else
+                   if ((x=1) and (y<>1)) then
+                      matrix_ber[y,x] := matrix_ber[y-1,x] + matrix_aus[y,x]
+                      else
+                      if ((x<>1) and (y=1)) then
+                         matrix_ber[y,x] := matrix_ber[y,x-1] + matrix_aus[y,x]
+                         else
+                         matrix_ber[y,x] := matrix_aus[y,x];
+       if (alle = true) then
+       begin
+            position_gesamt := '';
+            for lv3 := 1 to moy do
+            begin
+                 str(i[lv3]:2,position_einzel);
+                 position_gesamt := position_gesamt+position_einzel;
+            end;
+            if ( optimal[opt_zaehler mod 10].wert  > matrix_ber[moy,mox]) then
+            begin
+               opt_zaehler := 0;
+               optimal[opt_zaehler].wert  := matrix_ber[moy,mox];
+               optimal[opt_zaehler].permu := position_gesamt;
+            end else
+            if (optimal[opt_zaehler mod 10].wert  = matrix_ber[moy,mox]) then
+            begin
+                inc(opt_zaehler);
+                optimal[opt_zaehler mod 10].wert  := matrix_ber[moy,mox];
+                optimal[opt_zaehler mod 10].permu := position_gesamt;
+            end;
+
+            if (nur_optimum=false) then
+            begin
+             setfillstyle(1,0); str(zaehler:1:0,char1str);
+             bar(10,7,71,18);
+             outtextxy(10,7,'Perm.: '+char1str);
+             for lv2 := 1 to moy do
+              begin
+                highlight_box_y (false,'Produkt-',i[lv2],lv2,1,15,1);
+                setfillstyle(1,0);
+                 for lv1 :=1  to mox do
+                 begin
+                   bar(75+30*(lv1-1),23+12*(lv2-1),75+lv1-2+29*lv1,22+lv2-1+11*lv2);
+                   str(matrix_ber[lv2,lv1],char1str);
+                   outtextxy(81+30*(lv1-1),23+12*(lv2-1),char1str);
+                 end;
+              end;
+              str(zaehler:1:0,hilfs_zaehler_str);
+              meldung('Permutation Nr. '+hilfs_zaehler_str+
+                        ' / '+permu_max_str+'    |  <SPACE>..Weiter | <ESC>..Abbruch',15,1,false,false,false);
+              settextstyle(2,0,4);
+              repeat
+                    char1 := zeichen_einlesen;
+              until(ord(char1) in [27,32]);
+              if (ord(char1)=27) then
+              begin
+                   break := true ; clearviewport;
+              end
+              else break := false;
+            end;
+       end;
+end;
+
+
+{******* Stellt die in der Grafik verwendeten Farben in Zusammenhang mit den
+         Produkten am Bildschirm in einem Quadrat dar. ***********************}
+
+procedure id_farben_ein(wo:integer);
+var
+     char1              : char;
+     p_idy,
+     lv1,lv2       : integer;
+     char1str         : string;
+begin
+     setcolor(15);
+     if(wo=1) then
+     begin
+          p_idy := 10;
+     end
+     else p_idy := 200;
+     for lv2 := 1 to moy do
+     begin
+          if (lv2<9) then setfillstyle(1,produktfarbe[lv2])
+          else setfillstyle(9,produktfarbe[lv2]);
+          rectangle(6+(lv2-1)*35 , p_idy   , 6+(lv2-1)*35+25,p_idy+25);
+          bar      (8+(lv2-1)*35 , p_idy+2 , 6+(lv2-1)*35+23,p_idy+23);
+          setfillstyle(1,0);
+          bar(10+(lv2-1)*35 , p_idy+9 , 6+(lv2-1)*35+21,p_idy+17);
+          str(i[lv2],char1str);
+          if (length(char1str)<2) then char1str := 'P0'+char1str
+          else char1str := 'P'+char1str;
+          outtextxy(11+(lv2-1)*35,p_idy+7,char1str);
+     end;
+     meldung('                                                        <ESC>..ZurÅck            '
+              ,15,1,true,false,false);
+     repeat
+           char1 := zeichen_einlesen;
+     until (ord(char1)=27);
+     if(wo=1) then
+     begin
+          setviewport(1,1,639,349,true);
+          setviewport(35,10,595,57,true);
+          clearviewport;     setfillstyle(1,1);bar(0,0,561,47);
+          setviewport(1,1,639,349,true);
+          setcolor(14);settextstyle(4,0,5);outtextxy(140,05,'Job-Shop-Problem');
+     end;
+     setviewport(34,66,609,294,true);
+     clearviewport;
+end;
+
+
+{******* Erstellt Grafik fÅr die aktuelle Variation **************************}
+
+procedure grafik;
+var
+     x1,x2,y1,y2,
+     zeit,
+     schritt,
+     merker,
+     step,
+     expo,fak,
+     dummy,
+     lv1,lv2,
+     max_wert       : integer;
+
+     um_faktor      : real;
+     wertstr        : string;
+
+begin
+     setcolor(15);
+     for lv1 := 1 to mox do
+     rectangle(6,22+12*(lv1-1),74,22+12*lv1);
+     line(74,22+12*mox,74,26+12*mox);
+     for lv1 :=1 to mox do highlight_box_y (false,'Maschine',lv1,lv1,1,15,9);
+     max_wert :=matrix_ber[moy,mox];
+     um_faktor := 500 / max_wert;
+     step := round((max_wert)/10);
+     if (step=0) then step := 1;
+     expo := 0;
+     while(step>10) do
+     begin
+          step := round(step/10); inc(expo);
+     end;
+     max_wert:= potenz(expo)*step*10;
+     if(max_wert*um_faktor < 500) then
+        while(max_wert*(um_faktor+0.01 )<500) do um_faktor:= um_faktor +0.01
+     else
+         while(max_wert*um_faktor>500) do um_faktor:= um_faktor -0.01;
+     schritt := round(max_wert*um_faktor);
+     setcolor(15);line(74,22+12*mox,74+schritt,22+12*mox);
+     for lv1 := 0 to 100 do
+     begin
+          schritt := round(max_wert/100*lv1*um_faktor);
+          if(lv1 in [0,10,20,30,40,50,60,70,80,90,100]) then
+          begin
+               line(74+schritt,22+12*mox,74+schritt,26+12*mox);
+               str(74+schritt,wertstr);
+               str((lv1 div 10)*potenz(expo)*step,wertstr);
+               while (length(wertstr) <expo+2) do insert('0',wertstr,1);
+               outtextxy(66+schritt-expo*7,26+12*mox,wertstr);
+          end
+          else line(74+schritt,22+12*mox,74+schritt,24+12*mox);
+     end;
+     for lv2 := 1 to moy do
+     begin
+         if (lv2<9) then setfillstyle(1,produktfarbe[lv2])
+         else setfillstyle(9,produktfarbe[lv2]);
+         for lv1 := 1 to mox do
+         begin
+            if ((lv1>1) and (lv2=1)) then x1 := round(um_faktor*matrix_ber[lv2,lv1-1])
+            else
+            if ((lv1>1) and (lv2>1)) then
+            begin
+                 dummy1 := round(um_faktor*matrix_ber[lv2-1,lv1  ]);
+                 dummy2 := round(um_faktor*matrix_ber[lv2  ,lv1-1]);
+                 if (dummy1>dummy2) then x1 := dummy1
+                 else x1 := dummy2;
+            end
+            else
+            if ((lv1=1) and (lv2>1)) then x1 := round(um_faktor*matrix_ber[lv2-1,1])
+            else x1 := 0;
+            x2 := round(matrix_ber[lv2,lv1]*um_faktor);
+            y1 := 26+12*(lv1-1);    y2 := 20+(12*lv1);
+            if(x1<>x2) then bar(75+x1,y1,75+x2,y2);
+         end;
+     end;
+     if (mox > 13) then
+     begin
+          setviewport(1,1,639,349,true);
+          setviewport(35,10,595,57,true);
+          clearviewport;     setfillstyle(1,1);bar(0,0,561,47);
+          id_farben_ein(1);
+     end
+     else id_farben_ein(0);
+end;
+
+
+{******* Berechnet die Matrix der Optimallîsung falls einzeln=false,
+         ansonsten wird die Optimallîsung mit Nummer nr berechnet (Drucker)   }
+
+procedure berechnete_anzeige(einzeln: boolean;nr: integer);
+var  char1str,q1str    : string;
+     lv1,lv2,
+     permu_id,q1,
+     dummy4,
+     max_zaehler    : integer;
+     char1              : char;
+
+begin
+      if(opt_zaehler>=9) then max_zaehler := 9
+      else max_zaehler := opt_zaehler;
+      permu_id := 0;
+      if (einzeln=false) then
+      begin
+       permu_id := 0;
+       setfillstyle(1,0);setcolor(11);
+       meldung('Es kînnen max 10 Alternativen angezeigt werden',15,4,true,false,false);
+       delay(1000);
+      end;
+      repeat
+        for q1 := 1 to moy do   druckfolge[q1]  := 0;
+        str(opt_zaehler+1,char1str);
+        meldung('‰ der Alternativen: '+char1str+'  | <Æ/Ø>..Alternativen  | <G>..Grafik  | <ESC>..Ende'
+              ,15,1,true,false,false);
+              settextstyle(2,0,4);
+        for q1 := 1 to moy do
+        begin
+             if(einzeln=true) then permu_id := nr;
+             q1str := copy(optimal[permu_id].permu,1+(q1-1)*2,2);
+             val(q1str,i[q1],dummy4); druckfolge[q1] := i[q1];
+        end;
+
+            matrix_permu_berechnen(false);
+            setfillstyle(1,0); str(permu_id+1,char1str);
+            bar(10,7,71,18);
+            outtextxy(10,7,'Auswahl: '+char1str);
+            for lv2 := 1 to moy do
+             begin
+              highlight_box_y (false,'Produkt-',i[lv2],lv2,1,15,1);
+                setfillstyle(1,0);
+              for lv1 :=1  to mox do
+              begin
+                bar(75+30*(lv1-1),23+12*(lv2-1),75+lv1-2+29*lv1,22+lv2-1+11*lv2);
+                str(matrix_ber[lv2,lv1],char1str);
+                outtextxy(81+30*(lv1-1),23+12*(lv2-1),char1str);
+              end;
+           end;
+        if (einzeln=false) then
+        begin
+        repeat
+              char1 := zeichen_einlesen;
+        until (ord(char1) in [27,75,77,71]);
+        case ord(char1) of
+                 75 : begin
+                        if permu_id > 0 then dec(permu_id)
+                        else permu_id := max_zaehler;
+
+                      end;
+
+                 77 : begin
+                        if permu_id < max_zaehler then inc(permu_id)
+                        else permu_id := 0;
+                      end;
+
+                 71 : begin
+                        clearviewport;
+                        grafik;
+                        raster_aufbauen;
+                      end;
+
+
+        end;
+       end
+       else char1:= chr(27);
+      until (ord(char1)= 27);
+      if(einzeln=false) then clearviewport;
+end;
+
+
+{******* Erzeugt sÑmtliche Permutationen und lîst Berechnung dieser aus ******}
+
+procedure matrix_permutation;
+var  lv1,lv2  : integer;
+begin
+     permu_max := 1;
+     for lv1 := 1 to moy do permu_max := permu_max*lv1;
+     str(permu_max:1:0,permu_max_str);
+     meldung('Es werden '+permu_max_str+' Permutationen berechnet....',15,1,true,false,false);
+     for lv1:= 0 to 9 do
+     begin
+          optimal[lv1].wert  := 200000;
+          optimal[lv1].permu := '';
+     end;
+   matrix_loeschen(matrix_ber);zaehler := 0;
+   clearviewport;
+   raster_aufbauen;
+     for i[1] := 1 to moy do
+      for i[2] := 1 to moy do
+       if ((i[2] <> i[1]) and (moy>2) and (break=false)) then
+        for i[3] := 1 to moy do
+         if ((i[3] <> i[1]) and (i[3]<>i[2]) and (moy>3) and (break=false)) then
+          for i[4] := 1 to moy do
+           if ((i[4] <> i[1]) and (i[4] <> i[2]) and (i[4] <> i[3]) and (moy>4) and (break=false)) then
+            for i[5] := 1 to moy do
+             if ((i[5] <> i[1]) and (i[5] <> i[2]) and (i[5] <> i[3]) and (i[5] <> i[4]) and (moy>5) and (break=false)) then
+              for i[6] := 1 to moy do
+               if ((i[6] <> i[1]) and (i[6] <> i[2]) and (i[6] <> i[3]) and (i[6] <> i[4]) and (i[6] <> i[5])
+                  and (moy>6) and (break=false)) then
+
+              for i[7] := 1 to moy do
+               if ((i[7] <> i[1]) and (i[7] <> i[2]) and (i[7] <> i[3]) and (i[7] <> i[4]) and (i[7] <> i[5])
+                  and (i[7] <> i[6]) and (moy>7) and (break=false)) then
+
+              for i[8] := 1 to moy do
+               if ((i[8] <> i[1]) and (i[8] <> i[2]) and (i[8] <> i[3]) and (i[8] <> i[4]) and (i[8] <> i[5])
+                  and (i[8] <> i[6])and (i[8] <> i[7]) and (moy>8) and (break=false)) then
+
+              for i[9] := 1 to moy do
+               if ((i[9] <> i[1]) and (i[9] <> i[2]) and (i[9] <> i[3]) and (i[9] <> i[4]) and (i[9] <> i[5])
+                  and (i[9] <> i[6]) and (i[9] <> i[7]) and (i[9] <> i[8]) and (moy>9) and (break=false)) then
+
+              for i[10] := 1 to moy do
+               if ((i[10] <> i[1]) and (i[10] <> i[2]) and (i[10] <> i[3]) and (i[10] <> i[4]) and (i[10] <> i[5])
+                  and (i[10] <> i[6]) and (i[10] <> i[7]) and (i[10] <> i[8]) and (i[10] <> i[9])and (moy>10)
+                  and (break=false) ) then
+
+              for i[11] := 1 to moy do
+               if ((i[11] <> i[1]) and (i[11] <> i[2]) and (i[11] <> i[3]) and (i[11] <> i[4]) and (i[11] <> i[5])
+                  and (i[11] <> i[6]) and (i[11] <> i[7]) and (i[11] <> i[8]) and (i[11] <> i[9])and (i[11] <> i[10])
+                  and (moy>11) and (break=false)) then
+
+              for i[12] := 1 to moy do
+               if ((i[12] <> i[1]) and (i[12] <> i[2]) and (i[12] <> i[3]) and (i[12] <> i[4]) and (i[12] <> i[5])
+                  and (i[12] <> i[6]) and (i[12] <> i[7]) and (i[12] <> i[8]) and (i[12] <> i[9]) and (i[12] <> i[10])
+                  and (i[12] <> i[11]) and (moy>12) and (break=false)) then
+
+              for i[13] := 1 to moy do
+               if ((i[13] <> i[1]) and (i[13] <> i[2]) and (i[13] <> i[3]) and (i[13] <> i[4]) and (i[13] <> i[5])
+                  and (i[13] <> i[6]) and (i[13] <> i[7]) and (i[13] <> i[8]) and (i[13] <> i[9]) and (i[13] <> i[10])
+                  and (i[13] <> i[11])and (i[13] <> i[12])and (moy>13) and (break=false)) then
+
+              for i[14] := 1 to moy do
+               if ((i[14] <> i[1]) and (i[14] <> i[2]) and (i[14] <> i[3]) and (i[14] <> i[4]) and (i[14] <> i[5])
+                  and (i[14] <> i[6]) and (i[14] <> i[7]) and (i[14] <> i[8]) and (i[14] <> i[9]) and (i[14] <> i[10])
+                  and (i[14] <> i[11])and (i[14] <> i[12])and (i[14] <> i[13])and (moy>14)) then
+
+              for i[15] := 1 to moy do
+               if ((i[15] <> i[1]) and (i[15] <> i[2]) and (i[15] <> i[3]) and (i[15] <> i[4]) and (i[15] <> i[5])
+                  and (i[15] <> i[6]) and (i[15] <> i[7]) and (i[15] <> i[8]) and (i[15] <> i[9]) and (i[15] <> i[10])
+                  and (i[15] <> i[11])and (i[15] <> i[12])and (i[15] <> i[13])and (i[15] <> i[14])and (moy>15)
+                  and (break=false)) then
+
+              for i[16] := 1 to moy do
+               if ((i[16] <> i[1]) and (i[16] <> i[2]) and (i[16] <> i[3]) and (i[16] <> i[4]) and (i[16] <> i[5])
+                  and (i[16] <> i[6]) and (i[16] <> i[7]) and (i[16] <> i[8]) and (i[16] <> i[9]) and (i[16] <> i[10])
+                  and (i[16] <> i[11])and (i[16] <> i[12])and (i[16] <> i[13])and (i[16] <> i[14])and (i[16] <> i[15])
+                  and (break=false))
+                  then matrix_permu_berechnen(true)
+
+               else begin  if ((i[16] <> i[01]) and (i[16] <> i[02]) and (i[16] <> i[03]) and (i[16] <> i[04]) and
+                               (i[16] <> i[05]) and (i[16] <> i[06]) and (i[16] <> i[07]) and (i[16] <> i[08]) and
+                               (i[16] <> i[09]) and (i[16] <> i[10]) and (i[16] <> i[11]) and (i[16] <> i[12]) and
+                               (i[16] <> i[13]) and (i[16] <> i[14]) and (i[16] <> i[15])
+                               and (break=false)) then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[15] <> i[01]) and (i[15] <> i[02]) and (i[15] <> i[03]) and (i[15] <> i[04]) and
+                               (i[15] <> i[05]) and (i[15] <> i[06]) and (i[15] <> i[07]) and (i[15] <> i[08]) and
+                               (i[15] <> i[09]) and (i[15] <> i[10]) and (i[15] <> i[11]) and (i[15] <> i[12]) and
+                               (i[15] <> i[13]) and (i[15] <> i[14]) and (break=false)) then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[14] <> i[01]) and (i[14] <> i[02]) and (i[14] <> i[03]) and (i[14] <> i[04]) and
+                               (i[14] <> i[05]) and (i[14] <> i[06]) and (i[14] <> i[07]) and (i[14] <> i[08]) and
+                               (i[14] <> i[09]) and (i[14] <> i[10]) and (i[14] <> i[11]) and (i[14] <> i[12]) and
+                               (i[14] <> i[13]) and (break=false)) then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[13] <> i[01]) and (i[13] <> i[02]) and (i[13] <> i[03]) and (i[13] <> i[04]) and
+                               (i[13] <> i[05]) and (i[13] <> i[06]) and (i[13] <> i[07]) and (i[13] <> i[08]) and
+                               (i[13] <> i[09]) and (i[13] <> i[10]) and (i[13] <> i[11]) and (i[13] <> i[12]) and
+                               (break=false)) then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[12] <> i[01]) and (i[12] <> i[02]) and (i[12] <> i[03]) and (i[12] <> i[04])  and
+                               (i[12] <> i[05]) and (i[12] <> i[06]) and (i[12] <> i[07]) and (i[12] <> i[08])  and
+                               (i[12] <> i[09]) and (i[12] <> i[10]) and (i[12] <> i[11]) and (break=false))
+                               then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[11] <> i[01]) and (i[11] <> i[02]) and (i[11] <> i[03]) and (i[11] <> i[04])  and
+                               (i[11] <> i[05]) and (i[11] <> i[06]) and (i[11] <> i[07]) and (i[11] <> i[08])   and
+                               (i[11] <> i[09]) and (i[11] <> i[10]) and (break=false)) then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[10] <> i[01]) and (i[10] <> i[02]) and (i[10] <> i[03]) and (i[10] <> i[04])   and
+                               (i[10] <> i[05]) and (i[10] <> i[06]) and (i[10] <> i[07]) and (i[10] <> i[08])   and
+                               (i[10] <> i[09]) and (break=false)) then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[9] <> i[01]) and (i[9] <> i[02]) and (i[9] <> i[03]) and (i[9] <> i[04])       and
+                               (i[9] <> i[05]) and (i[9] <> i[06]) and (i[9] <> i[07]) and (i[9] <> i[08])       and
+                               (break=false)) then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[8] <> i[01]) and (i[8] <> i[02]) and (i[8] <> i[03]) and (i[8] <> i[04])       and
+                               (i[8] <> i[05]) and (i[8] <> i[06]) and (i[8] <> i[07]) and (break=false))
+                               then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[7] <> i[01]) and (i[7] <> i[02]) and (i[7] <> i[03]) and (i[7] <> i[04])       and
+                               (i[7] <> i[05]) and (i[7] <> i[06]) and (break=false)) then matrix_permu_berechnen(true);
+                    end
+               else begin  if ((i[6] <> i[01]) and (i[6] <> i[02]) and (i[6] <> i[03]) and (i[6] <> i[04]) and
+                               (i[6] <> i[05]) and (break=false)) then matrix_permu_berechnen(true);
+                    end
+                    else begin  if ((i[5] <> i[1]) and (i[5] <> i[2]) and (i[5] <> i[3]) and (i[5] <> i[4]) and (break=false))
+                    then matrix_permu_berechnen(true);
+                          end
+                 else begin  if ((i[4] <> i[1]) and (i[4] <> i[2]) and (i[4] <> i[3]) and (break=false)) then
+                             matrix_permu_berechnen(true);
+                      end
+             else begin  if ((i[3] <> i[1]) and (i[3] <> i[2]) and (break=false)) then
+                         matrix_permu_berechnen(true);
+                  end
+         else begin  if ((i[2] <> i[1]) and (break=false)) then
+                     matrix_permu_berechnen(true);
+         end;
+         if (break=false) then berechnete_anzeige(false,0);
+end;
+
+
+{******* Erzeugt die Druckausgabe der Åbergebenen Matrix *********************}
+
+procedure drucke_matrix(matrix:matrix_typ;status:boolean);
+var
+     lv1,lv2,lv3      : integer;
+     texta,
+     textb,
+     zeile3,
+     zeile2,
+     zeile1        : string;
+     titelzeile    : array [1..5]  of string[200];
+     drucktext     : array [1..32] of string[200];
+begin
+     titelzeile[1] := 'ª';
+     titelzeile[2] := '∫';texta :='';
+     titelzeile[3] := 'π';
+     titelzeile[4] := '∂';
+     titelzeile[5] := 'º';
+     for lv1 := mox downto 1 do
+     begin
+          insert('—ÕÕÕÕÕÕ',titelzeile[1],1);
+          insert('ÿÕÕÕÕÕÕ',titelzeile[3],1);insert('≈ƒƒƒƒƒƒ',titelzeile[4],1);
+          insert('œÕÕÕÕÕÕ',titelzeile[5],1);
+          str(lv1,texta); if (lv1<10) then insert('0',texta,1);insert(' ',texta,3);
+          insert(' M-',texta,1);
+          insert('≥'+texta,titelzeile[2],1);
+     end;
+     for lv1:= 1 to 10 do
+     begin
+          insert('Õ',titelzeile[1],1);
+          if(status=true) then insert('€',titelzeile[2],1);
+          insert('Õ',titelzeile[3],1);
+          insert('ƒ',titelzeile[4],1);insert('Õ',titelzeile[5],1);
+     end;
+     if(status=false) then
+     begin
+          while(length(druckvar)<3) do insert ('0',druckvar,1);
+          insert('Var.   '+druckvar,titelzeile[2],1);
+     end;
+     insert('…',titelzeile[1],1);insert('∫',titelzeile[2],1);insert('Ã',titelzeile[3],1);
+     insert('«',titelzeile[4],1);insert('»',titelzeile[5],1);
+     for lv1 := moy downto 1 do
+     begin
+       zeile1 := '';
+       insert('∫',zeile1,1); insert('∂',zeile2,1);
+       for lv2 := mox downto 1 do
+       begin
+           str(matrix[lv1,lv2],texta);
+           while (length(texta)<5) do insert(' ',texta,1);insert(' ',texta,6);
+           insert(texta,zeile1,1);
+           insert('≥',zeile1,1);
+       end;
+       str(druckfolge[lv1],textb);if (lv1<10) then insert('0',textb,1);
+       insert('Produkt-',textb,1);
+       insert('∫'+textb,zeile1,1);
+       drucktext[lv1] := zeile1;
+     end;
+     writeln(lst,chr(27),'!',chr(4));
+     for lv1 := 1 to 3   do writeln(lst,titelzeile[lv1]);
+     for lv1 := 1 to moy do
+     begin
+          writeln(lst,drucktext[lv1]);
+          if (lv1<moy) then writeln(lst,titelzeile[4]) else writeln(lst,titelzeile[5]);
+     end;
+     writeln(lst,chr(27),'@');
+end;
+
+
+{******* Initialisiert Variable bei Programmstart ****************************}
+
+procedure variablen_initialisieren;
+begin
+     setbkcolor(0);    matrix_loeschen(matrix_org);   mox:=0;   moy:=0;
+     opt_zaehler := 0; suchpfad := '';              suchpfad_alt := '';
+     produktfarbe[ 1] := 14 ;    produktfarbe[ 2] := 13 ;    produktfarbe[ 3] := 12 ;
+     produktfarbe[ 4] := 11 ;    produktfarbe[ 5] := 10 ;    produktfarbe[ 6] :=  9 ;
+     produktfarbe[ 7] :=  4 ;    produktfarbe[ 8] :=  7 ;    produktfarbe[ 9] := 14 ;
+     produktfarbe[10] := 13 ;    produktfarbe[11] := 12 ;    produktfarbe[12] := 11 ;
+     produktfarbe[13] := 10 ;    produktfarbe[14] :=  9 ;    produktfarbe[15] :=  4 ;
+     produktfarbe[16] :=  7 ;
+     optimum_berechnet := false;
+     zaehler := 0; zeile:='';
+     directvideo := false;
+     settextstyle(0,0,0);
+end;
+
+

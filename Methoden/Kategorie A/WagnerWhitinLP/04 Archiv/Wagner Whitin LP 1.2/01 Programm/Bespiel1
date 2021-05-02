@@ -1,0 +1,12 @@
+Modell:
+Bespiel1
+
+Anzahl der Nachfragen:
+2
+
+Nachfrage-      Nachfrage-  	Nachfrage-  	Lagerkosten  	Bestellkosten
+Nr              Menge       	Periode     	pro Einheit/Periode
+-----------------------------------------------------------------------------
+1		100		1		20.0		0.1
+2		250		2		20.0		0.1
+-----------------------------------------------------------------------------

@@ -1,0 +1,455 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>9. Software</TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+   <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+
+
+<SCRIPT LANGUAGE="javascript">
+
+var NavName    = navigator.appName ;
+var NavVersion = parseInt( navigator.appVersion ) ;
+
+
+function ZeigeInFenster(para1)
+{
+   if ( NavName == "Microsoft Internet Explorer" && NavVersion >= 4 )
+   {
+      window.open(para1,"x","toolbar=no,directories=no,menubar=no,scrollbars=yes,width=600,height=400");
+   }
+   else   //if ( NavName == "Netscape" && NavVersion >= 4 )
+   {
+      window.open("file:///"+para1,"","toolbar=no,directories=no,menubar=no,scrollbars=yes,width=600,height=400");
+
+   }
+}
+
+</SCRIPT>
+
+
+<! ------------------------------------------------------------------------------------>
+<body class="script">
+
+
+<h1>9. LP-Software</h1>
+<br>
+
+
+<A NAME="FHSolver"></A>
+<h2>LP-Programme an der FH Konstanz</h2>
+
+<p class="block">
+Informationen zu den an der FH verfügbaren LP-Programmen (Solvern) sind im
+<a HREF="PrgORInfo">OR Informationssystem für die Methodenbank</a>,
+auf dem Server im Info.-Verzeichnis (L:\Besf\Info) und 
+in den jeweiligen Solver-Verzeichnissen (L:\Besf\Solver\... ) zu finden.<br>
+
+Eine kurze Einführung in das MPS-Format ist im Info.-Verzeichnis abgelegt.
+Weitergehende Informationen hierzu entnehmen Sie bitte dem XA-Handbuch.</p>
+<br>
+
+
+<b>Interaktive LP-Programme:</b>
+<FONT SIZE="-1" FACE="Arial">
+<UL>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/dakin.htm')">
+       Dakin</a>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/iterator.htm')">
+       Iterator</a>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/lp4win.htm')">
+       LP4Win</a>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/lp90.htm')">
+       LP90</a>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/omp60.htm')">
+       OMP</a>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/primaldual.htm')">
+       Primal-Dual-Wandler</a>
+       &nbsp; <IMG SRC="hin_neu.gif">
+  <!--
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/simplex.htm')">
+       Simplex</a>
+  -->
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/tutorial.htm')">
+      Tutorial (Kurs LP)</a>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/weidenau.htm')">
+      Weidenau Optimizer</a>
+      &nbsp; <IMG SRC="hin_neu.gif"><br>
+      &nbsp; &nbsp; &nbsp;
+      <a href="http://www.netcologne.de/~nc-weidenma/index.htm">
+      Homepage</a> von Markus Weidenauer (Autor der Software)
+</UL>
+</FONT>
+
+
+<b>Batch-Solver:</b>
+<FONT SIZE="-1" FACE="Arial">
+<UL>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/xa.htm')">
+      Extended Application (XA)</a>       
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/lp_solve.htm')">
+      LP-Solve</a>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/mops.htm')">
+      MOPS</a>
+  <LI><a href="javascript:ZeigeInFenster('L:/Besf/OR_Info/daten/strada.htm')">
+      STRADA</a>
+  <LI>Copl-Lp
+</UL>
+</FONT>
+
+<br>
+
+<p>Die Programme <b><i>Iterator</i></b>, <b><i>Primal-Dual-Wandler</i></b> und 
+<b><i>Strada</i></b> wurden von Studierenden der FH Konstanz erstellt!</p>
+
+
+<HR WIDTH="80%">
+<br>
+<br>
+
+
+<a name="LP5000"></a>
+<h2>Lineare Optimierung mit LP5000</h2>
+
+<P><B>Einsatzbeispiele bei der Nordland Papier GmbH, D&ouml;rpen (Ems)</B></P>
+
+<P class="block">Bei der Nordland Papier GmbH ist die Anwendung moderner
+wissenschaftlicher Methoden auf komplexe F&uuml;hrungs- und Entscheidungsprobleme
+weit fortgeschritten. Vor allem im wirtschaftlichen und produktionstechnischen
+Bereich werden Operations Research-Verfahren eingesetzt, um die Auswirkung
+alternativer Ma&szlig;nahmen, Strategien und Einflussgr&ouml;&szlig;en
+zu erkennen, vorherzubestimmen und aus dieser Erkenntnis heraus optimale
+Entscheidungen vorzubereiten.</P>
+
+<P class="block">Operations Research erweist sich - speziell f&uuml;r
+Planungs- und Steuerungsaufgaben - in erster Linie als eine Vielzahl verschiedener
+Verfahren, mit deren Hilfe komplizierte Analyse- und Optimierungsaufgaben
+gel&ouml;st werden k&ouml;nnen. Die Voraussetzungen f&uuml;r den Einsatz
+solcher Methoden sind bei der Nordland Papier GmbH besonders g&uuml;nstig:
+ein aufgeschlossenes, dynamisches Management forciert die Anwendung moderner
+Managementmethoden, die ihre volle Wirksamkeit dadurch entfalten, dass
+sie in Verbindung mit komfortablen EDV-Standardprogrammen in einer 
+leistungsf&auml;higen Datenverarbeitungsanlage ausgewertet werden.</P>
+
+
+<P><B>Die Nordland Papier GmbH</B></P>
+
+<P class="block">Die Nordland Papier GmbH ist ein junges Unternehmen,
+das vor wenigen Jahren im Emsland &raquo;auf der gr&uuml;nen Wiese&laquo;
+entstanden ist: an den Schnittpunkten K&uuml;stenkanal und Ems und Bundesstra&szlig;e
+70 (M&uuml;nster - Emden) mit der 401 (Oldenburg - D&ouml;rpen), nahe der
+holl&auml;ndischen Grenze. Das Unternehmen geh&ouml;rt mit etwa 600 Mitarbeitern
+und einem Jahresumsatz von etwa 100 Mio. EUR und einer Jahresproduktion
+von 120.000 t zu den gr&ouml;&szlig;ten deutschen Papierfabriken. Es wird
+unter finnischer Regie geleitet, wo durch ein enger Zusammenhang zur Rohstoffquelle
+hergestellt wird. Die Produktpalette ist breit: ausgehend von bestimmten
+Standardpapiersorten werden unter Ber&uuml;cksichtigung bzw. durch Kombination
+mehrerer Qualit&auml;ten, Fl&auml;chengewichte und Formate etwa 50 verschiedene
+Produktvarianten hergestellt, nicht nur f&uuml;r den inl&auml;ndischen
+Markt, sondern auch f&uuml;r den Export. F&uuml;r ein Unternehmen dieser
+Gr&ouml;&szlig;enordnung ist die elektronische Datenverarbeitung unentbehrlich.</P>
+
+<P class="block">Mittelpunkt des Siemens-Datenverarbeitungssystems
+4004 bei der Nordland Papier GmbH ist eine Zentraleinheit 4004/135 mit
+128 K Bytes, die noch durch eine moderne Peripherie erg&auml;nzt wird.</P>
+
+<CENTER>
+<P><IMG SRC="Image81.gif" HEIGHT=200 WIDTH=197><BR>
+<FONT SIZE=-1>F&uuml;r den Versand fertig verpackte Papierrollen im Lager
+der Nordland Papier GmbH</FONT></P></CENTER>
+
+<BR>
+
+
+<HR WIDTH="80%">
+<br>
+<br>
+
+<p><a name="AUFGABE"></a>
+<h2>Aufgabenstellung (Beispiel)</h2>
+
+<P class="block">Bei einem Industriebetrieb ist sorgf&auml;ltig darauf
+zu achten, dass Produkte und Leistungen qualitativ und quantitativ
+den Forderungen des Marktes entsprechen, Das ist eine notwendige Voraussetzung,
+um ein gutes Wirtschaftsergebnis zu erzielen.</P>
+
+<P class="block">Es geht jedoch nicht nur darum, dieses Ziel an sich
+zu erreichen, sondern ein Wirtschaftsergebnis zu erhalten, das in jeder
+Beziehung unter den gegebenen Bedingungen optimal ist. Optimierungsverfahren
+erstrecken sich daher auf alle wichtigen betrieblichen Bereiche:</P>
+
+<dir>
+<P>
+&#149; Fertigung<BR>
+&#149; Lager<BR>
+&#149; Anlagen<BR>
+&#149; Vertrieb<BR>
+&#149; Transport<BR>
+&#149; Finanzen<BR>
+&#149; Beschaffung<BR>
+&#149; Personal</P>
+</dir>
+<br>
+
+<P class="block">In der betrieblichen Praxis konzentrieren sich die
+Optimierungsaufgaben meist auf mehrere Gebiete gleichzeitig.</P>
+
+<P><B>Maximierung des Deckungsbeitrages</B></P>
+
+<P class="block">Bei der Nordland Papier GmbH steht ein typisches
+Operations-research Problem im Mittelpunkt: es geht um die Maximierung
+des Deckungsbeitrages, ein Problem, das sich &uuml;ber mehrere Betriebsbereiche,
+n&auml;mlich Fertigung, Beschaffung der Rohstoffe, Vertrieb und Finanzen
+erstreckt. Das Produktionsprogramm ist so zu w&auml;hlen, dass der
+insgesamt mit allen Papierproduktvarianten in einer bestimmten Zeit (bei
+der Nordland Papier GmbH in einem Budgetjahr oder k&uuml;rzerem Planungszeitraum)
+zu erzielende Deckungsbeitrag maximal wird. Die Schwierigkeit dieser Aufgabe
+liegt in der Vielfalt verschiedener Kapazit&auml;tsbedingungen, die bei
+der L&ouml;sung ber&uuml;cksichtigt werden m&uuml;ssen: die einzelnen Produktvarianten
+(das sind in der LP-Terminologie die Entscheidungsvariablen) beanspruchen
+die begrenzten Fertigungskapazit&auml;ten in unterschiedlicher Weise, setzen
+sich ihrerseits aus zeitweise nicht beliebig zur Verf&uuml;gung stehenden
+Rohstoffen zusammen und unterliegen schlie&szlig;lich Absatzbedingungen,
+wie Mindestmengen, H&ouml;chstmengen usw.</P>
+
+<P><B>L&ouml;sung mit Linearer Programmierung</B></P>
+
+<P class="block">Dieses komplexe, sogenannte lineare Programmierungsmodell
+(LP-Model), das sich mit den traditionellen mathematischen Methoden nicht
+mehr berechnen l&auml;sst, stellt bei der Nordland Papier GmbH einen
+zentralen Baustein f&uuml;r die operative Planung dar. Seine L&ouml;sung
+bildet damit eine notwendige Voraussetzung f&uuml;r die j&auml;hrlich neu
+konzipierte Budgetierung und wird damit zu einem entscheidenden Faktor
+f&uuml;r die Lenkung des Unternehmens.</P>
+
+<P class="block">Die Lineare Programmierung ist eine der wichtigsten
+Methoden der Unternehmensforschung. F&uuml;r dieses mathematische Verfahren
+hat sich auch die Bezeichnung Lineare Optimierung eingeb&uuml;rgert, um
+Verwechslungen mit der Programmierung im Bereich der EDV zu vermeiden.
+Es setzt sich zur Aufgabe, aus der Menge aller m&ouml;glichen Produktionsprogramme
+jenes herauszufinden, bei dem ein Ziel - beschrieben durch eine ZieIfunktion
+- optimal wird. Der Begriff linear bezieht sich dabei auf die mathematische
+Eigenschaft der modell-beschreibenden Funktionen, linear zu sein.</P>
+
+<P align=center><IMG SRC="Image82.gif" HEIGHT=500 WIDTH=616></P>
+
+<P align=center>
+<B><FONT SIZE=-1>Wie Papier entsteht: Vom Rohmaterial bis zum
+Endprodukt</FONT></B></P>
+
+<br>
+
+
+<P><B>Modellansatz und Zielfunktion</B></P>
+
+<P class="block">Die Zielfunktion bei dem von der Nordland Papier GmbH eingesetzten 
+LP-Modell dr&uuml;ckt die Maximierung des gesamten Deckungsbeitrages
+aus. Dahinter verbirgt sich die Frage, welche Papiersorten in welchen Mengen
+hergestellt und abgesetzt werden m&uuml;ssen. Die Tabelle verdeutlicht
+stark vereinfacht, die LP-Aufgabenstellung bei der Nordland Papier GmbH.</P>
+
+<P class="block">Um die Tabelle zu erl&auml;utern, sei die Papiervariante A herausgegriffen:
+Mit Hilfe des Rechnungswesens ist f&uuml;r A ein Deckungsbeitrag von 100
+EUR ermittelt worden. Eine Einheit (in diesem Fall 1 t) belegt den Rollenschneider
+20 min, den Querschneider 20 min und die Veredlungsanlage 15 min. Eine
+Tonne der Sorte A setzt sich aus 0,70 t Birke (Zellstoff) und 0,25 t Kiefer
+(Zellstoff) zusammen. Der Rest sind Zusatz- und F&uuml;llstoffe.</P>
+
+<P class="block">Aufgrund bestehender Lieferverpflichtungen sind vom Papier A 500 t fest
+zu liefern (Mindestmenge). Marktuntersuchungen haben ergeben, dass
+jedoch h&ouml;chstens 2000 t absetzbar sind (H&ouml;chstmenge).</P>
+
+<P class="block">Der gesamte Deckungsbeitrag der maximiert werden soll, wird durch die
+Zielfunktion definiert (DB Deckungsbeitrag, X Menge in t):</P>
+
+<P><font face="verdana,arial" size="-1"><b>
+&nbsp; &nbsp; &nbsp; 
+DB<SUB>A</SUB> * X<SUB>A</SUB> + DB<SUB>B</SUB> * X<SUB>B</SUB> + ...
+&nbsp; &nbsp; &nbsp; &nbsp;
+... + DB<SUB>G</SUB> * X<SUB>G</SUB> &nbsp; &rarr; &nbsp; Max!</b></font></P>
+
+<P class="block">In diese Zielfunktion gehen die Deckungsbeitr&auml;ge als Bekannte,
+die Mengen der einzelnen Produkte als Unbekannte ein.</P>
+
+<br>
+
+<CENTER><P><IMG SRC="Image84.gif" HEIGHT=296 WIDTH=233><BR>
+<FONT SIZE=-1>Superkalander mit eingezogener Papierbahn<BR>
+(Arbeitsbreite 4,5 m)</FONT></P></CENTER>
+
+<br>
+
+<P><B>Auswertung</B></P>
+
+<P class="block">Auf den ersten Blick ist man geneigt, nur die Papiervariante
+E zu produzieren, da diese den h&ouml;chsten Deckungsbeitrag abwirft. Doch
+die L&ouml;sung zeigt das Gegenteil, denn Sorte E hat auf den Maschinen
+ung&uuml;nstige Laufzeiten. Von einer Einheit E wird der Rollenschneider
+20 min und der Querschneider 60 min belegt, w&auml;hrend die Veredlungsanlage
+nicht in Anspruch genommen wird. Statt Papier E k&ouml;nnen die im Deckungsbeitrag
+zwar ung&uuml;nstigeren, daf&uuml;r aber im Laufzeitverhalten bedeutend
+besseren Produkte A oder B hergestellt werden. Die erheblich gr&ouml;&szlig;ere
+Menge kompensiert den schlechteren Einzeldeckungsbeitrag.</P>
+
+<P class="block">Nun lassen sich die Produkte mit dem g&uuml;nstigen
+Verhalten nicht in beliebigen Mengen produzieren, da man irgendwann an
+Kapazit&auml;tsgrenzen st&ouml;&szlig;t. Es sind dies</P>
+
+<dir>
+<P>
+&#149; Fertigungskapazit&auml;ten,<BR>
+&#149; Rohstoffkapazit&auml;ten,<BR>
+&#149; Absatzkapazit&auml;ten.</P>
+</dir>
+
+<P class="block">Aus betrieblichen Gr&uuml;nden ist das Leistungsverm&ouml;gen
+der Maschinen, &uuml;ber die verschiedenen Produkte laufen, f&uuml;r den
+Betrachtungszeitraum begrenzt. So kann z. B. der Rollenschneider derzeit
+nur 300000 min/Jahr in Betrieb sein. &Auml;hnlich kann es sich mit den
+Rohstoffen verhalten: f&uuml;r den Zellstoff k&ouml;nnen zu bestimmten
+Zeiten Versorgungsschwierigkeiten eintreten, so dass z. B. nur Kontingente
+von 43000 t Birke und 9500 t Kiefer zur Verf&uuml;gung stehen, die optimal
+eingeplant werden m&uuml;ssen. Weitere Bedingungen sind in Form von Mindest-
+und/oder H&ouml;chstmengen vom Markt her gegeben.</P>
+
+<br>
+
+<P><B>Theoretische Grundlagen</B></P>
+
+<P class="block">Mathematisch gesehen handelt es sich bei dieser komplexen Aufgabe 
+um System von linearen Gleichungen und Nebenbedingungen in Form von Ungleichungen,
+das erg&auml;nzt wird durch sogenannte Nichtnegativit&auml;tsbedingungen
+(es d&uuml;rfen keine negativen Mengen bei der L&ouml;sung herauskommen).
+Ein solches System ist prinzipiell vergleichbar einem Gleichungssystem
+mit einer bestimmten Zahl von Gleichungen und gleich vielen Unbekannten,
+das mit den Mitteln der herk&ouml;mmlichen Mathematik eindeutig l&ouml;sbar
+ist. Die L&ouml;sbarkeit des LP-Modells erfordert hingegen eine neuartige
+Rechentechnik, die inzwischn als die von Dantzig entwickelte Simplexmethode
+bekannt ist. Diese Simplexmethode, die auf der Matrizenrechnung beruht
+und damit besonders &raquo;computerfreundlich&laquo; ist, stellt zugleich
+- in revidierter Form - die Grundlage des Siemens-Programmsystems LP5000 dar, 
+das zur Berechnung von LP-Modellen mit Hilfe der elektronischen Datenverarbeitung
+eingesetzt wird.</P>
+
+<br>
+
+<P><B>Programmsystem LP5000</B></P>
+
+<P class="block">LP5000 zeichnet sich durch erheblichen Komfort sowohl
+in mathematischer als auch in EDV-technischer Hinsicht aus: es erlaubt
+verschiedene standardisierte Eingabeformate und verf&uuml;gt &uuml;ber
+mehrere Zusatzalgorithmen, die einen optimalen Rechenlauf garantieren.
+Hervorstechendes Merkmal von LP5000 sind auch die kurzen Rechenzeiten.
+Das Praxismodell der Nordland Papier GmbH mit etwa 100 Papiervarianten
+hat beispielsweise eine Optimierzeit von nur etwa 1 min. Dabei besteht die 
+LP-Matrix aus 181 Zeilen (davon sind 176 Nebenbedingungen) und 97 Spalten.
+Mit insgesamt 750 Elementen betr&auml;gt ihre Besetzungsdichte 4,23 %.
+Vergleichsweise w&uuml;rde das &raquo;manuelle&laquo; Ausrechnen einer
+solchen Aufgabe selbst mit Hilfsmitteln, wie z. B. eines elektronischen
+Taschenrechners, mehrere Wochen in Anspruch nehmen.</P>
+
+<P class="block">Nach einer bestimmten Anzahl von Rechenschritten (Iterationen) 
+hat LP5000 die L&ouml;sung gefunden und stellt sie in &uuml;bersichtlicher Form 
+zur Verf&uuml;gung. Die L&ouml;sung des Testbeispiels (vgl. unteren Teil der 
+Tabelle) weist zun&auml;chst den Zielfunktionswert mit 1.429.427 EUR aus. 
+Unter den gegebenen Bedingungen ist es unm&ouml;glich, einen noch
+gr&ouml;&szlig;eren Gesamtdeckungsbeitrag zu erzielen. In der L&ouml;sung
+werden die optimalen Mengen f&uuml;r die Varianten A bis F ausgedr&uuml;ckt.
+Dabei fallen die Mengen A, B mit den angegebenen H&ouml;chstmengen und
+die Mengen D, E, F mit den angegebenen Mindestmengen zusammen. Aus der
+L&ouml;sung l&auml;&szlig;t sich ferner eine Rangfolge f&uuml;r die einzelnen
+Produkte nach kaufm&auml;nnischen Kriterien ableiten.</P>
+
+<br>
+<P><IMG SRC="Image85.png" HEIGHT=233 WIDTH=620></P>
+<br>
+
+<P><B>Entscheidungsalternativen</B></P>
+
+<P class="block">Der praktische Nutzen f&uuml;r die Entscheidungsinstanzen
+liegt jedoch nicht allein in dieser Kernl&ouml;sung, sondern ebenso in
+zahlreichen zus&auml;tzlich errechneten Zahlen, z. B. den verbrauchten
+oder nicht genutzten Kapazit&auml;ten, aber auch besonders den sogenannten
+Dualwerten. Die Dualwerte zeigen an, um wieviel sich der Zielfunktionswert
+(Gesamtdeckungsbeitrag) verbessert oder verschlechtert, wenn man zwangsweise
+Eingriffe in die Optimall&ouml;sung dergestalt vornimmt, dass sich
+Nebenbedingungen (z. B. angesto&szlig;ene Kapazit&auml;tsgrenzen) um eine
+Einheit ver&auml;ndern. Es werden also nicht nur die Fragen nach dem optimalen
+Produktionsprogramm, sondern im Zusammenhang mit Engpa&szlig;betrachtungen
+auch investitions- oder vertriebspolitische &Uuml;berlegungen beantwortet.
+In einer angeh&auml;ngten Sensibilit&auml;tsanalyse zeigt LP5000 die Grenzen
+auf, innerhalb derer die Auswirkungen geplanter Modelleingriffe linear
+fortgeschrieben werden d&uuml;rfen, bevor die L&ouml;sung &raquo;umkippt&laquo;,
+d. h. eine v&ouml;llig anders strukturierte L&ouml;sung g&uuml;ltig wird.
+Die Sensibilit&auml;tsanalyse von LP5000 kennzeichnet die Stabilit&auml;t
+der gefundene L&ouml;sung.</P>
+
+<P class="block">Einen Schritt weiter geht die Parametrisierung in
+LP5000: W&auml;hrend sich die Sensibilit&auml;tsanalyse innerhalb einer
+Basisl&ouml;sung bewegt, f&uuml;hrt die Parametrisierungsroutine die Berechnung
+einer ganzen Reihe zusammenh&auml;ngender Optimall&ouml;sungen durch. Die
+Nebenbedingungen des Problems werden im vorgegebenen Verh&auml;ltnis so
+lange fortschreitend ver&auml;ndert, bis irgendwelche Variablen die Basisl&ouml;sung
+verlassen m&uuml;ssen, um die Zul&auml;ssigkeit der L&ouml;sung weiter
+zu gew&auml;hrleisten.</P>
+
+<P class="block">Unter Ausnutzung dieser M&ouml;glichkeiten von LP
+5000 erh&auml;lt man also nicht nur ein f&uuml;r den Augenblick, sondern
+auch f&uuml;r die Zukunft best&auml;ndiges optimales Programm. Damit wird
+LP5000 f&uuml;r die Nordland Papier GmbH zu einem unentbehrlichen strategischen
+Entscheidungsinstrument.</P>
+
+<P class="block">LP5000 ist indessen nicht nur in der Papierindustrie
+einsetztbar. Fast in allen anderen Branchen gibt es zahlreiche Anwendungsf&auml;lle.
+Als Beispiele seien genannt:</P>
+
+<P><ul>
+<li>Chemische Industrie, haupts&auml;chlich Raffinerien
+<li>Nahrungs- und Genu&szlig;mittelindustrie
+<li>Handel
+<li>Dienstleistungsbetriebe
+</ul></P>
+
+<br>
+
+<P class="block">Besonders h&auml;ufig treten LP-Probleme in den beiden
+erstgenannten Branchen auf, also &uuml;berall dort, wo nach Rezepturen
+gearbeitet wird, z.B. Cracken von Erd&ouml;l, Mischen einer Tabaksorte,
+Herstellen von Margarine, Anfertigen von Futtermittelmischungen usw. Die
+Zielfunktion dr&uuml;ckt in diesen F&auml;llen eine Minimierung der Kosten
+f&uuml;r die Rohstoffe oder Zutaten aus. F&uuml;r den Handel l&auml;&szlig;t
+sich das Transportproblem in Gestalt einer Wege- und damit Kostenminimierungsaufgabe
+nennen. Voraussetzung f&uuml;r einen LP-Ansatz ist in jedem Fall die Erreichung
+eines Zieles in optimaler Weise bei begrenzt zur Verf&uuml;gung stehenden
+Mitteln.</P>
+
+<br>
+
+<P><B>Zusammenfassung</B></P>
+
+<P class="block">Der Einsatz des Operations Research Verfahrens Lineare
+Programmierung LP5000 bei der Nordland Papier GmbH beweist die st&auml;ndig
+zunehmende Bedeutung von OR-Verfahren in der betrieblichen Praxis. Es zeigt
+sich an diesem Fall, wie sehr in einem Unternehmen die Ertragslage positiv
+beeinflu&szlig;t werden kann. Dar&uuml;ber hinaus schlagen sich die Ergebnisse
+in zahlreichen unternehmenspolitischen Planungen nieder: kurz- und mittelfristig
+auf Beschaffung, Fertigung und Vertrieb im engeren Sinn, langfristig auf
+die generelle Beeinflussung der Markt-und Fertigungsbedingungen (Beschaffungs-,
+Vertriebs- und Investitionspolitik).</P>
+
+<P class="block">Nach den guten Erfahrungen mit dem bisherigen Einsatz
+von LP5000 wird von der Nordland Papier GmbH erwogen, weitere Programmsysteme
+voll Siemens zur L&ouml;sung von OR-Problemen einzusetzen, besonders in
+den Bereichen Verschnitt- und Lageroptimierung.</P>
+
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="../KAP4-8/Kap8.Htm">Kapitel 8</a><BR>
+<A HREF="../KAP10/Kap10.Htm">Kapitel 10</A><br>
+<br>
+<A HREF="../PCStart.Htm">Start-Bildschirm</A></b></P>
+
+</BODY>
+</HTML>

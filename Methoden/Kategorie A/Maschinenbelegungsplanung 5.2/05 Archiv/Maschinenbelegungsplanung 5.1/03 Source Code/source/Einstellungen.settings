@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Maschinenbelegungsplanung" GeneratedClassName="Einstellungen">
+  <Profiles />
+  <Settings>
+    <Setting Name="SolverPfad" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Maschinenbelegungsplanung\lp_solve\EXEC</Value>
+    </Setting>
+    <Setting Name="Arbeitsverzeichnis" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\temp</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

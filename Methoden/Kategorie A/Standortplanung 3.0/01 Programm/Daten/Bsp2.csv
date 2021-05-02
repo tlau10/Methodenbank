@@ -1,0 +1,8 @@
+Standortplanung;V 2.0;;
+columns=;4;;
+rows=;4;;
+Entfernung=;3;;
+;Standort 1;Standort 2;Standort 3
+Standort 1;0;1;5
+Standort 2;1;0;4
+Standort 3;7;4;0

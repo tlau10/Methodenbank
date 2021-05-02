@@ -1,0 +1,102 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>T1_Aufg09</title>
+</head>
+<body>
+<font face="Arial" font color="#666666" font size=-1>
+Aufgabenteil 1</font>
+
+<p align="center">
+<font size="+2" color="#3366C8"><b>Aufgabe 9</b></font></p>
+<hr>
+
+<font face="arial" size="1">Aufgabe 9 erweitert die Aufgabe 2 um eine
+Überstundenkomponente.
+</font>
+
+<div style="font-family:arial; font-size:10pt">
+
+
+<p><u><b>Aufgabenstellung:</b></u></p>
+
+<p align=justify>
+Ein Betrieb fertigt die Produkte 1 und 2. Jedes Produkt bringt unterschiedliche
+Erl&ouml;se und verursacht unterschiedliche direkte Kosten. Damit sind
+auch die Deckungsbeitr&auml;qe unterschiedlich hoch. Mit ihrer Summe sind
+mindestens die fixen Kosten von monatlich EUR 36.000,- zu decken.
+<p align=justify>
+Die Mengen der Produkte sind durch die Kapazit&auml;ten der Fertigungsaggregate
+begrenzt. Es stehen die Maschinen A, B, C zur Verf&uuml;gung. Das Produkt
+1 durchl&auml;uft die Maschine A und B, die es jeweils eine Stunde je Mengeneinheit
+(ME) belegt. F&uuml;r die Fertigung des Produktes 2 werden je ME zwei Stunden
+auf A, eine Stunde auf B und drei Stunden auf C ben&ouml;tigt. Die Kapazit&auml;ten
+der Maschinen ergeben sich aus der monatlichen einschichtigen Arbeitszeit
+zuz&uuml;glich &Uuml;berstunden.
+
+<p align=justify>
+Auf jeder Anlage sind pro Monat bis zu
+30 &Uuml;berstunden zul&auml;ssig. Durch jede &Uuml;berstunde auf den Anlagen
+A, B und C entstehen gegen&uuml;ber der Fertigung w&auml;hrend der normalen
+Arbeitszeit zus&auml;tzlich Kosten von EUR 140,-, EUR 80,- und EUR 125,-.
+In der folgenden Tabelle sind die &uuml;brigen Daten zusammengefa&szlig;t.
+
+
+<pre style="font-size:13; color:#0040a0">
+  |---------------------------|-----------------|-------------------|
+  |                           |     Produkt     |                   |
+  |---------------------------|--------|--------|                   |
+  |                           |    1   |    2   |    monatliche     |
+  |---------------------------|--------|--------| Kapazität in Std. |
+  |  Erlöse          (EUR/ME) | 1000,- | 3000,- |                   |
+  |---------------------------|--------|--------| (ohne Überstunden)|
+  |  Direkte Kosten  (EUR/ME) |  700,- | 2500,- |                   |
+  |---------------------------|--------|--------|-------------------|
+  |  Fertigungszeit       A   |    1   |    2   |        170        |
+  |                           |        |        |                   | 
+  |  in (Std./ME)         B   |    1   |    1   |        150        |
+  |                           |        |        |                   |
+  |  auf Maschine         C   |    -   |    3   |        180        |
+  |---------------------------|--------|--------|-------------------|
+</pre>
+
+<p align=justify>
+Formulieren Sie ein LP-Modell zur Bestimmung der monatlich zu erzeugenden
+Mengen der Produkte 1 und 2. Ziel sei die Maximierung des Gewinns.</p>
+<br>
+
+<p><u><b>Musterl&ouml;sung:</b></u></p>
+
+<p>Bezeichnungen:
+<ul>
+x<sub>1</sub> :&nbsp; Menge des Produktes 1<br>
+x<sub>2</sub> :&nbsp; Menge des Produktes 2<br>
+y<sub>A</sub> :&nbsp; Anzahl der eingesetzten Überstunden auf Maschine A<br>
+y<sub>B</sub> :&nbsp; Anzahl der eingesetzten Überstunden auf Maschine B<br>
+y<sub>C</sub> :&nbsp; Anzahl der eingesetzten Überstunden auf Maschine C
+</ul>
+
+<p>Modell:
+<ul>
+300x<sub>1</sub> + 500x<sub>2</sub> - 100y<sub>A</sub> - 80y<sub>B</sub>
+  - 125y<sub>C</sub> - 36000 &nbsp;--&gt;&nbsp; max !<br>
+<br>
+x<sub>1</sub> + 2x<sub>2 </sub>&lt;= 170 + y<sub>A</sub><br>
+x<sub>1</sub> + &nbsp;x<sub>2</sub> &lt;= 150 + y<sub>B</sub><br>
+&nbsp; &nbsp; &nbsp;&nbsp; 3x<sub>2</sub> &lt;= 180 + y<sub>C</sub><br>
+<br>
+y<sub>A</sub> &lt;= 30<br>
+y<sub>B</sub> &lt;= 30<br>
+y<sub>C</sub> &lt;= 30<br>
+<br>
+x<sub>1</sub>, x<sub>2</sub> &gt;= 0 ; &nbsp; &nbsp;
+y<sub>A</sub>, y<sub>B</sub>, y<sub>C</sub> &gt;= 0
+</ul>
+
+</div>
+<br>
+<input type="button" value="LP-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe09\\lp_solve.bat');"/>
+<input type="button" value="XA-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe09\\xa.bat');"/>
+</body>
+</html>

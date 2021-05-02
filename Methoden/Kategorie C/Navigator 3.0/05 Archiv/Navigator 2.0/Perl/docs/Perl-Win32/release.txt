@@ -1,0 +1,243 @@
+
+You are reading: RELEASE.TXT for Perl for Win32
+-----------------------------------------------
+
+-------------------------
+Build 316 - Mar 13, 1998
+-------------------------
+Fixes:
+o NTFormatMessage strcmp change to strcpy from surikov@nmc.rospac.ru (Mike Surikov)
+o NetAdmin Net functions return ERROR_MORE_DATA with a resume handle not NERR_Success
+o Fixed memory leak in OLE; internal reference count of perl structures was incorrect
+
+-------------------------
+Build 315 - Dec 31, 1997
+-------------------------
+Fixes:
+o Fixed premature closing of handle in Win32::InitiateSystemShutdown
+o Fixed handling of non string types in registry functions
+
+-------------------------
+Build 314 - Dec 16, 1997
+-------------------------
+Fixes:
+o Win32::FileSecurity update (V0.67) from Monte Mitzelfelt, monte@conchas.nm.org
+o Removed CR from PATH variable for Win95 install
+o Removed 'HTML-DOCS' registry entry
+o Added HKEY_CURRENT_CONFIG & HKEY_DYN_DATA to Registry.pm
+o Removed HKEY_PERFORMANCE_TEXT & HKEY_PERFORMANCE_NLSTEXT from Registry.pm
+
+-------------------------
+Build 313 - Nov 4, 1997
+-------------------------
+Fixes:
+o Patched core for bitwise operator error
+o File/Basename.pm updated to version 2.5
+o Added PerlMsg.dll for Event logging support common to PerlIS.dll and PerlSE.dll
+
+-------------------------
+Build 312 - Oct 24, 1997
+-------------------------
+Fixes:
+o Fixed minor problem converting a character to OLE parameter
+o Fixed socket handle leak
+o Fixed bug in deleting environment variable
+o Fixed bug in filter_gets
+o Added release of enumerator in ReleaseObjects
+o Corrected linked list processing in NewDispatch
+o Corrected numeric conversion.
+o Reintroduced boot_Winsock for backward compatibility
+o Socket support moved to hosts
+
+-------------------------
+Build 311 - Sep 18, 1997
+-------------------------
+Fixes:
+o Fixed win95 socket bug (GetFileType bug)
+o Added handling of REG_EXPAND_SZ in RegSetValue
+o Fixed bug in opendir with '\'
+
+-------------------------
+Build 310 - Sep 04, 1997
+-------------------------
+Fixes:
+o Fixed socket concurrency problem -- this fix was funded by Intershop, thanks!
+(this affected Perl for ISAPI and PerlScript)
+
+-------------------------
+Build 309 - Aug 27, 1997
+-------------------------
+Test Release
+
+-------------------------
+Build 308 - Aug 25, 1997
+-------------------------
+Fixes:
+o Fixed memory leak in OLE; was not releasing undefs
+o Fix for Win32::FileSecurity from tilmann.haeberle@sap-ag.de (Tilmann Haeberle)
+o Fix for characters > 127 in file names from schaack@mus.de (Rainer Schaack)
+o Added GetObject() OLE support from earl_chew@hp.com (Earl Chew)
+o Corrected docs in NetAdmin.pm 'Del...' should have been 'Delete...'
+
+-------------------------
+Build 307 - Jul 8, 1997
+-------------------------
+Fixes:
+o Added NetAdmin code from S.Bennett@lancaster.ac.uk
+o Added link in oleauto.html to Win32::OLELastError
+o Added changes for Filter handling
+o RegQueryInfoKey parameter count corrected in Registry.pm
+o RegQueryValueEx handles large size data
+o Corrected docs in Win95.txt
+o Fixed handling of NULL BSTR from James Clark <jjc@jclark.com>
+o Fixed possible memory leak in Win32::OLESetProperty
+o When OLE name lookup fails, dispID of DISPID_VALUE is used and name
+	is passed as parameter
+o Added comments to source code to mark internal functions
+o Added Win32::Sleep (see win32ext.html)
+o Added dowantarray info to ntxsub.h
+o Fixed opendir on root of drive problem
+o Fixed rename deleting newfile if oldfile did not exist
+
+-------------------------
+Build 306 - Apr. 9, 1997
+-------------------------
+Added:
+foreach.pl  - OLE foreach () sample
+ado.pl - ADO database sample
+
+Fixes:
+o Added COMSPEC registry lookup to override/provide COMSPEC environment variable
+	from Jorge Gustavson <JGustavson@ACM.org>
+o Change ntole.cpp to use SysAllocString instead of SysAllocStringByteLen
+o Added ioctl for socket fds from Ronan Waide <waider@autodealing.com>
+o Fixed Win32:: calls for memory leak
+o Added FileHandle extension and associated test script
+o Stopped deletion of spaces inside quotes in system command
+o BIT_BUCKET changed from "\\dev\\nul" to "nul"
+o Win32::Service::GetStatus returns the following if service stopped. 
+	CurrentState              =   1
+	CheckPoint                =   0
+	ControlsAccepted          =   0
+	ServiceSpecificExitCode   =   0
+	ServiceType               =   0
+	WaitHint                  =   0
+	Win32ExitCode             =   0
+
+Known Issues
+------------
+o SDBM_File fails on FAT file systems
+o characters > 127 in file names are problematic
+
+
+-------------------------
+Build 305 - Apr. 2, 1997
+-------------------------
+Fixes:
+o this build loads and executes extension 303 or greater
+o added handling of OLE collections in foreach
+o unlink fixed for read only files
+o Socket error report adds error number
+o Fixed Win32::FSType for print
+o FindFirstFile, FindNextFile, and FindClose moved into IPerlSupport;
+	handles opendir problem in PerlScript and PerlIS
+
+Known Issues
+------------
+o SDBM_File fails on some Win95 installations 
+o characters > 127 in file names are problematic
+
+-------------------------
+Build 304 - Mar. 22, 1997
+-------------------------
+
+Fixes:
+o Defined HAS_UTINE in Config.h
+o Added additional tests to the test suite
+o Fixed bug in GroupGetAttributes in NetAdmin.cpp
+o Added fixes for Win95 install from Alexander Caskey <afc@halcyon.com>
+o Fixed 'select(undef, undef, undef, 5);' exception.
+o Fixed InitiateSystemShutdown and AbortSystemShutdown
+o Added package Variant for OLE - see oleauto.html for docs
+o Fixed handling of SIGINT
+o Added Monte Mitzelfelt, monte@conchas.nm.org fixes/changes to FileSecurity.pll
+o Perl300 tracks loading of libraries and unloads then when it unloads
+o Removed setting of PATHEXT in perlw32-install.bat
+o Fixed Win32::EventLog operations with large events logs
+o Fixed IDispatch as parameter to OLE method
+o Delete processing of '.' in PATH during install
+
+Known Issues
+------------
+o characters > 127 in file names are problematic
+o "Associate .pl with Perl.exe?" fails in perlw32-install.bat on Windows NT versions
+	earlier than 4.0 -- ftype and assoc commands are not available
+
+-------------------------
+Build 303 - Jan. 29, 1997
+-------------------------
+
+Fixes:
+o Changed Perl100.dll to Perl300.dll in Nt.cpp
+o Added additional tests to the test suite
+o Added Fcntl.pll
+o Fixed bug in Open in Eventlog.pm
+o Corrected reference to Tie::Hash for SDBM_File.pm
+o Changed '!= ARRAY' to 'ne ARRAY' in Registry.pm
+o Corrected error in docs 'GroupDel...' should be 'GroupDelete...'
+o Added extensions IO.pll and Socket.pll
+o Added 'kill' -- Perl built in
+
+Known Issues
+------------
+o characters > 127 in file names are problematic
+o some Win32::EventLog operations fail with large events logs
+o "Associate .pl with Perl.exe?" fails in perlw32-install.bat on Windows NT versions
+	earlier than 4.0 -- ftype and assoc commands are not available
+
+-------------------------
+Build 302 - Dec. 13, 1996
+-------------------------
+
+Fixes:
+o Added missing .pm and .pl files from distribution
+o fixed building of SDBM_File.pll in build code so that a binary is produced
+
+-------------------------------
+Version 5.003_7 build 301
+-------------------------------
+
+Fixes:
+o OLE error loading some servers
+o OLE error reusing SV's
+o PERL5DB.PL corrected console detection for MSWin32
+
+Updates:
+o docs/Perl directory
+
+-------------------------------
+Version 5.003_7 build 300
+-------------------------------
+
+Fixes
+-----
+o added Win32/ChangeNotify.pm that was forgotten
+
+-------------------------------
+Version 5.003_7 build 300
+-------------------------------
+o first release of Perl 5.003 for Win32
+o likely has bugs
+o Documentation is seriously out of date
+
+Things to look out for
+----------------------
+o All built in NT* functions have been renamed Win32::*
+	done to clean up the main name space significantly
+o Win32::ChangeNotification has been renamed Win32::ChangeNotify
+o registry records are now in \Software\ActiveWare\..
+o Installation associates .pl files to perl.exe in NT
+
+Known Issues
+------------
+	none - please report bugs to perl@ActiveWare.com

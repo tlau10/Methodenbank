@@ -1,0 +1,604 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// German (Germany) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 7, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\Transop.rc2""  // Nicht mit Microsoft Visual C++ bearbeitete Ressourcen\r\n"
+    "#include ""l.deu\\afxres.rc""          // Standardkomponenten\r\n"
+    "#include ""l.deu\\afxprint.rc""        // Ressourcen für Drucken/Seitenansicht\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\Main.ico"
+IDR_TRANSOTYPE          ICON                    "res\\icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_SAVE_AS
+    BUTTON      ID_FILE_OPEN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&Datei"
+    BEGIN
+        MENUITEM "&Neu\tStrg+N",                ID_FILE_NEW
+        MENUITEM SEPARATOR
+        MENUITEM SEPARATOR
+        MENUITEM "&Beenden",                    ID_APP_EXIT
+    END
+    POPUP "&Einstellungen"
+    BEGIN
+        MENUITEM "Pfadeinstellungen...",        ID_PROP_WORKINGDIR
+    END
+    POPUP "&Ansicht"
+    BEGIN
+        MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
+        MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "Inf&o über Transop...",       ID_APP_ABOUT
+    END
+END
+
+IDR_TRANSOTYPE MENU 
+BEGIN
+    POPUP "&Datei"
+    BEGIN
+        MENUITEM "&Neu\tStrg+N",                ID_FILE_NEW
+        MENUITEM "&Schließen",                  ID_FILE_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "&Öffnen",                     ID_FILE_OPEN
+        MENUITEM "Speichern",                   ID_FILE_SAVE
+        MENUITEM "Speichern unter...",          ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "&Beenden",                    ID_APP_EXIT
+    END
+    POPUP "&Einstellungen"
+    BEGIN
+        MENUITEM "E&mpfänger...",               ID_PROP_RECEIVER
+        MENUITEM "&Produzenten...",             ID_PROP_PRODUCER
+        MENUITEM "&Strecken...",                ID_PROP_CONNECTION
+        MENUITEM "&Transporter...",             ID_PROP_TRANSPORTER
+        MENUITEM SEPARATOR
+        MENUITEM "Pfadeinstellungen...",        ID_PROP_WORKINGDIR
+    END
+    MENUITEM "&Berechnen",                  ID_CALCULATE
+    POPUP "&Ansicht"
+    BEGIN
+        MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
+        MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Fenster"
+    BEGIN
+        MENUITEM "Neues &Fenster",              ID_WINDOW_NEW
+        MENUITEM "Über&lappend",                ID_WINDOW_CASCADE
+        MENUITEM "&Nebeneinander",              ID_WINDOW_TILE_HORZ
+        MENUITEM "&Symbole anordnen",           ID_WINDOW_ARRANGE
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "Inf&o über Transop...",       ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "P",            ID_FILE_PRINT,          VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG  0, 0, 179, 119
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Info über Transop"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,131,52,21,20
+    LTEXT           "Transop Version 2.0",IDC_STATIC,36,10,64,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2000, 2008",IDC_STATIC,36,89,119,8
+    DEFPUSHBUTTON   "OK",IDOK,122,7,50,14,WS_GROUP
+    LTEXT           "WS 99/00, SS 2008",IDC_STATIC,36,35,71,8
+    LTEXT           "Martin Müssler",IDC_STATIC,36,52,46,8
+    LTEXT           "Andreas Schneider",IDC_STATIC,36,63,61,8
+    LTEXT           "Oleg Zemljakov",IDC_STATIC,36,73,61,8
+END
+
+IDD_TRANSOP_FORM DIALOG  0, 0, 491, 437
+STYLE DS_SETFONT | WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Definierte Produzenten",IDC_STATIC,15,17,232,100
+    GROUPBOX        "Definierte Empfänger",IDC_STATIC,251,17,232,100
+    GROUPBOX        "Definierte Strecken",IDC_STATIC,14,126,335,108
+    GROUPBOX        "Transporter",IDC_STATIC,358,125,125,110
+    LTEXT           "Trans1Text",IDC_STATIC_TRANS1TEXT,367,141,111,8
+    LTEXT           "Kosten per km:",IDC_STATIC,367,156,48,8
+    LTEXT           "Static",IDC_STATIC_COSTS1,423,156,50,8
+    LTEXT           "Ladekapazität:",IDC_STATIC,367,171,48,8
+    LTEXT           "Static",IDC_STATIC_CAP1,423,171,53,8
+    LTEXT           "Trans2Text",IDC_STATIC_TRANS2TEXT,367,190,111,8
+    LTEXT           "Kosten per km:",IDC_STATIC,367,206,48,8
+    LTEXT           "Static",IDC_STATIC_COSTS2,423,206,50,8
+    LTEXT           "Ladekapazität:",IDC_STATIC,367,220,48,8
+    LTEXT           "Static",IDC_STATIC_CAP2,423,220,53,8
+    CONTROL         "",IDC_PRODPOS,"Static",SS_BLACKFRAME,28,34,207,73
+    CONTROL         "",IDC_RECPOS,"Static",SS_BLACKFRAME,263,34,207,73
+    CONTROL         "",IDC_STRETCHPOS,"Static",SS_BLACKFRAME,23,142,316,82
+    GROUPBOX        "Lösung",IDC_STATIC,7,262,477,156
+    CONTROL         "",IDC_SOLUTIONPOS,"Static",SS_BLACKFRAME,17,278,458,114
+    LTEXT           "Gesamtkosten:",IDC_STATIC,329,401,48,8
+    LTEXT           "Static",IDC_GK,389,401,82,8
+END
+
+IDD_RECEIVER DIALOG  0, 0, 284, 190
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Empfänger"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_RECEIVERNAME,42,21,148,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PIECES,86,44,104,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Hinzufügen",IDC_BUTTON_ADD,200,44,70,14
+    CONTROL         "List1",IDC_LIST_RECEIVER,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,17,73,179,83
+    PUSHBUTTON      "&Bearbeiten",IDC_BUTTON_EDIT,199,73,70,14
+    PUSHBUTTON      "&Löschen",IDC_BUTTON_DELETE,199,89,70,14
+    DEFPUSHBUTTON   "OK",IDOK,173,169,50,14
+    PUSHBUTTON      "Abbrechen",IDCANCEL,227,169,50,14
+    LTEXT           "Name:",IDC_STATIC,12,23,22,8
+    GROUPBOX        "Empfänger definieren",IDC_STATIC,7,7,267,155
+    LTEXT           "benötigte Stückzahl:",IDC_STATIC,12,47,66,8
+END
+
+IDD_PRODUCER DIALOG  0, 0, 281, 191
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Produzenten"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_PRODUCERNAME,42,21,148,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_PIECES,86,44,104,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Hinzufügen",IDC_BUTTON_ADD,200,44,70,14
+    CONTROL         "List1",IDC_LIST_PRODUCER,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,17,73,179,83
+    PUSHBUTTON      "&Bearbeiten",IDC_BUTTON_EDIT,199,73,70,14
+    PUSHBUTTON      "&Löschen",IDC_BUTTON_DELETE,199,89,70,14
+    DEFPUSHBUTTON   "OK",IDOK,169,170,50,14
+    PUSHBUTTON      "Abbrechen",IDCANCEL,224,170,50,14
+    LTEXT           "Name:",IDC_STATIC,12,23,22,8
+    GROUPBOX        "Produzent definieren",IDC_STATIC,7,7,267,155
+    LTEXT           "lieferbare Stückzahl:",IDC_STATIC,12,47,65,8
+END
+
+IDD_CONECTIONS DIALOG  0, 0, 350, 212
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Strecken"
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_COMBO_SOURCE,46,23,137,61,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_DESTINATION,46,48,137,53,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_KM,46,72,54,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Hinzufügen",IDC_BUTTON_ADD,109,71,74,14
+    CONTROL         "List2",IDC_LIST_CONNECTIONS,"SysListView32",LVS_REPORT | WS_BORDER | WS_TABSTOP,14,101,267,72
+    PUSHBUTTON      "&Löschen",IDC_BUTTON_DELETE,285,113,50,14
+    DEFPUSHBUTTON   "OK",IDOK,239,191,50,14
+    PUSHBUTTON      "Abbrechen",IDCANCEL,293,191,50,14
+    LTEXT           "Von:",IDC_STATIC,19,25,16,8
+    LTEXT           "Bis:",IDC_STATIC,19,50,12,8
+    GROUPBOX        "Entfernungen definieren",IDC_STATIC,7,7,336,174
+    LTEXT           "km:",IDC_STATIC,19,75,12,8
+END
+
+IDD_TRANSPORTER DIALOG  0, 0, 225, 214
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Transporter"
+FONT 8, "MS Sans Serif"
+BEGIN
+    EDITTEXT        IDC_EDIT_NAME1,43,25,157,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CAP1,72,45,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_COSTS1,72,65,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_NAME2,43,119,157,13,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_CAP2,72,139,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_COSTS2,72,159,40,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,109,193,50,14
+    PUSHBUTTON      "Abbrechen",IDCANCEL,168,193,50,14
+    GROUPBOX        "Transporter 1",IDC_STATIC,7,7,209,83
+    LTEXT           "Name:",IDC_STATIC,13,28,22,8
+    LTEXT           "Ladekapazität:",IDC_STATIC,13,48,48,8
+    LTEXT           "Kosten pro km:",IDC_STATIC,13,68,48,8
+    GROUPBOX        "Transporter 2",IDC_STATIC,7,101,209,83
+    LTEXT           "Name:",IDC_STATIC,13,122,22,8
+    LTEXT           "Ladekapazität:",IDC_STATIC,13,142,48,8
+    LTEXT           "Kosten pro km:",IDC_STATIC,13,162,48,8
+END
+
+IDD_PATHPROP DIALOG  0, 0, 405, 82
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Pfade"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,348,10,50,14
+    LTEXT           "LP-Solver Pfad:",IDC_STATIC,14,31,50,8
+    LTEXT           "Arbeitsverzeichnis:",IDC_STATIC,14,54,60,8
+    EDITTEXT        IDC_EDIT_SOLVERPATH,83,28,198,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_WORKINGDIR,83,51,198,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Ändern",IDC_BUTTONCHANGESOLVERPATH,287,28,50,14
+    PUSHBUTTON      "Ändern",IDC_BUTTON_CHANGE_WORKINGDIR,287,51,50,14
+    GROUPBOX        "Pfadeinstellungen",IDC_STATIC,7,7,335,68
+    PUSHBUTTON      "Abbrechen",IDCANCEL,348,29,50,14
+END
+
+IDD_PROGRESS DIALOGEX 0, 0, 209, 46
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_CENTER | WS_POPUP
+EXSTYLE WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "Berechnung läuft",IDC_STATIC,67,17,55,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040704B0"
+        BEGIN
+            VALUE "FileDescription", "MFC-Anwendung Transop"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "Transop"
+            VALUE "LegalCopyright", "Copyright (C) 2000"
+            VALUE "OriginalFilename", "Transop.EXE"
+            VALUE "ProductName", "Anwendung Transop"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x407, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 172
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_TRANSOP_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 484
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 430
+    END
+
+    IDD_RECEIVER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 277
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 183
+    END
+
+    IDD_PRODUCER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 274
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+
+    IDD_CONECTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 205
+    END
+
+    IDD_TRANSPORTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 218
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 207
+    END
+
+    IDD_PATHPROP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 398
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 75
+    END
+
+    IDD_PROGRESS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 202
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 39
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "Transop"
+    IDR_TRANSOTYPE          "\nTranso\nTranso\n\n\nTransop.Document\nTranso Document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "Transop"
+    AFX_IDS_IDLEMESSAGE     "Bereit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "ER"
+    ID_INDICATOR_CAPS       "UF"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "RF"
+    ID_INDICATOR_OVR        "ÜB"
+    ID_INDICATOR_REC        "MA"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Erstellt ein neues Dokument.\nNeu"
+    ID_FILE_OPEN            "Öffnet ein bestehendes Dokument.\nÖffnen"
+    ID_FILE_CLOSE           "Schließt das aktive Dokument.\nSchließen"
+    ID_FILE_SAVE            "Speichert das aktive Dokument.\nSpeichern"
+    ID_FILE_SAVE_AS         "Speichert das aktive Dokument unter neuem Namen.\nSpeichern unter"
+    ID_FILE_PAGE_SETUP      "Ändert die Druckoptionen.\nSeite einrichten"
+    ID_FILE_PRINT_SETUP     "Ändert den Drucker und die Druckoptionen.\nDruckereinrichtung"
+    ID_FILE_PRINT           "Druckt das aktive Dokument.\nDrucken"
+    ID_FILE_PRINT_PREVIEW   "Zeigt ganze Seiten an.\nSeitenansicht"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Zeigt Programm-Informationen, Versionsnummer und Copyright an.\nInfo"
+    ID_APP_EXIT             "Verläßt die Anwendung; fragt, ob Dokumente gespeichert werden sollen.\nBeenden"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE2       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE3       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE4       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE5       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE6       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE7       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE8       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE9       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE10      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE11      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE12      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE13      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE14      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE15      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE16      "Öffnet dieses Dokument."
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Wechselt zum nächsten Fensterausschnitt.\nNächster Ausschnitt"
+    ID_PREV_PANE            "Springt zum vorherigen Fensterausschnitt zurück.\nVorheriger Ausschnitt"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "Öffnet ein weiteres Fenster für das aktive Dokument.\nNeues Fenster"
+    ID_WINDOW_ARRANGE       "Ordnet die Symbole im unteren Bereich des Fensters an.\nSymbole anordnen"
+    ID_WINDOW_CASCADE       "Ordnet die Fenster überlappend an.\nÜberlappende Fenster"
+    ID_WINDOW_TILE_HORZ     "Ordnet die Fenster nebeneinander an.\nFenster nebeneinander"
+    ID_WINDOW_TILE_VERT     "Ordnet die Fenster nebeneinander an.\nFenster nebeneinander"
+    ID_WINDOW_SPLIT         "Teilt das aktive Fenster in Ausschnitte.\nTeilen"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Löscht die Markierung.\nLöschen"
+    ID_EDIT_CLEAR_ALL       "Löscht alles.\nAlles löschen"
+    ID_EDIT_COPY            "Kopiert die Markierung und überträgt sie in die Zwischenablage.\nKopieren"
+    ID_EDIT_CUT             "Entfernt die Markierung und überträgt sie in die Zwischenablage.\nAusschneiden"
+    ID_EDIT_FIND            "Sucht den angegebenen Text.\nSuchen"
+    ID_EDIT_PASTE           "Fügt den Inhalt der Zwischenablage ein.\nEinfügen"
+    ID_EDIT_REPEAT          "Wiederholt die letzte Aktion.\nWiederholen"
+    ID_EDIT_REPLACE         "Ersetzt einen bestimmten Text durch einen anderen.\nErsetzen"
+    ID_EDIT_SELECT_ALL      "Markiert das gesamte Dokument.\nAlles markieren"
+    ID_EDIT_UNDO            "Macht die letzte Aktion rückgängig.\nRückgängig"
+    ID_EDIT_REDO            "Wiederholt die vorher rückgängig gemachte Aktion.\nWiederherstellen"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Blendet die Symbolleiste ein oder aus.\nSymbolleiste ein-/ausschalten"
+    ID_VIEW_STATUS_BAR      "Blendet die Statusleiste ein oder aus.\nStatusleiste ein-/ausschalten"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Ändert die Fenstergröße."
+    AFX_IDS_SCMOVE          "Ändert die Position des Fensters."
+    AFX_IDS_SCMINIMIZE      "Verkleinert das Fenster zu einem Symbol."
+    AFX_IDS_SCMAXIMIZE      "Vergrößert das Fenster zu voller Größe."
+    AFX_IDS_SCNEXTWINDOW    "Wechselt zum nächsten Dokumentfenster."
+    AFX_IDS_SCPREVWINDOW    "Wechselt zum vorherigen Dokumentfenster."
+    AFX_IDS_SCCLOSE         "Schließt das aktive Fenster und fordert zur Dokumentspeicherung auf."
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Stellt das Fenster in seiner normalen Größe wieder her."
+    AFX_IDS_SCTASKLIST      "Aktiviert die Task-Liste."
+    AFX_IDS_MDICHILD        "Aktiviert dieses Fenster."
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Beendet die Seitenansicht.\nSeitenansicht beenden"
+END
+
+#endif    // German (Germany) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE 7, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\Transop.rc2"  // Nicht mit Microsoft Visual C++ bearbeitete Ressourcen
+#include "l.deu\afxres.rc"          // Standardkomponenten
+#include "l.deu\afxprint.rc"        // Ressourcen für Drucken/Seitenansicht
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,24 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TAnzeige','FORMDATA',[
+  'TPF0'#8'TAnzeige'#7'Anzeige'#4'Left'#3''''#2#6'Height'#3#143#0#3'Top'#3'D'#1
+  +#5'Width'#3'8'#1#11'BorderIcons'#11#12'biSystemMenu'#0#11'BorderStyle'#7#8'b'
+  +'sDialog'#7'Caption'#6#10'Berechnung'#12'ClientHeight'#3#143#0#11'ClientWidt'
+  +'h'#3'8'#1#5'Color'#7#9'clBtnFace'#10'Font.Color'#7#12'clWindowText'#11'Font'
+  +'.Height'#2#245#9'Font.Name'#6#13'MS Sans Serif'#9'FormStyle'#7#11'fsStayOnT'
+  +'op'#7'OnClose'#7#9'FormClose'#10'LCLVersion'#6#7'1.4.0.4'#0#6'TLabel'#16'Fo'
+  +'rtschrittLabel'#4'Left'#2' '#6'Height'#2#13#3'Top'#2'P'#5'Width'#2#29#9'Ali'
+  +'gnment'#7#14'taRightJustify'#7'Caption'#6#5'100 %'#11'ParentColor'#8#0#0#6
+  +'TLabel'#8'ArtLabel'#4'Left'#2' '#6'Height'#2#13#3'Top'#2#13#5'Width'#2'<'#7
+  +'Caption'#6#9'Rechenart'#5'Color'#7#9'clBtnFace'#10'Font.Color'#7#12'clWindo'
+  +'wText'#11'Font.Height'#2#245#9'Font.Name'#6#13'MS Sans Serif'#10'Font.Style'
+  +#11#6'fsBold'#0#11'ParentColor'#8#10'ParentFont'#8#11'Transparent'#8#0#0#6'T'
+  +'Label'#11'StatusLabel'#4'Left'#2#30#6'Height'#2#13#3'Top'#2'%'#5'Width'#3
+  +#247#0#7'Caption'#6'+10000000 von 10000000000000000 Berechnungen'#10'Font.Co'
+  +'lor'#7#13'clCaptionText'#11'Font.Height'#2#245#9'Font.Name'#6#13'MS Sans Se'
+  +'rif'#11'ParentColor'#8#10'ParentFont'#8#0#0#7'TButton'#13'AbbruchButton'#4
+  +'Left'#2'p'#6'Height'#2#25#3'Top'#2'h'#5'Width'#2'd'#6'Cancel'#9#7'Caption'#6
+  +#9'Abbrechen'#7'OnClick'#7#18'AbbruchButtonClick'#8'TabOrder'#2#0#0#0#12'TPr'
+  +'ogressBar'#11'Fortschritt'#4'Left'#2#30#6'Height'#2#17#3'Top'#2'<'#5'Width'
+  +#3#250#0#8'TabOrder'#2#1#0#0#0
+]);

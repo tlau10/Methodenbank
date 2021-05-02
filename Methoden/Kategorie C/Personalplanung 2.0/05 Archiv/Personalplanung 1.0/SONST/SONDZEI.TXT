@@ -1,0 +1,1 @@
+{SONDZEICHEN 52 \f "ZapfDingbats"}{SONDZEICHEN 56 \f "ZapfDingbats"}

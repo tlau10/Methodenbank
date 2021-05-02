@@ -1,0 +1,7 @@
+        G E N E R A L I Z E D   N E T W O R K S       
+
+
+o GN ist serverfähig
+o Der Solver STRADA (MPS-Format) wurde eingebunden.
+  Das Berechnungsergebnis wird mit den XA-Routine eingelesen.
+  --> der Solver macht aber noch Probleme !

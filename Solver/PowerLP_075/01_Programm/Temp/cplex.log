@@ -1,0 +1,17 @@
+
+Log started (V12.5.0.0) Thu Dec 07 08:29:05 2017
+
+
+Problem 'ILOG.lp' read.
+Read time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+LP Presolve eliminated 0 rows and 2 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+Dual simplex - Optimal:  Objective = 0.0000000000e+000
+Solution time =    0.00 sec.  Iterations = 0 (0)
+Deterministic time = 0.00 ticks  (0.89 ticks/sec)
+
+
+All variables in the range 1-2 are 0.

@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+<HEAD>
+       <TITLE>Kapitel 3</TITLE>
+       <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+       <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+<body class="script">
+
+
+<h1>3. Nicht-Standardf&auml;lle</h1>
+
+
+<P><A NAME="3.1"></A>
+<h2>3.1 &Uuml;berblick</h2>
+
+<P><A NAME="3.1.1"></A>
+<h3>3.1.1 Nicht-Standardf&auml;lle bei den Variablen</h3>
+<UL>
+        <LI><B>Vorzeichenunbeschr&auml;nktheit</B><BR>Abhilfe: goal
+        programming (siehe 3.2)</LI>
+        <LI><B>nicht nat&uuml;rliche Ganzzahligkeit</B><BR>Abhilfe:
+        Entscheidungsbaumverfahren (s. 8.)</LI>
+        <LI><B>0-1 - Variablen</B><BR>Abhilfe: wie Ganzzahligkeit, jedoch
+        unter Zunahme von x<sub>j</sub> <IMG SRC="..\le.gif"> 1 - Restriktionen</LI>
+</UL></P>
+
+<P><A NAME="3.1.2"></A>
+<h3>3.1.2 Nicht-Standardf&auml;lle bei den Restriktionen</h3>
+<UL>
+        <LI><B>= - Relation</B> <BR>Abhilfe: M-Methode (siehe 3.3)
+        <LI><B><IMG SRC="..\ge.gif"> - Relation</B><BR>Abhilfe:
+        mit &Uuml;berschreitungsvariablen auf = -Relation &uuml;berf&uuml;hren,
+        dann M-Methode
+        <LI><B>nur <IMG SRC="..\ge.gif"> - Relationen</B><BR>
+        Abhilfe: Einsatz des Duals (siehe 4.)
+        <! LI  B  die Werte des B-Vektors sind nicht
+        deterministisch  /B   BR
+        Abhilfe: Chance-Constraint Programming (siehe 13.)   >
+</UL></p>
+
+<P><A NAME="3.1.3"></A>
+<h3>3.1.3 Nicht-Standardf&auml;lle bei der Zielfunktion</h3>
+<UL>
+        <LI><B>Minimierung statt Maximierung</B><BR>Abhilfe:
+         Multiplikation mit -1
+        <LI><B>Fixanteile treten auf</B><BR>Abhilfe: zun&auml;chst
+         ignorieren, nach Optimierung Zielfunktion um Fixanteil erg&auml;nzen
+        <LI><B>Nichtlineares Element in Zielfunktion vorhanden</B><BR> 
+         Abhilfe: Einsatz der nichtlinearen Programmierung (siehe 3.4)
+</UL></P>
+
+<br>
+
+<hr>
+<P><A NAME="3.2"></A>
+<h2>3.2 Goal Programming</h2>
+
+<P align=justify>
+Ist eine Variable vorzeichenunbeschr&auml;nkt, wird
+sie in ihren positiven und negativen Anteil aufgesplittet:<BR>
+x<SUB>l</SUB> = + x<SUB>l</SUB><SUP>-</SUP> - x<SUB>l</SUB><SUP>+</SUP>
+&nbsp;mit&nbsp;
+ x<SUB>l</SUB><SUP>-</SUP> * x<SUB>l</SUB><SUP>+</SUP> = 0; 
+letzteres wird bei der Simplexmethode aufgrund der linearen 
+Unabh&auml;ngigkeit der Basisvektoren &quot;automatisch&quot; eingehalten.</P>
+
+<P align=justify>
+Der positive und der negative Anteil werden auch
+Unter- und &Uuml;berschreitungsvariable genannt.<BR>
+Soll die Summe aus &Uuml;ber- und Unterschreitungsvariablen minimiert werden,
+liegt der origin&auml;re Ansatz des <b>&quot;Goal Programmings&quot;</b> vor:
+</P>
+
+<P><SAMP>
+x<SUB>3</SUB><SUP>-</SUP> + x<SUB>3</SUB><SUP>+</SUP> + x<SUB>4</SUB><SUP>-</SUP>
++ x<SUB>4</SUB><SUP>+</SUP> ---&gt; min !<BR>
+3x<SUB>1</SUB> + 2x<SUB>2</SUB>
++ x<SUB>3</SUB><SUP>-</SUP> - x<SUB>3</SUB><SUP>+ </SUP>= 12<BR>lx<SUB>l</SUB>
++ 2x<SUB>2</SUB> + x<SUB>4</SUB><SUP>-</SUP> - x<SUB>4</SUB><SUP>+</SUP> = 9 <BR>
+<BR>
+x<SUB>1</SUB>, x<SUB>2</SUB>, x<SUB>3</SUB><SUP>-</SUP>,
+x<SUB>3</SUB><SUP>+</SUP>, x<SUB>4</SUB><SUP>-</SUP>, x<SUB>4</SUB><SUP>+</SUP>
+<IMG SRC="..\ge.gif"> 0
+</SAMP>
+</P>
+
+<P><BR>
+</P>
+
+<HR>
+<P><A NAME="3.3"></A>
+<h2>3.3 M-Methode</h2>
+
+<P align=justify>Mit der M-Methode wird f&uuml;r eine =-Relation 
+die beim Ausgangstableau der Simplexmethode eigentlich notwendige
+<IMG SRC="..\le.gif">-Relation &quot;simuliert&quot;. 
+Es wird trotz =-Relation &quot;verbotenerweise&quot;
+eine Schlupfvariable eingef&uuml;hrt, die jedoch &quot;schleunigst&quot;
+aus der Basis zu verschwinden hat:<BR>
+Dies kann man durch eine
+unattraktive Gewichtung der Pseudoschlupfvariablen in der
+Zielfunktion erreichen. <BR>Die Simplexmethode wird dann diese
+Pseudoschlupfvariable in der Folgeiteration &quot;automatisch&quot;
+aus der aktuellen Basis herausnehmen und gew&auml;hrleistet, dass
+diese nie Basisvariable im Optimaltableau werden kann.</P>
+
+<P><B>Beispiel:</B></P>
+<DL>
+        <DD><P><SAMP>1x<SUB>1</SUB> + 2x<SUB>2</SUB> ---&gt; max ! <BR>
+        3x<SUB>1</SUB> + 2x<SUB>2</SUB> = 12<BR>
+        lx<SUB>l</SUB> + 3x<SUB>2</SUB> <IMG SRC="..\le.gif"> 9;
+        &nbsp; x<SUB>l</SUB>, x<SUB>2</SUB>
+        <IMG SRC="..\ge.gif"> 0
+        </SAMP>
+        </P></DD></DL>
+<P>
+<B>M-Methode:</B></P>
+<DL>
+        <DD><P><SAMP>1x<SUB>1 </SUB>+ 2x<SUB>2</SUB> - 
+          <font color="#0020a0"><b>M</b></font>x<SUB>3</SUB> ---&gt; max !<BR>
+        3x<SUB>1 </SUB>+ 2x<SUB>2</SUB> + &nbsp;x<SUB>3</SUB> &nbsp; &nbsp;&nbsp; = 12<BR>
+        lx<SUB>l</SUB> + 3x<SUB>2</SUB> &nbsp; &nbsp; &nbsp; + x<SUB>4</SUB> = &nbsp;9
+        </SAMP></P></DD></DL>
+<P><BR>
+</P>
+
+<P><B>Vortableau</B>
+</P>
+<P align=justify>(da noch nicht alle Basisvektoren bestimmt sind, muss erst
+eine Voriteration durchgef&uuml;hrt werden !):</P>
+
+<ul>
+<TABLE BORDER=1 CELLPADDING=4 CELLSPACING=0 width=200>
+	<colgroup>
+		<col width="20%">
+		<col width="20%">
+		<col width="20%">
+		<col width="20%">
+		<col width="20%">
+	</colgroup>
+        <TR>
+                <TD> <P ALIGN=CENTER>3<BR>1</TD>
+                <TD> <P ALIGN=CENTER>2<BR>3</TD>
+                <TD> <P ALIGN=CENTER>1<BR>0</TD>
+                <TD> <P ALIGN=CENTER>0<BR>1</TD>
+                <TD> <P ALIGN=CENTER>12<BR>9</TD>
+        </TR>
+        <TR>
+                <TD> <P ALIGN=CENTER>-1</TD>
+                <TD> <P ALIGN=CENTER>-2 </TD>
+                <TD> <P ALIGN=CENTER>M </TD>
+                <TD> <P ALIGN=CENTER>0 </TD>
+                <TD> <P ALIGN=CENTER>0 </TD>
+        </TR>
+</TABLE>
+</ul>
+
+<P>von dieser Zielfunktionszeile das M-fache der ersten Zeile
+abziehen !<BR><BR><B>Ausgangstableau </B>(jetzt mit den zwei
+vorgeschriebenen Basisvektoren !):</P>
+
+<ul>
+<TABLE BORDER=1 CELLPADDING=4 CELLSPACING=0 width=240>
+	<colgroup>
+		<col ALIGN=CENTER>
+		<col ALIGN=CENTER>
+		<col width="15%" ALIGN=CENTER>
+		<col width="15%" ALIGN=CENTER>
+		<col ALIGN=CENTER>
+	</colgroup>
+ 
+        <TR>
+                <TD>
+                        <P>3<BR>1
+                </TD>
+                <TD>
+                        <P>2<BR>3
+                </TD>
+                <TD>
+                        <P>1<BR>0
+                </TD>
+                <TD>
+                        <P>0<BR>1
+                </TD>
+                <TD>
+                        <P>12<BR>9
+                </TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P>-1-3M
+                </TD>
+                <TD>
+                        <P>-2-2M
+                </TD>
+                <TD>
+                        <P>0
+                </TD>
+                <TD>
+                        <P>0
+                </TD>
+                <TD>
+                        <P>-12M
+                </TD>
+        </TR>
+</TABLE>
+</ul>
+
+<P align=justify>Mit dem nun vorliegenden Ausgangstableau kann die
+Simplexmethode ein Optimaltableau generieren, ohne dass jemals
+die M-Variable x<SUB>3</SUB> eine Chance gehabt h&auml;tte, in die
+Basis zu gelangen!<br>
+(Anderenfalls läge ein "widersprüchliches" Modell vor!)</P>
+<BR>
+
+<HR>
+
+<P><A NAME="3.4"></A>
+<h2>3.4 Nichtlineare Programmierung (Separable Programmierung)</h2>
+
+<P align=justify>
+F&uuml;r die st&uuml;ckweise Linearisierung der nichtlinearen
+Zielfunktion werden - um eine Ann&auml;herung zu erm&ouml;glichen -
+zun&auml;chst St&uuml;tzstellen definiert. Je nach Zahl der
+Intervalle wird die nichtlineare Variable durch die Summe der
+zugeh&ouml;rigen Intervallvariablen ersetzt. In der Zielfunktion
+werden die Steigungen f&uuml;r die einzelnen Intervallvariablen durch
+Ableitung der origin&auml;ren Funktion angef&uuml;hrt.</P>
+
+<P><B>Beispiel:</B></P>
+<DL>
+        <DD><P><samp>
+        1x<SUB>l</SUB> + 1x<SUB>2</SUB><SUP>2</SUP> ---&gt; min !<BR>
+        3x<SUB>1 </SUB>+ 2x<SUB>2</SUB> = 12<BR>
+        1x<SUB>l</SUB> + 3x<SUB>2</SUB> <IMG SRC="..\le.gif"> 9;
+        &nbsp;
+        x<SUB>1</SUB>, x<SUB>2</SUB> <IMG SRC="..\ge.gif"> 0
+        </samp>
+        </P></DD></DL>
+
+<P>
+St&uuml;tzstellen bei 1, 2 und 3 !<BR>
+<u>Aufsplitten</u> der Variablen x<SUB>2</SUB> in x<SUB>21</SUB>, x<SUB>22</SUB> 
+und x<SUB>23</SUB></P>
+<DL>
+        <DD><P><samp><B>
+        f(x<SUB>2</SUB>) = x<SUB>2</SUB><SUP>2</SUP>;
+        &nbsp;
+        f'(x<SUB>2</SUB>) = 2x<SUB>2</SUB>;
+        </B></samp></P></DD></DL>
+<P>
+Die Steigung an der Stelle 0,5 betr&auml;gt: &nbsp;<samp> f'(0,5) = 1;</samp><BR>
+Die Steigung an der Stelle 1,5 betr&auml;gt: &nbsp;<samp> f'(l,5) = 3;</samp><BR>
+Die Steigung an der Stelle 2,5 betr&auml;gt: &nbsp;<samp> f'(2,5) = 5;</samp></P>
+
+<P><BR>
+</P>
+<P>Der angen&auml;herte LP-Ansatz lautet dann:</P>
+<DL>
+        <DD><samp>
+        lx<SUB>l</SUB> + 1x<SUB>21</SUB>
+        + 3x<SUB>22 </SUB>+ 5x<SUB>23</SUB> ---&gt; min !<BR>3x<SUB>1</SUB>
+        + 2x<SUB>21</SUB> + 2x<SUB>22</SUB> + 2x<SUB>23 </SUB>= 12<BR>
+        lx<SUB>l</SUB> + 3x<SUB>21</SUB> + 3x<SUB>22</SUB> + 3x<SUB>23</SUB>
+        <IMG SRC="..\le.gif"> 9<BR>
+        <br>
+        x<SUB>21</SUB>, x<SUB>22</SUB>, x<SUB>23</SUB> <IMG SRC="..\le.gif"> 1<BR>
+        x<SUB>l</SUB>, x<SUB>21</SUB>, x<SUB>22</SUB>, x<SUB>23</SUB> <IMG SRC="..\ge.gif"> 0
+        </samp></DD></DL>
+</P><BR>
+
+<P><I>Denkbar w&auml;re auch:</I></P>
+<DL>
+        <DD><samp>
+        lx<SUB>l</SUB> + 1x<SUB>21</SUB> + 3x<SUB>22 </SUB>+
+        5x<SUB>23</SUB> ---&gt; min !<BR>3x<SUB>1</SUB> + 2x<SUB>2</SUB> =
+        12<BR>lx<SUB>l</SUB> + 3x<SUB>2</SUB> <IMG SRC="..\le.gif"> 9<BR>
+        x<SUB>2</SUB> = x<SUB>21</SUB> + x<SUB>22</SUB> + x<SUB>23</SUB><br>
+        <br>
+        x<SUB>21</SUB>, x<SUB>22</SUB>, x<SUB>23</SUB> <IMG SRC="..\le.gif"> 1<BR>
+        x<SUB>l</SUB>, x<SUB>21</SUB>, x<SUB>22</SUB>, x<SUB>23</SUB> <IMG SRC="..\ge.gif"> 0
+        </samp></DD></DL>
+</P>
+<BR>
+
+
+<table bgcolor="#f0f0f0" cellpadding="5">
+<tr>
+<td style="font-family:arial; font-size:10pt; text-align:justify">
+<b>Wichtiger Hinweis:</b><br>
+Diese Ann&auml;herung gilt nur f&uuml;r
+progressive Kurvenverl&auml;ufe und Minimierung bzw. degressive
+Kurvenverl&auml;ufe und Maximierung der Zielfunktion, um eine Besetzung 
+der Intervallvariablen vom Ursprung her zu gew&auml;hrleisten&nbsp;!<br>
+In allen anderen F&auml;llen wird eine Ann&auml;herung unter Einsatz 
+des in 3.3 beschriebenen Goal Programming Ansatzes versucht.</td>
+</tr>
+</table>
+<br>
+
+<P><B>Beispiel:</B></P>
+<DL>
+        <DD><P><SAMP>lx<SUB>l</SUB> + x<SUB>2</SUB><SUP>2</SUP> ---&gt; max !<br>
+        3x<SUB>1 </SUB>+ 2x<SUB>2</SUB> = 12<BR>
+        1x<SUB>l</SUB> + 3x<SUB>2</sub> <IMG SRC="..\le.gif"> 9;
+        &nbsp; x<SUB>1</SUB>, x<SUB>2</SUB> <IMG SRC="..\ge.gif"> 0 </SAMP>
+        </P></DD></DL>
+<P>
+St&uuml;tzstellen wie oben: 1, 2 und 3. <BR>Hinzunahme von &Uuml;ber-
+und Unterschreitungsvariablen:
+</P>
+<DL>
+        <DD><P><SAMP>x<SUB>2</SUB> + x<SUB>3</SUB><SUP>- </SUP>- x<SUB>3</SUB><SUP>+</SUP>
+        = 1; <BR>x<SUB>2</SUB> + x<SUB>4</SUB><SUP>- </SUP>- x<SUB>4</SUB><SUP>+
+        </SUP>= 2; </SAMP>
+        </P></DD></DL>
+<P>
+Die neue Zielfunktion lautet dann:</P>
+<DL>
+        <DD><P><SAMP>
+        1x<SUB>1</SUB> + 1x<SUB>2</SUB> + 2x<SUB>3</SUB><SUP>+</SUP>
+        + 2x<SUB>4</SUB><SUP>+</SUP> ---&gt; max !<BR>x<SUB>1</SUB>, x<SUB>2</SUB>,
+        x<SUB>3</SUB><SUP>-</SUP>, x<SUB>3</SUB><SUP>+</SUP>, x<SUB>4</SUB><SUP>-</SUP>,
+        x<SUB>4</SUB><SUP>+</SUP> <IMG SRC="..\ge.gif"> 0
+        </SAMP></P></DD></DL>
+<P>
+<STRONG>Hinweis:</STRONG> x<SUB>2</SUB>
+gilt f&uuml;r s&auml;mtliche Intervalle !
+</P>
+
+
+<! MATRIX-AUFRUF (nur ViOR) ----------------------------------------- >
+<!--
+<center>
+<div style="background:#f0f0f0; margin:6; padding:12; 
+            width:360; border-style:solid; border-width:1;
+            text-align:left">
+
+<p style="font-family:arial; font-size:10pt">
+<A HREF="MATRIX(mat03#02.lpx)"><b>Solver-Aufruf</A>
+des Beispiels</b><br>
+<br>
+&raquo; Der Aufruf ist ausschließlich mit VisualOR möglich. &laquo;</p>
+</div>
+</center>
+-->
+
+
+<! Aussentab. >
+<table border=0 align=center cellpadding=0 cellspacing=0 bgcolor=#404040>
+<tr><td>
+
+<table border=0 cellpadding=12 cellspacing=1 width=350>
+<tr><td bgcolor=#f0f0f0>
+
+<p style="font-family:arial; font-size:10pt">
+<A HREF="MATRIX(mat03#02.lpx)"><b>Solver-Aufruf</A>
+des Beispiels</b><br>
+<br>
+&raquo; Der Aufruf ist ausschließlich mit VisualOR möglich. &laquo;</p>
+
+</td></tr></table>
+
+</td></tr></table>
+
+
+
+
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="../KAP2/KAP2.HTM">Kapitel 2</A><br>
+<A HREF="../KAP4-8/KAP4.HTM">Kapitel 4</A><br>
+<br>
+<A HREF="../PcStart.HTM">Startbildschirm</A></font></P>
+</BODY>
+</HTML>

@@ -1,0 +1,99 @@
+package pflegestation;
+
+/**
+ * <p>Title: Leitstand Pflegestation</p>
+ * <p>Description: Optimiert die Pflegevorgänge einer Krankenhausstation</p>
+ * <p>Copyright: Copyright (c) 2002</p>
+ * <p>Company: FH Konstanz</p>
+ * @author Sebastian Hagen, Jonathan Feuerstein, Birgit Engler
+ * @version 1.0
+ */
+
+public class WorkingStep
+{
+    private String m_strRegularStartHour;
+    private String m_strRegularStartMinute;
+    private String m_strRegularEndHour;
+    private String m_strRegularEndMinute;
+
+    private Calendar m_objAlternativeStart;
+    private Calendar m_objAlternativeEnd;
+    private int m_intDuration;
+    private int m_intNumber;
+    private String m_strDescription;
+
+    public WorkingStep( int in_intNumber )
+    {
+        m_objRegularStart = Calendar.getInstance();
+        m_objRegularEnd = Calendar.getInstance();
+        m_objAlternativeStart = Calendar.getInstance();
+        m_objAlternativeEnd = Calendar.getInstance();
+        m_intDuration = 0;
+        m_intNumber = in_intNumber;
+        m_strDescription = "keine";
+    }
+
+    public void setDescription( String in_strDescription )
+    {
+        m_strDescription = in_strDescription;
+    }
+
+    public String getDescription()
+    {
+        return m_strDescription;
+    }
+
+    public void setNumber( int in_intNumber )
+    {
+        m_intNumber = in_intNumber;
+    }
+
+    public int getNumber()
+    {
+        return m_intNumber;
+    }
+
+    public void setRegularStart( String in_strRegularStart )
+    {
+        m_objRegularStart.HOUR = in_strRegularStart.substring(0,2);
+        m_objRegularStart.MINUTE = in_strRegularStart.substring(3,5);
+    }
+
+    public String getRegularStart()
+    {
+        return m_objRegularStart.HOUR + ":" + m_objRegularStart.MINUTE;
+    }
+
+    public void setRegularEnd( String in_strRegularEnd )
+    {
+        m_objRegularEnd.HOUR = in_strRegularEnd.substring(0,2);
+        m_objRegularEnd.MINUTE = in_strRegularEnd.substring(3,5);
+    }
+
+    public String getRegularEnd()
+    {
+        return m_objRegularEnd.HOUR + ":" + m_objRegularEnd.MINUTE;
+    }
+
+    public void setAlternativeStart( String in_strAlternativeStart )
+    {
+        m_objAlternativeStart.HOUR = in_strAlternativeStart.substring(0,2);
+        m_objAlternativeStart.MINUTE = in_strAlternativeStart.substring(3,5);
+    }
+
+    public String getAlternativeStart()
+    {
+        return m_objAlternativeStart.HOUR + ":" + m_objAlternativeStart.MINUTE;
+    }
+
+    public void setAlternativeEnd( String in_strAlternativeEnd )
+    {
+        m_objAlternativeEnd.HOUR = in_strAlternativeEnd.substring(0,2);
+        m_objAlternativeEnd.MINUTE = in_strAlternativeEnd.substring(3,5);
+    }
+
+    public String getAlternativeEnd()
+    {
+        return m_objAlternativeEnd.HOUR + ":" + m_objAlternativeEnd.MINUTE;
+    }
+}

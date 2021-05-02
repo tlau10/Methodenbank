@@ -1,0 +1,49 @@
+package pflegestation;
+
+import java.awt.*;
+import javax.swing.*;
+import java.util.Vector;
+
+/**
+ * <p>Title: Leitstand Pflegestation</p>
+ * <p>Description: Optimiert die Pflegevorgänge einer Krankenhausstation</p>
+ * <p>Copyright: Copyright (c) 2002</p>
+ * <p>Company: FH Konstanz</p>
+ * @author Sebastian Hagen, Jonathan Feuerstein, Birgit Engler
+ * @version 1.0
+ */
+
+public class ChartDialog extends JDialog
+{
+    BorderLayout borderLayout1 = new BorderLayout();
+    JScrollPane jScrollPaneTable = new JScrollPane();
+    JPanel jPanelChart = new JPanel();
+    JTable jTableResult;
+    private Vector m_objResults;
+    private Vector m_objHeaders;
+
+    public ChartDialog( Frame in_objFrameMain, Vector in_objResults )
+    {
+        super( in_objFrameMain, "Visualisierung der Ergebnisse", true );
+        m_objResults = in_objResults;
+        m_objHeaders = new Vector();
+        m_objHeaders.add(new String("Anzahl"));
+        try
+        {
+            jbInit();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private void jbInit() throws Exception
+    {
+        jTableResult = new JTable( m_objResults, m_objHeaders );
+        this.getContentPane().setLayout(borderLayout1);
+        this.getContentPane().add(jScrollPaneTable,  BorderLayout.WEST);
+        this.getContentPane().add(jPanelChart, BorderLayout.CENTER);
+        jScrollPaneTable.getViewport().add(jTableResult, null);
+    }
+}

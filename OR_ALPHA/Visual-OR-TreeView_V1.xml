@@ -1,0 +1,753 @@
+<?xml version="1.0"?>
+<!DOCTYPE BASE SYSTEM "\\merkur\work\ORALPHA_WS1516\4_Dokumentation & techn. Handbuch\Visual_OR_XML\Visual_OR_TreeView_DTD.dtd">
+<BASE Name="Visual-OR">
+	<HTMLFILE>C:\Methodenbank\DATEN\Kategorieninfo\Pcstart.htm</HTMLFILE>
+	<CHAPTERS>
+			<CHAPTER Name="Einfuehrung">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Einfuehr.htm</HTMLFILE>
+		</CHAPTER>
+		<CHAPTER Name="1. Ansatzformulierung">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm</HTMLFILE>
+			<CHAPTERS>
+				<CHAPTER Name="1.1 Einführendes Beispiel der Produktionsprogrammplanung">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm#1.1</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="1.2 Entscheidungsvariable (Strukturvariable)">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm#1.2</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="1.3 Nebenbedingungen">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm#1.3</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="1.4 Nichtnegativitätsbedingung">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm#1.4</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="1.5 Zielfunktion">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm#1.5</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="1.6 Ansatz der Linearen Programmierung">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm#1.6</HTMLFILE>
+					<CHAPTERS>
+						<CHAPTER Name="1.6.1 Abgrenzung und Formulierung des Problems">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm#1.6.1</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="1.6.2 Vollständiger LP-Ansatz">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm#1.6.2</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="1.6.3 Standardform der Linearen Programmierung">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap1\Kap1.htm#1.6.3</HTMLFILE>
+						</CHAPTER>
+					</CHAPTERS>
+				</CHAPTER>
+			</CHAPTERS>
+	</CHAPTER>
+		<CHAPTER Name="2. Lösung des Modells der Linearen Programmierung">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap2\Kap2.htm</HTMLFILE>
+			<CHAPTERS>
+				<CHAPTER Name="2.1 Grafische Lösung">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap2\Kap2.htm#2.1</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="2.2 Simplexprinzip">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap2\Kap2.htm#2.2</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="2.3 Lösung durch Enumeration">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap2\Kap2.htm#2.3</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="2.4 Die Simplexmethode">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap2\Kap2.htm#2.4</HTMLFILE>
+					<CHAPTERS>
+						<CHAPTER Name="2.4.1 Berechnung der zulässigen Basislösungen">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap2\Kap2.htm#2.4.1</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="2.4.2 Bestimmung der optimalen Basislösung">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap2\Kap2.htm#2.4.2</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="2.4.3 Die Schritt der Simplexmethode">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap2\Kap2.htm#2.4.3</HTMLFILE>
+						</CHAPTER>
+					</CHAPTERS>
+				</CHAPTER>
+			</CHAPTERS>
+		</CHAPTER>
+		<CHAPTER Name="3. Nicht-Standardfälle">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap3\Kap3.htm</HTMLFILE>
+			<CHAPTERS>
+				<CHAPTER Name="3.1 Überblick">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap3\Kap3.htm#3.1</HTMLFILE>
+					<CHAPTERS>
+						<CHAPTER Name="3.1.1 Nicht-Standardfälle bei den Variablen">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap3\Kap3.htm#3.1.1</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="3.1.2 Nicht-Standardfälle bei den Restriktionen">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap3\Kap3.htm#3.1.2</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="3.1.3 Nicht-Standardfälle bei der Zielfunktion">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap3\Kap3.htm#3.1.3</HTMLFILE>
+						</CHAPTER>
+					</CHAPTERS>
+				</CHAPTER>
+				<CHAPTER Name="3.2 Goal Programming">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap3\Kap3.htm#3.2</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="3.3 M-Methode">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap3\Kap3.htm#3.3</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="3.4 Nichtlineare Programmierung (Separable Programmierung)">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap3\Kap3.htm#3.4</HTMLFILE>
+				</CHAPTER>
+			</CHAPTERS>
+		</CHAPTER>
+		<CHAPTER Name="4. Dualität">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap4.htm</HTMLFILE>
+			<CHAPTERS>
+				<CHAPTER Name="4.1 Ein Preisproblem">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap4.htm#4.1</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="4.2 Das Dualitätstheorem">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap4.htm#4.2</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="4.3 Motivation für Dualität">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap4.htm#4.3</HTMLFILE>
+				</CHAPTER>
+			</CHAPTERS>
+		</CHAPTER>
+		<CHAPTER Name="5. Sensibiltätsanalyse">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap5.htm</HTMLFILE>
+			<CHAPTERS>
+				<CHAPTER Name="5.1 Problematik der Dualvariableninterpretation">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap5.htm#5.1</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="5.2 Variation eines Koeffizienten der Zielfunktion">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap5.htm#5.2</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="5.3 Variation eines Koeffizienten des b-Vektors">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap5.htm#5.3</HTMLFILE>
+				</CHAPTER>
+			</CHAPTERS>
+		</CHAPTER>
+		<CHAPTER Name="6. Parametrische Programmierung">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap6.htm</HTMLFILE>
+			<CHAPTERS/>
+		</CHAPTER>
+		<CHAPTER Name="7. Transportmodelle, Zuordnungsmodelle u. Umladeprobleme">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap7.htm</HTMLFILE>
+			<CHAPTERS>
+				<CHAPTER Name="7.1 Das Transportproblem">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap7.htm#7.1</HTMLFILE>
+					<CHAPTERS>
+						<CHAPTER Name="7.1.1 Anfangslösung">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap7.htm#7.1.1</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="7.1.2 Stepping-Stone-Methode">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap7.htm#7.1.2</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="7.1.3 Ergänzungen">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap7.htm#7.1.3</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="7.1.4 Die Schritte der Transportmethode">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap7.htm#7.1.4</HTMLFILE>
+						</CHAPTER>
+					</CHAPTERS>
+				</CHAPTER>
+				<CHAPTER Name="7.2 Das Umladeproblem">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap7.htm#7.2</HTMLFILE>
+				</CHAPTER>
+				<CHAPTER Name="7.3 Das Zuordnungsproblem">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap7.htm#7.3</HTMLFILE>
+				</CHAPTER>
+			</CHAPTERS>
+		</CHAPTER>
+		<CHAPTER Name="8. Entscheidungsbaumverfahren nach Dakin">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap4-8\Kap8.htm</HTMLFILE>
+			<CHAPTERS/>
+		</CHAPTER>
+		<CHAPTER Name="9. LP-Software">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap9\Kap9.htm</HTMLFILE>
+			<CHAPTERS/>
+		</CHAPTER>
+		<CHAPTER Name="10. Das Verschnittproblem">
+		<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap10\Kap10.htm</HTMLFILE>
+		<CHAPTERS>
+			<CHAPTER Name="10.1 Eindimensionales Verschnittproblem">
+				<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap10\Kap10.htm#10.1</HTMLFILE>
+			</CHAPTER>
+			<CHAPTER Name="10.2 Zweidimensionales Verschnittproblem">
+				<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap10\Kap10.htm#10.2</HTMLFILE>
+			</CHAPTER>
+		</CHAPTERS>
+	</CHAPTER>
+		<CHAPTER Name="11. Fallstudie Personalplanung">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap11\Kap11.htm</HTMLFILE>
+			<CHAPTERS/>
+		</CHAPTER>
+		<CHAPTER Name="12. Generalized Networks">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Kap12\Kap12.htm</HTMLFILE>
+			<CHAPTERS/>
+		</CHAPTER>
+			<CHAPTER Name="13. Aufgabenverwaltung fuer WIN Bachelor">
+			<HTMLFILE>http://www.besf.in.htwg-konstanz.de/orme/public/</HTMLFILE>
+		</CHAPTER> 
+			<CHAPTER Name="14. Übungsaufgaben">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben.htm</HTMLFILE>
+			<CHAPTERS>
+				<CHAPTER Name="Aufgabenteil 1">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben/Aufgaben_T1.htm</HTMLFILE>
+					<CHAPTERS>
+						<CHAPTER Name="Aufgabe 1 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg01.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 2 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg02.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 3 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg03.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 4 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg04.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 5 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg05.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 6 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg06.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 7 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg07.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 8 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg08.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 9 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg09.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 10 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg10.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 11 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg11.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 12 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg12.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 13 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg13.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 14 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg14.Htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 15 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil1\T1_Aufg15.Htm</HTMLFILE>
+						</CHAPTER>
+					</CHAPTERS>
+				</CHAPTER>
+				<CHAPTER Name="Aufgabenteil 2">
+				<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Aufgaben_T2.htm</HTMLFILE>
+				<CHAPTERS>
+					<CHAPTER Name="Aufgabe 1 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg01.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 2 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg02.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 3 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg03.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 4 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg04.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 5 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg05.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 6 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg06.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 7 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg07.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 8 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg08.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 9 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg09.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 10 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg10.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 11 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg11.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 12 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg12.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 13 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg13.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 14 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg14.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 15 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg15.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 16 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg16.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 17 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg17.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 18 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg18.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 19 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg19.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 20 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg20.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 21 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg21.Htm</HTMLFILE>
+					</CHAPTER>
+					<CHAPTER Name="Aufgabe 22 ">
+						<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil2\T2_Aufg22.Htm</HTMLFILE>
+					</CHAPTER>
+				</CHAPTERS>
+			</CHAPTER>
+				<CHAPTER Name="Aufgabenteil 3">
+					<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Aufgaben_T3.htm</HTMLFILE>
+					<CHAPTERS>
+						<CHAPTER Name="Aufgabe 1 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg01.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 2 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg02.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 3 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg03.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 4 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg04.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 5 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg05.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 6 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg06.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 7 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg07.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 8 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg08.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 9 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg09.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 10 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg10.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 11 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg11.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 12 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg12.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 13 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg13.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 14 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg14.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 15 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg15.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 16 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg16.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 17 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg17.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 18 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg18.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 19 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg19.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 20 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg20.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 21 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg21.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 22 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg22.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 23 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg23.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 24 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg24.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 25 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg25.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 26 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg26.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 27 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg27.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 28 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg28.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 29 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg29.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 30 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg30.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 31 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg31.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 32 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg32.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 33 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg33.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 34 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg34.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 35 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg35.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 36 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg36.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 37 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg37.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 38 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg38.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 39 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg39.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 40 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg40.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 41 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg41.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 42 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg42.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 43 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg43.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 44 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg44.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 45 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg45.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 46 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg46.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 47 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg47.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 48 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg48.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 49 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg49.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 50 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg50.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 51 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg51.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 52 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg52.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 53 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg53.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 54 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg54.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 55 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg55.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 56 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg56.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 57 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg57.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 58 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg58.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 59 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg59.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 60 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg60.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 61 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg61.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 62 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg62.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 63 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg63.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 64 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg64.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 65 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg65.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 66 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg66.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 67 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg67.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 68 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg68.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 69 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg69.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 70 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg70.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 71 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg71.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 72 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg72.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 73 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg73.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 74 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg74.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 75 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg75.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 76 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg76.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 77 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg77.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 78 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg78.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 79 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg79.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 80 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg80.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 81 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg81.pdf</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 82 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg82.pdf</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 83 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg83.pdf</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 84 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg84.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 85 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg85.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 86 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg86.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 87 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg87.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 88 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg88.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 89 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg89.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 90 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg90.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 91 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg91.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 92 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg92.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 93 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg93.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 94 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg94.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 95 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg95.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 96 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg96.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 97 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg97.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 98 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg98.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 99 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg99.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 100 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg100.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 101 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg101.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 102 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg102.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 103 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg103.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 104 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg104.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 105 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg105.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 106 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg106.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 107 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg107.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 108 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg108.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 109 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg109.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 110 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg110.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 111 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg111.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 112 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg112.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 113 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg113.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 114 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg114.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 115 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg115.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 116 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg116.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 117 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg117.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 118 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg118.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 119 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg119.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 120 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg120.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 121 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg121.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 122 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg122.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 123 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg123.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 124 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg124.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 125 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg125.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 126 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg126.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 127 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg127.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 128 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg128.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 129 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg129.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 130 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg130.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 131 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg131.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 132 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg132.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 133 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg133.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 134 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg134.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 135 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg135.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 136 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg136.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 137 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg137.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 138 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg138.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 139 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg139.htm</HTMLFILE>
+						</CHAPTER>
+						<CHAPTER Name="Aufgabe 140 ">
+							<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\Aufgaben\Teil3\T3_Aufg140.htm</HTMLFILE>
+						</CHAPTER>
+					</CHAPTERS>
+				</CHAPTER>
+			</CHAPTERS>
+		</CHAPTER>
+		<!--<CHAPTER Name="Links zur BESF/OR">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\</HTMLFILE>
+			<CHAPTERS/>
+		</CHAPTER>
+		<CHAPTER Name="Präsentationen">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\</HTMLFILE>
+			<CHAPTERS/>
+		</CHAPTER>
+		<CHAPTER Name="OR-InfoSystem">
+			<HTMLFILE>C:\Methodenbank\OR_HtmlSkript\</HTMLFILE>
+			<CHAPTERS/>
+		</CHAPTER>-->
+	</CHAPTERS>
+</BASE>

@@ -1,0 +1,1305 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_07" class="java.beans.XMLDecoder"> 
+ <object class="verkehrsplaner.AllgemeineEinstellungen"> 
+  <void property="anzahlAmpelGross"> 
+   <int>2</int> 
+  </void> 
+  <void property="anzahlKreisverkehrTyp2"> 
+   <int>1</int> 
+  </void> 
+  <void property="anzahlQuellen"> 
+   <int>5</int> 
+  </void> 
+  <void property="anzahlSenken"> 
+   <int>4</int> 
+  </void> 
+  <void property="anzahlStrassen"> 
+   <int>16</int> 
+  </void> 
+  <void property="anzahlVorfahrt"> 
+   <int>4</int> 
+  </void> 
+  <void property="idCounter"> 
+   <int>39</int> 
+  </void> 
+  <void property="oldHeight"> 
+   <int>699</int> 
+  </void> 
+  <void property="oldWidth"> 
+   <int>977</int> 
+  </void> 
+  <void property="pfadHintergrund"> 
+   <string>D:\Fallstudien\Fallstudie2.jpg</string> 
+  </void> 
+  <void property="simulationsDauer"> 
+   <double>5000.0</double> 
+  </void> 
+ </object> 
+ <object class="ampelGross.AmpelGrossEinstellungen"> 
+  <void property="abbiegenWahl"> 
+   <void index="0"> 
+    <void index="0"> 
+     <double>0.98</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.0</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.02</double> 
+    </void> 
+   </void> 
+   <void index="1"> 
+    <void index="0"> 
+     <double>0.1</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.6667</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="2"> 
+    <void index="0"> 
+     <double>0.4</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.2</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.4</double> 
+    </void> 
+   </void> 
+   <void index="3"> 
+    <void index="0"> 
+     <double>0.0</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.98</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.02</double> 
+    </void> 
+   </void> 
+  </void> 
+  <void property="ampelSchaltZeiten"> 
+   <void index="0"> 
+    <double>25.0</double> 
+   </void> 
+   <void index="1"> 
+    <double>0.0</double> 
+   </void> 
+   <void index="2"> 
+    <double>0.0</double> 
+   </void> 
+   <void index="3"> 
+    <double>25.0</double> 
+   </void> 
+  </void> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>25</int> 
+   </void> 
+   <void index="1"> 
+    <int>17</int> 
+   </void> 
+   <void index="3"> 
+    <int>16</int> 
+   </void> 
+  </void> 
+  <void property="laengeAbbiegeSpur"> 
+   <void index="1"> 
+    <double>0.0</double> 
+   </void> 
+  </void> 
+  <void property="modus"> 
+   <int>1</int> 
+  </void> 
+  <void property="name"> 
+   <string>Reichenau_Byk-Gulden</string> 
+  </void> 
+  <void property="x"> 
+   <int>142</int> 
+  </void> 
+  <void property="y"> 
+   <int>250</int> 
+  </void> 
+ </object> 
+ <object class="ampelGross.AmpelGrossEinstellungen"> 
+  <void property="abbiegenWahl"> 
+   <void index="0"> 
+    <void index="0"> 
+     <double>0.0</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.3333</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.6667</double> 
+    </void> 
+   </void> 
+   <void index="1"> 
+    <void index="0"> 
+     <double>0.95</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.0</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.05</double> 
+    </void> 
+   </void> 
+   <void index="2"> 
+    <void index="0"> 
+     <double>0.2</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.8</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="3"> 
+    <void index="0"> 
+     <double>0.2</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.6</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.2</double> 
+    </void> 
+   </void> 
+  </void> 
+  <void property="ampelSchaltZeiten"> 
+   <void index="0"> 
+    <double>7.0</double> 
+   </void> 
+   <void index="1"> 
+    <double>30.0</double> 
+   </void> 
+  </void> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>20</int> 
+   </void> 
+   <void index="1"> 
+    <int>18</int> 
+   </void> 
+   <void index="2"> 
+    <int>19</int> 
+   </void> 
+   <void index="3"> 
+    <int>17</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>1</int> 
+  </void> 
+  <void property="modus"> 
+   <int>1</int> 
+  </void> 
+  <void property="name"> 
+   <string>Reichenau_Ried</string> 
+  </void> 
+  <void property="x"> 
+   <int>754</int> 
+  </void> 
+  <void property="y"> 
+   <int>571</int> 
+  </void> 
+ </object> 
+ <object class="kreisverkehrTyp2.KreisverkehrTyp2Einstellungen"> 
+  <void property="abbiegenWahl"> 
+   <void index="0"> 
+    <void index="0"> 
+     <double>0.8</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.1</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.1</double> 
+    </void> 
+   </void> 
+   <void index="1"> 
+    <void index="0"> 
+     <double>0.1</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.85</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.05</double> 
+    </void> 
+   </void> 
+   <void index="2"> 
+    <void index="0"> 
+     <double>0.03</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.03</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.94</double> 
+    </void> 
+   </void> 
+   <void index="3"> 
+    <void index="0"> 
+     <double>0.3333</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.3333</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.3333</double> 
+    </void> 
+   </void> 
+  </void> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>30</int> 
+   </void> 
+   <void index="1"> 
+    <int>31</int> 
+   </void> 
+   <void index="2"> 
+    <int>20</int> 
+   </void> 
+   <void index="3"> 
+    <int>21</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>2</int> 
+  </void> 
+  <void property="modus"> 
+   <int>1</int> 
+  </void> 
+  <void property="name"> 
+   <string>Ried_Byk-Gulden</string> 
+  </void> 
+  <void property="radius"> 
+   <double>12.0</double> 
+  </void> 
+  <void property="x"> 
+   <int>811</int> 
+  </void> 
+  <void property="y"> 
+   <int>438</int> 
+  </void> 
+ </object> 
+ <object class="vorfahrt.VorfahrtEinstellungen"> 
+  <void property="abbiegenWahl"> 
+   <void index="0"> 
+    <void index="1"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="1"> 
+    <void index="0"> 
+     <double>0.01</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.99</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="3"> 
+    <void index="0"> 
+     <double>0.0</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.8</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.2</double> 
+    </void> 
+   </void> 
+  </void> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>29</int> 
+   </void> 
+   <void index="1"> 
+    <int>21</int> 
+   </void> 
+   <void index="3"> 
+    <int>22</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>3</int> 
+  </void> 
+  <void property="modus"> 
+   <int>1</int> 
+  </void> 
+  <void property="name"> 
+   <string>Byk-4</string> 
+  </void> 
+  <void property="vorfahrtStrassen"> 
+   <void index="0"> 
+    <int>1</int> 
+   </void> 
+   <void index="1"> 
+    <int>3</int> 
+   </void> 
+  </void> 
+  <void property="x"> 
+   <int>683</int> 
+  </void> 
+  <void property="y"> 
+   <int>378</int> 
+  </void> 
+ </object> 
+ <object class="vorfahrt.VorfahrtEinstellungen"> 
+  <void property="abbiegenWahl"> 
+   <void index="0"> 
+    <void index="1"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="1"> 
+    <void index="0"> 
+     <double>0.01</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.99</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="3"> 
+    <void index="0"> 
+     <double>0.0</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.8</double> 
+    </void> 
+   </void> 
+  </void> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>28</int> 
+   </void> 
+   <void index="1"> 
+    <int>22</int> 
+   </void> 
+   <void index="3"> 
+    <int>23</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>4</int> 
+  </void> 
+  <void property="modus"> 
+   <int>1</int> 
+  </void> 
+  <void property="name"> 
+   <string>Byk-3</string> 
+  </void> 
+  <void property="vorfahrtStrassen"> 
+   <void index="0"> 
+    <int>1</int> 
+   </void> 
+   <void index="1"> 
+    <int>3</int> 
+   </void> 
+  </void> 
+  <void property="x"> 
+   <int>572</int> 
+  </void> 
+  <void property="y"> 
+   <int>326</int> 
+  </void> 
+ </object> 
+ <object class="vorfahrt.VorfahrtEinstellungen"> 
+  <void property="abbiegenWahl"> 
+   <void index="0"> 
+    <void index="1"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="1"> 
+    <void index="0"> 
+     <double>0.01</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.99</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="3"> 
+    <void index="0"> 
+     <double>0.0</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.8</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.2</double> 
+    </void> 
+   </void> 
+  </void> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>27</int> 
+   </void> 
+   <void index="1"> 
+    <int>23</int> 
+   </void> 
+   <void index="3"> 
+    <int>24</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>5</int> 
+  </void> 
+  <void property="modus"> 
+   <int>1</int> 
+  </void> 
+  <void property="name"> 
+   <string>Byk-2</string> 
+  </void> 
+  <void property="vorfahrtStrassen"> 
+   <void index="0"> 
+    <int>1</int> 
+   </void> 
+   <void index="1"> 
+    <int>3</int> 
+   </void> 
+  </void> 
+  <void property="x"> 
+   <int>464</int> 
+  </void> 
+  <void property="y"> 
+   <int>270</int> 
+  </void> 
+ </object> 
+ <object class="vorfahrt.VorfahrtEinstellungen"> 
+  <void property="abbiegenWahl"> 
+   <void index="0"> 
+    <void index="1"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="1"> 
+    <void index="0"> 
+     <double>0.01</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.99</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.0</double> 
+    </void> 
+   </void> 
+   <void index="3"> 
+    <void index="0"> 
+     <double>0.0</double> 
+    </void> 
+    <void index="1"> 
+     <double>0.8</double> 
+    </void> 
+    <void index="2"> 
+     <double>0.2</double> 
+    </void> 
+   </void> 
+  </void> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>26</int> 
+   </void> 
+   <void index="1"> 
+    <int>24</int> 
+   </void> 
+   <void index="3"> 
+    <int>25</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>6</int> 
+  </void> 
+  <void property="modus"> 
+   <int>1</int> 
+  </void> 
+  <void property="name"> 
+   <string>Byk-1</string> 
+  </void> 
+  <void property="vorfahrtStrassen"> 
+   <void index="0"> 
+    <int>1</int> 
+   </void> 
+   <void index="1"> 
+    <int>3</int> 
+   </void> 
+  </void> 
+  <void property="x"> 
+   <int>349</int> 
+  </void> 
+  <void property="y"> 
+   <int>219</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.QuelleEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>16</int> 
+   </void> 
+  </void> 
+  <void property="erwartungswert"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>7</int> 
+  </void> 
+  <void property="name"> 
+   <string>Allensbach</string> 
+  </void> 
+  <void property="x"> 
+   <int>26</int> 
+  </void> 
+  <void property="y"> 
+   <int>159</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.QuelleEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>18</int> 
+   </void> 
+  </void> 
+  <void property="erwartungswert"> 
+   <double>8.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>8</int> 
+  </void> 
+  <void property="name"> 
+   <string>Innenstadt</string> 
+  </void> 
+  <void property="x"> 
+   <int>905</int> 
+  </void> 
+  <void property="y"> 
+   <int>644</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.QuelleEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>19</int> 
+   </void> 
+  </void> 
+  <void property="erwartungswert"> 
+   <double>20.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>9</int> 
+  </void> 
+  <void property="name"> 
+   <string>Fritz-Arnold-Str.</string> 
+  </void> 
+  <void property="x"> 
+   <int>696</int> 
+  </void> 
+  <void property="y"> 
+   <int>660</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.QuelleEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>31</int> 
+   </void> 
+  </void> 
+  <void property="erwartungswert"> 
+   <double>12.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>10</int> 
+  </void> 
+  <void property="name"> 
+   <string>Max-Stromeyer</string> 
+  </void> 
+  <void property="x"> 
+   <int>928</int> 
+  </void> 
+  <void property="y"> 
+   <int>494</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.QuelleEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>30</int> 
+   </void> 
+  </void> 
+  <void property="erwartungswert"> 
+   <double>18.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>11</int> 
+  </void> 
+  <void property="name"> 
+   <string>Riedstr.</string> 
+  </void> 
+  <void property="x"> 
+   <int>819</int> 
+  </void> 
+  <void property="y"> 
+   <int>309</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.SenkeEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>29</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>12</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="x"> 
+   <int>705</int> 
+  </void> 
+  <void property="y"> 
+   <int>313</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.SenkeEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>28</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>13</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="x"> 
+   <int>598</int> 
+  </void> 
+  <void property="y"> 
+   <int>265</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.SenkeEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>27</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>14</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="x"> 
+   <int>487</int> 
+  </void> 
+  <void property="y"> 
+   <int>206</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.SenkeEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>26</int> 
+   </void> 
+  </void> 
+  <void property="id"> 
+   <int>15</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="x"> 
+   <int>379</int> 
+  </void> 
+  <void property="y"> 
+   <int>162</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>7</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>30.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>16</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>0</int> 
+   </void> 
+   <void index="1"> 
+    <int>3</int> 
+   </void> 
+  </void> 
+  <void property="kurveX"> 
+   <int>107</int> 
+  </void> 
+  <void property="kurveY"> 
+   <int>221</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>2</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>0</int> 
+   </void> 
+   <void index="1"> 
+    <int>1</int> 
+   </void> 
+  </void> 
+  <void property="fahrspuren"> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>30.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>17</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>1</int> 
+   </void> 
+   <void index="1"> 
+    <int>3</int> 
+   </void> 
+  </void> 
+  <void property="kurveX"> 
+   <int>389</int> 
+  </void> 
+  <void property="kurveY"> 
+   <int>402</int> 
+  </void> 
+  <void property="laenge"> 
+   <double>500.0</double> 
+  </void> 
+  <void property="name"> 
+   <string>Reichenaustraße</string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>2</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>1</int> 
+   </void> 
+   <void index="1"> 
+    <int>8</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>30.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>18</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>1</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="kurveX"> 
+   <int>833</int> 
+  </void> 
+  <void property="kurveY"> 
+   <int>599</int> 
+  </void> 
+  <void property="laenge"> 
+   <double>500.0</double> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>2</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>9</int> 
+   </void> 
+   <void index="1"> 
+    <int>1</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>19</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>0</int> 
+   </void> 
+   <void index="1"> 
+    <int>2</int> 
+   </void> 
+  </void> 
+  <void property="kurveY"> 
+   <int>-2</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>1</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>1</int> 
+   </void> 
+   <void index="1"> 
+    <int>2</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>20</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>0</int> 
+   </void> 
+   <void index="1"> 
+    <int>2</int> 
+   </void> 
+  </void> 
+  <void property="kurveY"> 
+   <int>-2</int> 
+  </void> 
+  <void property="name"> 
+   <string>Riedstr.</string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>1</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>2</int> 
+   </void> 
+   <void index="1"> 
+    <int>3</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>21</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>3</int> 
+   </void> 
+   <void index="1"> 
+    <int>1</int> 
+   </void> 
+  </void> 
+  <void property="kurveX"> 
+   <int>743</int> 
+  </void> 
+  <void property="kurveY"> 
+   <int>404</int> 
+  </void> 
+  <void property="maxV"> 
+   <double>30.0</double> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>1</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>3</int> 
+   </void> 
+   <void index="1"> 
+    <int>4</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>22</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>3</int> 
+   </void> 
+   <void index="1"> 
+    <int>1</int> 
+   </void> 
+  </void> 
+  <void property="kurveX"> 
+   <int>623</int> 
+  </void> 
+  <void property="kurveY"> 
+   <int>353</int> 
+  </void> 
+  <void property="maxV"> 
+   <double>30.0</double> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>1</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>4</int> 
+   </void> 
+   <void index="1"> 
+    <int>5</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>23</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>3</int> 
+   </void> 
+   <void index="1"> 
+    <int>1</int> 
+   </void> 
+  </void> 
+  <void property="kurveX"> 
+   <int>514</int> 
+  </void> 
+  <void property="kurveY"> 
+   <int>302</int> 
+  </void> 
+  <void property="maxV"> 
+   <double>30.0</double> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>1</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>5</int> 
+   </void> 
+   <void index="1"> 
+    <int>6</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>24</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>3</int> 
+   </void> 
+   <void index="1"> 
+    <int>1</int> 
+   </void> 
+  </void> 
+  <void property="kurveX"> 
+   <int>408</int> 
+  </void> 
+  <void property="kurveY"> 
+   <int>249</int> 
+  </void> 
+  <void property="maxV"> 
+   <double>30.0</double> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>1</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>6</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>25</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>3</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="kurveX"> 
+   <int>203</int> 
+  </void> 
+  <void property="kurveY"> 
+   <int>162</int> 
+  </void> 
+  <void property="laenge"> 
+   <double>200.0</double> 
+  </void> 
+  <void property="maxV"> 
+   <double>30.0</double> 
+  </void> 
+  <void property="name"> 
+   <string>Byk-Gulden-Str.</string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>1</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>6</int> 
+   </void> 
+   <void index="1"> 
+    <int>15</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>3.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>26</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>0</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="kurveY"> 
+   <int>-2</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>5</int> 
+   </void> 
+   <void index="1"> 
+    <int>14</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>3.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>27</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>0</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="kurveY"> 
+   <int>-2</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>4</int> 
+   </void> 
+   <void index="1"> 
+    <int>13</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>3.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>28</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>0</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="kurveY"> 
+   <int>-2</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>12</int> 
+   </void> 
+   <void index="1"> 
+    <int>3</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>3.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>29</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>0</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="kurveY"> 
+   <int>-2</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>11</int> 
+   </void> 
+   <void index="1"> 
+    <int>2</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>30</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>0</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="kurveY"> 
+   <int>-2</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>1</int> 
+  </void> 
+ </object> 
+ <object class="verkehrsplaner.NormaleStrasseEinstellungen"> 
+  <void property="anbindungen"> 
+   <void index="0"> 
+    <int>2</int> 
+   </void> 
+   <void index="1"> 
+    <int>10</int> 
+   </void> 
+  </void> 
+  <void property="fahrzeugeProMinute"> 
+   <double>10.0</double> 
+  </void> 
+  <void property="id"> 
+   <int>31</int> 
+  </void> 
+  <void property="konnektoren"> 
+   <void index="0"> 
+    <int>1</int> 
+   </void> 
+   <void index="1"> 
+    <int>0</int> 
+   </void> 
+  </void> 
+  <void property="kurveY"> 
+   <int>-2</int> 
+  </void> 
+  <void property="name"> 
+   <string></string> 
+  </void> 
+  <void property="strassenArt"> 
+   <int>1</int> 
+  </void> 
+ </object> 
+</java> 

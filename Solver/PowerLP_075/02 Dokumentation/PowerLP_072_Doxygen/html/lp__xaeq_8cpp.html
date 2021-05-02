@@ -1,0 +1,813 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.5"/>
+<title>PowerLP Frontend: lp_xaeq.cpp-Dateireferenz</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">PowerLP Frontend
+   &#160;<span id="projectnumber">0.71</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Erzeugt von Doxygen 1.8.5 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Hauptseite</span></a></li>
+      <li><a href="annotated.html"><span>Klassen</span></a></li>
+      <li class="current"><a href="files.html"><span>Dateien</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Suchen" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Auflistung&#160;der&#160;Dateien</span></a></li>
+      <li><a href="globals.html"><span>Datei-Elemente</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('lp__xaeq_8cpp.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Alle</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Klassen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Dateien</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funktionen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variablen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typdefinitionen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Aufz√§hlungen</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Aufz√§hlungswerte</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Makrodefinitionen</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Klassen</a> &#124;
+<a href="#define-members">Makrodefinitionen</a> &#124;
+<a href="#func-members">Funktionen</a>  </div>
+  <div class="headertitle">
+<div class="title">lp_xaeq.cpp-Dateireferenz</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;<a class="el" href="vcl_8h_source.html">vcl.h</a>&gt;</code><br/>
+<code>#include &lt;io.h&gt;</code><br/>
+<code>#include &lt;stdio.h&gt;</code><br/>
+<code>#include &lt;sys\stat.h&gt;</code><br/>
+<code>#include &lt;fcntl.h&gt;</code><br/>
+<code>#include &lt;dir.h&gt;</code><br/>
+<code>#include &lt;math.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="common_8h_source.html">common.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="lp__xaeq_8h_source.html">lp_xaeq.h</a>&quot;</code><br/>
+</div>
+<p><a href="lp__xaeq_8cpp_source.html">gehe zum Quellcode dieser Datei</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Klassen</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_x_a_parser.html">XAParser</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Makrodefinitionen</h2></td></tr>
+<tr class="memitem:a0de1b3c58ac1d494cebc79ea7e01c234"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#a0de1b3c58ac1d494cebc79ea7e01c234">MAXVARNAME</a>&#160;&#160;&#160;30</td></tr>
+<tr class="separator:a0de1b3c58ac1d494cebc79ea7e01c234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22731d84ae85cb3d6a5f8c1fa638d173"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#a22731d84ae85cb3d6a5f8c1fa638d173">MAXVAR</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="separator:a22731d84ae85cb3d6a5f8c1fa638d173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45404c3c762f1e48cf9294137747f1cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#a45404c3c762f1e48cf9294137747f1cd">MAXRES</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="separator:a45404c3c762f1e48cf9294137747f1cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Funktionen</h2></td></tr>
+<tr class="memitem:a654c40e325589936459ccb0cb1368c5e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#a654c40e325589936459ccb0cb1368c5e">ignorechars</a> (char *z, int *len=NULL)</td></tr>
+<tr class="separator:a654c40e325589936459ccb0cb1368c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab13e21d131f3f8e56e016b837c1f261b"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#ab13e21d131f3f8e56e016b837c1f261b">movetonext</a> (char *z, <a class="el" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1a">ptype</a> p, int *len=NULL)</td></tr>
+<tr class="separator:ab13e21d131f3f8e56e016b837c1f261b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8a535bfa004775e8e63883399b7459c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#ac8a535bfa004775e8e63883399b7459c">parseStr</a> (char *z, char *str, <a class="el" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1a">ptype</a> p=<a class="el" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa47e073572a47a01522b766b027f1a16c">ALPHA</a>)</td></tr>
+<tr class="separator:ac8a535bfa004775e8e63883399b7459c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac037871c27069672280248f673df9559"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#ac037871c27069672280248f673df9559">parseFloat</a> (char *z, float *value)</td></tr>
+<tr class="separator:ac037871c27069672280248f673df9559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28db7c52a84f335dad8d79d1fe0bfe79"><td class="memItemLeft" align="right" valign="top">bool __fastcall&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#a28db7c52a84f335dad8d79d1fe0bfe79">GetLPfromXAEQFile</a> (<a class="el" href="class_l_p_modell.html">LPModell</a> *LPM, char *filename)</td></tr>
+<tr class="separator:a28db7c52a84f335dad8d79d1fe0bfe79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb870e1324eab1657d7bd2dc44fdc6f9"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a> (char *str, float value)</td></tr>
+<tr class="separator:abb870e1324eab1657d7bd2dc44fdc6f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23bdcd25eb10c71c991b1fa30e1b0225"><td class="memItemLeft" align="right" valign="top">bool __fastcall&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#a23bdcd25eb10c71c991b1fa30e1b0225">PutLPtoXAEQFile</a> (<a class="el" href="class_l_p_modell.html">LPModell</a> *LPM, char *filename)</td></tr>
+<tr class="separator:a23bdcd25eb10c71c991b1fa30e1b0225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48c5bb08b26c3961d206408ff5b6768f"><td class="memItemLeft" align="right" valign="top">bool __fastcall&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lp__xaeq_8cpp.html#a48c5bb08b26c3961d206408ff5b6768f">PutLPtoILOGFile</a> (<a class="el" href="class_l_p_modell.html">LPModell</a> *LPM, char *filename)</td></tr>
+<tr class="separator:a48c5bb08b26c3961d206408ff5b6768f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Makro-Dokumentation</h2>
+<a class="anchor" id="a45404c3c762f1e48cf9294137747f1cd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAXRES&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00014">14</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a22731d84ae85cb3d6a5f8c1fa638d173"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAXVAR&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00013">13</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0de1b3c58ac1d494cebc79ea7e01c234"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAXVARNAME&#160;&#160;&#160;30</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00012">12</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Dokumentation der Funktionen</h2>
+<a class="anchor" id="abb870e1324eab1657d7bd2dc44fdc6f9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* floatToStrEN </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00537">537</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;                                           {</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;  <span class="keywordtype">float</span> absv = fabs(value);</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;  <span class="keywordflow">if</span> (absv &gt; 999999) sprintf(str, <span class="stringliteral">&quot;%f&quot;</span>, value);</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;  <span class="keywordflow">else</span> <span class="keywordflow">if</span> (absv &gt; 0 &amp;&amp; absv &lt; 0.0001) sprintf(str, <span class="stringliteral">&quot;%.20f&quot;</span>, value);</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;  <span class="keywordflow">else</span> sprintf(str, <span class="stringliteral">&quot;%g&quot;</span>, value);</div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;  <span class="keywordflow">return</span> str;</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a28db7c52a84f335dad8d79d1fe0bfe79"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool __fastcall GetLPfromXAEQFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_l_p_modell.html">LPModell</a> *&#160;</td>
+          <td class="paramname"><em>LPM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00510">510</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;                                                                 {</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;  <span class="keywordtype">int</span> f = open(filename, O_RDONLY | O_BINARY, S_IREAD);</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;  <span class="keywordflow">if</span> (f &lt; 0) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;  <a class="code" href="class_x_a_parser.html">XAParser</a>* xap = <span class="keyword">new</span> <a class="code" href="class_x_a_parser.html">XAParser</a>(f, LPM);</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;  <span class="keywordtype">int</span> rval = xap-&gt;<a class="code" href="class_x_a_parser.html#afcbd1178a6fda1028e5d5acb2e1059da">parse</a>();</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;  <span class="keywordflow">switch</span> (rval) {</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;    <span class="keywordflow">case</span> -1:<span class="comment">/*LPM-&gt;PutError(&quot;ERROR: parsing failed completely.\n&quot;);*/</span> <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    <span class="keywordflow">case</span> 0: <span class="comment">/* LPM-&gt;PutError(&quot;SUCCESS.\n&quot;); */</span> <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    <span class="keywordflow">case</span> 1: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: source file cannot be opened\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;    <span class="keywordflow">case</span> 2: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: while parsing objective\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    <span class="keywordflow">case</span> 3: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: while parsing objective\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    <span class="keywordflow">case</span> 4: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: while parsing objective\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;    <span class="keywordflow">case</span> 5: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: while parsing constraints [constraint name]\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;    <span class="keywordflow">case</span> 6: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: while parsing constraints [wrong number format]\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    <span class="keywordflow">case</span> 7: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: while parsing constraints [variable]\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    <span class="keywordflow">case</span> 8: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: while parsing constraints [no constraint relation found]\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;    <span class="keywordflow">case</span> 9: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: while parsing constraints [no constraint value found]\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;    <span class="keywordflow">case</span> 10: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: while parsing constraints [no variable found]\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;    <span class="keywordflow">default</span>: LPM-&gt;<a class="code" href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">PutError</a>(<span class="stringliteral">&quot;ERROR: unknown error\n&quot;</span>); <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;  }</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;  close(f);</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;  <span class="keywordflow">if</span> (rval) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;  xap-&gt;<a class="code" href="class_x_a_parser.html#a0655a0be633bfb1e990bb1a19a665d56">toLPM</a>(LPM);</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;  <span class="keyword">delete</span> xap;</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;}</div>
+<div class="ttc" id="class_x_a_parser_html_afcbd1178a6fda1028e5d5acb2e1059da"><div class="ttname"><a href="class_x_a_parser.html#afcbd1178a6fda1028e5d5acb2e1059da">XAParser::parse</a></div><div class="ttdeci">int parse()</div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8cpp_source.html#l00462">lp_xaeq.cpp:462</a></div></div>
+<div class="ttc" id="class_x_a_parser_html"><div class="ttname"><a href="class_x_a_parser.html">XAParser</a></div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8cpp_source.html#l00019">lp_xaeq.cpp:19</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a0d89cda8a9e93aa20a69a490f5793684"><div class="ttname"><a href="class_l_p_modell.html#a0d89cda8a9e93aa20a69a490f5793684">LPModell::PutError</a></div><div class="ttdeci">virtual void __fastcall PutError(char *str)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00231">lpmodell.cpp:231</a></div></div>
+<div class="ttc" id="class_x_a_parser_html_a0655a0be633bfb1e990bb1a19a665d56"><div class="ttname"><a href="class_x_a_parser.html#a0655a0be633bfb1e990bb1a19a665d56">XAParser::toLPM</a></div><div class="ttdeci">void __fastcall toLPM(LPModell *LPM)</div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8cpp_source.html#l00050">lp_xaeq.cpp:50</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a654c40e325589936459ccb0cb1368c5e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* ignorechars </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>len</em> = <code>NULL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00082">82</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;                                           {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  <span class="keywordflow">while</span> (z[0]) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">switch</span> (z[0]) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;      <span class="keywordflow">case</span> <span class="charliteral">&#39; &#39;</span>: z++; <span class="keywordflow">if</span> (len) ++*len; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      <span class="keywordflow">case</span> <span class="charliteral">&#39;(&#39;</span>: z++; <span class="keywordflow">if</span> (len) ++*len; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      <span class="keywordflow">case</span> <span class="charliteral">&#39;)&#39;</span>: z++; <span class="keywordflow">if</span> (len) ++*len; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      <span class="keywordflow">default</span>: <span class="keywordflow">return</span> z;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <span class="keywordflow">return</span> z;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ab13e21d131f3f8e56e016b837c1f261b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* movetonext </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1a">ptype</a>&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>len</em> = <code>NULL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00094">94</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                                                    {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  <span class="keywordtype">bool</span> firstchar = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  <span class="keywordflow">while</span> (z[0]) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">char</span>* oldz = z;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    z = <a class="code" href="lp__mps_8cpp.html#a654c40e325589936459ccb0cb1368c5e">ignorechars</a>(z);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">if</span> (z!=oldz) <span class="keywordflow">return</span> z;  <span class="comment">// at next</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">switch</span> (p) {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa47e073572a47a01522b766b027f1a16c">ALPHA</a>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;      <span class="keywordflow">if</span> (!(z[0] &gt;= <span class="charliteral">&#39;A&#39;</span> &amp;&amp; z[0] &lt;= <span class="charliteral">&#39;Z&#39;</span> ||</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            z[0] &gt;= <span class="charliteral">&#39;a&#39;</span> &amp;&amp; z[0] &lt;= <span class="charliteral">&#39;z&#39;</span> ||</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            z[0] &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; z[0] &lt;= <span class="charliteral">&#39;9&#39;</span> || z[0] == <span class="charliteral">&#39;\&#39;&#39;</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            || (!firstchar &amp;&amp; ( z[0] == <span class="charliteral">&#39;.&#39;</span> || z[0] == <span class="charliteral">&#39;-&#39;</span>) )</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            ))</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">return</span> z;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa8036f3be5700d4eb67d27fab554d5e0c">NUMERIC</a>:</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">if</span> ((z[0] &lt; <span class="charliteral">&#39;0&#39;</span> || z[0] &gt; <span class="charliteral">&#39;9&#39;</span>) &amp;&amp; z[0] != <span class="charliteral">&#39;.&#39;</span>) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;          <span class="keywordflow">if</span> (!(firstchar &amp;&amp; z[0] == <span class="charliteral">&#39;+&#39;</span> || z[0] == <span class="charliteral">&#39;-&#39;</span>)) <span class="keywordflow">return</span> z;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        }</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;      <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa682bff09ecd13e855c20beeea7f234f8">SIGN</a>:</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordflow">if</span> (z[0] != <span class="charliteral">&#39;+&#39;</span> &amp;&amp; z[0] != <span class="charliteral">&#39;-&#39;</span>) <span class="keywordflow">return</span> z;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;      <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa6411d9d6073252e4d316493506bbb979">OPERATOR</a>:</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">if</span> (z[0] != <span class="charliteral">&#39;&lt;&#39;</span> &amp;&amp; z[0] != <span class="charliteral">&#39;&gt;&#39;</span> &amp;&amp; z[0] != <span class="charliteral">&#39;=&#39;</span>) <span class="keywordflow">return</span> z;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;      <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    z++;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span> (len) ++*len;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    firstchar = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  z += strlen(z);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <span class="keywordflow">if</span> (len) *len+= strlen(z);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <span class="keywordflow">return</span> z;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+<div class="ttc" id="lp__mps_8cpp_html_a654c40e325589936459ccb0cb1368c5e"><div class="ttname"><a href="lp__mps_8cpp.html#a654c40e325589936459ccb0cb1368c5e">ignorechars</a></div><div class="ttdeci">char * ignorechars(char *z, int *len=NULL)</div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8cpp_source.html#l00082">lp_xaeq.cpp:82</a></div></div>
+<div class="ttc" id="lp__xaeq_8h_html_a0916607956575302a93dbd21440edc1aa682bff09ecd13e855c20beeea7f234f8"><div class="ttname"><a href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa682bff09ecd13e855c20beeea7f234f8">SIGN</a></div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8h_source.html#l00007">lp_xaeq.h:7</a></div></div>
+<div class="ttc" id="lp__xaeq_8h_html_a0916607956575302a93dbd21440edc1aa47e073572a47a01522b766b027f1a16c"><div class="ttname"><a href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa47e073572a47a01522b766b027f1a16c">ALPHA</a></div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8h_source.html#l00007">lp_xaeq.h:7</a></div></div>
+<div class="ttc" id="lp__xaeq_8h_html_a0916607956575302a93dbd21440edc1aa6411d9d6073252e4d316493506bbb979"><div class="ttname"><a href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa6411d9d6073252e4d316493506bbb979">OPERATOR</a></div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8h_source.html#l00007">lp_xaeq.h:7</a></div></div>
+<div class="ttc" id="lp__xaeq_8h_html_a0916607956575302a93dbd21440edc1aa8036f3be5700d4eb67d27fab554d5e0c"><div class="ttname"><a href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa8036f3be5700d4eb67d27fab554d5e0c">NUMERIC</a></div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8h_source.html#l00007">lp_xaeq.h:7</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ac037871c27069672280248f673df9559"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parseFloat </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00139">139</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                                      {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="keywordtype">char</span> tmp[2048];</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  strcpy(tmp, z);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <a class="code" href="common_8cpp.html#af8b70dfc845c2f3cd9bf1eda77c25a01">strreplace</a>(tmp,<span class="stringliteral">&quot;,&quot;</span>,<span class="stringliteral">&quot;.&quot;</span>);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  <span class="keywordflow">if</span> (z[0] == <span class="charliteral">&#39;.&#39;</span>) {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    strcpy(&amp;tmp[1],z);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    tmp[0] = <span class="charliteral">&#39;0&#39;</span>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  }</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;  <span class="keywordflow">return</span> sscanf(z,<span class="stringliteral">&quot;%f&quot;</span>, value);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;}</div>
+<div class="ttc" id="common_8cpp_html_af8b70dfc845c2f3cd9bf1eda77c25a01"><div class="ttname"><a href="common_8cpp.html#af8b70dfc845c2f3cd9bf1eda77c25a01">strreplace</a></div><div class="ttdeci">char *__fastcall strreplace(char *str, const char *from, const char *to)</div><div class="ttdef"><b>Definition:</b> <a href="common_8cpp_source.html#l00016">common.cpp:16</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ac8a535bfa004775e8e63883399b7459c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int parseStr </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1a">ptype</a>&#160;</td>
+          <td class="paramname"><em>p</em> = <code><a class="el" href="lp__xaeq_8h.html#a0916607956575302a93dbd21440edc1aa47e073572a47a01522b766b027f1a16c">ALPHA</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00130">130</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                                                {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="keywordtype">int</span> len = 0;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  z = <a class="code" href="lp__mps_8cpp.html#a654c40e325589936459ccb0cb1368c5e">ignorechars</a>(z,&amp;len);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <a class="code" href="lp__mps_8cpp.html#ab13e21d131f3f8e56e016b837c1f261b">movetonext</a>(z, p, &amp;len);   <span class="comment">//  die L‰nge ist wichtig !</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <span class="keywordflow">if</span> (len &gt; 0) <a class="code" href="common_8cpp.html#a7c68bf78951484f3bdb3ad5828700406">strpncpy</a>(str, z, len+1);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  <span class="keywordflow">else</span> <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
+<div class="ttc" id="lp__mps_8cpp_html_a654c40e325589936459ccb0cb1368c5e"><div class="ttname"><a href="lp__mps_8cpp.html#a654c40e325589936459ccb0cb1368c5e">ignorechars</a></div><div class="ttdeci">char * ignorechars(char *z, int *len=NULL)</div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8cpp_source.html#l00082">lp_xaeq.cpp:82</a></div></div>
+<div class="ttc" id="lp__mps_8cpp_html_ab13e21d131f3f8e56e016b837c1f261b"><div class="ttname"><a href="lp__mps_8cpp.html#ab13e21d131f3f8e56e016b837c1f261b">movetonext</a></div><div class="ttdeci">char * movetonext(char *z, ptype p, int *len=NULL)</div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8cpp_source.html#l00094">lp_xaeq.cpp:94</a></div></div>
+<div class="ttc" id="common_8cpp_html_a7c68bf78951484f3bdb3ad5828700406"><div class="ttname"><a href="common_8cpp.html#a7c68bf78951484f3bdb3ad5828700406">strpncpy</a></div><div class="ttdeci">void __fastcall strpncpy(char *dest, const char *src, unsigned int cnt)</div><div class="ttdef"><b>Definition:</b> <a href="common_8cpp_source.html#l00007">common.cpp:7</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a48c5bb08b26c3961d206408ff5b6768f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool __fastcall PutLPtoILOGFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_l_p_modell.html">LPModell</a> *&#160;</td>
+          <td class="paramname"><em>LPM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Erstellung der ILOG.lp Datei, welche den zu lˆsenden LP-Ansatz enth‰lt </p>
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00651">651</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;                                                               {</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;<span class="keywordtype">int</span> f = <a class="code" href="lpmodell_8cpp.html#ab1318b0a3636bd3685e94580009f50d8">OpenCreateFile</a>(LPM, filename);</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;  <span class="keywordflow">if</span> (f &lt; 0) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;  <span class="comment">//Zielfunktion</span></div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;  <span class="keywordflow">if</span> (LPM-&gt;<a class="code" href="class_l_p_modell.html#a3d1342573a267e2da8ed4b7440b09f25">getMinimize</a>()) <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, <span class="stringliteral">&quot;Minimize\n&quot;</span>);</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;  <span class="keywordflow">else</span> <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, <span class="stringliteral">&quot;Maximize\n&quot;</span>);</div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;</div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;  <span class="keywordtype">int</span> vars= LPM-&gt;<a class="code" href="class_l_p_modell.html#a35dec96130542fa8161a997ff6a0f883">getVarCount</a>();</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;  <span class="keywordtype">int</span> res = LPM-&gt;<a class="code" href="class_l_p_modell.html#a6a9563b172bee0c989c3a6d0879a0f37">getResCount</a>();</div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;  AnsiString zf;</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;  <span class="keywordtype">char</span> str[200];</div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;  <span class="keywordtype">int</span> colwidth = 2;</div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; vars ;x++) {</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;  <span class="keywordflow">if</span> (colwidth &gt; 70) {</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;      colwidth = 2;</div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;      <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;      <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, <span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;    }</div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;    <span class="keywordtype">float</span> zfvalue = LPM-&gt;<a class="code" href="class_l_p_modell.html#a2ef239dbfaeab4560c1b3060a9922a2a">getZF</a>(x);</div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;    <span class="keywordflow">if</span> (zfvalue &lt; 0) {</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;      write(f, <span class="stringliteral">&quot;- &quot;</span>,2); zfvalue = -zfvalue;</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;      write(f, <span class="stringliteral">&quot;+ &quot;</span>,2);</div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;    }</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;    colwidth += 2;</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;    <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, zfvalue);</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;    strcat(str, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;    colwidth += write(f, str, strlen(str));</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;    sprintf(str, <span class="stringliteral">&quot;x%i&quot;</span>, x+1);</div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;    strcat(str, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;    colwidth += write(f, str, strlen(str));</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;  }</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;</div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;  <span class="comment">//Restriktionen</span></div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;  <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;\nSubject To&quot;</span>);</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x&lt;res; x++) {</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;    <span class="keywordtype">int</span> varcount = 0;</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y&lt;vars; y++) {</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;      <span class="keywordtype">float</span> value = LPM-&gt;<a class="code" href="class_l_p_modell.html#a38821f257f189b525dffe882f8368412">getRes</a>(y, x);</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;      <span class="keywordflow">if</span> (value == 0) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;      varcount++;</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;      <span class="keywordflow">if</span> (value &lt; 0) {</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;        write(f, <span class="stringliteral">&quot;- &quot;</span>,2); value = -value;</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;        write(f, <span class="stringliteral">&quot;+ &quot;</span>,2);</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;      }</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;      <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, value);</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;      strcat(str, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;      write(f, str, strlen(str));</div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;      sprintf(str, <span class="stringliteral">&quot;x%i&quot;</span>, y+1);</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;      strcat(str, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;      write(f, str, strlen(str));</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;    }</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;    <span class="keywordflow">if</span> (!varcount) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;    <span class="keywordtype">char</span>* pstr = <span class="stringliteral">&quot;=&quot;</span>;</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;    <span class="keywordflow">switch</span> (LPM-&gt;<a class="code" href="class_l_p_modell.html#a7d69aa6d17fca75c25b9fd4621334f93">getRel</a>(x)) {</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a59a84258a4cb9025b567ee5139455029">EQUAL</a>:   pstr = <span class="stringliteral">&quot;=&quot;</span>;   <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666aff760ef1bae681eddba2c268a4f1dc4e">LTEQUAL</a>: pstr = <span class="stringliteral">&quot;&gt;=&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a716ea1c79fee5f126c819ced9bd32695">STEQUAL</a>: pstr = <span class="stringliteral">&quot;&lt;=&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a98188776e7d896b4904fc7bea96af4ca">LARGER</a>:  pstr = <span class="stringliteral">&quot;&gt;&quot;</span>;  <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a6c7d770a56ec80414abb1f95c4161b98">SMALLER</a>: pstr = <span class="stringliteral">&quot;&lt;&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;    }</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;    <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, pstr);</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;    <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, LPM-&gt;<a class="code" href="class_l_p_modell.html#a53795e657613154e5ad8e2dc5e9635c9">getBV</a>(x));</div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;    <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, str);</div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;  }</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;</div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;  <span class="comment">// Grenzen</span></div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;  <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;Bounds&quot;</span>);</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; vars ;x++) {</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;    sprintf(str, <span class="stringliteral">&quot;x%i&quot;</span>, x+1);</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;    <span class="keywordtype">float</span> lbound = LPM-&gt;<a class="code" href="class_l_p_modell.html#a0f1917ce4631addb55a3ff4eb76cdc72">getLBound</a>(x);</div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;    <span class="keywordflow">if</span> (lbound != 0.0){</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;      strcat(str, <span class="stringliteral">&quot; &gt;= &quot;</span>);</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;      <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, str);</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;      <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, lbound);</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;      <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, str);</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;    }</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    <span class="keywordtype">float</span> hbound = LPM-&gt;<a class="code" href="class_l_p_modell.html#a096eeb537cda4aebbc66ea731d3d6f64">getHBound</a>(x);</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;    <span class="keywordflow">if</span> (hbound &gt; 0) {</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;      sprintf(str, <span class="stringliteral">&quot;x%i&quot;</span>, x+1);</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;      <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, str);</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;      write(f,<span class="stringliteral">&quot; &lt;= &quot;</span>,4);</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;      <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, hbound);</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;      <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, str);</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;    }</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;    <span class="comment">//Wenn keine obere Grenze vorhanden ist,  wird diese auf &quot;infinity&quot; also unendlich gesetzt</span></div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;    <span class="keywordflow">else</span>{ sprintf(str, <span class="stringliteral">&quot;x%i&quot;</span>, x+1);</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, str);</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;        <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, <span class="stringliteral">&quot; &lt;= &quot;</span>);</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;      <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, <span class="stringliteral">&quot;infinity \n&quot;</span>);</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;      }</div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;  }</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;  <span class="comment">// Ganzzahligkeit</span></div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;  <span class="keywordtype">int</span> intfound = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; vars ;x++) {</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;    <span class="keywordflow">if</span> (LPM-&gt;<a class="code" href="class_l_p_modell.html#a00306dd3700ce3c5f4691ab7dc93581d">getInteger</a>(x)) {</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;      <span class="keywordflow">if</span> (!intfound) <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, <span class="stringliteral">&quot;Integers\n&quot;</span>);</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;      intfound = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;      strcat(str, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;      sprintf(str, <span class="stringliteral">&quot;x%i &quot;</span>, x+1);</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;      <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f,str);</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;    }</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;  }</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;  <span class="comment">//End</span></div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;  <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;\nEnd&quot;</span>);</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;  close(f);</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;}</div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666aff760ef1bae681eddba2c268a4f1dc4e"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666aff760ef1bae681eddba2c268a4f1dc4e">LTEQUAL</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="lp__lpsolvi_8cpp_html_abb870e1324eab1657d7bd2dc44fdc6f9"><div class="ttname"><a href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a></div><div class="ttdeci">char * floatToStrEN(char *str, float value)</div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8cpp_source.html#l00537">lp_xaeq.cpp:537</a></div></div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666a716ea1c79fee5f126c819ced9bd32695"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a716ea1c79fee5f126c819ced9bd32695">STEQUAL</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="common_8cpp_html_a79f701fc3660348a655973661c2cb60b"><div class="ttname"><a href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a></div><div class="ttdeci">int __fastcall writeStr(int file, char *str)</div><div class="ttdef"><b>Definition:</b> <a href="common_8cpp_source.html#l00065">common.cpp:65</a></div></div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666a59a84258a4cb9025b567ee5139455029"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a59a84258a4cb9025b567ee5139455029">EQUAL</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a0f1917ce4631addb55a3ff4eb76cdc72"><div class="ttname"><a href="class_l_p_modell.html#a0f1917ce4631addb55a3ff4eb76cdc72">LPModell::getLBound</a></div><div class="ttdeci">float __fastcall getLBound(int varno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00221">lpmodell.cpp:221</a></div></div>
+<div class="ttc" id="common_8cpp_html_a1476768a80427741de5a795de89ddddc"><div class="ttname"><a href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a></div><div class="ttdeci">int __fastcall writeLF(int file, char *str)</div><div class="ttdef"><b>Definition:</b> <a href="common_8cpp_source.html#l00058">common.cpp:58</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a53795e657613154e5ad8e2dc5e9635c9"><div class="ttname"><a href="class_l_p_modell.html#a53795e657613154e5ad8e2dc5e9635c9">LPModell::getBV</a></div><div class="ttdeci">float __fastcall getBV(int resno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00177">lpmodell.cpp:177</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a6a9563b172bee0c989c3a6d0879a0f37"><div class="ttname"><a href="class_l_p_modell.html#a6a9563b172bee0c989c3a6d0879a0f37">LPModell::getResCount</a></div><div class="ttdeci">int __fastcall getResCount()</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00113">lpmodell.cpp:113</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a38821f257f189b525dffe882f8368412"><div class="ttname"><a href="class_l_p_modell.html#a38821f257f189b525dffe882f8368412">LPModell::getRes</a></div><div class="ttdeci">float __fastcall getRes(int varno, int resno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00127">lpmodell.cpp:127</a></div></div>
+<div class="ttc" id="lpmodell_8cpp_html_ab1318b0a3636bd3685e94580009f50d8"><div class="ttname"><a href="lpmodell_8cpp.html#ab1318b0a3636bd3685e94580009f50d8">OpenCreateFile</a></div><div class="ttdeci">int __fastcall OpenCreateFile(ThrowErrorMsg *emsg, char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00489">lpmodell.cpp:489</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a35dec96130542fa8161a997ff6a0f883"><div class="ttname"><a href="class_l_p_modell.html#a35dec96130542fa8161a997ff6a0f883">LPModell::getVarCount</a></div><div class="ttdeci">int __fastcall getVarCount()</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00109">lpmodell.cpp:109</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a3d1342573a267e2da8ed4b7440b09f25"><div class="ttname"><a href="class_l_p_modell.html#a3d1342573a267e2da8ed4b7440b09f25">LPModell::getMinimize</a></div><div class="ttdeci">bool __fastcall getMinimize()</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00201">lpmodell.cpp:201</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a2ef239dbfaeab4560c1b3060a9922a2a"><div class="ttname"><a href="class_l_p_modell.html#a2ef239dbfaeab4560c1b3060a9922a2a">LPModell::getZF</a></div><div class="ttdeci">float __fastcall getZF(int varno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00117">lpmodell.cpp:117</a></div></div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666a98188776e7d896b4904fc7bea96af4ca"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a98188776e7d896b4904fc7bea96af4ca">LARGER</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a096eeb537cda4aebbc66ea731d3d6f64"><div class="ttname"><a href="class_l_p_modell.html#a096eeb537cda4aebbc66ea731d3d6f64">LPModell::getHBound</a></div><div class="ttdeci">float __fastcall getHBound(int varno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00226">lpmodell.cpp:226</a></div></div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666a6c7d770a56ec80414abb1f95c4161b98"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a6c7d770a56ec80414abb1f95c4161b98">SMALLER</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a00306dd3700ce3c5f4691ab7dc93581d"><div class="ttname"><a href="class_l_p_modell.html#a00306dd3700ce3c5f4691ab7dc93581d">LPModell::getInteger</a></div><div class="ttdeci">bool __fastcall getInteger(int varno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00210">lpmodell.cpp:210</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a7d69aa6d17fca75c25b9fd4621334f93"><div class="ttname"><a href="class_l_p_modell.html#a7d69aa6d17fca75c25b9fd4621334f93">LPModell::getRel</a></div><div class="ttdeci">relation __fastcall getRel(int resno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00187">lpmodell.cpp:187</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a23bdcd25eb10c71c991b1fa30e1b0225"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool __fastcall PutLPtoXAEQFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_l_p_modell.html">LPModell</a> *&#160;</td>
+          <td class="paramname"><em>LPM</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definiert in Zeile <a class="el" href="lp__xaeq_8cpp_source.html#l00545">545</a> der Datei <a class="el" href="lp__xaeq_8cpp_source.html">lp_xaeq.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;                                                               {</div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;  <span class="keywordtype">int</span> f = <a class="code" href="lpmodell_8cpp.html#ab1318b0a3636bd3685e94580009f50d8">OpenCreateFile</a>(LPM, filename);</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;  <span class="keywordflow">if</span> (f &lt; 0) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;  <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;..TITLE\r\n  Power-LP&quot;</span>);</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;  <span class="keywordflow">if</span> (LPM-&gt;<a class="code" href="class_l_p_modell.html#a3d1342573a267e2da8ed4b7440b09f25">getMinimize</a>()) <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;..OBJECTIVE MINIMIZE&quot;</span>);</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;  <span class="keywordflow">else</span> <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;..OBJECTIVE MAXIMIZE&quot;</span>);</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;  <span class="keywordtype">int</span> vars= LPM-&gt;<a class="code" href="class_l_p_modell.html#a35dec96130542fa8161a997ff6a0f883">getVarCount</a>();</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;  <span class="keywordtype">int</span> res = LPM-&gt;<a class="code" href="class_l_p_modell.html#a6a9563b172bee0c989c3a6d0879a0f37">getResCount</a>();</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;  AnsiString zf;</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;  <span class="keywordtype">char</span> str[200];</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;  write(f, <span class="stringliteral">&quot;  &quot;</span>,2);</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;  <span class="keywordtype">bool</span> integer = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;  <span class="keywordtype">int</span> colwidth = 2;</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; vars ;x++) {</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    <span class="keywordflow">if</span> (colwidth &gt; 70) {</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;      colwidth = 2;</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;      <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;      <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, <span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;    }</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;    <span class="keywordtype">float</span> zfvalue = LPM-&gt;<a class="code" href="class_l_p_modell.html#a2ef239dbfaeab4560c1b3060a9922a2a">getZF</a>(x);</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;    <span class="keywordflow">if</span> (integer != LPM-&gt;<a class="code" href="class_l_p_modell.html#a00306dd3700ce3c5f4691ab7dc93581d">getInteger</a>(x)) {</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;      integer = !integer;</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;      <span class="keywordflow">if</span> (integer) write(f, <span class="stringliteral">&quot;[&quot;</span>,1);</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;      <span class="keywordflow">else</span> write(f, <span class="stringliteral">&quot;]&quot;</span>,1);</div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;      colwidth ++;</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;    }</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;    <span class="keywordflow">if</span> (zfvalue &lt; 0) {</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;      write(f, <span class="stringliteral">&quot;- &quot;</span>,2); zfvalue = -zfvalue;</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;      write(f, <span class="stringliteral">&quot;+ &quot;</span>,2);</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;    }</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;    colwidth += 2;</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;    <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, zfvalue);</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    strcat(str, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;    colwidth += write(f, str, strlen(str));</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;    sprintf(str, <span class="stringliteral">&quot;x%i&quot;</span>, x+1);</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;    strcat(str, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;    colwidth += write(f, str, strlen(str));</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;  }</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;  <span class="keywordflow">if</span> (integer) write(f, <span class="stringliteral">&quot;]&quot;</span>,1);</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;  <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;  <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;..BOUNDS&quot;</span>);</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; vars ;x++) {</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;    write(f, <span class="stringliteral">&quot;  &quot;</span>,2);</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;    sprintf(str, <span class="stringliteral">&quot;x%i&quot;</span>, x+1);</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;    strcat(str, <span class="stringliteral">&quot; &gt;= &quot;</span>);</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;    write(f, str, strlen(str));</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;    <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, LPM-&gt;<a class="code" href="class_l_p_modell.html#a0f1917ce4631addb55a3ff4eb76cdc72">getLBound</a>(x));</div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;    write(f, str, strlen(str));</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;    <span class="keywordtype">float</span> hbound = LPM-&gt;<a class="code" href="class_l_p_modell.html#a096eeb537cda4aebbc66ea731d3d6f64">getHBound</a>(x);</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;    <span class="keywordflow">if</span> (hbound &gt; 0) {</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;      write(f,<span class="stringliteral">&quot; &lt;= &quot;</span>,4);</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;      <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, hbound);</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;      write(f, str, strlen(str));</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;    }</div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;    <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f,<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;  }</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;  <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;..CONSTRAINTS&quot;</span>);</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x&lt;res; x++) {</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;    write(f, <span class="stringliteral">&quot;  &quot;</span>, 2);</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;    <span class="keywordtype">int</span> varcount = 0;</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;    <span class="keywordtype">int</span> colwidth = 2;</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y&lt;vars; y++) {</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;      <span class="keywordflow">if</span> (colwidth &gt; 70) {</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;        colwidth = 2;</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;        <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;        <a class="code" href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a>(f, <span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;      }</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;      <span class="keywordtype">float</span> value = LPM-&gt;<a class="code" href="class_l_p_modell.html#a38821f257f189b525dffe882f8368412">getRes</a>(y, x);</div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;      <span class="keywordflow">if</span> (value == 0) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;      varcount++;</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;      <span class="keywordflow">if</span> (value &lt; 0) {</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;        colwidth += write(f, <span class="stringliteral">&quot;- &quot;</span>,2); value = -value;</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;        colwidth += write(f, <span class="stringliteral">&quot;+ &quot;</span>,2);</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;      }</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;      <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, value);</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;      strcat(str, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;      colwidth += write(f, str, strlen(str));</div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;      sprintf(str, <span class="stringliteral">&quot;x%i&quot;</span>, y+1);</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;      strcat(str, <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;      colwidth += write(f, str, strlen(str));</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;    }</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;    <span class="keywordflow">if</span> (!varcount) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;    <span class="keywordtype">char</span>* pstr = <span class="stringliteral">&quot;=&quot;</span>;</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;    <span class="keywordflow">switch</span> (LPM-&gt;<a class="code" href="class_l_p_modell.html#a7d69aa6d17fca75c25b9fd4621334f93">getRel</a>(x)) {</div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a59a84258a4cb9025b567ee5139455029">EQUAL</a>:   pstr = <span class="stringliteral">&quot;=&quot;</span>;   <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666aff760ef1bae681eddba2c268a4f1dc4e">LTEQUAL</a>: pstr = <span class="stringliteral">&quot;&gt;=&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a716ea1c79fee5f126c819ced9bd32695">STEQUAL</a>: pstr = <span class="stringliteral">&quot;&lt;=&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a98188776e7d896b4904fc7bea96af4ca">LARGER</a>:  pstr = <span class="stringliteral">&quot;&gt;&quot;</span>;  <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;      <span class="keywordflow">case</span> <a class="code" href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a6c7d770a56ec80414abb1f95c4161b98">SMALLER</a>: pstr = <span class="stringliteral">&quot;&lt;&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;    }</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;    write(f, pstr, strlen(pstr));</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;    <a class="code" href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a>(str, LPM-&gt;<a class="code" href="class_l_p_modell.html#a53795e657613154e5ad8e2dc5e9635c9">getBV</a>(x));</div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;    <a class="code" href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a>(f, str);</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;  }</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;  close(f);</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;}</div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666aff760ef1bae681eddba2c268a4f1dc4e"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666aff760ef1bae681eddba2c268a4f1dc4e">LTEQUAL</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="lp__lpsolvi_8cpp_html_abb870e1324eab1657d7bd2dc44fdc6f9"><div class="ttname"><a href="lp__lpsolvi_8cpp.html#abb870e1324eab1657d7bd2dc44fdc6f9">floatToStrEN</a></div><div class="ttdeci">char * floatToStrEN(char *str, float value)</div><div class="ttdef"><b>Definition:</b> <a href="lp__xaeq_8cpp_source.html#l00537">lp_xaeq.cpp:537</a></div></div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666a716ea1c79fee5f126c819ced9bd32695"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a716ea1c79fee5f126c819ced9bd32695">STEQUAL</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="common_8cpp_html_a79f701fc3660348a655973661c2cb60b"><div class="ttname"><a href="common_8cpp.html#a79f701fc3660348a655973661c2cb60b">writeStr</a></div><div class="ttdeci">int __fastcall writeStr(int file, char *str)</div><div class="ttdef"><b>Definition:</b> <a href="common_8cpp_source.html#l00065">common.cpp:65</a></div></div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666a59a84258a4cb9025b567ee5139455029"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a59a84258a4cb9025b567ee5139455029">EQUAL</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a0f1917ce4631addb55a3ff4eb76cdc72"><div class="ttname"><a href="class_l_p_modell.html#a0f1917ce4631addb55a3ff4eb76cdc72">LPModell::getLBound</a></div><div class="ttdeci">float __fastcall getLBound(int varno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00221">lpmodell.cpp:221</a></div></div>
+<div class="ttc" id="common_8cpp_html_a1476768a80427741de5a795de89ddddc"><div class="ttname"><a href="common_8cpp.html#a1476768a80427741de5a795de89ddddc">writeLF</a></div><div class="ttdeci">int __fastcall writeLF(int file, char *str)</div><div class="ttdef"><b>Definition:</b> <a href="common_8cpp_source.html#l00058">common.cpp:58</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a53795e657613154e5ad8e2dc5e9635c9"><div class="ttname"><a href="class_l_p_modell.html#a53795e657613154e5ad8e2dc5e9635c9">LPModell::getBV</a></div><div class="ttdeci">float __fastcall getBV(int resno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00177">lpmodell.cpp:177</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a6a9563b172bee0c989c3a6d0879a0f37"><div class="ttname"><a href="class_l_p_modell.html#a6a9563b172bee0c989c3a6d0879a0f37">LPModell::getResCount</a></div><div class="ttdeci">int __fastcall getResCount()</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00113">lpmodell.cpp:113</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a38821f257f189b525dffe882f8368412"><div class="ttname"><a href="class_l_p_modell.html#a38821f257f189b525dffe882f8368412">LPModell::getRes</a></div><div class="ttdeci">float __fastcall getRes(int varno, int resno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00127">lpmodell.cpp:127</a></div></div>
+<div class="ttc" id="lpmodell_8cpp_html_ab1318b0a3636bd3685e94580009f50d8"><div class="ttname"><a href="lpmodell_8cpp.html#ab1318b0a3636bd3685e94580009f50d8">OpenCreateFile</a></div><div class="ttdeci">int __fastcall OpenCreateFile(ThrowErrorMsg *emsg, char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00489">lpmodell.cpp:489</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a35dec96130542fa8161a997ff6a0f883"><div class="ttname"><a href="class_l_p_modell.html#a35dec96130542fa8161a997ff6a0f883">LPModell::getVarCount</a></div><div class="ttdeci">int __fastcall getVarCount()</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00109">lpmodell.cpp:109</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a3d1342573a267e2da8ed4b7440b09f25"><div class="ttname"><a href="class_l_p_modell.html#a3d1342573a267e2da8ed4b7440b09f25">LPModell::getMinimize</a></div><div class="ttdeci">bool __fastcall getMinimize()</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00201">lpmodell.cpp:201</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a2ef239dbfaeab4560c1b3060a9922a2a"><div class="ttname"><a href="class_l_p_modell.html#a2ef239dbfaeab4560c1b3060a9922a2a">LPModell::getZF</a></div><div class="ttdeci">float __fastcall getZF(int varno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00117">lpmodell.cpp:117</a></div></div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666a98188776e7d896b4904fc7bea96af4ca"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a98188776e7d896b4904fc7bea96af4ca">LARGER</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a096eeb537cda4aebbc66ea731d3d6f64"><div class="ttname"><a href="class_l_p_modell.html#a096eeb537cda4aebbc66ea731d3d6f64">LPModell::getHBound</a></div><div class="ttdeci">float __fastcall getHBound(int varno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00226">lpmodell.cpp:226</a></div></div>
+<div class="ttc" id="lpmodell_8h_html_a87e75f78a11b7995d1386f9851405666a6c7d770a56ec80414abb1f95c4161b98"><div class="ttname"><a href="lpmodell_8h.html#a87e75f78a11b7995d1386f9851405666a6c7d770a56ec80414abb1f95c4161b98">SMALLER</a></div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8h_source.html#l00010">lpmodell.h:10</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a00306dd3700ce3c5f4691ab7dc93581d"><div class="ttname"><a href="class_l_p_modell.html#a00306dd3700ce3c5f4691ab7dc93581d">LPModell::getInteger</a></div><div class="ttdeci">bool __fastcall getInteger(int varno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00210">lpmodell.cpp:210</a></div></div>
+<div class="ttc" id="class_l_p_modell_html_a7d69aa6d17fca75c25b9fd4621334f93"><div class="ttname"><a href="class_l_p_modell.html#a7d69aa6d17fca75c25b9fd4621334f93">LPModell::getRel</a></div><div class="ttdeci">relation __fastcall getRel(int resno)</div><div class="ttdef"><b>Definition:</b> <a href="lpmodell_8cpp_source.html#l00187">lpmodell.cpp:187</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_08351310ddebaca638dbb30498c8cafd.html">SOURCE</a></li><li class="navelem"><a class="el" href="lp__xaeq_8cpp.html">lp_xaeq.cpp</a></li>
+    <li class="footer">Erzeugt am Don Jan 16 2014 09:21:07 f√ºr PowerLP Frontend von
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
+  </ul>
+</div>
+</body>
+</html>

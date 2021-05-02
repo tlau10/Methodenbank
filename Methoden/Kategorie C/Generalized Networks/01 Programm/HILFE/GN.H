@@ -1,0 +1,15 @@
+#define Inhalt 1
+#define Eine_Einf_hrung 2
+#define Das_LP_Modell 3
+#define Grafische_Darstellung 16
+#define Das_Programm 5
+#define Der_Hauptbildschirm 6
+#define Men__Datei 7
+#define Men__Optionen 8
+#define Men__Fenster 9
+#define Men__Hilfe 10
+#define Das_Eingabefenster 11
+#define Input 17
+#define Output 18
+#define Das_Ausgabefenster 13
+#define _ber_dieses_Programm 14

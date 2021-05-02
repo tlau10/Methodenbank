@@ -1,0 +1,46 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persplan", "Persplan.csproj", "{F4566A70-A9B2-4D2B-AD7A-9CF627519BDF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5CAD03C0-384F-45F8-94B0-20C728C31AE6} = {5CAD03C0-384F-45F8-94B0-20C728C31AE6}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersplanLibrary", "..\PersplanSolverInterface\PersplanLibrary.csproj", "{5CAD03C0-384F-45F8-94B0-20C728C31AE6}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersplanChart", "..\PersplanChart\PersplanChart.csproj", "{717955AB-6294-45B6-A0CA-46A48127D8B4}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersplanXA", "..\PersplanXA\PersplanXA.csproj", "{4C3A4549-4E1D-4730-9545-5D1995512848}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{F4566A70-A9B2-4D2B-AD7A-9CF627519BDF}.Debug.ActiveCfg = Debug|.NET
+		{F4566A70-A9B2-4D2B-AD7A-9CF627519BDF}.Debug.Build.0 = Debug|.NET
+		{F4566A70-A9B2-4D2B-AD7A-9CF627519BDF}.Release.ActiveCfg = Release|.NET
+		{F4566A70-A9B2-4D2B-AD7A-9CF627519BDF}.Release.Build.0 = Release|.NET
+		{5CAD03C0-384F-45F8-94B0-20C728C31AE6}.Debug.ActiveCfg = Debug|.NET
+		{5CAD03C0-384F-45F8-94B0-20C728C31AE6}.Debug.Build.0 = Debug|.NET
+		{5CAD03C0-384F-45F8-94B0-20C728C31AE6}.Release.ActiveCfg = Release|.NET
+		{5CAD03C0-384F-45F8-94B0-20C728C31AE6}.Release.Build.0 = Release|.NET
+		{717955AB-6294-45B6-A0CA-46A48127D8B4}.Debug.ActiveCfg = Debug|.NET
+		{717955AB-6294-45B6-A0CA-46A48127D8B4}.Debug.Build.0 = Debug|.NET
+		{717955AB-6294-45B6-A0CA-46A48127D8B4}.Release.ActiveCfg = Release|.NET
+		{717955AB-6294-45B6-A0CA-46A48127D8B4}.Release.Build.0 = Release|.NET
+		{4C3A4549-4E1D-4730-9545-5D1995512848}.Debug.ActiveCfg = Debug|.NET
+		{4C3A4549-4E1D-4730-9545-5D1995512848}.Debug.Build.0 = Debug|.NET
+		{4C3A4549-4E1D-4730-9545-5D1995512848}.Release.ActiveCfg = Release|.NET
+		{4C3A4549-4E1D-4730-9545-5D1995512848}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

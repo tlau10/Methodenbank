@@ -1,0 +1,8 @@
+OUT>of
+OUT>
+OUT>C:\Methodenbank\Methoden\Kategorie A\PTSS Paket-Transport-Simulation-System 1.0\01 Programm>echo Automatisch erzeugte Stapeldatei startet den LP-Solver 
+OUT>Automatisch erzeugte Stapeldatei startet den LP-Solver
+OUT>
+OUT>C:\Methodenbank\Methoden\Kategorie A\PTSS Paket-Transport-Simulation-System 1.0\01 Programm>bin\\LP_SOLVE.EXE  0<temp\\lp_eingabe.lp 1>temp\\lp_ausgabe.txt 
+OUT>
+OUT>C:\Methodenbank\Methoden\Kategorie A\PTSS Paket-Transport-Simulation-System 1.0\01 Programm>exit

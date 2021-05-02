@@ -1,0 +1,1 @@
+set classpath = d:\Archiv\Studium\plo_workon\plo;c:\jdk1.3.1_01\lib;c:\jdk1.3.1_01\bin

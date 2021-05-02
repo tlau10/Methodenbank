@@ -1,0 +1,18 @@
+[OPTIONS]
+TITLE = Personalplanung - Hilfe
+CONTENTS = Inhalt
+COMPRESS = true
+copyright = Fachhochschule Konstanz
+;warning = 3
+report = on
+ERRORLOG = h_perspl.err
+
+[FILES]
+h_perspl.rtf
+
+[CONFIG]
+BrowseButtons()
+
+[WINDOWS]
+main = "Personalplanung - Hilfe", (360,15,663,960),,,(192,192,192)
+

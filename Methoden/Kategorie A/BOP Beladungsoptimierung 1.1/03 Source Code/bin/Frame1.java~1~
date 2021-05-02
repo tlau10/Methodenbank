@@ -1,0 +1,304 @@
+package absf1;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import com.borland.jbcl.layout.*;
+
+/**
+ * <p>Title: TransportOptimizer</p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2003</p>
+ * <p>Company: </p>
+ * @author Juergen Kambeitz und Florian Pütz
+ * @version 1.0
+ */
+
+public class Frame1 extends JFrame {
+  private JPanel contentPane;
+  private JMenuBar jMenuBar1 = new JMenuBar();
+  private JMenu jMenuDatei = new JMenu();
+  private JMenuItem jMenuDateiNeu = new JMenuItem();
+  private JMenu jMenuAnsicht = new JMenu();
+  private JMenuItem jMenuAnsichtEingabeLkws = new JMenuItem();
+  private ImageIcon image1;
+  private ImageIcon image2;
+  private ImageIcon image3;
+  private BorderLayout borderLayout1 = new BorderLayout();
+  private JMenuItem jMenuDateiBeenden = new JMenuItem();
+  private JMenu jMenuBearbeiten = new JMenu();
+  private JMenuItem jMenuBearbeitenBerechnen = new JMenuItem();
+  private JMenuItem jMenuBearbeitenGrafikErzeugen = new JMenuItem();
+  private JMenuItem jMenuAnsichtEingabeGebinde = new JMenuItem();
+  private JMenuItem jMenuAnsichtErgebnis = new JMenuItem();
+  private JMenuItem jMenuAnsichtGrafik = new JMenuItem();
+  private JMenu jMenuHilfe = new JMenu();
+  private JMenuItem jMenuHilfeUeber = new JMenuItem();
+  private JTabbedPane jTabbedPane1 = new JTabbedPane();
+  private JPanel jPanelGrafik = new JPanel();
+  private JPanel jPanelEingabeLkws = new JPanel();
+  private JPanel jPanelEingabeGebinde = new JPanel();
+  private JPanel jPanelErgebnis = new JPanel();
+  private JPanel jPanel5 = new JPanel();
+  private TitledBorder titledBorder1;
+  private JPanel jPanel6 = new JPanel();
+  private TitledBorder titledBorder2;
+  private JPanel jPanel7 = new JPanel();
+  private XYLayout xYLayout1 = new XYLayout();
+  private XYLayout xYLayout2 = new XYLayout();
+  private JPanel jPanelButtonsLkws = new JPanel();
+  private JButton jButtonWeiterLkw = new JButton();
+  private JButton jButtonZuruecksetzenLkw = new JButton();
+  private XYLayout xYLayout3 = new XYLayout();
+  private JScrollPane jScrollPane2 = new JScrollPane();
+  private JTable jTableLkw = new JTable();
+  private XYLayout xYLayout4 = new XYLayout();
+  private XYLayout xYLayout5 = new XYLayout();
+  private XYLayout xYLayout6 = new XYLayout();
+  private XYLayout xYLayout7 = new XYLayout();
+  private XYLayout xYLayout8 = new XYLayout();
+  private XYLayout xYLayout9 = new XYLayout();
+  private XYLayout xYLayout10 = new XYLayout();
+  private JPanel jPanel9 = new JPanel();
+  private XYLayout xYLayout11 = new XYLayout();
+  private JScrollPane jScrollPane1 = new JScrollPane();
+  private JTable jTableGebinde = new JTable();
+  private JPanel jPanelButtonsGebinde = new JPanel();
+  private XYLayout xYLayout12 = new XYLayout();
+  private JButton jButtonZuruecksetzenGebinde = new JButton();
+  private JButton jButtonGebindeBerechnen = new JButton();
+  private JMenu jMenuBearbeitenSolverpfad = new JMenu();
+  private JMenuItem jMenuBearbeitenSolverpfadLp = new JMenuItem();
+  private JMenuItem jMenuBearbeitenSolverpfadXa = new JMenuItem();
+  private JMenuItem jMenuBearbeitenSolverpfadMops = new JMenuItem();
+
+
+
+  //Construct the frame
+  public Frame1() {
+    enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+  //Component initialization
+  private void jbInit() throws Exception  {
+
+    contentPane = (JPanel) this.getContentPane();
+    titledBorder1 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(165, 163, 151)),"Eingabematrix für die LKWs");
+    titledBorder2 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(165, 163, 151)),"Eingabematrix für die Gebinde");
+    contentPane.setLayout(borderLayout1);
+    this.setResizable(false);
+    this.setSize(new Dimension(800, 600));
+    this.setTitle("TransportOptimizer");
+    jMenuDatei.setText("Datei");
+    jMenuDateiNeu.setActionCommand("Neu");
+    jMenuDateiNeu.setText("Neu...");
+    jMenuDateiNeu.setAccelerator(javax.swing.KeyStroke.getKeyStroke(78, java.awt.event.KeyEvent.CTRL_MASK, false));
+    jMenuDateiNeu.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jMenuDateiNeu_actionPerformed(e);
+      }
+    });
+    jMenuAnsicht.setText("Ansicht");
+    jMenuAnsichtEingabeLkws.setText("Eingabe LKWs");
+    jMenuDateiBeenden.setText("Beenden");
+    jMenuDateiBeenden.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jMenuDateiBeenden_actionPerformed(e);
+      }
+    });
+    jMenuBearbeiten.setText("Bearbeiten");
+    jMenuBearbeitenBerechnen.setText("Berechnen...");
+    jMenuBearbeitenGrafikErzeugen.setText("Grafik erzeugen...");
+    jMenuAnsichtEingabeGebinde.setText("Eingabe Gebinde");
+    jMenuAnsichtErgebnis.setText("Ergebnis");
+    jMenuAnsichtGrafik.setText("Grafik");
+    jMenuHilfe.setText("Hilfe");
+    jMenuHilfeUeber.setText("Über...");
+    jMenuHilfeUeber.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jMenuHilfeUeber_actionPerformed(e);
+      }
+    });
+    contentPane.setMinimumSize(new Dimension(800, 600));
+    contentPane.setPreferredSize(new Dimension(800, 600));
+    jTabbedPane1.setToolTipText("");
+    jPanelErgebnis.setEnabled(false);
+    jPanelErgebnis.setToolTipText("Anzeige des errechneten Ergebnis");
+    jPanelEingabeGebinde.setEnabled(false);
+    jPanelEingabeGebinde.setToolTipText("Eingabe der Gebinde-Daten");
+    jPanelEingabeGebinde.setLayout(null);
+    jPanelGrafik.setNextFocusableComponent(jPanelEingabeLkws);
+    jPanelGrafik.setToolTipText("Anzeige der Ergebnisgrafik");
+    jPanelEingabeLkws.setToolTipText("Eingabe der LKW-Daten");
+    jPanelEingabeLkws.setLayout(null);
+    jPanel5.setBorder(titledBorder1);
+    jPanel5.setBounds(new Rectangle(7, 5, 769, 467));
+    jPanel5.setLayout(xYLayout2);
+    jPanel6.setBorder(titledBorder2);
+    jPanel6.setMinimumSize(new Dimension(761, 463));
+    jPanel6.setPreferredSize(new Dimension(761, 463));
+    jPanel6.setBounds(new Rectangle(7, 5, 769, 466));
+    jPanel6.setLayout(xYLayout4);
+    jPanel7.setLayout(xYLayout1);
+    xYLayout1.setWidth(100);
+    xYLayout1.setHeight(100);
+    jPanel7.setBorder(BorderFactory.createEtchedBorder());
+    jPanelButtonsLkws.setBorder(BorderFactory.createEtchedBorder());
+    jPanelButtonsLkws.setLayout(xYLayout3);
+    jButtonWeiterLkw.setText("Weiter");
+    jButtonWeiterLkw.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        jButtonWeiterLkw_actionPerformed(e);
+      }
+    });
+    jButtonZuruecksetzenLkw.setText("Zurücksetzen");
+    jScrollPane2.setColumnHeader(null);
+    jScrollPane2.getViewport().setBackground(Color.white);
+    jTableLkw.setName("Tabelle Lkws");
+    jTableLkw.setBorder(BorderFactory.createLineBorder(Color.black));
+    jTableLkw.setNextFocusableComponent(jButtonZuruecksetzenLkw);
+    jTableLkw.setCellSelectionEnabled(true);
+
+    AnsichtLkw myAnsichtLkw = new AnsichtLkw(); //Anlegen der Test-LKWs
+    String[] tabellenKopfLkw = {"Länge", "Breite", "Höhe", "Zuladung", "Anzahl"};//Daten für den Tabellenkopf von LKW
+    myAnsichtLkw.setColheads(tabellenKopfLkw);
+
+    Lkw lkw1 = new Lkw(5000, 2550, 2200, 25000);
+    Lkw lkw2 = new Lkw(6000, 2550, 2300, 27000);
+    Lkw lkw3 = new Lkw(7000, 2550, 2500, 31000);
+    AnzahlLkw anzahlLkw1 = new AnzahlLkw(lkw1, 1);//Zuordnen der Anzahl zu den LKWs
+    AnzahlLkw anzahlLkw2 = new AnzahlLkw(lkw2, 1);
+    AnzahlLkw anzahlLkw3 = new AnzahlLkw(lkw3, 2);
+
+    String[][] tabellenObjektLkw = {                 //Konstruktion des TabellenObjekts, welches dann an jTableLkw übergeben wird.
+    {Integer.toString(anzahlLkw1.getMyLkw().getLaenge()), Integer.toString(anzahlLkw1.getMyLkw().getBreite()), Integer.toString(anzahlLkw1.getMyLkw().getHoehe()), Integer.toString(anzahlLkw1.getMyLkw().getZuladung()), Integer.toString(anzahlLkw1.getAnzahl())},
+    {Integer.toString(anzahlLkw2.getMyLkw().getLaenge()), Integer.toString(anzahlLkw2.getMyLkw().getBreite()), Integer.toString(anzahlLkw2.getMyLkw().getHoehe()), Integer.toString(anzahlLkw2.getMyLkw().getZuladung()), Integer.toString(anzahlLkw2.getAnzahl())},
+    {Integer.toString(anzahlLkw3.getMyLkw().getLaenge()), Integer.toString(anzahlLkw3.getMyLkw().getBreite()), Integer.toString(anzahlLkw3.getMyLkw().getHoehe()), Integer.toString(anzahlLkw3.getMyLkw().getZuladung()), Integer.toString(anzahlLkw3.getAnzahl())}};
+    jTableLkw.setModel(new javax.swing.table.DefaultTableModel(tabellenObjektLkw, myAnsichtLkw.getColheads()));
+
+    AnsichtGebinde myAnsichtGebinde = new AnsichtGebinde(); //Anlegen der Gebinde-Testdaten
+    String[] tabellenKopfGebinde ={"Länge", "Breite", "Höhe", "Gewicht", "Stapelbar", "Anzahl", "Sammelsendung"}; //Daten für den Tabellenkopf von Gebinde
+    myAnsichtGebinde.setColheads(tabellenKopfGebinde);
+
+    Gebinde gebinde1 = new Gebinde(1200, 800, 1000, 500, true);
+    Gebinde gebinde2 = new Gebinde(1200, 800, 1200, 600, false);
+    Gebinde gebinde3 = new Gebinde(1200, 800, 900, 700, true);
+    Gebinde gebinde4 = new Gebinde(1240, 840, 980, 1200, true);
+
+    AnzahlGebinde anzahlGebinde1= new AnzahlGebinde(2, 1, gebinde1);
+    AnzahlGebinde anzahlGebinde2= new AnzahlGebinde(1, 1, gebinde2);
+    AnzahlGebinde anzahlGebinde3= new AnzahlGebinde(1, 0, gebinde3);
+    AnzahlGebinde anzahlGebinde4= new AnzahlGebinde(3, 0, gebinde4);
+
+    String[][] tabellenObjektGebinde = {
+      {Integer.toString(anzahlGebinde1.getMyGebinde().getLaenge()), Integer.toString(anzahlGebinde1.getMyGebinde().getBreite()), Integer.toString(anzahlGebinde1.getMyGebinde().getHoehe()), Integer.toString(anzahlGebinde1.getMyGebinde().getGewicht()), String.valueOf(anzahlGebinde1.getMyGebinde().isStapelbar()), Integer.toString(anzahlGebinde1.getAnzahl()), Integer.toString(anzahlGebinde1.getSammelsendung())},
+      {Integer.toString(anzahlGebinde2.getMyGebinde().getLaenge()), Integer.toString(anzahlGebinde2.getMyGebinde().getBreite()), Integer.toString(anzahlGebinde2.getMyGebinde().getHoehe()), Integer.toString(anzahlGebinde2.getMyGebinde().getGewicht()), String.valueOf(anzahlGebinde2.getMyGebinde().isStapelbar()), Integer.toString(anzahlGebinde2.getAnzahl()), Integer.toString(anzahlGebinde2.getSammelsendung())},
+      {Integer.toString(anzahlGebinde3.getMyGebinde().getLaenge()), Integer.toString(anzahlGebinde3.getMyGebinde().getBreite()), Integer.toString(anzahlGebinde3.getMyGebinde().getHoehe()), Integer.toString(anzahlGebinde3.getMyGebinde().getGewicht()), String.valueOf(anzahlGebinde3.getMyGebinde().isStapelbar()), Integer.toString(anzahlGebinde3.getAnzahl()), Integer.toString(anzahlGebinde3.getSammelsendung())},
+      {Integer.toString(anzahlGebinde4.getMyGebinde().getLaenge()), Integer.toString(anzahlGebinde4.getMyGebinde().getBreite()), Integer.toString(anzahlGebinde4.getMyGebinde().getHoehe()), Integer.toString(anzahlGebinde4.getMyGebinde().getGewicht()), String.valueOf(anzahlGebinde4.getMyGebinde().isStapelbar()), Integer.toString(anzahlGebinde4.getAnzahl()), Integer.toString(anzahlGebinde4.getSammelsendung())}};
+    jTableGebinde.setModel(new javax.swing.table.DefaultTableModel(tabellenObjektGebinde, myAnsichtGebinde.getColheads()));
+
+    xYLayout7.setHeight(100);
+    xYLayout7.setWidth(100);
+    xYLayout10.setHeight(100);
+    xYLayout10.setWidth(100);
+    jPanel9.setBorder(BorderFactory.createEtchedBorder());
+    jPanel9.setLayout(xYLayout11);
+    jPanelButtonsGebinde.setLayout(xYLayout12);
+    jPanelButtonsGebinde.setBorder(BorderFactory.createEtchedBorder());
+    jButtonZuruecksetzenGebinde.setText("Zurücksetzen");
+    jButtonGebindeBerechnen.setText("Berechnen");
+    jScrollPane1.getViewport().setBackground(Color.white);
+    jMenuBearbeitenSolverpfad.setActionCommand("Solverpfad");
+    jMenuBearbeitenSolverpfad.setText("Solverpfad...");
+    jMenuBearbeitenSolverpfadLp.setText("LP-Solve");
+    jMenuBearbeitenSolverpfadXa.setText("XA");
+    jMenuBearbeitenSolverpfadMops.setText("MOPS");
+    jMenuDatei.add(jMenuDateiNeu);
+    jMenuDatei.addSeparator();
+    jMenuDatei.add(jMenuDateiBeenden);
+    jMenuAnsicht.add(jMenuAnsichtEingabeLkws);
+    jMenuAnsicht.add(jMenuAnsichtEingabeGebinde);
+    jMenuAnsicht.add(jMenuAnsichtErgebnis);
+    jMenuAnsicht.add(jMenuAnsichtGrafik);
+    jMenuBar1.add(jMenuDatei);
+    jMenuBar1.add(jMenuAnsicht);
+    jMenuBar1.add(jMenuBearbeiten);
+    jMenuBar1.add(jMenuHilfe);
+    this.setJMenuBar(jMenuBar1);
+    contentPane.add(jTabbedPane1, BorderLayout.CENTER);
+    jTabbedPane1.add(jPanelEingabeLkws,   "Eingabe LKWs");
+    jPanelEingabeLkws.add(jPanel5, null);
+    jPanel5.add(jPanel7,         new XYConstraints(7, 1, 742, 383));
+    jPanel7.add(jScrollPane2,                           new XYConstraints(0, 0, 736, 377));
+    jScrollPane2.getViewport().add(jTableLkw, null);
+    jPanel5.add(jPanelButtonsLkws,       new XYConstraints(7, 394, 742, 41));
+    jPanelButtonsLkws.add(jButtonZuruecksetzenLkw,  new XYConstraints(278, 5, -1, -1));
+    jPanelButtonsLkws.add(jButtonWeiterLkw,   new XYConstraints(390, 5, -1, -1));
+    jTabbedPane1.add(jPanelEingabeGebinde,    "Eingabe Gebinde");
+    jPanelEingabeGebinde.add(jPanel6, null);
+    jPanel6.add(jPanel9,     new XYConstraints(7, 1, 742, 383));
+    jPanel9.add(jScrollPane1,    new XYConstraints(0, 0, 738, 378));
+    jPanel6.add(jPanelButtonsGebinde,  new XYConstraints(7, 394, 742, 41));
+    jPanelButtonsGebinde.add(jButtonGebindeBerechnen,  new XYConstraints(381, 5, -1, -1));
+    jPanelButtonsGebinde.add(jButtonZuruecksetzenGebinde,  new XYConstraints(270, 5, -1, -1));
+    jScrollPane1.getViewport().add(jTableGebinde, null);
+    jTabbedPane1.add(jPanelErgebnis,   "Ergebnis");
+    jTabbedPane1.add(jPanelGrafik,  "Grafik");
+    contentPane.add(jTabbedPane1, BorderLayout.CENTER);
+    jMenuBearbeiten.add(jMenuBearbeitenBerechnen);
+    jMenuBearbeiten.add(jMenuBearbeitenGrafikErzeugen);
+    jMenuBearbeiten.addSeparator();
+    jMenuBearbeiten.add(jMenuBearbeitenSolverpfad);
+    jMenuHilfe.add(jMenuHilfeUeber);
+    jMenuBearbeitenSolverpfad.add(jMenuBearbeitenSolverpfadLp);
+    jMenuBearbeitenSolverpfad.add(jMenuBearbeitenSolverpfadXa);
+    jMenuBearbeitenSolverpfad.add(jMenuBearbeitenSolverpfadMops);
+
+
+
+
+  }
+  //Datei | Beenden action performed
+  public void jMenuDateiBeenden_actionPerformed(ActionEvent e) {
+    System.exit(0);
+  }
+  //Hilfe | Ueber action performed
+  public void jMenuHilfeUeber_actionPerformed(ActionEvent e) {
+    Frame1_AboutBox dlg = new Frame1_AboutBox(this);
+    Dimension dlgSize = dlg.getPreferredSize();
+    Dimension frmSize = getSize();
+    Point loc = getLocation();
+    dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+    dlg.setModal(true);
+    dlg.pack();
+    dlg.show();
+  }
+  //Overridden so we can exit when window is closed
+  protected void processWindowEvent(WindowEvent e) {
+    super.processWindowEvent(e);
+    if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+      jMenuDateiBeenden_actionPerformed(null);
+    }
+  }
+
+
+  void jButtonWeiterLkw_actionPerformed(ActionEvent e) {
+
+  }
+
+  void jMenuDateiNeu_actionPerformed(ActionEvent e) {
+    try {
+      jbInit();
+    }
+    catch(Exception e1) {
+      e1.printStackTrace();
+    }
+
+  }
+}

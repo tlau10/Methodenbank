@@ -1,0 +1,20 @@
+
+Q:
+warum gibt es im bin Verzeichnis ein Unterverzeichnis hilfe
+mit dem handbuch?
+
+A:
+Ganz einfach. In der ersten Version ist der Pfad für das
+Handbuch sozusagen 'hardcoded' im Quelltext ( aboutForm.cs )
+mit "..\\hilfe\\handbuch.rtf" angegeben, da das Handbuch
+logischerweise als letztes fertig geworden ist.
+
+
+Vorschlag für die Nachfolgegruppe:
+Die Einstellung für das Handbuch ins Einstellungen Menü auf-
+nehmen.
+
+Konstanz, 09.01.2002
+
+Mike Fröhlich
+m.froehlich@fh-konstanz.de

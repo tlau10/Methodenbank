@@ -1,0 +1,173 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <title>T1_Aufg06</title>
+</head>
+<body>
+<font face="Arial" color="#666666" size="-1">Aufgabenteil 1</font>
+
+<p align="center">
+<font size="+2" color="#3366c8"><b>Aufgabe 6</b></font></p>
+<hr>
+
+
+<p><u><b>Aufgabenstellung:</b></u>
+<p align=justify>
+Eine Kabelfirma soll 5 Kabelrollen &agrave; 600 m eines bestimmten Kabels
+und 7 Kabelrollen &agrave; 400 m desselben Kabels an seine Kunden ausliefern.
+Auf Lager befinden sich 4 Kabelrollen &agrave; 1100 m und 2 Kabelrollen
+&agrave; 1400 m dieses Kabels. Die vorhandenen Kabel sollen so verschnitten
+werden, dass der Verschnitt bei Erf&uuml;llung der Kundenauftr&auml;qe
+minimal wird.</p>
+
+<ol type="a">
+<li>
+Man formuliere das entsprechende LP-Modell unter der Voraussetzung, dass
+der Rest einer angeschnittenen Rolle als Verschnitt gilt.</li>
+
+<li>
+Man lasse die in a) genannte Voraussetzung fallen und formuliere das LP-Modell
+so, dass bevorzugt m&ouml;glichst lange, f&uuml;r den Verkauf voraussichtlich
+noch brauchbare Kabelst&uuml;cke &uuml;brigbleiben. Die Betriebsleitung
+sieht 700 m Rollen noch als verarbeitungsf&auml;hig an.</li>
+</ol>
+
+<p><u><b>Musterl&ouml;sung:</b></u>
+
+<p><b>Teil a)</b>
+
+<p>Bezeichnungen:
+
+<ul>
+<table border=0 bgcolor="#ffd8b8">
+<tr>
+<td>&nbsp;j : &nbsp; &nbsp;
+<td>Nummer des Verschnittplans j
+
+<tr>
+<td>&nbsp;x<sub>j</sub> :
+<td>ganzahlige Variable, die die Anzahl der Verwendungen des
+    Verschnittplan j angibt&nbsp; 
+
+<tr>
+<td>&nbsp;r<sub>j</sub> :
+<td>Verschnitt bei einmaliger Verwendung des Verschnittplans j
+
+<tr>
+<td>&nbsp;a<sub>ij</sub> :
+<td>Zahl der abgeschnittenen Kabelrollen der Länge i bei 
+    Verschnittplan (Variante) j
+</table>
+</ul>
+
+<p>Tabelle der relevanten Verschnittpläne:</p>
+
+<ul>
+<table border="1" cellpadding="3" cellspacing="0">
+    <tr>
+        <td>&nbsp;</td>
+        <td colspan="4"><p align="center">1100 m-Stücke</p>
+        </td>
+        <td colspan="7"><p align="center">1400 m-Stücke</p>
+        </td>
+    </tr>
+    <tr bgcolor="#efefef">
+        <td>Verschnittplan j</td>
+        <td width="20"><p align="center">1</p>
+        </td>
+        <td width="20"><p align="center">2</p>
+        </td>
+        <td width="20"><p align="center">3</p>
+        </td>
+        <td width="20"><p align="center">4</p>
+        </td>
+        <td width="20"><p align="center">5</p>
+        </td>
+        <td width="20"><p align="center">6</p>
+        </td>
+        <td width="20"><p align="center">7</p>
+        </td>
+        <td width="20"><p align="center">8</p>
+        </td>
+        <td width="20"><p align="center">9</p>
+        </td>
+        <td width="20"><p align="center">10</p>
+        </td>
+        <td width="20"><p align="center">11</p>
+        </td>
+    </tr>
+    <tr>
+        <td>Zuschnitt 600 m<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;400 m</td>
+        <td><p align="center">1<br>1</p>
+        </td>
+        <td><p align="center">1<br>0</p>
+        </td>
+        <td><p align="center">0<br>2</p>
+        </td>
+        <td><p align="center">0<br>1</p>
+        </td>
+        <td><p align="center">2<br>0</p>
+        </td>
+        <td><p align="center">1<br>2</p>
+        </td>
+        <td><p align="center">1<br>1</p>
+        </td>
+        <td><p align="center">1<br>0</p>
+        </td>
+        <td><p align="center">0<br>3</p>
+        </td>
+        <td><p align="center">0<br>2</p>
+        </td>
+        <td><p align="center">0<br>1</p>
+        </td>
+    </tr>
+    <tr>
+        <td>Verschnitt r<sub>j</sub> in<br>
+        100 m</td>
+        <td><p align="center">1</p> </td>
+        <td><p align="center">5</p> </td>
+        <td><p align="center">3</p> </td>
+        <td><p align="center">7</p> </td>
+        <td><p align="center">2</p> </td>
+        <td><p align="center">0</p> </td>
+        <td><p align="center">4</p> </td>
+        <td><p align="center">8</p> </td>
+        <td><p align="center">2</p> </td>
+        <td><p align="center">6</p> </td>
+        <td><p align="center">10</p></td></tr>
+</table>
+</ul>
+
+<p>Modell:
+<ul><img src="6_1mod.gif"></ul>
+
+<p align=justify>
+Die Lösung x<sub>1</sub> = 3 und x<sub>6</sub> = 2 und Z = 3 erfüllt
+beispielsweise die Nebenbedingungen. Demnach wird der Verschnittplan 1 dreimal
+und der Verschnittplan 6 zweimal angewendet, wodurch die zwei 1400 m-Rollen
+völlig aufgebraucht werden, während bei den 1100 m-Rollen eine übrig bleibt und
+bei den drei verschnittenen Rollen jeweils ein 100 m-Rest verbleibt.</p>
+
+<p>Anzeige des LP-Modells (inkl. Berechnungsoption) für Teil a.
+<ul>
+<input type="button" value="LP-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe06\\lp_solve.bat');"/>
+<input type="button" value="XA-Solver-Aufruf" onclick="window.external.CallSolver('Aufgabe06\\xa.bat');"/>
+</ul></p>
+
+<br>
+
+<p><b>Teil b)</b>
+
+<p align=justify>Man bewertet in der Zielfunktion alle 
+<b><font color="#0000b0">r<sub>j</sub> &gt;= 700</font></b> mit 
+<b><font color="#006c00">Null</font></b>.<br>
+Dies hat zur Folge, dass bevorzugt Verschnittpläne in die Lösung einbezogen 
+werden, die möglichst lange noch brauchbare Kabelstücke als <i>Verschnitt</i> 
+liefern. Im allgemeinen ist ein LP-Modell, das ein Verschnittproblem abbilden 
+soll, immer den praktischen Anforderungen anzupassen.</p>
+<br>
+
+</body>
+</html>

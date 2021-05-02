@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="569.0" prefWidth="754.0" xmlns:fx="http://javafx.com/fxml" fx:controller="iterator.gui.javafx.DebugController">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="12.0" prefHeight="81.0" prefWidth="754.0" styleClass="footerAndHeader" text="Debug Modus" textAlignment="CENTER" textFill="#ffe299">
+      <font>
+        <Font name="System Bold Italic" size="30.0" />
+      </font>
+      <stylesheets>
+        <URL value="@IteratorStyles.css" />
+      </stylesheets>
+    </Label>
+    <TextArea fx:id="textarea" layoutX="140.0" layoutY="102.0" prefHeight="441.0" prefWidth="573.0" promptText="debugging" styleClass="debugTextArea" wrapText="true">
+      <stylesheets>
+        <URL value="@IteratorStyles.css" />
+      </stylesheets>
+    </TextArea>
+    <SplitMenuButton layoutX="14.0" layoutY="150.0" mnemonicParsing="false" prefWidth="109.0" text="Log Level">
+      <items>
+        <RadioMenuItem mnemonicParsing="false" text="Debug" fx:id="debug" />
+        <RadioMenuItem mnemonicParsing="false" text="Info" fx:id="info" />
+        <RadioMenuItem mnemonicParsing="false" text="Warn" fx:id="warn" />
+        <RadioMenuItem mnemonicParsing="false" text="Error" fx:id="error" />
+      </items>
+    </SplitMenuButton>
+  </children>
+</AnchorPane>

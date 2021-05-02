@@ -1,0 +1,8 @@
+   ..TITLE                  *
+     ALLOY4.WK1(TITLE)      *       TITLE        A2..A2
+   ..TABLE   MINIMIZE       *
+     ALLOY4.WK1(MATRIX)     *      MATRIX        A4..K13
+     ALLOYI.WK1(INTEGER)    *      INTEGER
+   ..ACTIVITY               *
+     ALLOYI.WK1(ANSWERS)    *     ANSWERS        L5..L12
+

@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- jsx.org, (c) -->
+<jsx major='1' minor='1' format='JSX.DataReader'>
+ <collection id='i0' class='java.util.Vector'>
+  <object id='i1' class='ptss.KnotenListe' superclasses=''>
+   <declaredClass class='ptss.KnotenListe'>
+    <default>
+     <collection field='kList' id='i2' class='java.util.Vector'>
+      <object id='i3' class='ptss.Knoten' superclasses=''>
+       <declaredClass class='ptss.Knoten'>
+        <default>
+         <string field='name' id='i4' value='Knoten0'/>
+         <primitive field='x' type='int' value='146'/>
+         <primitive field='y' type='int' value='170'/>
+         <primitive field='id' type='int' value='0'/>
+         <primitive field='isMarked' type='boolean' value='false'/>
+         <primitive field='start' type='boolean' value='false'/>
+         <primitive field='ziel' type='boolean' value='false'/>
+         <primitive field='simuId' type='int' value='-1'/>
+         <primitive field='eventAnzahl' type='int' value='1000'/>
+         <primitive field='eventProEinheit' type='int' value='5'/>
+         <primitive field='scheduledEvents' type='int' value='0'/>
+        </default>
+       </declaredClass>
+      </object>
+      <object id='i5' class='ptss.Knoten' superclasses=''>
+       <declaredClass class='ptss.Knoten'>
+        <default>
+         <string field='name' id='i6' value='Knoten1'/>
+         <primitive field='x' type='int' value='124'/>
+         <primitive field='y' type='int' value='254'/>
+         <primitive field='id' type='int' value='1'/>
+         <primitive field='isMarked' type='boolean' value='false'/>
+         <primitive field='start' type='boolean' value='false'/>
+         <primitive field='ziel' type='boolean' value='false'/>
+         <primitive field='simuId' type='int' value='-1'/>
+         <primitive field='eventAnzahl' type='int' value='1000'/>
+         <primitive field='eventProEinheit' type='int' value='5'/>
+         <primitive field='scheduledEvents' type='int' value='0'/>
+        </default>
+       </declaredClass>
+      </object>
+      <object id='i7' class='ptss.Knoten' superclasses=''>
+       <declaredClass class='ptss.Knoten'>
+        <default>
+         <string field='name' id='i8' value='Knoten2'/>
+         <primitive field='x' type='int' value='224'/>
+         <primitive field='y' type='int' value='253'/>
+         <primitive field='id' type='int' value='2'/>
+         <primitive field='isMarked' type='boolean' value='false'/>
+         <primitive field='start' type='boolean' value='false'/>
+         <primitive field='ziel' type='boolean' value='false'/>
+         <primitive field='simuId' type='int' value='-1'/>
+         <primitive field='eventAnzahl' type='int' value='1000'/>
+         <primitive field='eventProEinheit' type='int' value='5'/>
+         <primitive field='scheduledEvents' type='int' value='0'/>
+        </default>
+       </declaredClass>
+      </object>
+      <object id='i9' class='ptss.Knoten' superclasses=''>
+       <declaredClass class='ptss.Knoten'>
+        <default>
+         <string field='name' id='i10' value='Knoten3'/>
+         <primitive field='x' type='int' value='268'/>
+         <primitive field='y' type='int' value='189'/>
+         <primitive field='id' type='int' value='3'/>
+         <primitive field='isMarked' type='boolean' value='false'/>
+         <primitive field='start' type='boolean' value='false'/>
+         <primitive field='ziel' type='boolean' value='false'/>
+         <primitive field='simuId' type='int' value='-1'/>
+         <primitive field='eventAnzahl' type='int' value='1000'/>
+         <primitive field='eventProEinheit' type='int' value='5'/>
+         <primitive field='scheduledEvents' type='int' value='0'/>
+        </default>
+       </declaredClass>
+      </object>
+      <object id='i11' class='ptss.Knoten' superclasses=''>
+       <declaredClass class='ptss.Knoten'>
+        <default>
+         <string field='name' id='i12' value='Knoten4'/>
+         <primitive field='x' type='int' value='295'/>
+         <primitive field='y' type='int' value='130'/>
+         <primitive field='id' type='int' value='4'/>
+         <primitive field='isMarked' type='boolean' value='false'/>
+         <primitive field='start' type='boolean' value='false'/>
+         <primitive field='ziel' type='boolean' value='false'/>
+         <primitive field='simuId' type='int' value='-1'/>
+         <primitive field='eventAnzahl' type='int' value='1000'/>
+         <primitive field='eventProEinheit' type='int' value='5'/>
+         <primitive field='scheduledEvents' type='int' value='0'/>
+        </default>
+       </declaredClass>
+      </object>
+      <object id='i13' class='ptss.Knoten' superclasses=''>
+       <declaredClass class='ptss.Knoten'>
+        <default>
+         <string field='name' id='i14' value='Knoten5'/>
+         <primitive field='x' type='int' value='404'/>
+         <primitive field='y' type='int' value='150'/>
+         <primitive field='id' type='int' value='5'/>
+         <primitive field='isMarked' type='boolean' value='true'/>
+         <primitive field='start' type='boolean' value='false'/>
+         <primitive field='ziel' type='boolean' value='false'/>
+         <primitive field='simuId' type='int' value='-1'/>
+         <primitive field='eventAnzahl' type='int' value='1000'/>
+         <primitive field='eventProEinheit' type='int' value='5'/>
+         <primitive field='scheduledEvents' type='int' value='0'/>
+        </default>
+       </declaredClass>
+      </object>
+     </collection>
+     <primitive field='kId' type='int' value='-1'/>
+     <primitive field='marked' type='int' value='5'/>
+     <primitive field='enum_var' type='boolean' value='false'/>
+     <null field='e'/>
+     <null field='lnkKnoten'/>
+     <primitive field='iName' type='int' value='6'/>
+    </default>
+   </declaredClass>
+  </object>
+  <object id='i15' class='ptss.KantenListe' superclasses=''>
+   <declaredClass class='ptss.KantenListe'>
+    <default>
+     <collection field='kList' id='i16' class='java.util.Vector'/>
+     <reference field='knotenListe' idref='i1'/>
+     <primitive field='kId' type='int' value='-1'/>
+     <primitive field='marked' type='int' value='-1'/>
+     <null field='lnkKante'/>
+     <primitive field='iName' type='int' value='0'/>
+    </default>
+   </declaredClass>
+  </object>
+  <object id='i17' class='ptss.RoutenListe' superclasses=''>
+   <declaredClass class='ptss.RoutenListe'>
+    <default>
+     <collection field='routenListe' id='i18' class='java.util.Vector'/>
+    </default>
+   </declaredClass>
+  </object>
+ </collection>
+</jsx>

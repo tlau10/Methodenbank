@@ -1,0 +1,1 @@
+ERR>Die Version von C:\Workspace\Mischung2004\XA\XA.EXE ist nicht mit der ausgef?hrten Windows-Version kompatibel. ™ffnen Sie die Systeminformationen des Computers, um zu ?berpr?fen, ob eine x86-(32 Bit)- oder eine x64-(64 Bit)-Version des Programms erforderlich ist, und wenden Sie sich anschlieáend an den Herausgeber der Software.

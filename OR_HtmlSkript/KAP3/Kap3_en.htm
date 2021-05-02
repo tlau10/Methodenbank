@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+<HEAD>
+       <TITLE>Kapitel 3</TITLE>
+       <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+       <link rel=stylesheet href="../css/skript.css">
+</HEAD>
+<body class="script" background="../bg_kapitel.gif" bgproperties="fixed">
+
+
+<h1>3. Non-standard cases</h1>
+
+
+<P><A NAME="3.1"></A>
+<h2>3.1 Overview</h2>
+
+<P><A NAME="3.1.1"></A>
+<h3>3.1.1 Non-standard cases with variables</h3>
+<UL>
+        <LI><B>sign unrestricted</B><BR>
+            cure: goal programming (see 3.2)</LI>
+        <LI><B>non-natural integrity</B><BR>
+            cure: decision tree method (see ch. 8)</LI>
+        <LI><B>0-1 - variables</B><BR>
+            cure: same as integrity, but with additional use of          
+            x<sub>j</sub> <IMG SRC="..\le.gif"> 1 - restrictions</LI>
+</UL>
+
+
+<P><A NAME="3.1.2"></A>
+<h3>3.1.2 Non-standard cases with restrictions</h3>
+<UL>
+        <LI><B>= - relation</B><BR>
+            cure: M-method (see 3.3)
+        <LI><B><IMG SRC="..\ge.gif"> - relation</B><BR>
+             cure: transform into = - relation with excess
+             variables, then M-method   
+        <LI><B>only <IMG SRC="..\ge.gif"> - relations</B><BR>
+             cure: use of the dual (see ch. 4)
+        <! LI  B  die Werte des B-Vektors sind nicht deterministisch  /B   BR
+             Abhilfe: Chance-Constraint Programming (siehe 13.)   >
+</UL></p>
+
+<P><A NAME="3.1.3"></A>
+<h3>3.1.3 Non-standard cases with the objective function</h3>
+<UL>
+        <LI><B>minimisation instead of maximisation</B><BR>
+            cure: multiplication by -1
+        <LI><B>Fixed contingents occur</B><BR>
+            cure: ignore for the time being; after optimisation, 
+            complete objective function with fixed contingent</LI>
+        <LI><B>Non-linear varibale objective function</B><BR>
+            cure: step by step linearisation as approxiation (see 3.4)</LI>
+</UL></P>
+
+<br>
+
+<hr>
+<P><A NAME="3.2"></A>
+<h2>3.2 Goal programming</h2>
+
+<P align=justify>
+If a variable is sign unrestricted, we split it into a positive and a 
+negative part:<br>
+x<SUB>l</SUB> = + x<SUB>l</SUB><SUP>-</SUP> - x<SUB>l</SUB><SUP>+</SUP>
+&nbsp;with&nbsp;
+x<SUB>l</SUB><SUP>-</SUP> * x<SUB>l</SUB><SUP>+</SUP> = 0; 
+the latter will be "automatically" maintained with the Simplex method due to 
+the linearly independent basic vectors.</P>
+
+<P align=justify>
+The positive and negative parts are also called deficit variable and 
+excess variable.<BR>
+If we want to minimise the sum of excess variable and deficit variable, 
+we have the original formulation of <B>"Goal programming":</B></P>
+
+<P><SAMP>
+x<SUB>3</SUB><SUP>-</SUP> + x<SUB>3</SUB><SUP>+</SUP> + x<SUB>4</SUB><SUP>-</SUP>
++ x<SUB>4</SUB><SUP>+</SUP> ---&gt; min !<BR>
+3x<SUB>1</SUB> + 2x<SUB>2</SUB>
++ x<SUB>3</SUB><SUP>-</SUP> - x<SUB>3</SUB><SUP>+ </SUP>= 12<BR>lx<SUB>l</SUB>
++ 2x<SUB>2</SUB> + x<SUB>4</SUB><SUP>-</SUP> - x<SUB>4</SUB><SUP>+</SUP> = 9 <BR>
+<BR>
+x<SUB>1</SUB>, x<SUB>2</SUB>, x<SUB>3</SUB><SUP>-</SUP>,
+x<SUB>3</SUB><SUP>+</SUP>, x<SUB>4</SUB><SUP>-</SUP>, x<SUB>4</SUB><SUP>+</SUP>
+<IMG SRC="..\ge.gif"> 0
+</SAMP>
+</P>
+
+<P><BR>
+</P>
+
+<HR>
+<P><A NAME="3.3"></A>
+<h2>3.3 M-method</h2>
+
+<P align=justify>
+With the M-method, we "simulate" the <IMG SRC="..\le.gif">-relation which we 
+actually need for the initial tableau of the Simplex method, for a = - relation. 
+Despite the = - relation, we "illegally" introduce a slack variable, 
+which, however, must be eliminated as soon as possible:<BR>
+We can achieve this thanks to an unattractive weighting of the pseudo slack 
+variable in the objective function.<br>
+The Simplex method will then "automatically" remove this pseudo slack variable 
+from the current basis in the following iteration, and ensure that this pseudo 
+slack variable can never become a basic variable in the optimal tableau.</P>
+
+<P><B>Example:</B></P>
+<DL>
+        <DD><P><SAMP>1x<SUB>1</SUB> + 2x<SUB>2</SUB> ---&gt; max ! <BR>
+        3x<SUB>1</SUB> + 2x<SUB>2</SUB> = 12<BR>
+        lx<SUB>l</SUB> + 3x<SUB>2</SUB> <IMG SRC="..\le.gif"> 9;
+        &nbsp; x<SUB>l</SUB>, x<SUB>2</SUB>
+        <IMG SRC="..\ge.gif"> 0
+        </SAMP>
+        </P></DD></DL>
+<P>
+<B>M-method:</B></P>
+<DL>
+        <DD><P><SAMP>1x<SUB>1 </SUB>+ 2x<SUB>2</SUB> - 
+          <font color="#0020a0"><b>M</b></font>x<SUB>3</SUB> ---&gt; max !<BR>
+        3x<SUB>1 </SUB>+ 2x<SUB>2</SUB> + &nbsp;x<SUB>3</SUB> &nbsp; &nbsp;&nbsp; = 12<BR>
+        lx<SUB>l</SUB> + 3x<SUB>2</SUB> &nbsp; &nbsp; &nbsp; + x<SUB>4</SUB> = &nbsp;9
+        </SAMP></P></DD></DL>
+<P><BR>
+</P>
+
+
+<P><B>Pre-tableau</B> (since we do not yet have all the basic vectors, we first 
+need to carry out a pre-iteration!):</P>
+
+<ul>
+<TABLE BORDER=1 CELLPADDING=4 CELLSPACING=0 width=200>
+	<colgroup>
+		<col width="20%">
+		<col width="20%">
+		<col width="20%">
+		<col width="20%">
+		<col width="20%">
+	</colgroup>
+        <TR>
+                <TD>
+                        <P ALIGN=CENTER>3<BR>1</TD>
+                <TD>
+                        <P ALIGN=CENTER>2<BR>3</TD>
+                <TD>
+                        <P ALIGN=CENTER>1<BR>0</TD>
+                <TD>
+                        <P ALIGN=CENTER>0<BR>1</TD>
+                <TD>
+                        <P ALIGN=CENTER>12<BR>9</TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P ALIGN=CENTER>-1</TD>
+                <TD>
+                        <P ALIGN=CENTER>-2</TD>
+                <TD>
+                        <P ALIGN=CENTER>M</TD>
+                <TD>
+                        <P ALIGN=CENTER>0</TD>
+                <TD>
+                        <P ALIGN=CENTER>0</TD>
+        </TR>
+</TABLE>
+</ul>
+
+<P align=justify>
+multiply the first row M times and subtract it from this objective function row!</P>
+<br>
+
+<P><B>Initial tableau</B> (now with the two essential basic vectors!):</P>
+
+<ul>
+<TABLE BORDER=1 CELLPADDING=4 CELLSPACING=0 width=240>
+	<colgroup>
+		<col ALIGN=CENTER>
+		<col ALIGN=CENTER>
+		<col width="15%" ALIGN=CENTER>
+		<col width="15%" ALIGN=CENTER>
+		<col ALIGN=CENTER>
+	</colgroup>
+ 
+        <TR>
+                <TD>
+                        <P>3<BR>1</TD>
+                <TD>
+                        <P>2<BR>3</TD>
+                <TD>
+                        <P>1<BR>0</TD>
+                <TD>
+                        <P>0<BR>1</TD>
+                <TD>
+                        <P>12<BR>9</TD>
+        </TR>
+        <TR>
+                <TD>
+                        <P>-1-3M</TD>
+                <TD>
+                        <P>-2-2M</TD>
+                <TD>
+                        <P>0</TD>
+                <TD>
+                        <P>0</TD>
+                <TD>
+                        <P>-12M</TD>
+        </TR>
+</TABLE>
+</ul>
+
+<P ALIGN="JUSTIFY">With this updated initial tableau, the Simplex method can 
+generate an optimal tableau, without a chance of the M-variable x<sub>3</sub> ever 
+entering the basis!<br>
+(Otherwise, we would have a "contradictory" model)</P>
+<BR>
+
+
+<HR>
+
+<P><A NAME="3.4"></A>
+<h2>3.4 Non-linear programming (separable programming)</h2>
+
+<P ALIGN="JUSTIFY">For the little by little linearisation of the non-linear 
+objective function, we will - to enable us an approximation - first define 
+leaning points. Depending on the number of intervals, we replace the non-linear 
+variable with the sum of the corresponding interval variable. In the objective 
+function, we introduce the gradients for the individual interval variables by 
+differentiating the original function.</P>
+
+
+<P><B>Example:</B></P>
+<DL>
+        <DD><P><samp>
+        1x<SUB>l</SUB> + 1x<SUB>2</SUB><SUP>2</SUP> ---&gt; min !<BR>
+        3x<SUB>1 </SUB>+ 2x<SUB>2</SUB> = 12<BR>
+        1x<SUB>l</SUB> + 3x<SUB>2</SUB> <IMG SRC="..\le.gif"> 9;
+        &nbsp;
+        x<SUB>1</SUB>, x<SUB>2</SUB> <IMG SRC="..\ge.gif"> 0
+        </samp>
+        </P></DD></DL>
+
+<P>
+Leaning points at 1, 2, and 3 !<BR>
+<u>Split</u> the variables into x<SUB>2</SUB> in x<SUB>21</SUB>, x<SUB>22</SUB> 
+and x<SUB>23</SUB></P>
+<DL>
+        <DD><P><samp><B>
+        f(x<SUB>2</SUB>) = x<SUB>2</SUB><SUP>2</SUP>;
+        &nbsp;
+        f'(x<SUB>2</SUB>) = 2x<SUB>2</SUB>;
+        </B></samp></P></DD></DL>
+<P>
+The gradient at the place 0.5 is: &nbsp;<samp> f'(0.5) = 1;</samp><BR>
+The gradient at the place 1.5 is: &nbsp;<samp> f'(l.5) = 3;</samp><BR>
+The gradient at the place 2.5 is: &nbsp;<samp> f'(2.5) = 5;</samp></P>
+
+<P><BR>
+</P>
+<P>The approximated LP formulation then reads:</P>
+<DL>
+        <DD><samp>
+        lx<SUB>l</SUB> + 1x<SUB>21</SUB>
+        + 3x<SUB>22 </SUB>+ 5x<SUB>23</SUB> ---&gt; min !<BR>3x<SUB>1</SUB>
+        + 2x<SUB>21</SUB> + 2x<SUB>22</SUB> + 2x<SUB>23 </SUB>= 12<BR>
+        lx<SUB>l</SUB> + 3x<SUB>21</SUB> + 3x<SUB>22</SUB> + 3x<SUB>23</SUB>
+        <IMG SRC="..\ge.gif"> 9<BR>
+        <br>
+        x<SUB>21</SUB>, x<SUB>22</SUB>, x<SUB>23</SUB> <IMG SRC="..\le.gif"> 1<BR>
+        x<SUB>l</SUB>, x<SUB>21</SUB>, x<SUB>22</SUB>, x<SUB>23</SUB> <IMG SRC="..\ge.gif"> 0
+        </samp></DD></DL>
+</P><BR>
+
+<P><I>Also possible would be:</I></P>
+<DL>
+        <DD><samp>
+        lx<SUB>l</SUB> + 1x<SUB>21</SUB> + 3x<SUB>22 </SUB>+
+        5x<SUB>23</SUB> ---&gt; min !<BR>3x<SUB>1</SUB> + 2x<SUB>2</SUB> =
+        12<BR>lx<SUB>l</SUB> + 3x<SUB>2</SUB> <IMG SRC="..\le.gif"> 9<BR>
+        x<SUB>2</SUB> = x<SUB>21</SUB> + x<SUB>22</SUB> + x<SUB>23</SUB><br>
+        <br>
+        x<SUB>21</SUB>, x<SUB>22</SUB>, x<SUB>23</SUB> <IMG SRC="..\le.gif"> 1<BR>
+        x<SUB>l</SUB>, x<SUB>21</SUB>, x<SUB>22</SUB>, x<SUB>23</SUB> <IMG SRC="..\ge.gif"> 0
+        </samp></DD></DL>
+</P>
+<BR>
+
+
+<table bgcolor="#f0f0f0" cellpadding="5">
+<tr>
+<td style="font-family:arial; font-size:10pt; text-align:justify">
+<b>nota bene:</b><br>
+this approximation only applies for progressive graphs of a curve and 
+minimisation, or digressive graphs of a curve and maximisation, respectively, 
+in order to ensure that the interval variables will be occupied from the origin!
+<br>
+In all the other cases, we attempt approximation using the Goal programming 
+formulation that has been outlined in chapter 3.3.
+</td>
+</tr>
+</table>
+<br>
+
+<P><B>Example:</B></P>
+<DL>
+        <DD><P><SAMP>lx<SUB>l</SUB> + x<SUB>2</SUB><SUP>2</SUP> ---&gt; max !<br>
+        3x<SUB>1 </SUB>+ 2x<SUB>2</SUB> = 12<BR>
+        1x<SUB>l</SUB> + 3x<SUB>2</sub> <IMG SRC="..\le.gif"> 9;
+        &nbsp; x<SUB>1</SUB>, x<SUB>2</SUB> <IMG SRC="..\ge.gif"> 0</SAMP>
+        </P></DD></DL>
+<P>
+Leaning points as above: 1, 2, and 3.<BR>
+Including excess variables and  deficit variables:</P>
+
+<DL>
+        <DD><P><SAMP>x<SUB>2</SUB> + x<SUB>3</SUB><SUP>- </SUP>- x<SUB>3</SUB><SUP>+</SUP>
+        = 1; <BR>x<SUB>2</SUB> + x<SUB>4</SUB><SUP>- </SUP>- x<SUB>4</SUB><SUP>+
+        </SUP>= 2;</SAMP>
+        </P></DD></DL>
+<P>
+the new objective function then reads:</P>
+<DL>
+        <DD><P><SAMP>
+        1x<SUB>1</SUB> + 1x<SUB>2</SUB> + 2x<SUB>3</SUB><SUP>+</SUP>
+        + 2x<SUB>4</SUB><SUP>+</SUP> ---&gt; max !<BR>x<SUB>1</SUB>, x<SUB>2</SUB>,
+        x<SUB>3</SUB><SUP>-</SUP>, x<SUB>3</SUB><SUP>+</SUP>, x<SUB>4</SUB><SUP>-</SUP>,
+        x<SUB>4</SUB><SUP>+</SUP> <IMG SRC="..\ge.gif"> 0
+        </SAMP></P></DD></DL>
+
+<P><STRONG>nota bene:</STRONG> x<SUB>2</SUB> applies for all the intervals !</P>
+
+
+<! MATRIX-AUFRUF (nur ViOR) ----------------------------------------- >
+<center>
+<div style="background:#f0f0f0; margin:6; padding:12; 
+            width:360; border-style:solid; border-width:1;
+            text-align:left">
+
+<p style="font-family:arial; font-size:10pt"><b>
+<A HREF="MATRIX(mat03#02.lpx)">Solver call</A> of the example</b><br>
+<br>
+&raquo; the call is only possible with VisualOR. &laquo;
+</p>
+
+</div>
+</center>
+
+
+<p><HR WIDTH="100%">
+<font size="-1" face="arial"><b>
+<A HREF="../KAP2/KAP2_en.HTM">chapter 2</A><br>
+<A HREF="../KAP4-8/KAP4_en.HTM">chapter 4</A><br>
+<br>
+<A HREF="../PcStart_en.HTM">start screen</A></font></P>
+</BODY>
+</HTML>

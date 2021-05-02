@@ -1,0 +1,123 @@
+XA xa.lp OUTPUT solution.out PAGESIZE 20 LINESIZE 100 TMARGINS 0 BMARGINS 0 FIELDSIZE 11 DECIMALS 5 
+EUROPEAN NO LMARGINS 0 COPIES 1 WAIT NO MUTE NO LISTINPUT YES WARNING YES SOLUTION YES CONSTRAINTS Y
+ES COSTANALYSIS YES MARGINANALYSIS YES MATLIST NO DEFAULTS NO
+..TITLE
+  Power-LP
+..OBJECTIVE MINIMIZE
+  + 10000 x1 + 18000 x2
+..BOUNDS
+  x1 >= 0
+  x2 >= 0
+..CONSTRAINTS
+  + 25 x1 + 65 x2 =650
+  + 3 x1 + 5 x2 <=60
+ 
+STATISTICS - FILE: Xa        TITLE: Power-LP                   6/17/16 11:47:10
+  XA VERSION 2.00   USABLE MEMORY  518K BYTES
+  VARIABLES  2  MAXIMUM  500
+       0 LOWER,  0 FIXED,  0 UPPER,  0 FREE,  0 INTEGER.
+  CONSTRAINTS  2  MAXIMUM  100
+       0 GE,  1 EQ,  1 LE,  0 NULL/FREE,  0 RANGED.
+  CAPACITY USED BY CATEGORY-
+     0.4% VARIABLE,  2.0% CONSTRAINT,  0.1% NON-ZERO.
+  OBJECTIVE FUNCTION IS MINIMIZED.
+ 
+ 
+ 
+O P T I M A L   S O L U T I O N ---> OBJECTIVE 180000.0000
+ELAPSED TIME 00:00:00  ITERATIONS     0  MEMORY USED  0.0%
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+File: Xa                                                6/17/16 11:47:10 Page 1
+SOLUTION (Minimized): 180000.0000  Power-LP
+-------------------------------------------------------------------------------
+| Variable |  Activity   |    Cost     | Variable |  Activity   |    Cost     |
+-------------------------------------------------------------------------------
+|       x1       0.00000   10000.00000 I       x2      10.00000   18000.00000 |
+|           REDUCED COST   3,076.92308 |           REDUCED COST       0.00000 |
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+File: Xa                                            6/17/16 11:47:10 Page 2
+CONSTRAINTS: Power-LP
+---------------------------------------------------------------------------
+|Constraint|  Activity  |    RHS     |Constraint|  Activity  |    RHS     |
+---------------------------------------------------------------------------
+| ROW    1    650.00000 =  650.00000 I ROW    2     50.00000 <   60.00000 |
+|            DUAL VALUE   -276.92308 |            DUAL VALUE      0.00000 |
+---------------------------------------------------------------------------
+ Cumulative Variable Error:        0.000000000
+ Cumulative Constraint Error:      0.000000000
+
+
+
+
+
+
+
+
+
+
+File: Xa                                        6/17/16 11:47:10 Page 3
+COST ANALYSIS: Power-LP
+-----------------------------------------------------------------------
+|          |  Stable    | Variable |          |  Stable    | Variable |
+| Variable |   Cost     |    to    | Variable |   Cost     |    to    |
+|          |  Range     |  Change  |          |  Range     |  Change  |
+-----------------------------------------------------------------------
+|    Upper    UNBOUNDED            |    Upper  26000.00000   x1       |
+|       x1  10000.00000            |       x2  18000.00000            |
+|    Lower  6,923.07692   <------  |    Lower    UNBOUNDED            |
+|  Reduced Cost        3,076.92308 |  Reduced Cost            0.00000 |
+-----------------------------------------------------------------------
+
+
+
+
+
+
+
+
+File: Xa                                                                     6/17/16 11:47:10 Page 4
+MARGINAL ANALYSIS: Power-LP
+----------------------------------------------------------------------------------------------------
+|   Constraint     |   Value     |
+|    at limit      |             |
+----------------------------------------------------------------------------------------------------
+|         ROW    1 =   650.00000 |
+|  Increases objective ...       |
+|               by     276.92308 |
+|                                |
+|  Upper Limit.                  |
+|    New limit ..      780.00000 |
+|    New optimum ... 144000.0000 |
+|    Forced to limit    ROW    2 |
+|                                |
+|  Lower Limit.                  |
+|    New limit ..        0.00000 |
+|    New optimum ... 360000.0000 |
+|    Forced to limit          x2 |
+----------------------------------
+ 
+--
+|         R

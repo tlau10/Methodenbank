@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE index PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Index Version 2.0//EN"
+                       "http://java.sun.com/products/javahelp/index_2_0.dtd">
+
+<index version="2.0">
+	<indexitem text="FrontPage" target="FrontPage" />
+	
+	<indexitem text="(1) Einstieg" target="1">
+		<indexitem text="(1.1) Beschreibung" target="1.1" />
+		<indexitem text="(1.2) Installation und Start der Anwendung" target="1.2" />
+	</indexitem>
+	
+	<indexitem text="(2) Oberfläche" target="2">
+		<indexitem text="(2.1) Menüleiste" target="2.1" />
+		<indexitem text="(2.2) Symbolleiste" target="2.2" />
+		<indexitem text="(2.3) Kontextmenü" target="2.3" />
+		<indexitem text="(2.4) Eingaben" target="2.4">
+			<indexitem text="(2.4.1) Anlegen von Zielen und Pflichthaltestellen" target="2.4.1" />
+			<indexitem text="(2.4.2) Einfügen von Straßen und gesperrten Feldern" target="2.4.2" />
+		</indexitem>
+		<indexitem text="(2.5) Laden und Speichern" target="2.5" />
+		<indexitem text="(2.6) Ausgabe der Ergebnisse" target="2.6">
+			<indexitem text="(2.6.1) Kundenspezifische Anpassung der Tabellen" target="2.6.1" />
+			<indexitem text="(2.6.2) Ergebnis-Informationen" target="2.6.2" />
+			<indexitem text="(2.6.3) Farbliche Anpassung der Ergebnisse" target="2.6.3" />
+		</indexitem>
+		<indexitem text="(2.7) Optimierung" target="2.7" />
+		<indexitem text="(2.8) Simulation" target="2.8">
+			<indexitem text="(2.8.1) Umbenennen von Bushaltestellen" target="2.8.1" />
+			<indexitem text="(2.8.2) Definition von Buslinien" target="2.8.2" />
+			<indexitem text="(2.8.3) Einstellungen zu Buslinien" target="2.8.3" />
+			<indexitem text="(2.8.4) Einstelluungen zur Simulation allgemein und Start der Simulation" target="2.8.4" />
+			<indexitem text="(2.8.5) Simulations-Report" target="2.8.5" />
+		</indexitem>
+	</indexitem>
+	
+	<indexitem text="(3) Anforderungen" target="3" />
+	
+	<indexitem text="(4) Einschränkungen" target="4" >
+		<indexitem text="(4.1) Anzahl der Ziele" target="4.1" />
+		<indexitem text="(4.2) Undo/Redo" target="4.2" />
+		<indexitem text="(4.3) Verbinden der Haltestellen zu Buslinien" target="4.3" />
+	</indexitem>
+</index>

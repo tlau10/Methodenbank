@@ -1,0 +1,947 @@
+//#include <vcl.h>
+#pragma hdrstop
+
+#include "ProblemForm.h"
+#include "MainFormMDI.h"
+#include "LpSolve.h"
+#include <dir.h>
+
+using namespace std;
+
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+
+TFormEingabe1 *FormEingabe1;
+//---------------------------------------------------------------------------
+__fastcall TFormEingabe1::TFormEingabe1(TComponent* Owner) : TForm(Owner)
+{
+	//die Anzahl der Fallklassen kann mit einem "Kippschalter" variiert oder
+	//dirket in das Eingabefeld geschrieben werden
+	//der Anfangswert liegt bei 1, ein kleiner Wert als 1 ist unzulässig; Überprüfung
+	//der Größe dieses Wertes wird bei UpDownAnzahlFallpauschalen vorgenommen
+	int anzahl = 1;
+	LabelAnzahlFallpauschalen->Text = anzahl;
+	LabelAnzahlFallpauschalen->Show();
+	//Spaltenüberschrift für Eingabetabelle festlegen
+	StringGridTabelle->Cells[0][0] = "Fallklasse";
+	StringGridTabelle->Cells[1][0] = "Verweildauer (gT)";
+	StringGridTabelle->Cells[2][0] = "Pflegebedarf (S/T)";
+	StringGridTabelle->Cells[3][0] = "OP- Bedarf (S)";
+	StringGridTabelle->Cells[4][0] = "Laborbedarf (M)";
+	StringGridTabelle->Cells[5][0] = "Röntgenbedarf (gM) Gerät alt";
+	StringGridTabelle->Cells[6][0] = "Röntgenbedarf (gM) Gerät neu";
+	StringGridTabelle->Cells[7][0] = "Fallpauschale (GE)";
+
+	this->Width = MainForm->Width - 21;
+	this->Height = MainForm->Height - 110;
+}
+//---------------------------------------------------------------------------
+void __fastcall TFormEingabe1::UpDownAnzahlFallpauschalenClick(TObject *Sender, TUDBtnType Button)
+{
+	//festlegen der Anzahl der Fallklassen über "Kippschalter"
+	//+1 bei Auswahl des Pfeils nach oben;
+	//-1 bei Auswahl des Pfeils nach unten
+
+	int i = LabelAnzahlFallpauschalen->Text.ToInt();
+
+	if(Button == Comctrls::btNext)
+		i++;
+	else
+		i--;
+
+	this->anzahl = i;
+	this->LabelAnzahlFallpauschalen->Text = i;
+	this->formatiereMatrix(LabelAnzahlFallpauschalen->Text.ToInt());
+}
+//---------------------------------------------------------------------------
+
+void TFormEingabe1::formatiereMatrix(int anzahlZeilen)
+{
+	/* ...->Text.ToInt()+1; weil Variable mit 0 initialisiert wurde */
+	StringGridTabelle->RowCount = anzahlZeilen + 1;
+
+
+	int zZahl=-1;
+	//Beschriftung der Zeilen
+	for( int i = 1; i <= StringGridTabelle->RowCount; i++ )
+	{
+		StringGridTabelle->Cells[0][i] = i;
+		zZahl++;
+	}
+}
+
+bool TFormEingabe1::checkFields1()
+{
+	bool fehler = false; //Status, wenn kein Fehler vorliegt hat "fehler" den Wert false
+
+	//-- Bettenanzahl -----------------------------
+	//in AnsiString wird der Inhalt des Eingabefelds "LabelBettenanzahl" geschrieben
+	AnsiString s = LabelBettenanzahl->Text;
+	string st = "";
+	char dezimalZeichen= ',';
+
+	//kein Zeichen im Eingabefeld für die Anzahl der Betten
+	//FormUnvollstEingabe aufrufen und Anwender zu vollständigen Eingabe
+	//auffrodern; "fehler"wird auf true gesetzt, damit die anderen Überprüfungen
+	//erst gar nicht vorgenommen werden
+
+	if( s.Length() == 0 )
+	{
+		Application->MessageBoxA("Ihre Eingaben sind unvollständig", "Unvollständige Eingabe", MB_OK | MB_ICONINFORMATION);
+		fehler = true;
+	}
+	else //AnsiString ist nicht leer
+	{
+		//Überprüfen ob string nicht zugelassene Zeichen enthält
+		st = s.c_str();	//AnsiSting in string konvertieren
+
+		for ( int i = 0; fehler == false && i < st.length(); i++ )
+		{
+			if( i == 0 )
+			{
+				//Wenn des erste Zeichen ein Minus ist, ist der Wert negativ und damit unzulässig
+				if( st[i] == '-' )
+				{
+					Application->MessageBoxA("Negativer Wert für Anzahl der Betten macht keinen Sinn.\nBitte Eingabe korrigieren", "Eingabefehler", 0 );
+					fehler = true;
+				}
+			}
+			//Bei Bettenanzahl machen Kommazahlen keinen Sinn, deswegen string- Inhalt auf Komma überprüfen
+			if( st[i] == dezimalZeichen && fehler == false )
+			{
+				//wenn der eingegebene Wert ein Komma enthält
+				Application->MessageBoxA("Für die Anzahl der Betten bitte nur ganze Zahlen eingeben.", "Eingabefehler", 0);
+				fehler = true;
+			}
+			//bei Anzahl der Betten ist nur die Eingabe von Ziffern erlaubt
+			else if( ! isdigit( st[i] ) && fehler == false )
+			{
+				//Buchstaben o.ä. wurden eingegeben
+				Application->MessageBoxA("Bei der Anzahl der Betten bitte nur ganze Zahlen eingeben.\nKeine Buchstaben oder andere Zeichen eingeben!", "Eingabefehler", 0);
+				fehler = true;
+			}
+			else
+			{}
+		}
+	}
+	if( fehler == false )
+	{
+		//beim Berechnungszeitraum werden die selben Überprüfungen wie bei der Anzahl
+		//der Betten vorgenommen, auch hier nur ganzzahlige, positive Werte zulässig
+
+		//Inhalt von "LabelBerechungszeitraum" AnsiString s zuweisen
+		s = LabelBerechnungszeitraum->Text;
+		if( s.Length() == 0 )	//keine Eingabe vorhanden
+		{
+			Application->MessageBoxA("Ihre Eingaben sind unvollständig", "Unvollständige Eingabe", MB_OK | MB_ICONINFORMATION);
+			fehler = true;
+		}
+		else
+		{
+			//Überprüfung analog der Anzahl der Betten
+			st = s.c_str();
+			for ( int i = 0; fehler == false && i < st.length(); i++ )
+			{
+				if( i == 0 )
+				{
+					//wenn Wert für Berechnungszeitraum negativ eingegeben wurde
+					if(st[i] == '-' )
+					{
+						Application->MessageBoxA("Negativer Wert für den Berechnungszeitraum macht keinen Sinn.\nBitte Eingabe korrigieren", "Eingabefehler", 0 );
+						fehler = true;
+					}
+				}
+				if( st[i] == dezimalZeichen && fehler == false)
+				{
+					//wenn Wert für Berechnungszeitraum mit Komma eingegeben wurde
+					Application->MessageBoxA("Für Berechnungszeitraum bitte nur ganze Zahlen eingeben.", "Eingabefehler", 0);
+					fehler = true;
+				}
+				else if( ! isdigit( st[i] ) && fehler == false  )
+				{
+					//wenn Buchstaben o.ä. eingegeben wurden
+					Application->MessageBoxA("Für den Berechnungszeitraum bitte nur ganze Zahlen eingeben.\nKeine Buchstaben oder andere Zeichen eingeben!", "Eingabefehler", 0);
+					fehler = true;
+				}
+				else
+				{}
+			}
+		}
+	}
+	if( fehler == false )
+	{
+		//Tabelle auf Eingabefehler überprüfen
+		//mit zwei for-Schleifen alle Zeilen und Spalten der Tabelle durchlaufen
+		for( int i = 1; i < StringGridTabelle->ColCount && fehler == false; i++ )
+		{
+			for( int j =1; j < StringGridTabelle->RowCount && fehler == false; j++ )
+			{
+				//Tabelleneintrag einer jeden Zelle in AnsiString speichern
+				s = StringGridTabelle->Cells[i][j];
+                                
+				//Überprüfung: AnsiString leer?
+				if( s.Length() == 0 )
+				{
+					//Zelle wurde nicht ausgefüllt
+					Application->MessageBoxA("Ihre Eingaben sind unvollständig", "Unvollständige Eingabe", MB_OK | MB_ICONINFORMATION);
+					fehler = true;
+				}
+				else
+				{
+					//wenn der Zelleninhalt nicht leer ist, wird der AnsiString in einen string
+					//konvertiert und die eingegebenen Werte überprüft
+					st = s.c_str();
+
+					//mit diese for-Schleife wird der string st vom Anfang bis zum Ende durchlaufen
+					for ( int k = 0;  fehler == false && k < st.length(); k++ )
+					{
+						if( k == 0 )
+						{
+							//überprüfen ob Werte negativ sind
+							if( st[k] == '-' )
+							{
+								Application->MessageBoxA("Negativer Wert in Tabelle macht keinen Sinn.\nBitte Eingabe korrigieren", "Negative Zahl eingegeben", 0 );
+								fehler = true;
+							}
+						}
+						//Überprüfen, ob Zeichen eine Ziffer ist
+						if( fehler == false && ! isdigit( st[k] )  )
+						{
+							if( st[k] != dezimalZeichen )
+							{
+								//wenn in der Tabelle keine Zahlen oder ',' eingegeben werden
+								Application->MessageBoxA("In der Tabelle bitte nur Zahlen eingeben!", "Eingabefehler", 0);
+								fehler = true;
+							}
+						}
+						//in manchen Fällen sind keine Kommazahlen erlaubt
+						//1 -> Anzahl der Fallklassen
+						//5 -> Röntgen-Minuten alt
+						//6 -> Röntgen-Minuten neu
+						if( fehler == false && ( i == 1 || i == 5 || i == 6 ) )
+						{
+							if( st[k] == ',' )	//überprüfen, ob Zeichen ein Komma ist
+							{
+								if( i == 1 )
+								{
+									Application->MessageBoxA("Für die Verweildauer bitte nur ganze Tage eingeben!\nIm Krankenhaus werden immer ganze Tage abgerechnet.", "Eingabefehler", 0);
+								}
+								else if ( i == 5 )
+								{
+									Application->MessageBoxA("Für den Zeitaufwand für das Röntgen am alten\nGerät bitte nur ganze Minuten eingeben.", "Eingabefehler", 0);
+								}
+								else
+								{
+									Application->MessageBoxA("Für den Zeitaufwand für das Röntgen am neuen\nGerät bitte nur ganze Minuten eingeben.", "Eingabefehler", 0);
+								}
+
+								fehler = true;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	// alle Eingabefelder wurden überprüft und es liegt kein Fehler oder
+	// eine unvollständige Eingabe vor
+	if( fehler == false )
+	{
+		return true;
+	}
+		
+	return false;
+}
+
+bool TFormEingabe1::checkFields2()
+{
+	bool fehler = false;
+
+		//wie bei "FormEingabe1" erfolgt auch hier die Überprüfung, ob die Eingabefelder einen Inhalt
+		//besitzen und wenn ja, ob die Eingabe zulässig ist
+		AnsiString s="";
+		string st ="";
+			
+		//switch-Anweisung, für Fehlerüberprüfung
+		//auf derm Forumlar "FormEingabe2" gibt es 12 Eingabefelder, die mit Werten
+		//belegt werden müssen, deswegen läuft die for-Schleife alle 12 Felder ab
+		for( int p = 0; p < 14 && fehler == false; p++ )
+        {
+			switch( p )
+			{
+				case 0:	//das erste Feld enthält das Eingabefeld über die Höhe der Hotelleistung
+				{
+					s = LabelHotelleistung->Text;
+						break;
+				}
+				case 1:
+				{
+					s = LabelArbeitszeitKS->Text;
+					break;
+				}
+				case 2:
+				{
+					s = LabelGehaltKS->Text;
+					break;
+				}
+				case 3:
+				{
+					s = LabelAuslastungOP->Text;
+					break;
+				}
+				case 4:
+				{
+					s = LabelKostenOP->Text;
+					break;
+				}
+				case 5:
+				{
+					s = LabelAuslastungLabor->Text;
+					break;
+				}
+				case 6:
+				{
+					s = LabelKostenLabor->Text;
+					break;
+				}
+				case 7:
+				{
+					s = LabelDeckungsbeitragLabor->Text;
+					break;
+				}
+				case 8:
+				{
+					s = LabelRoentgenArbeitszeit->Text;
+					break;
+				}
+				case 9:
+				{
+					s = LabelKostenRoentgen->Text;
+					break;
+				}
+				case 10:
+				{
+					s = LabelKostenNeuesGeraet->Text;
+						break;
+				}
+				case 11:
+				{
+					s = LabelErloesAltesGeraet->Text;
+					break;
+				}
+				case 12:
+				{
+					s = LabelAbschreibungsDauer->Text;
+					break;
+				}
+				case 13:
+				{
+					s = LabelM->Text;
+				}
+				default:
+					break;
+			}
+
+			//nach dem der Eingabefeld-Inhalt in der AnsiString Variablen gespeichert wurde,
+			//erfolgt eine Überprüfung, ob Zeichen im Eingabefeld enthalten sind
+			if( s.Length() == 0 )
+			{
+				//bei leerem Eingabefeld "FormUnvollstEingabe" aufrufen
+				Application->MessageBoxA("Ihre Eingaben sind unvollständig", "Unvollständige Eingabe", MB_OK | MB_ICONINFORMATION);
+				fehler = true;
+			}
+			else
+			{
+				//Inhaltsüberprüfung analog zu Eingabe1
+				st = s.c_str();
+				for ( int i = 0; fehler == false && i < st.length(); i++ )
+				{
+					if( i == 0 )
+					{
+						//überprüfen ob eingegebener Wert positiv ist
+						if( st[i] == '-' )
+						{
+							Application->MessageBoxA("Negativer Wert macht keinen Sinn.\nBitte Eingabe korrigieren.", "Eingabefehler", 0 );
+							fehler = true;
+						}
+					}
+					//überprüfen ob eing. wert eine ziffer ist
+					if( fehler == false &&  (!isdigit( st[i] ) ) )
+					{
+						Application->MessageBoxA("Bitte nur Zahlen eingeben!", "Eingabefehler", 0);
+						fehler = true;
+					}
+				}
+			}
+		}
+	//ist kein Eingabefehler aufgetreten, kann das Auslesen der Werte der
+	//Eingabefelder beginnen und die jeweilige Restriktion aufgebaut werden
+
+	return !fehler;
+}
+
+bool TFormEingabe1::zuruecksetzen()
+{
+		//Wählt der Anwender den Button <Ja> aus, wir das aktuelle Form geschlossen
+		//und der Inhalt von allen Eingabefeldern und der Eingabetabelle (StringGrid)
+		//wird gelöscht
+
+		this->LabelBettenanzahl->Clear();
+		this->LabelBerechnungszeitraum->Clear();
+		this->LabelAnzahlFallpauschalen->Text = 1;
+
+		//Löschen des Tabelleninhaltes
+		for( int i = 1; i < this->StringGridTabelle->ColCount; i++)
+				for( int j = 1; j <= this->StringGridTabelle->RowCount; j++ )
+						this->StringGridTabelle->Cells[i][j] = "";
+
+		this->LabelHotelleistung->Clear();
+		this->LabelArbeitszeitKS->Clear();
+		this->LabelGehaltKS->Clear();
+		this->LabelAuslastungOP->Clear();
+		this->LabelKostenOP->Clear();
+		this->LabelAuslastungLabor->Clear();
+		this->LabelKostenLabor->Clear();
+		this->LabelDeckungsbeitragLabor->Clear();
+		this->LabelRoentgenArbeitszeit->Clear();
+		this->LabelKostenRoentgen->Clear();
+		this->LabelKostenNeuesGeraet->Clear();
+		this->LabelErloesAltesGeraet->Clear();
+		this->LabelAbschreibungsDauer->Clear();
+		this->LabelM->Text = "100000";
+		this->anzahl = 0;
+		LabelAnzahlFallpauschalen->Text = 0;
+		this->formatiereMatrix(this->anzahl);
+
+	return true; 
+}
+
+//---------------------------------------------------------------------------
+
+void __fastcall TFormEingabe1::mainTabControlChange(TObject *Sender)
+{
+	switch (mainTabControl->TabIndex)
+	{
+		case 0:
+			GroupBox1->Visible = true;
+			GroupBox2->Visible = false;
+			GroupBox3->Visible = false;
+			break;
+		case 1:
+			GroupBox1->Visible = false;
+			GroupBox2->Visible = true;
+			GroupBox3->Visible = false;
+            break;
+		case 2:
+			GroupBox1->Visible = false;
+			GroupBox2->Visible = false;
+			GroupBox3->Visible = true;
+			break;
+	}
+}
+//---------------------------------------------------------------------------
+
+bool TFormEingabe1::berechnen()
+{
+	if(!checkFields1())
+		return false;
+
+	if(!checkFields2())
+		return false;
+
+/*- Auslesen der Werte -*/
+	int bZeitraum = this->LabelBerechnungszeitraum->Text.ToInt();
+	int berechnungszeitraum 				= bZeitraum * 30;
+	int anzahlBetten 						= this->LabelBettenanzahl->Text.ToInt();
+	int bettenBerechnungszeitraum 			= anzahlBetten * berechnungszeitraum;
+	double arbeitszeitKS 					= LabelArbeitszeitKS->Text.ToDouble();
+	double arbeitszeitBerechnungszeitraum 	= arbeitszeitKS * bZeitraum;
+	double monatlicheAuslastungLabor 		= this->LabelAuslastungLabor->Text.ToDouble() * 60;
+	double auslastungLaborGesamt 			= monatlicheAuslastungLabor * bZeitraum;
+	double monatlicheAuslastungOP 			= this->LabelAuslastungOP->Text.ToDouble();
+	double auslastungOPZeitraum 			= monatlicheAuslastungOP * bZeitraum;
+	double roentgenPersonal 				= this->LabelRoentgenArbeitszeit->Text.ToDouble();
+	double minutenRoentgenPersonal 			= roentgenPersonal * 60;
+	double roentgenAufwandBerechnungszeitraum = minutenRoentgenPersonal * bZeitraum;
+	double hotelleistung 					= this->LabelHotelleistung->Text.ToDouble();
+
+	// ganz genaue ist Aufbau der Restriktion ist in der Doku aufgeführt! //
+	this->resBetten(bettenBerechnungszeitraum);
+	this->resPflegebedarf(arbeitszeitBerechnungszeitraum);
+	this->resOpSaal(auslastungOPZeitraum);
+	this->resLabor(auslastungLaborGesamt);
+	this->resRoentgen(roentgenAufwandBerechnungszeitraum);
+	this->zielfunktion(hotelleistung, bZeitraum);
+
+	//aufbau der gesamten Datei für LP- Solve;
+	//Zielfunktion und danach alle Restriktionen in ein feld schreiben
+	string linFunktion="";
+
+	char* feld[8]= {
+						"Zielfunktion.txt",
+						"RestriktionBetten.txt",
+						"RestriktionPersonal.txt",
+						"RestriktionOP.txt",
+						"RestriktionLabor.txt",
+						"RestriktionRoentgenAlt.txt",
+						"RestriktionRoentgenNeu.txt",
+						"RestriktionNNB.txt"
+					};
+
+	//Aufruf LP-Solve
+	LPSolve lp;
+
+	//den Datei-Inhalt aller Funktionen in Liste schreiben, die später für LP-Solve benötigt wird
+	for( int i = 0; i < 8; i++ )
+		linFunktion = linFunktion + lp.schreibeInString(feld[i]);
+
+	//lineare Funktionen in eingabe.lp schreiben
+	lp.schreibeInDatei( "eingabe.lp", linFunktion);
+
+	/* --- Solver - Aufruf --- */
+	string solver = MainForm->solverFilePath;
+	solver = solver + "<" + MainForm->workSpacePath + "eingabe.lp>" + MainForm->workSpacePath + "ausgabe.txt";
+
+	system(solver.c_str());
+
+	//Ausgabe der Loesung
+	this->clearSolution();
+	lp.lieferLoesung( lp.schreibeInString( "ausgabe.txt" ) );
+
+
+
+	return true;
+}
+//---------------------------------------------------------------------------
+
+void TFormEingabe1::clearSolution()
+{
+	char *nichtBerechnet = "<Nicht berechnet>";
+
+	this->LabelZf->Caption = nichtBerechnet;
+	this->StringTabelleErgebnis->RowCount = this->anzahl + 1;
+	//für Ausgabe- Tabelle
+	this->StringTabelleErgebnis->Cells[0][0] = "Fallklasse";
+	this->StringTabelleErgebnis->Cells[1][0] = "Anzahl der Patienten";
+
+	this->LabelAnzahlKS->Caption = nichtBerechnet;
+	this->LabelLaborWert->Caption = nichtBerechnet;
+	this->LabelRoentgen->Caption = nichtBerechnet;
+
+	return;
+}
+
+bool TFormEingabe1::resBetten(double &bettenBerechnungszeitraum)
+{
+		Liste restriktionBetten;	//Liste anlegen, in der Restriktion aufgebaut wird
+
+		//for-Schleife läuft durch alle Zeilen der Tabelle von FormEingabe1
+		for( int i = 1; i < this->StringGridTabelle->RowCount; i++ )
+		{
+			//Cells[1][i] enthält die Aufenthaltdauer im KH für einen Patient dieser Fallklasse
+			//Wert wird ausgelesen und in Liste mit Restr. für Betten gespeichert
+			restriktionBetten.add( this->StringGridTabelle->Cells[1][i].ToInt() );
+		}
+		//Werte für die variablen für den Personalaufwand, Laboraufwand
+		//und die Schaltervariable für das Röntgengerät in Liste aufnehmen
+		restriktionBetten.add( 0 );     /*-- 0 Personalaufwand --*/
+		restriktionBetten.add( 0 );     /*-- 0 Laboraufwand --*/
+		restriktionBetten.add( 0 );     /*-- Schaltervariable --*/
+
+		//Schreiben der Restriktion in eine Text-Datei (mit +, <= und ;)
+		restriktionSchreiben("RestriktionBetten.txt", &restriktionBetten, bettenBerechnungszeitraum);
+		return true;
+}
+
+bool TFormEingabe1::resPflegebedarf(double &arbeitszeitBerechnungszeitraum)
+{
+/*----- Restriktion Pflegebedarf ---------------------------------------------*/
+
+		Liste restriktionPflegebedarf;
+
+		/*-- Pflegeaufwand für einen Patient der Fallklasse x --*/
+		//Aufbau der Restriktion wie bei der Restr. für die Betten
+		for( int i = 1; i < this->StringGridTabelle->RowCount; i++ )
+		{
+			//Cells[2][i]  enthält den Pfelgebedarf in Stunden pro patient einer Fallklasse
+			restriktionPflegebedarf.add( this->StringGridTabelle->Cells[2][i].ToDouble() * this->StringGridTabelle->Cells[1][i].ToInt() );
+		}
+		restriktionPflegebedarf.add( arbeitszeitBerechnungszeitraum * (-1) );     /*-- Personalaufwand --*/
+		restriktionPflegebedarf.add( 0 );     /*-- 0 Laboraufwand --*/
+		restriktionPflegebedarf.add( 0 );     /*-- Schaltervariable --*/
+
+		//Schreiben in Datei
+		restriktionSchreiben("RestriktionPersonal.txt", &restriktionPflegebedarf, 0);
+		return true;
+}
+
+bool TFormEingabe1::resOpSaal(double &auslastungOPZeitraum)
+{
+/*----- Restriktion Operations-Saal -----------------------------------------*/
+
+		Liste restriktionOPBedarf;
+
+		for( int i = 1; i < this->StringGridTabelle->RowCount; i++ )
+		{
+				//Cells[3][i]  enthält den OP-Bedarf in Stunden pro patient einer Fallklasse
+				restriktionOPBedarf.add( this->StringGridTabelle->Cells[3][i].ToDouble() );
+		}
+		restriktionOPBedarf.add( 0 );      /*-- Personalaufwand --*/
+		restriktionOPBedarf.add( 0 );      /*-- Laborauswand --*/
+		restriktionOPBedarf.add( 0 );      /*-- Schaltervariable --*/
+
+		//Schreiben in Datei
+		restriktionSchreiben("RestriktionOP.txt", &restriktionOPBedarf, auslastungOPZeitraum);
+		return true;
+}
+
+bool TFormEingabe1::resLabor(double &auslastungLaborGesamt)
+{
+/*----- Restriktion Labor ---------------------------------------------------*/
+
+		Liste restriktionLaborBedarf;
+
+		for( int i = 1; i < this->StringGridTabelle->RowCount; i++ )
+		{
+			//Cells[4][i]  enthält den Labor-Bederf in Minuten pro Patient einer Fallklasse
+			restriktionLaborBedarf.add( this->StringGridTabelle->Cells[4][i].ToDouble() );
+		}
+		restriktionLaborBedarf.add( 0 );        /*-- 0 Personal Aufwand --*/
+		restriktionLaborBedarf.add( 1 );        /*-- Laboraufwand --*/
+		restriktionLaborBedarf.add( 0 );        /*-- Schaltervariable --*/
+
+		//Schreiben in Datei
+		restriktionSchreiben("RestriktionLabor.txt", &restriktionLaborBedarf, auslastungLaborGesamt);
+		return true;
+}
+
+bool TFormEingabe1::resRoentgen(double &roentgenAufwandBerechnungszeitraum)
+{
+/*----- Restriktionen Röntgen -----------------------------------------------*/
+
+		//für Schaltervariable wegen Kauf/Verkauf Röntgengerät
+		int M = this->LabelM->Text.ToInt();
+
+		/*----- Restriktion Röntegen Alt -----*/
+		Liste restriktionRoentgenAlt;
+
+		for( int i = 1; i < this->StringGridTabelle->RowCount; i++ )
+		{
+			 //Cells[5][i]  enthält den Röntgen-Bederf in Minuten am alten Gerät pro Patient einer Fallklasse
+			 restriktionRoentgenAlt.add( this->StringGridTabelle->Cells[5][i].ToInt() );
+		}
+		restriktionRoentgenAlt.add( 0 );   			/*-- 0 Kosten Personal --*/
+		restriktionRoentgenAlt.add( 0 );   			/*-- 0 Kosten Labor --*/
+		restriktionRoentgenAlt.add( -1 * M );     	/*-- Schaltervariable --*/
+
+		//Schreiben in Datei
+		restriktionSchreiben("RestriktionRoentgenAlt.txt", &restriktionRoentgenAlt, roentgenAufwandBerechnungszeitraum);
+
+		/*----- Restriktion Röntegen Neu -----*/
+		Liste restriktionRoentgenNeu;
+
+		for( int i = 1; i < this->StringGridTabelle->RowCount; i++ )
+		{
+			//Cells[6][i]  enthält den Röntgen-Bederf in Minuten am neuen Gerät pro Patient einer Fallklasse
+			restriktionRoentgenNeu.add( this->StringGridTabelle->Cells[6][i].ToInt() );
+		}
+		restriktionRoentgenNeu.add( 0 );   /*-- 0 Kosten Personal --*/
+		restriktionRoentgenNeu.add( 0 );   /*-- 0 Kosten Labor --*/
+		restriktionRoentgenNeu.add( M );   /*-- Schaltervariable --*/
+
+		//Schreiben in Datei
+		restriktionSchreiben("RestriktionRoentgenNeu.txt", &restriktionRoentgenNeu, roentgenAufwandBerechnungszeitraum);
+		return true;
+}
+
+bool TFormEingabe1::zielfunktion(double &hotelleistung, double &bZeitraum)
+{
+/*----- Zielfunktion --------------------------------------------------------*/
+
+		Liste zielfunktion;
+
+		for( int i = 1; i < this->StringGridTabelle->RowCount; i++ )
+		{
+			//Cells[5][i]  enthält die Fallpauschale pro Patient einer Fallklasse
+			// ZF- Wert = Fallpauschale - ( Verweildauer * Hotelleistung );
+			double ci = this->StringGridTabelle->Cells[7][i] - this->StringGridTabelle->Cells[1][i] * hotelleistung;
+			zielfunktion.add( ci * (-1));
+		}
+		//"Variable k" = Kosten pro Krankenschwester im BZeitraum aufnehmen
+		double gehalt = this->LabelGehaltKS->Text.ToDouble();
+		double gehaltBerechnungszeitraum = gehalt * bZeitraum;
+		zielfunktion.add( gehaltBerechnungszeitraum * (-1) );
+
+
+		//"Variable l" = Kosten für Labor im BZeitraum aufnehmen
+		double laborDB = ((double)LabelDeckungsbeitragLabor->Text.ToDouble())/60;
+		zielfunktion.add(laborDB);
+
+		//----- Abschreibungsaufwand -----
+		//Abschreibung im BerechnungsZeitraum = ("kosten neues Gerät" - "Erlös altes Gerät")/5 * berechnungszeitraum/12
+
+		double kostenNeu = this->LabelKostenNeuesGeraet->Text.ToDouble();
+		double erloesAlt = this->LabelErloesAltesGeraet->Text.ToDouble();
+		double abschrDauer = this->LabelAbschreibungsDauer->Text.ToDouble();
+		double zeitFaktor = ( this->LabelBerechnungszeitraum->Text.ToInt() )/12.0;
+		double abschreibung = ( ( kostenNeu - erloesAlt ) / abschrDauer ) * zeitFaktor;
+
+		zielfunktion.add( abschreibung *(-1) );
+
+		//Schreiben in Datei
+		zielfunktionSchreiben("Zielfunktion.txt", &zielfunktion);
+
+		// NNB Schreiben
+		return this->nnb(zielfunktion);
+}
+
+bool TFormEingabe1::nnb(Liste &restriktionRoentgenNeu)
+{
+//----- Vorschrift: alle Variablen müssen ganzzahlig (Typ int) sein
+
+		//--- NNB in die Datei schreiben
+		nnbSchreiben("RestriktionNNB.txt", &restriktionRoentgenNeu);
+		return true;
+}
+
+void TFormEingabe1::restriktionSchreiben(char *fileNameR, Liste *restriktion, double bValue)
+{
+	//Schreiben in Datei
+	string s = MainForm->workSpacePath;
+	s = s + fileNameR;
+
+	ofstream outputFile(s.c_str());
+
+	for( int i = 1; i <= restriktion->lenght(); i++ )
+	{
+		outputFile<<restriktion->getElement( i );
+		outputFile<<"x";
+		outputFile<<i;
+		if( i < restriktion->lenght() )
+			if( restriktion->getElement(i+1) >= 0 )
+				outputFile<<"+";
+	}
+
+	outputFile<<"<=";
+	outputFile<<bValue;
+	outputFile<<";";
+	outputFile.close();
+}
+
+void TFormEingabe1::zielfunktionSchreiben(char *fileNameZF, Liste *zielfunktion)
+{
+	string s = MainForm->workSpacePath;
+	s = s + fileNameZF;
+
+	ofstream outputFile1(s.c_str());
+
+	outputFile1<<"max: ";
+	for( int i = 1; i <= zielfunktion->lenght(); i++ )
+	{
+		outputFile1<<zielfunktion->getElement( i );
+		outputFile1<<"x"<<i;
+		if( i < zielfunktion->lenght() )
+			if( zielfunktion->getElement(i+1) >= 0 )
+				outputFile1<<"+";
+	}
+	outputFile1<<";";
+	outputFile1.close();
+}
+
+void TFormEingabe1::nnbSchreiben(char *fileNameNNB, Liste *restriktion)
+{
+	string s = MainForm->workSpacePath;
+	s = s + fileNameNNB;
+
+	ofstream nnbFile(s.c_str());
+
+	for( int i = 1; i <= restriktion->lenght(); i++ )
+	{
+		nnbFile<<"int x"<<i;
+		nnbFile<<";";
+	}
+
+	nnbFile.close();
+}
+
+bool TFormEingabe1::saveFile()
+{
+	// Speichern
+	char trennzeichen = ';';
+
+	ofstream file(fileName);
+
+	// Werte der Felder schreiben
+	file<<this->LabelBettenanzahl->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelBerechnungszeitraum->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelAnzahlFallpauschalen->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelHotelleistung->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelArbeitszeitKS->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelGehaltKS->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelAuslastungOP->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelKostenOP->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelAuslastungLabor->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelKostenLabor->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelDeckungsbeitragLabor->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelRoentgenArbeitszeit->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelKostenRoentgen->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelKostenNeuesGeraet->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelErloesAltesGeraet->Text.c_str();
+	file<<trennzeichen<<'\n';
+    file<<this->LabelAbschreibungsDauer->Text.c_str();
+	file<<trennzeichen<<'\n';
+	file<<this->LabelM->Text.c_str();
+	file<<trennzeichen<<'\n';
+
+	// Matrix schreiben
+	for(int row = 0; row <= this->LabelAnzahlFallpauschalen->Text.ToInt(); row++)
+	{
+		for(int col = 0; col < StringGridTabelle->ColCount; col++)
+		{
+			file<<this->StringGridTabelle->Cells[col][row].c_str();
+			file<<trennzeichen<<'\n';
+		}
+	}
+
+	file.close();
+
+	return true;
+}
+
+bool TFormEingabe1::loadFile()
+{
+   int anzFelder = 17;
+
+	// Laden
+
+	char trennzeichen = ';';
+	char gelesenes[160];
+	string merk="";
+	int row;
+
+	ifstream file(fileName);
+
+	// Werte der Felder lesen
+	for(int line = 1; file.good(); line++ )
+	{
+		merk = "";
+		
+		file.getline(gelesenes, 160 );
+		for( int i = 0; gelesenes[i] != trennzeichen; i++ )
+		{
+			merk = merk + gelesenes[i];
+		}
+
+		if(line <= anzFelder)
+		{
+			if(!setFieldValue(line, &merk))
+			{
+
+				return false;
+			}
+		}
+
+		if(line > anzFelder)
+		{
+			int col = (line - (anzFelder + 1)) % StringGridTabelle->ColCount;
+
+			if(col == 0)
+			{
+				row = atoi(merk.c_str());
+			}
+			else
+			{
+				this->StringGridTabelle->Cells[col][row] = merk.c_str();
+			}
+		}
+	}
+
+	return true;
+}
+
+bool TFormEingabe1::setFieldValue(int index, string *value)
+{
+	switch (index)
+	{
+		case 1:
+			this->LabelBettenanzahl->Text = value->c_str();
+			break;
+		case 2:
+			this->LabelBerechnungszeitraum->Text = value->c_str();
+			break;
+		case 3:
+			this->LabelAnzahlFallpauschalen->Text = value->c_str();
+			this->anzahl = atoi(value->c_str());
+			formatiereMatrix(this->anzahl);
+			break;
+		case 4:
+			this->LabelHotelleistung->Text = value->c_str();
+			break;
+		case 5:
+			this->LabelArbeitszeitKS->Text = value->c_str();
+			break;
+		case 6:
+			this->LabelGehaltKS->Text = value->c_str();
+			break;
+		case 7:
+			this->LabelAuslastungOP->Text = value->c_str();
+			break;
+		case 8:
+			this->LabelKostenOP->Text = value->c_str();
+			break;
+		case 9:
+			this->LabelAuslastungLabor->Text = value->c_str();
+			break;
+		case 10:
+			this->LabelKostenLabor->Text = value->c_str();
+			break;
+		case 11:
+			this->LabelDeckungsbeitragLabor->Text = value->c_str();
+			break;
+		case 12:
+			this->LabelRoentgenArbeitszeit->Text = value->c_str();
+			break;
+		case 13:
+			this->LabelKostenRoentgen->Text = value->c_str();
+			break;
+		case 14:
+			this->LabelKostenNeuesGeraet->Text = value->c_str();
+			break;
+		case 15:
+			this->LabelErloesAltesGeraet->Text = value->c_str();
+			break;
+		case 16:
+			this->LabelAbschreibungsDauer->Text = value->c_str();
+			break;
+		case 17:
+			this->LabelM->Text = value->c_str();
+			break;
+		default:
+			return false;
+	}
+
+	return true;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFormEingabe1::OnActivate(TObject *Sender)
+{
+	FormEingabe1 = this;
+}
+//---------------------------------------------------------------------------
+

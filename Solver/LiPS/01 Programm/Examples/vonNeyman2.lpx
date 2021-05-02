@@ -1,0 +1,22 @@
+MAX: +111*zOne10 +100*zTwo10;
+
+-6*zOne1 -5*zTwo1 +6*zOne2 +4*zTwo2 < 0;
+-3*zOne1 -4*zTwo1 +zOne2 +4*zTwo2 < 0;
+-6*zOne2 -5*zTwo2 +6*zOne3 +4*zTwo3 < 0;
+-3*zOne2 -4*zTwo2 +zOne3 +4*zTwo3 < 0;
+-6*zOne3 -5*zTwo3 +6*zOne4 +4*zTwo4 < 0;
+-3*zOne3 -4*zTwo3 +zOne4 +4*zTwo4 < 0;
+-6*zOne4 -5*zTwo4 +6*zOne5 +4*zTwo5 < 0;
+-3*zOne4 -4*zTwo4 +zOne5 +4*zTwo5 < 0;
+-6*zOne5 -5*zTwo5 +6*zOne6 +4*zTwo6 < 0;
+-3*zOne5 -4*zTwo5 +zOne6 +4*zTwo6 < 0;
+-6*zOne6 -5*zTwo6 +6*zOne7 +4*zTwo7 < 0;
+-3*zOne6 -4*zTwo6 +zOne7 +4*zTwo7 < 0;
+-6*zOne7 -5*zTwo7 +6*zOne8 +4*zTwo8 < 0;
+-3*zOne7 -4*zTwo7 +zOne8 +4*zTwo8 < 0;
+-6*zOne8 -5*zTwo8 +6*zOne9 +4*zTwo9 < 0;
+-3*zOne8 -4*zTwo8 +zOne9 +4*zTwo9 < 0;
+-6*zOne9 -5*zTwo9 +6*zOne10 +4*zTwo10 < 0;
+-3*zOne9 -4*zTwo9 +zOne10 +4*zTwo10 < 0;
++6*zOne1 +4*zTwo1 < 10;
++zOne1 +4*zTwo1 < 10;

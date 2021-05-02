@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <!--JBuilder Library Definition File-->
+  <fullname>jfreechart</fullname>
+  <class>
+    <path>[classes/jfreechart-0.9.4.jar]</path>
+  </class>
+</library>

@@ -1,0 +1,739 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perlembed</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perlembed_name_0">
+NAME</A>
+</H1>
+perlembed - how to embed perl in your C program
+<p><p><hr>
+
+<H1> 
+<A NAME="perlembed_description_0">
+DESCRIPTION</A>
+</H1>
+<p>
+<H2> 
+<A NAME="perlembed_preamble_0">
+PREAMBLE</A>
+</H2>
+Do you want to:
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perlembed_use_0">
+Use C from Perl?</A>
+
+</STRONG>
+<DD>
+Read the <EM>perlcall</EM>  manpage
+ and the <EM>perlxs</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlembed_use_1">
+Use a UNIX program from Perl?</A>
+
+</STRONG>
+<DD>
+Read about backquotes and about <CODE>system</CODE> and <CODE>exec</CODE> in the <EM>perlfunc</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlembed_use_2">
+Use Perl from Perl?</A>
+
+</STRONG>
+<DD>
+Read about <CODE>do</CODE> and <CODE>eval</CODE> in the <EM>perlfunc</EM>  manpage
+ and <CODE>use</CODE>
+and <CODE>require</CODE> in the <EM>perlmod</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlembed_use_3">
+Use C from C?</A>
+
+</STRONG>
+<DD>
+Rethink your design.
+<p>
+<DT><STRONG>
+
+<A NAME="perlembed_use_4">
+Use Perl from C?</A>
+
+</STRONG>
+<DD>
+Read on...
+<p>
+</DL>
+
+<H2> 
+<A NAME="perlembed_roadmap_0">
+ROADMAP</A>
+</H2>
+
+<A HREF="perlembed.html#perlembed_compiling_0"><EM>Compiling your C program</EM></A>
+
+<p>There's one example in each of the six sections:
+<p>
+<A HREF="perlembed.html#perlembed_adding_0"><EM>Adding a Perl interpreter to your C program</EM></A>
+
+<p>
+<A HREF="perlembed.html#perlembed_calling_0"><EM>Calling a Perl subroutine from your C program</EM></A>
+
+<p>
+<A HREF="perlembed.html#perlembed_evaluating_0"><EM>Evaluating a Perl statement from your C program</EM></A>
+
+<p>
+<A HREF="perlembed.html#perlembed_performing_0"><EM>Performing Perl pattern matches and substitutions from your C program</EM></A>
+
+<p>
+<A HREF="perlembed.html#perlembed_fiddling_0"><EM>Fiddling with the Perl stack from your C program</EM></A>
+
+<p>
+<A HREF="perlembed.html#perlembed_using_0"><EM>Using Perl modules, which themselves use C libraries, from your C program</EM></A>
+
+<p>This documentation is UNIX specific.
+<p>
+<H2> 
+<A NAME="perlembed_compiling_0">
+Compiling your C program</A>
+</H2>
+Every C program that uses Perl must link in the <EM>perl library</EM>.
+<p>What's that, you ask?  Perl is itself written in C; the perl library
+is the collection of compiled C programs that were used to create your
+perl executable (<EM>/usr/bin/perl</EM> or equivalent).  (Corollary: you
+can't use Perl from your C program unless Perl has been compiled on
+your machine, or installed properly--that's why you shouldn't blithely
+copy Perl executables from machine to machine without also copying the
+<EM>lib</EM> directory.)
+<p>Your C program will--usually--allocate, ``run'', and deallocate a
+<EM>PerlInterpreter</EM> object, which is defined in the perl library.
+<p>If your copy of Perl is recent enough to contain this documentation
+(5.002 or later), then the perl library (and <EM>EXTERN.h</EM> and
+<EM>perl.h</EM>, which you'll also need) will
+reside in a directory resembling this:
+<p>
+<XMP>
+    /usr/local/lib/perl5/your_architecture_here/CORE
+
+</XMP>
+<p>or perhaps just
+<p>
+<XMP>
+    /usr/local/lib/perl5/CORE
+
+</XMP>
+<p>or maybe something like
+<p>
+<XMP>
+    /usr/opt/perl5/CORE
+
+</XMP>
+<p>Execute this statement for a hint about where to find CORE:
+<p>
+<XMP>
+    perl -MConfig -e 'print $Config{archlib}'
+
+</XMP>
+<p>Here's how you might compile the example in the next section,
+
+<A HREF="perlembed.html#perlembed_adding_0"><EM>Adding a Perl interpreter to your C program</EM></A>
+,
+on a DEC Alpha running the OSF operating system:
+<p>
+<XMP>
+    % cc -o interp interp.c -L/usr/local/lib/perl5/alpha-dec_osf/CORE
+    -I/usr/local/lib/perl5/alpha-dec_osf/CORE -lperl -lm
+
+</XMP>
+<p>You'll have to choose the appropriate compiler (<EM>cc</EM>, <EM>gcc</EM>, et al.)  and
+library directory (<EM>/usr/local/lib/...</EM>)  for your machine.  If your
+compiler complains that certain functions are undefined, or that it
+can't locate <EM>-lperl</EM>, then you need to change the path following the
+-L.  If it complains that it can't find <EM>EXTERN.h</EM> or <EM>perl.h</EM>, you need
+to change the path following the -I.
+<p>You may have to add extra libraries as well.  Which ones?
+Perhaps those printed by
+<p>
+<XMP>
+   perl -MConfig -e 'print $Config{libs}'
+
+</XMP>
+<p>We strongly recommend you use the <STRONG>ExtUtils::Embed</STRONG> module to determine 
+all of this information for you:
+<p>
+<XMP>
+   % cc -o interp interp.c `perl -MExtUtils::Embed -e ccopts -e ldopts`
+
+</XMP>
+<p>If the <STRONG>ExtUtils::Embed</STRONG> module is not part of your perl kit's
+distribution you can retrieve it from:
+<A HREF="http://www.perl.com/cgi-bin/cpan_mod?module=ExtUtils::Embed">http://www.perl.com/cgi-bin/cpan_mod?module=ExtUtils::Embed</A>.
+<p>
+<H2> 
+<A NAME="perlembed_adding_0">
+Adding a Perl interpreter to your C program</A>
+</H2>
+In a sense, perl (the C program) is a good example of embedding Perl
+(the language), so I'll demonstrate embedding with <EM>miniperlmain.c</EM>,
+from the source distribution.  Here's a bastardized, non-portable version of
+<EM>miniperlmain.c</EM> containing the essentials of embedding:
+<p>
+<XMP>
+    #include <stdio.h>
+    #include <EXTERN.h>               /* from the Perl distribution     */
+    #include <perl.h>                 /* from the Perl distribution     */
+    static PerlInterpreter *my_perl;  /***    The Perl interpreter    ***/
+    int main(int argc, char **argv, char **env)
+    {
+        my_perl = perl_alloc();
+        perl_construct(my_perl);
+        perl_parse(my_perl, NULL, argc, argv, (char **)NULL);
+        perl_run(my_perl);
+        perl_destruct(my_perl);
+        perl_free(my_perl);
+    }
+
+</XMP>
+<p>Note that we do not use the <CODE>env</CODE> pointer here or in any of the
+following examples.
+Normally handed to <CODE>perl_parse</CODE> as it's final argument,
+we hand it a <STRONG>NULL</STRONG> instead, in which case the current environment
+is used.
+<p>Now compile this program (I'll call it <EM>interp.c</EM>) into an executable:
+<p>
+<XMP>
+    % cc -o interp interp.c `perl -MExtUtils::Embed -e ccopts -e ldopts`
+
+</XMP>
+<p>After a successful compilation, you'll be able to use <EM>interp</EM> just
+like perl itself:
+<p>
+<XMP>
+    % interp
+    print "Pretty Good Perl \n";
+    print "10890 - 9801 is ", 10890 - 9801;
+    <CTRL-D>
+    Pretty Good Perl
+    10890 - 9801 is 1089
+
+</XMP>
+<p>or
+<p>
+<XMP>
+    % interp -e 'printf("%x", 3735928559)'
+    deadbeef
+
+</XMP>
+<p>You can also read and execute Perl statements from a file while in the
+midst of your C program, by placing the filename in <EM>argv[1]</EM> before
+calling <EM><EM>perl_run()</EM></EM>.
+<p>
+<H2> 
+<A NAME="perlembed_calling_0">
+Calling a Perl subroutine from your C program</A>
+</H2>
+To call individual Perl subroutines, you'll need to remove the call to
+<EM><EM>perl_run()</EM></EM> and replace it with a call to <EM><EM>perl_call_argv()</EM></EM>.
+<p>That's shown below, in a program I'll call <EM>showtime.c</EM>.
+<p>
+<XMP>
+    #include <stdio.h>
+    #include <EXTERN.h>
+    #include <perl.h>
+    static PerlInterpreter *my_perl;
+    int main(int argc, char **argv, char **env)
+    {
+        my_perl = perl_alloc();
+        perl_construct(my_perl);
+        perl_parse(my_perl, NULL, argc, argv, NULL);
+                                     /*** This replaces perl_run() ***/
+        perl_call_argv("showtime", G_DISCARD | G_NOARGS, argv);
+        perl_destruct(my_perl);
+        perl_free(my_perl);
+    }
+
+</XMP>
+<p>where <EM>showtime</EM> is a Perl subroutine that takes no arguments (that's the
+<EM>G_NOARGS</EM>) and for which I'll ignore the return value (that's the
+<EM>G_DISCARD</EM>).  Those flags, and others, are discussed in the <EM>perlcall</EM>  manpage
+.
+<p>I'll define the <EM>showtime</EM> subroutine in a file called <EM>showtime.pl</EM>:
+<p>
+<XMP>
+    print "I shan't be printed.";
+    sub showtime {
+        print time;
+    }
+
+</XMP>
+<p>Simple enough.  Now compile and run:
+<p>
+<XMP>
+    % cc -o showtime showtime.c `perl -MExtUtils::Embed -e ccopts -e ldopts`
+    % showtime showtime.pl
+    818284590
+
+</XMP>
+<p>yielding the number of seconds that elapsed between January 1, 1970
+(the beginning of the UNIX epoch), and the moment I began writing this
+sentence.
+<p>If you want to pass some arguments to the Perl subroutine, or
+you want to access the return value, you'll need to manipulate the
+Perl stack, demonstrated in the last section of this document:
+
+<A HREF="perlembed.html#perlembed_fiddling_0"><EM>Fiddling with the Perl stack from your C program</EM></A>
+
+<p>
+<H2> 
+<A NAME="perlembed_evaluating_0">
+Evaluating a Perl statement from your C program</A>
+</H2>
+NOTE: This section, and the next, employ some very brittle techniques
+for evaluating strings of Perl code.  Perl 5.002 contains some nifty
+features that enable A Better Way (such as with <EM>perl_eval_sv</EM>).
+Look for updates to this document soon.
+<p>One way to evaluate a Perl string is to define a function (we'll call
+ours <EM><EM>perl_eval()</EM></EM>) that wraps around Perl's <EM>eval</EM>.
+<p>Arguably, this is the only routine you'll ever need to execute
+snippets of Perl code from within your C program.  Your string can be
+as long as you wish; it can contain multiple statements; it can
+use <EM>require</EM> or <EM>do</EM> to include external Perl
+files.
+<p>Our <EM><EM>perl_eval()</EM></EM> lets us evaluate individual Perl strings, and then
+extract variables for coercion into C types.  The following program,
+<EM>string.c</EM>, executes three Perl strings, extracting an <CODE>int</CODE> from
+the first, a <CODE>float</CODE> from the second, and a <CODE>char *</CODE> from the third.
+<p>
+<XMP>
+   #include <stdio.h>
+   #include <EXTERN.h>
+   #include <perl.h>
+   static PerlInterpreter *my_perl;
+   int perl_eval(char *string)
+   {
+     char *argv[2];
+     argv[0] = string;
+     argv[1] = NULL;
+     perl_call_argv("_eval_", 0, argv);
+   }
+   main (int argc, char **argv, char **env)
+   {
+     char *embedding[] = { "", "-e", "sub _eval_ { eval $_[0] }" };
+     STRLEN length;
+     my_perl = perl_alloc();
+     perl_construct( my_perl );
+     perl_parse(my_perl, NULL, 3, embedding, NULL);
+                                       /** Treat $a as an integer **/
+     perl_eval("$a = 3; $a **= 2");
+     printf("a = %d\n", SvIV(perl_get_sv("a", FALSE)));
+                                       /** Treat $a as a float **/
+     perl_eval("$a = 3.14; $a **= 2");
+     printf("a = %f\n", SvNV(perl_get_sv("a", FALSE)));
+                                       /** Treat $a as a string **/
+     perl_eval("$a = 'rekcaH lreP rehtonA tsuJ'; $a = reverse($a); ");
+     printf("a = %s\n", SvPV(perl_get_sv("a", FALSE), length));
+     perl_destruct(my_perl);
+     perl_free(my_perl);
+   }
+
+</XMP>
+<p>All of those strange functions with <EM>sv</EM> in their names help convert Perl scalars to C types.  They're described in the <EM>perlguts</EM>  manpage
+.
+<p>If you compile and run <EM>string.c</EM>, you'll see the results of using
+<EM><EM>SvIV()</EM></EM> to create an <CODE>int</CODE>, <EM><EM>SvNV()</EM></EM> to create a <CODE>float</CODE>, and
+<EM><EM>SvPV()</EM></EM> to create a string:
+<p>
+<XMP>
+   a = 9
+   a = 9.859600
+   a = Just Another Perl Hacker
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perlembed_performing_0">
+Performing Perl pattern matches and substitutions from your C program</A>
+</H2>
+Our <EM><EM>perl_eval()</EM></EM> lets us evaluate strings of Perl code, so we can
+define some functions that use it to ``specialize'' in matches and
+substitutions: <EM><EM>match()</EM></EM>, <EM><EM>substitute()</EM></EM>, and <EM><EM>matches()</EM></EM>.
+<p>
+<XMP>
+   char match(char *string, char *pattern);
+
+</XMP>
+<p>Given a string and a pattern (e.g. ``m/clasp/'' or ``/\b\w*\b/'', which in
+your program might be represented as <CODE>``/\\b\\w*\\b/''</CODE>),
+returns 1 if the string matches the pattern and 0 otherwise.
+<p>
+<XMP>
+   int substitute(char *string[], char *pattern);
+
+</XMP>
+<p>Given a pointer to a string and an ``=~'' operation (e.g. ``s/bob/robert/g'' or
+``tr[A-Z][a-z]''), modifies the string according to the operation,
+returning the number of substitutions made.
+<p>
+<XMP>
+   int matches(char *string, char *pattern, char **matches[]);
+
+</XMP>
+<p>Given a string, a pattern, and a pointer to an empty array of strings,
+evaluates <CODE><STRONG>$string</STRONG> =~ <STRONG>$pattern</STRONG></CODE> in an array context, and fills in
+<EM>matches</EM> with the array elements (allocating memory as it does so),
+returning the number of matches found.
+<p>Here's a sample program, <EM>match.c</EM>, that uses all three (long lines have
+been wrapped here):
+<p>
+<XMP>
+   #include <stdio.h>
+   #include <EXTERN.h>
+   #include <perl.h>
+   static PerlInterpreter *my_perl;
+   int perl_eval(char *string)
+   {
+     char *argv[2];
+     argv[0] = string;
+     argv[1] = NULL;
+     perl_call_argv("_eval_", 0, argv);
+   }
+   /** match(string, pattern)
+   **
+   ** Used for matches in a scalar context.
+   **
+   ** Returns 1 if the match was successful; 0 otherwise.
+   **/
+   char match(char *string, char *pattern)
+   {
+     char *command;
+     command = malloc(sizeof(char) * strlen(string) + strlen(pattern) + 37);
+     sprintf(command, "$string = '%s'; $return = $string =~ %s",
+          string, pattern);
+     perl_eval(command);
+     free(command);
+     return SvIV(perl_get_sv("return", FALSE));
+   }
+   /** substitute(string, pattern)
+   **
+   ** Used for =~ operations that modify their left-hand side (s/// and tr///)
+   **
+   ** Returns the number of successful matches, and
+   ** modifies the input string if there were any.
+   **/
+   int substitute(char *string[], char *pattern)
+   {
+     char *command;
+     STRLEN length;
+     command = malloc(sizeof(char) * strlen(*string) + strlen(pattern) + 35);
+     sprintf(command, "$string = '%s'; $ret = ($string =~ %s)",
+          *string, pattern);
+        perl_eval(command);
+        free(command);
+        *string = SvPV(perl_get_sv("string", FALSE), length);
+        return SvIV(perl_get_sv("ret", FALSE));
+   }
+   /** matches(string, pattern, matches)
+   **
+   ** Used for matches in an array context.
+   **
+   ** Returns the number of matches,
+   ** and fills in **matches with the matching substrings (allocates memory!)
+   **/
+   int matches(char *string, char *pattern, char **match_list[])
+   {
+     char *command;
+     SV *current_match;
+     AV *array;
+     I32 num_matches;
+     STRLEN length;
+     int i;
+     command = malloc(sizeof(char) * strlen(string) + strlen(pattern) + 38);
+     sprintf(command, "$string = '%s'; @array = ($string =~ %s)",
+          string, pattern);
+     perl_eval(command);
+     free(command);
+     array = perl_get_av("array", FALSE);
+     num_matches = av_len(array) + 1; /** assume $[ is 0 **/
+     *match_list = (char **) malloc(sizeof(char *) * num_matches);
+     for (i = 0; i <= num_matches; i++) {
+       current_match = av_shift(array);
+       (*match_list)[i] = SvPV(current_match, length);
+     }
+     return num_matches;
+   }
+   main (int argc, char **argv, char **env)
+   {
+     char *embedding[] = { "", "-e", "sub _eval_ { eval $_[0] }" };
+     char *text, **match_list;
+     int num_matches, i;
+     int j;
+     my_perl = perl_alloc();
+     perl_construct( my_perl );
+     perl_parse(my_perl, NULL, 3, embedding, NULL);
+     text = (char *) malloc(sizeof(char) * 486); /** A long string follows! **/
+     sprintf(text, "%s", "When he is at a convenience store and the bill \
+     comes to some amount like 76 cents, Maynard is aware that there is \
+     something he *should* do, something that will enable him to get back \
+     a quarter, but he has no idea *what*.  He fumbles through his red \
+     squeezey changepurse and gives the boy three extra pennies with his \
+     dollar, hoping that he might luck into the correct amount.  The boy \
+     gives him back two of his own pennies and then the big shiny quarter \
+     that is his prize. -RICHH");
+     if (match(text, "m/quarter/")) /** Does text contain 'quarter'? **/
+       printf("match: Text contains the word 'quarter'.\n\n");
+     else
+       printf("match: Text doesn't contain the word 'quarter'.\n\n");
+     if (match(text, "m/eighth/")) /** Does text contain 'eighth'? **/
+       printf("match: Text contains the word 'eighth'.\n\n");
+     else
+       printf("match: Text doesn't contain the word 'eighth'.\n\n");
+     /** Match all occurrences of /wi../ **/
+     num_matches = matches(text, "m/(wi..)/g", &match_list);
+     printf("matches: m/(wi..)/g found %d matches...\n", num_matches);
+     for (i = 0; i < num_matches; i++)
+       printf("match: %s\n", match_list[i]);
+     printf("\n");
+     for (i = 0; i < num_matches; i++) {
+       free(match_list[i]);
+     }
+     free(match_list);
+     /** Remove all vowels from text **/
+     num_matches = substitute(&text, "s/[aeiou]//gi");
+     if (num_matches) {
+       printf("substitute: s/[aeiou]//gi...%d substitutions made.\n",
+           num_matches);
+       printf("Now text is: %s\n\n", text);
+     }
+     /** Attempt a substitution **/
+     if (!substitute(&text, "s/Perl/C/")) {
+       printf("substitute: s/Perl/C...No substitution made.\n\n");
+     }
+     free(text);
+     perl_destruct(my_perl);
+     perl_free(my_perl);
+   }
+
+</XMP>
+<p>which produces the output (again, long lines have been wrapped here)
+<p>
+<XMP>
+   perl_match: Text contains the word 'quarter'.
+   perl_match: Text doesn't contain the word 'eighth'.
+   perl_matches: m/(wi..)/g found 2 matches...
+   match: will
+   match: with
+   perl_substitute: s/[aeiou]//gi...139 substitutions made.
+   Now text is: Whn h s t  cnvnnc str nd th bll cms t sm mnt lk 76 cnts, 
+   Mynrd s wr tht thr s smthng h *shld* d, smthng tht wll nbl hm t gt bck
+   qrtr, bt h hs n d *wht*.  H fmbls thrgh hs rd sqzy chngprs nd gvs th by
+   thr xtr pnns wth hs dllr, hpng tht h mght lck nt th crrct mnt.  Th by gvs
+   hm bck tw f hs wn pnns nd thn th bg shny qrtr tht s hs prz. -RCHH
+   perl_substitute: s/Perl/C...No substitution made.
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perlembed_fiddling_0">
+Fiddling with the Perl stack from your C program</A>
+</H2>
+When trying to explain stacks, most computer science textbooks mumble
+something about spring-loaded columns of cafeteria plates: the last
+thing you pushed on the stack is the first thing you pop off.  That'll
+do for our purposes: your C program will push some arguments onto "the Perl
+stack", shut its eyes while some magic happens, and then pop the
+results--the return value of your Perl subroutine--off the stack.
+<p>First you'll need to know how to convert between C types and Perl
+types, with <EM>newSViv()</EM> and <EM>sv_setnv()</EM> and <EM>newAV()</EM> and all their
+friends.  They're described in the <EM>perlguts</EM>  manpage
+.
+<p>Then you'll need to know how to manipulate the Perl stack.  That's
+described in the <EM>perlcall</EM>  manpage
+.
+<p>Once you've understood those, embedding Perl in C is easy.
+<p>Since C has no built-in function for integer exponentiation, let's
+make Perl's ** operator available to it (this is less useful than it
+sounds, since Perl implements ** with C's <EM><EM>pow()</EM></EM> function).  First
+I'll create a stub exponentiation function in <EM>power.pl</EM>:
+<p>
+<XMP>
+    sub expo {
+        my ($a, $b) = @_;
+        return $a ** $b;
+    }
+
+</XMP>
+<p>Now I'll create a C program, <EM>power.c</EM>, with a function
+<EM><EM>PerlPower()</EM></EM> that contains all the perlguts necessary to push the
+two arguments into <EM><EM>expo()</EM></EM> and to pop the return value out.  Take a
+deep breath...
+<p>
+<XMP>
+    #include <stdio.h>
+    #include <EXTERN.h>
+    #include <perl.h>
+    static PerlInterpreter *my_perl;
+    static void
+    PerlPower(int a, int b)
+    {
+      dSP;                            /* initialize stack pointer      */
+      ENTER;                          /* everything created after here */
+      SAVETMPS;                       /* ...is a temporary variable.   */
+      PUSHMARK(sp);                   /* remember the stack pointer    */
+      XPUSHs(sv_2mortal(newSViv(a))); /* push the base onto the stack  */
+      XPUSHs(sv_2mortal(newSViv(b))); /* push the exponent onto stack  */
+      PUTBACK;                      /* make local stack pointer global */
+      perl_call_pv("expo", G_SCALAR); /* call the function             */
+      SPAGAIN;                        /* refresh stack pointer         */
+                                    /* pop the return value from stack */
+      printf ("%d to the %dth power is %d.\n", a, b, POPi);
+      PUTBACK;
+      FREETMPS;                       /* free that return value        */
+      LEAVE;                       /* ...and the XPUSHed "mortal" args.*/
+    }
+    int main (int argc, char **argv, char **env)
+    {
+      char *my_argv[2];
+      my_perl = perl_alloc();
+      perl_construct( my_perl );
+      my_argv[1] = (char *) malloc(10);
+      sprintf(my_argv[1], "power.pl");
+      perl_parse(my_perl, NULL, argc, my_argv, NULL);
+      PerlPower(3, 4);                      /*** Compute 3 ** 4 ***/
+      perl_destruct(my_perl);
+      perl_free(my_perl);
+    }
+
+</XMP>
+<p>Compile and run:
+<p>
+<XMP>
+    % cc -o power power.c `perl -MExtUtils::Embed -e ccopts -e ldopts`
+    % power
+    3 to the 4th power is 81.
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perlembed_using_0">
+Using Perl modules, which themselves use C libraries, from your C program</A>
+</H2>
+If you've played with the examples above and tried to embed a script
+that <EM><EM>use()</EM></EM>s a Perl module (such as <EM>Socket</EM>) which itself uses a C or C++ library,
+this probably happened:
+<p>
+<XMP>
+ Can't load module Socket, dynamic loading not available in this perl.
+  (You may need to build a new perl executable which either supports
+  dynamic loading or has the Socket module statically linked into it.)
+
+</XMP>
+<p>What's wrong?
+<p>Your interpreter doesn't know how to communicate with these extensions
+on its own.  A little glue will help.  Up until now you've been
+calling <EM><EM>perl_parse()</EM></EM>, handing it NULL for the second argument:
+<p>
+<XMP>
+ perl_parse(my_perl, NULL, argc, my_argv, NULL);
+
+</XMP>
+<p>That's where the glue code can be inserted to create the initial contact between
+Perl and linked C/C++ routines.  Let's take a look some pieces of <EM>perlmain.c</EM>
+to see how Perl does this:
+<p>
+<XMP>
+ #ifdef __cplusplus
+ #  define EXTERN_C extern "C"
+ #else
+ #  define EXTERN_C extern
+ #endif
+ static void xs_init _((void));
+ EXTERN_C void boot_DynaLoader _((CV* cv));
+ EXTERN_C void boot_Socket _((CV* cv));
+ EXTERN_C void
+ xs_init()
+ {
+        char *file = __FILE__;
+        /* DynaLoader is a special case */
+        newXS("DynaLoader::boot_DynaLoader", boot_DynaLoader, file);
+        newXS("Socket::bootstrap", boot_Socket, file);
+ }
+
+</XMP>
+<p>Simply put: for each extension linked with your Perl executable
+(determined during its initial configuration on your
+computer or when adding a new extension),
+a Perl subroutine is created to incorporate the extension's
+routines.  Normally, that subroutine is named
+<EM>Module::<EM>bootstrap()</EM></EM> and is invoked when you say <EM>use Module</EM>.  In
+turn, this hooks into an XSUB, <EM>boot_Module</EM>, which creates a Perl
+counterpart for each of the extension's XSUBs.  Don't worry about this
+part; leave that to the <EM>xsubpp</EM> and extension authors.  If your
+extension is dynamically loaded, DynaLoader creates <EM>Module::<EM>bootstrap()</EM></EM>
+for you on the fly.  In fact, if you have a working DynaLoader then there
+is rarely any need to statically link in any other extensions.
+<p>Once you have this code, slap it into the second argument of <EM><EM>perl_parse()</EM></EM>:
+<p>
+<XMP>
+ perl_parse(my_perl, xs_init, argc, my_argv, NULL);
+
+</XMP>
+<p>Then compile:
+<p>
+<XMP>
+ % cc -o interp interp.c `perl -MExtUtils::Embed -e ldopts`
+ % interp
+   use Socket;
+   use SomeDynamicallyLoadedModule;
+   print "Now I can use extensions!\n"'
+
+</XMP>
+<p><STRONG>ExtUtils::Embed</STRONG> can also automate writing the <EM>xs_init</EM> glue code.
+<p>
+<XMP>
+ % perl -MExtUtils::Embed -e xsinit -o perlxsi.c
+ % cc -c perlxsi.c `perl -MExtUtils::Embed -e ccopts`
+ % cc -c interp.c  `perl -MExtUtils::Embed -e ccopts`
+ % cc -o interp perlxsi.o interp.o `perl -MExtUtils::Embed -e ldopts`
+
+</XMP>
+<p>Consult the <EM>perlxs</EM>  manpage
+ and the <EM>perlguts</EM>  manpage
+ for more details.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlembed_moral_0">
+MORAL</A>
+</H1>
+You can sometimes <EM>write faster code</EM> in C, but
+you can always <EM>write code faster</EM> in Perl.  Since you can use
+each from the other, combine them as you wish.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlembed_author_0">
+AUTHOR</A>
+</H1>
+Jon Orwant <EM>&lt;<A HREF="MAILTO:orwant@media.mit.edu">orwant@media.mit.edu</A>&gt;</EM>, 
+co-authored by Doug MacEachern <EM>&lt;<A HREF="MAILTO:dougm@osf.org">dougm@osf.org</A>&gt;</EM>, 
+with contributions from
+Tim Bunce, Tom Christiansen, Dov Grobgeld, and Ilya
+Zakharevich.
+<p>June 17, 1996
+<p>Some of this material is excerpted from my book: <EM>Perl 5 Interactive</EM>,
+Waite Group Press, 1996 (ISBN 1-57169-064-6) and appears
+courtesy of Waite Group Press.
+<p>
+</BODY>
+</HTML>

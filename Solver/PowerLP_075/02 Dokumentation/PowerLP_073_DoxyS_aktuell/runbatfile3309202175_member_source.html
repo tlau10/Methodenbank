@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE>PowerLP_073 - runbatfile</TITLE>
+<script type="text/javascript">
+  var relPathToCommmon = "common/";
+  var relPathToHelpDir = "common/help/";
+</script>
+<script type="text/javascript" src="common/jsdyn.js" language="JavaScript"></script>
+<script type="text/javascript" src="common/js.js" language="JavaScript"></script>
+<script type="text/javascript" src="leftmenu.js" language="JavaScript"></script>
+<script type="text/javascript">
+  var toSearchPage     = "_search','search";
+  Body1();
+</script>
+<div class="headerPage">runbatfile</div>
+<div class="path"><a href="#" OnMouseOver="link('','index',this)" class="pathLink">Default mainpage</A><img src="common/path-arrow.gif" class="path-arrow"><a href="#" OnMouseOver="link('_dir','SOURCE0',this)" class="pathLink">SOURCE</A><img src="common/path-arrow.gif" class="path-arrow"><span class="pathNonLink">runbatfile</span></div>
+<script type="text/javascript">
+ Body2();
+ BodyLeftMenuStart();
+WriteLeftMenu("","","","");
+ BodyLeftMenuEnd();
+ Body3();
+</script>
+<span class="tabInActive"><a href="#" OnMouseOver="linkTab('_member','runbatfile3309202175','_description',this)" class="tabLinkInActive">Description</a></span>
+<span class="tabActive"><a href="#" OnMouseOver="linkTab('_member','runbatfile3309202175','_source',this)" class="tabLinkActive">Source</a></span>
+<span class="tabInActiveGrayout"><span class="tabLinkGrayout">Call Graph</span></span>
+<script type="text/javascript">
+ Body4();
+</script>
+<div class="contentAirTop"></div>
+<div class="paragraph2NoTopPadding">Start Line: 179</div>
+<pre class="codeExamples">
+bool __fastcall <a href="#" onMouseOver="link('_member','runbatfile3309202175',this); overLibDiagram();return overlib('<strong>Syntax</strong><BR>bool __fastcall&nbsp;&nbsp;runbatfile&nbsp;&nbsp;(char * file, ThrowErrorMsg * err)',CAPTION,'<strong>Brief description</strong><BR>Fuehrt eine Stappelverarbeitungsdatei mit Hilfe der Kommandozeile aus.');" onMouseOut="return nd();">runbatfile</a>(char *file, ThrowErrorMsg *err)
+                                                           {
+  STARTUPINFO stup;
+  PROCESS_INFORMATION pinf;
+  memset(&amp;stup, 0, sizeof(STARTUPINFO));
+  stup.wShowWindow = SW_HIDE;
+  stup.dwFlags = STARTF_USESHOWWINDOW;
+  stup.cb = sizeof(STARTUPINFO);
+  char cmd[1000];
+  char* comspec = getenv("COMSPEC");
+  if (comspec) strcpy(cmd, comspec);
+  else {
+    comspec = "C:\\WINNT\\system32\\CMD.EXE";
+    if (!FileExists(comspec)) comspec = "C:\\WINDOWS\\system32\\CMD.EXE";
+    if (!FileExists(comspec)) comspec = "C:\\WINDOWS\\COMMAND.COM";
+  }
+  if (!FileExists(comspec)) return false;
+  char batfile[1000];
+  strcpy(batfile, "/C ");
+  strcat(batfile, file);
+  if (!CreateProcess(comspec,   batfile, NULL, NULL, FALSE,
+    NORMAL_PRIORITY_CLASS, NULL, reg_getworkdir(), &amp;stup,&amp;pinf)) return false;
+  HANDLE ProcessHandle = OpenProcess(SYNCHRONIZE, false, pinf.dwProcessId);
+  int rval = WaitForSingleObject(ProcessHandle, 5000);
+  if (rval == WAIT_TIMEOUT) {
+    char msg[1000];
+    sprintf(msg, "5000 ms Execution-Timeout: CMD.EXE %s", batfile);
+    err-&gt;PutError(msg);
+  }
+  return true;
+}
+</pre><div class="contentAirBottom"></div>
+<script type="text/javascript">
+ Body5();
+Statistics("","","","","");
+ Body6();
+SetPageTab('_member','_source');
+</script>

@@ -1,0 +1,4569 @@
+<!-- $Id$ -->
+<HTML><HEAD>
+<CENTER><TITLE>perlguts</TITLE>
+</HEAD>
+<BODY></CENTER><p><hr>
+
+<H1> 
+<A NAME="perlguts_name_0">
+NAME</A>
+</H1>
+perlguts - Perl's Internal Functions
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_description_0">
+DESCRIPTION</A>
+</H1>
+This document attempts to describe some of the internal functions of the
+Perl executable.  It is far from complete and probably contains many errors.
+Please refer any questions or comments to the author below.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_datatypes_0">
+Datatypes</A>
+</H1>
+Perl has three typedefs that handle Perl's three main data types:
+<p>
+<XMP>
+    SV  Scalar Value
+    AV  Array Value
+    HV  Hash Value
+
+</XMP>
+<p>Each typedef has specific routines that manipulate the various data types.
+<p>
+<H2> <EM>What is an ``IV''?</EM></H2>
+Perl uses a special typedef IV which is large enough to hold either an
+integer or a pointer.
+<p>Perl also uses two special typedefs, I32 and I16, which will always be at
+least 32-bits and 16-bits long, respectively.
+<p>
+<H2> 
+<A NAME="perlguts_working_0">
+Working with SVs</A>
+</H2>
+An SV can be created and loaded with one command.  There are four types of
+values that can be loaded: an integer value (IV), a double (NV), a string,
+(PV), and another scalar (SV).
+<p>The four routines are:
+<p>
+<XMP>
+    SV*  newSViv(IV);
+    SV*  newSVnv(double);
+    SV*  newSVpv(char*, int);
+    SV*  newSVsv(SV*);
+
+</XMP>
+<p>To change the value of an *already-existing* SV, there are five routines:
+<p>
+<XMP>
+    void  sv_setiv(SV*, IV);
+    void  sv_setnv(SV*, double);
+    void  sv_setpvn(SV*, char*, int)
+    void  sv_setpv(SV*, char*);
+    void  sv_setsv(SV*, SV*);
+
+</XMP>
+<p>Notice that you can choose to specify the length of the string to be
+assigned by using 
+<A HREF="perlguts.html#perlguts_sv_setpvn_0">sv_setpvn</A>
+ or 
+<A HREF="perlguts.html#perlguts_newsvpv_0">newSVpv</A>
+, or you may allow Perl to
+calculate the length by using 
+<A HREF="perlguts.html#perlguts_sv_setpv_0">sv_setpv</A>
+ or by specifying 0 as the second
+argument to 
+<A HREF="perlguts.html#perlguts_newsvpv_0">newSVpv</A>
+.  Be warned, though, that Perl will determine the
+string's length by using <CODE>strlen</CODE>, which depends on the string terminating
+with a NUL character.
+<p>To access the actual value that an SV points to, you can use the macros:
+<p>
+<XMP>
+    SvIV(SV*)
+    SvNV(SV*)
+    SvPV(SV*, STRLEN len)
+
+</XMP>
+<p>which will automatically coerce the actual scalar type into an IV, double,
+or string.
+<p>In the 
+<A HREF="perlguts.html#perlguts_svpv_0">SvPV</A>
+ macro, the length of the string returned is placed into the
+variable <CODE>len</CODE> (this is a macro, so you do <EM>not</EM> use <CODE>&amp;len</CODE>).  If you do not
+care what the length of the data is, use the global variable 
+<A HREF="perlguts.html#perlguts_na_0">na</A>
+.  Remember,
+however, that Perl allows arbitrary strings of data that may both contain
+NULs and not be terminated by a NUL.
+<p>If you simply want to know if the scalar value is TRUE, you can use:
+<p>
+<XMP>
+    SvTRUE(SV*)
+
+</XMP>
+<p>Although Perl will automatically grow strings for you, if you need to force
+Perl to allocate more memory for your SV, you can use the macro
+<p>
+<XMP>
+    SvGROW(SV*, STRLEN newlen)
+
+</XMP>
+<p>which will determine if more memory needs to be allocated.  If so, it will
+call the function 
+<A HREF="perlguts.html#perlguts_sv_grow_0">sv_grow</A>
+.  Note that 
+<A HREF="perlguts.html#perlguts_svgrow_0">SvGROW</A>
+ can only increase, not
+decrease, the allocated memory of an SV.
+<p>If you have an SV and want to know what kind of data Perl thinks is stored
+in it, you can use the following macros to check the type of SV you have.
+<p>
+<XMP>
+    SvIOK(SV*)
+    SvNOK(SV*)
+    SvPOK(SV*)
+
+</XMP>
+<p>You can get and set the current length of the string stored in an SV with
+the following macros:
+<p>
+<XMP>
+    SvCUR(SV*)
+    SvCUR_set(SV*, I32 val)
+
+</XMP>
+<p>You can also get a pointer to the end of the string stored in the SV
+with the macro:
+<p>
+<XMP>
+    SvEND(SV*)
+
+</XMP>
+<p>But note that these last three macros are valid only if 
+<A HREF="perlguts.html#perlguts_svpok_0">
+<A HREF="perlguts.html#perlguts_svpok_0">SvPOK()</A>
+</A>
+ is true.
+<p>If you want to append something to the end of string stored in an <CODE>SV*</CODE>,
+you can use the following functions:
+<p>
+<XMP>
+    void  sv_catpv(SV*, char*);
+    void  sv_catpvn(SV*, char*, int);
+    void  sv_catsv(SV*, SV*);
+
+</XMP>
+<p>The first function calculates the length of the string to be appended by
+using <CODE>strlen</CODE>.  In the second, you specify the length of the string
+yourself.  The third function extends the string stored in the first SV
+with the string stored in the second SV.  It also forces the second SV to
+be interpreted as a string.
+<p>If you know the name of a scalar variable, you can get a pointer to its SV
+by using the following:
+<p>
+<XMP>
+    SV*  perl_get_sv("varname", FALSE);
+
+</XMP>
+<p>This returns NULL if the variable does not exist.
+<p>If you want to know if this variable (or any other SV) is actually <CODE>defined</CODE>,
+you can call:
+<p>
+<XMP>
+    SvOK(SV*)
+
+</XMP>
+<p>The scalar <CODE>undef</CODE> value is stored in an SV instance called 
+<A HREF="perlguts.html#perlguts_sv_undef_0">sv_undef</A>
+.  Its
+address can be used whenever an <CODE>SV*</CODE> is needed.
+<p>There are also the two values 
+<A HREF="perlguts.html#perlguts_sv_yes_0">sv_yes</A>
+ and 
+<A HREF="perlguts.html#perlguts_sv_no_0">sv_no</A>
+, which contain Boolean
+TRUE and FALSE values, respectively.  Like 
+<A HREF="perlguts.html#perlguts_sv_undef_0">sv_undef</A>
+, their addresses can
+be used whenever an <CODE>SV*</CODE> is needed.
+<p>Do not be fooled into thinking that <CODE>(SV *) 0</CODE> is the same as <CODE>&amp;sv_undef</CODE>.
+Take this code:
+<p>
+<XMP>
+    SV* sv = (SV*) 0;
+    if (I-am-to-return-a-real-value) {
+            sv = sv_2mortal(newSViv(42));
+    }
+    sv_setsv(ST(0), sv);
+
+</XMP>
+<p>This code tries to return a new SV (which contains the value 42) if it should
+return a real value, or undef otherwise.  Instead it has returned a null
+pointer which, somewhere down the line, will cause a segmentation violation,
+or just weird results.  Change the zero to <CODE>&amp;sv_undef</CODE> in the first line and
+all will be well.
+<p>To free an SV that you've created, call 
+<A HREF="perlguts.html#perlguts_svrefcnt_dec_0">SvREFCNT_dec(SV*)</A>
+.  Normally this
+call is not necessary.  See the section on <STRONG>MORTALITY</STRONG>.
+<p>
+<H2> 
+<A NAME="perlguts_what_s_0">
+What's Really Stored in an SV?</A>
+</H2>
+Recall that the usual method of determining the type of scalar you have is
+to use <CODE>Sv*OK</CODE> macros.  Since a scalar can be both a number and a string,
+usually these macros will always return TRUE and calling the <CODE>Sv*V</CODE>
+macros will do the appropriate conversion of string to integer/double or
+integer/double to string.
+<p>If you <EM>really</EM> need to know if you have an integer, double, or string
+pointer in an SV, you can use the following three macros instead:
+<p>
+<XMP>
+    SvIOKp(SV*)
+    SvNOKp(SV*)
+    SvPOKp(SV*)
+
+</XMP>
+<p>These will tell you if you truly have an integer, double, or string pointer
+stored in your SV.  The ``p'' stands for private.
+<p>In general, though, it's best to just use the <CODE>Sv*V</CODE> macros.
+<p>
+<H2> 
+<A NAME="perlguts_working_1">
+Working with AVs</A>
+</H2>
+There are two ways to create and load an AV.  The first method just creates
+an empty AV:
+<p>
+<XMP>
+    AV*  newAV();
+
+</XMP>
+<p>The second method both creates the AV and initially populates it with SVs:
+<p>
+<XMP>
+    AV*  av_make(I32 num, SV **ptr);
+
+</XMP>
+<p>The second argument points to an array containing <CODE>num</CODE> <CODE>SV*</CODE>s.  Once the
+AV has been created, the SVs can be destroyed, if so desired.
+<p>Once the AV has been created, the following operations are possible on AVs:
+<p>
+<XMP>
+    void  av_push(AV*, SV*);
+    SV*   av_pop(AV*);
+    SV*   av_shift(AV*);
+    void  av_unshift(AV*, I32 num);
+
+</XMP>
+<p>These should be familiar operations, with the exception of 
+<A HREF="perlguts.html#perlguts_av_unshift_0">av_unshift</A>
+.
+This routine adds <CODE>num</CODE> elements at the front of the array with the <CODE>undef</CODE>
+value.  You must then use 
+<A HREF="perlguts.html#perlguts_av_store_0">av_store</A>
+ (described below) to assign values
+to these new elements.
+<p>Here are some other functions:
+<p>
+<XMP>
+    I32   av_len(AV*); /* Returns highest index value in array */
+    SV**  av_fetch(AV*, I32 key, I32 lval);
+            /* Fetches value at key offset, but it stores an undef value
+               at the offset if lval is non-zero */
+    SV**  av_store(AV*, I32 key, SV* val);
+            /* Stores val at offset key */
+
+</XMP>
+<p>Take note that 
+<A HREF="perlguts.html#perlguts_av_fetch_0">av_fetch</A>
+ and 
+<A HREF="perlguts.html#perlguts_av_store_0">av_store</A>
+ return <CODE>SV**</CODE>s, not <CODE>SV*</CODE>s.
+<p>
+<XMP>
+    void  av_clear(AV*);
+            /* Clear out all elements, but leave the array */
+    void  av_undef(AV*);
+            /* Undefines the array, removing all elements */
+    void  av_extend(AV*, I32 key);
+            /* Extend the array to a total of key elements */
+
+</XMP>
+<p>If you know the name of an array variable, you can get a pointer to its AV
+by using the following:
+<p>
+<XMP>
+    AV*  perl_get_av("varname", FALSE);
+
+</XMP>
+<p>This returns NULL if the variable does not exist.
+<p>
+<H2> 
+<A NAME="perlguts_working_2">
+Working with HVs</A>
+</H2>
+To create an HV, you use the following routine:
+<p>
+<XMP>
+    HV*  newHV();
+
+</XMP>
+<p>Once the HV has been created, the following operations are possible on HVs:
+<p>
+<XMP>
+    SV**  hv_store(HV*, char* key, U32 klen, SV* val, U32 hash);
+    SV**  hv_fetch(HV*, char* key, U32 klen, I32 lval);
+
+</XMP>
+<p>The <CODE>klen</CODE> parameter is the length of the key being passed in.  The <CODE>val</CODE>
+argument contains the SV pointer to the scalar being stored, and <CODE>hash</CODE> is
+the pre-computed hash value (zero if you want 
+<A HREF="perlguts.html#perlguts_hv_store_0">hv_store</A>
+ to calculate it
+for you).  The <CODE>lval</CODE> parameter indicates whether this fetch is actually a
+part of a store operation.
+<p>Remember that 
+<A HREF="perlguts.html#perlguts_hv_store_0">hv_store</A>
+ and 
+<A HREF="perlguts.html#perlguts_hv_fetch_0">hv_fetch</A>
+ return <CODE>SV**</CODE>s and not just
+<CODE>SV*</CODE>.  In order to access the scalar value, you must first dereference
+the return value.  However, you should check to make sure that the return
+value is not NULL before dereferencing it.
+<p>These two functions check if a hash table entry exists, and deletes it.
+<p>
+<XMP>
+    bool  hv_exists(HV*, char* key, U32 klen);
+    SV*   hv_delete(HV*, char* key, U32 klen, I32 flags);
+
+</XMP>
+<p>And more miscellaneous functions:
+<p>
+<XMP>
+    void   hv_clear(HV*);
+            /* Clears all entries in hash table */
+    void   hv_undef(HV*);
+            /* Undefines the hash table */
+
+</XMP>
+<p>Perl keeps the actual data in linked list of structures with a typedef of HE.
+These contain the actual key and value pointers (plus extra administrative
+overhead).  The key is a string pointer; the value is an <CODE>SV*</CODE>.  However,
+once you have an <CODE>HE*</CODE>, to get the actual key and value, use the routines
+specified below.
+<p>
+<XMP>
+    I32    hv_iterinit(HV*);
+            /* Prepares starting point to traverse hash table */
+    HE*    hv_iternext(HV*);
+            /* Get the next entry, and return a pointer to a
+               structure that has both the key and value */
+    char*  hv_iterkey(HE* entry, I32* retlen);
+            /* Get the key from an HE structure and also return
+               the length of the key string */
+    SV*    hv_iterval(HV*, HE* entry);
+            /* Return a SV pointer to the value of the HE
+               structure */
+    SV*    hv_iternextsv(HV*, char** key, I32* retlen);
+            /* This convenience routine combines hv_iternext,
+               hv_iterkey, and hv_iterval.  The key and retlen
+               arguments are return values for the key and its
+               length.  The value is returned in the SV* argument */
+
+</XMP>
+<p>If you know the name of a hash variable, you can get a pointer to its HV
+by using the following:
+<p>
+<XMP>
+    HV*  perl_get_hv("varname", FALSE);
+
+</XMP>
+<p>This returns NULL if the variable does not exist.
+<p>The hash algorithm, for those who are interested, is:
+<p>
+<XMP>
+    i = klen;
+    hash = 0;
+    s = key;
+    while (i--)
+        hash = hash * 33 + *s++;
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perlguts_references_0">
+References</A>
+</H2>
+References are a special type of scalar that point to other data types
+(including references).
+<p>To create a reference, use the following command:
+<p>
+<XMP>
+    SV* newRV((SV*) thing);
+
+</XMP>
+<p>The <CODE>thing</CODE> argument can be any of an <CODE>SV*</CODE>, <CODE>AV*</CODE>, or <CODE>HV*</CODE>.  Once
+you have a reference, you can use the following macro to dereference the
+reference:
+<p>
+<XMP>
+    SvRV(SV*)
+
+</XMP>
+<p>then call the appropriate routines, casting the returned <CODE>SV*</CODE> to either an
+<CODE>AV*</CODE> or <CODE>HV*</CODE>, if required.
+<p>To determine if an SV is a reference, you can use the following macro:
+<p>
+<XMP>
+    SvROK(SV*)
+
+</XMP>
+<p>To actually discover what the reference refers to, you must use the following
+macro and then check the value returned.
+<p>
+<XMP>
+    SvTYPE(SvRV(SV*))
+
+</XMP>
+<p>The most useful types that will be returned are:
+<p>
+<XMP>
+    SVt_IV    Scalar
+    SVt_NV    Scalar
+    SVt_PV    Scalar
+    SVt_PVAV  Array
+    SVt_PVHV  Hash
+    SVt_PVCV  Code
+    SVt_PVMG  Blessed Scalar
+
+</XMP>
+<p>
+<H2> 
+<A NAME="perlguts_blessed_0">
+Blessed References and Class Objects</A>
+</H2>
+References are also used to support object-oriented programming.  In the
+OO lexicon, an object is simply a reference that has been blessed into a
+package (or class).  Once blessed, the programmer may now use the reference
+to access the various methods in the class.
+<p>A reference can be blessed into a package with the following function:
+<p>
+<XMP>
+    SV* sv_bless(SV* sv, HV* stash);
+
+</XMP>
+<p>The <CODE>sv</CODE> argument must be a reference.  The <CODE>stash</CODE> argument specifies
+which class the reference will belong to.  See the <EM>``Stashes''</EM>
+for information on converting class names into stashes.
+<p>/* Still under construction */
+<p>Upgrades rv to reference if not already one.  Creates new SV for rv to
+point to.
+If classname is non-null, the SV is blessed into the specified class.
+SV is returned.
+<p>
+<XMP>
+        SV* newSVrv(SV* rv, char* classname);
+
+</XMP>
+<p>Copies integer or double into an SV whose reference is rv.  SV is blessed
+if classname is non-null.
+<p>
+<XMP>
+        SV* sv_setref_iv(SV* rv, char* classname, IV iv);
+        SV* sv_setref_nv(SV* rv, char* classname, NV iv);
+
+</XMP>
+<p>Copies pointer (<EM>not a string!</EM>) into an SV whose reference is rv.
+SV is blessed if classname is non-null.
+<p>
+<XMP>
+        SV* sv_setref_pv(SV* rv, char* classname, PV iv);
+
+</XMP>
+<p>Copies string into an SV whose reference is rv.
+Set length to 0 to let Perl calculate the string length.
+SV is blessed if classname is non-null.
+<p>
+<XMP>
+        SV* sv_setref_pvn(SV* rv, char* classname, PV iv, int length);
+        int sv_isa(SV* sv, char* name);
+        int sv_isobject(SV* sv);
+
+</XMP>
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_creating_0">
+Creating New Variables</A>
+</H1>
+To create a new Perl variable, which can be accessed from your Perl script,
+use the following routines, depending on the variable type.
+<p>
+<XMP>
+    SV*  perl_get_sv("varname", TRUE);
+    AV*  perl_get_av("varname", TRUE);
+    HV*  perl_get_hv("varname", TRUE);
+
+</XMP>
+<p>Notice the use of TRUE as the second parameter.  The new variable can now
+be set, using the routines appropriate to the data type.
+<p>There are additional bits that may be OR'ed with the TRUE argument to enable
+certain extra features.  Those bits are:
+<p>
+<XMP>
+    0x02  Marks the variable as multiply defined, thus preventing the
+          "Identifier <varname> used only once: possible typo" warning.
+    0x04  Issues a "Had to create <varname> unexpectedly" warning if
+          the variable didn't actually exist.  This is useful if
+          you expected the variable to already exist and want to propagate
+          this warning back to the user.
+
+</XMP>
+<p>If the <CODE>varname</CODE> argument does not contain a package specifier, it is
+created in the current package.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_xsubs_0">
+XSUBs and the Argument Stack</A>
+</H1>
+The XSUB mechanism is a simple way for Perl programs to access C subroutines.
+An XSUB routine will have a stack that contains the arguments from the Perl
+program, and a way to map from the Perl data structures to a C equivalent.
+<p>The stack arguments are accessible through the 
+<A HREF="perlguts.html#perlguts_st_0">ST(n)</A>
+ macro, which returns
+the <CODE>n</CODE>'th stack argument.  Argument 0 is the first argument passed in the
+Perl subroutine call.  These arguments are <CODE>SV*</CODE>, and can be used anywhere
+an <CODE>SV*</CODE> is used.
+<p>Most of the time, output from the C routine can be handled through use of
+the RETVAL and OUTPUT directives.  However, there are some cases where the
+argument stack is not already long enough to handle all the return values.
+An example is the POSIX <EM>tzname()</EM> call, which takes no arguments, but returns
+two, the local timezone's standard and summer time abbreviations.
+<p>To handle this situation, the PPCODE directive is used and the stack is
+extended using the macro:
+<p>
+<XMP>
+    EXTEND(sp, num);
+
+</XMP>
+<p>where <CODE>sp</CODE> is the stack pointer, and <CODE>num</CODE> is the number of elements the
+stack should be extended by.
+<p>Now that there is room on the stack, values can be pushed on it using the
+macros to push IVs, doubles, strings, and SV pointers respectively:
+<p>
+<XMP>
+    PUSHi(IV)
+    PUSHn(double)
+    PUSHp(char*, I32)
+    PUSHs(SV*)
+
+</XMP>
+<p>And now the Perl program calling <CODE>tzname</CODE>, the two values will be assigned
+as in:
+<p>
+<XMP>
+    ($standard_abbrev, $summer_abbrev) = POSIX::tzname;
+
+</XMP>
+<p>An alternate (and possibly simpler) method to pushing values on the stack is
+to use the macros:
+<p>
+<XMP>
+    XPUSHi(IV)
+    XPUSHn(double)
+    XPUSHp(char*, I32)
+    XPUSHs(SV*)
+
+</XMP>
+<p>These macros automatically adjust the stack for you, if needed.
+<p>For more information, consult the <EM>perlxs</EM>  manpage
+.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_mortality_0">
+Mortality</A>
+</H1>
+In Perl, values are normally ``immortal'' -- that is, they are not freed unless
+explicitly done so (via the Perl <CODE>undef</CODE> call or other routines in Perl
+itself).
+<p>Add cruft about reference counts.
+	int SvREFCNT(SV* sv);
+	void SvREFCNT_inc(SV* sv);
+	void SvREFCNT_dec(SV* sv);
+<p>In the above example with <CODE>tzname</CODE>, we needed to create two new SVs to push
+onto the argument stack, that being the two strings.  However, we don't want
+these new SVs to stick around forever because they will eventually be
+copied into the SVs that hold the two scalar variables.
+<p>An SV (or AV or HV) that is ``mortal'' acts in all ways as a normal ``immortal''
+SV, AV, or HV, but is only valid in the ``current context''.  When the Perl
+interpreter leaves the current context, the mortal SV, AV, or HV is
+automatically freed.  Generally the ``current context'' means a single
+Perl statement.
+<p>To create a mortal variable, use the functions:
+<p>
+<XMP>
+    SV*  sv_newmortal()
+    SV*  sv_2mortal(SV*)
+    SV*  sv_mortalcopy(SV*)
+
+</XMP>
+<p>The first call creates a mortal SV, the second converts an existing SV to
+a mortal SV, the third creates a mortal copy of an existing SV.
+<p>The mortal routines are not just for SVs -- AVs and HVs can be made mortal
+by passing their address (and casting them to <CODE>SV*</CODE>) to the 
+<A HREF="perlguts.html#perlguts_sv_mortal_0">sv_2mortal</A>
+ or
+
+<A HREF="perlguts.html#perlguts_sv_mortalcopy_0">sv_mortalcopy</A>
+ routines.
+<p>From Ilya:
+Beware that the 
+<A HREF="perlguts.html#perlguts_sv_mortal_0">sv_2mortal()</A>
+ call is eventually equivalent to
+<EM>svREFCNT_dec()</EM>. A value can happily be mortal in two different contexts,
+and it will be <EM>svREFCNT_dec()</EM>ed twice, once on exit from these
+contexts. It can also be mortal twice in the same context. This means
+that you should be very careful to make a value mortal exactly as many
+times as it is needed. The value that go to the Perl stack <EM>should</EM>
+be mortal.
+<p>You should be careful about creating mortal variables.  It is possible for
+strange things to happen should you make the same value mortal within
+multiple contexts.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_stashes_0">
+Stashes</A>
+</H1>
+A stash is a hash table (associative array) that contains all of the
+different objects that are contained within a package.  Each key of the
+stash is a symbol name (shared by all the different types of objects
+that have the same name), and each value in the hash table is called a
+GV (for Glob Value).  This GV in turn contains references to the various
+objects of that name, including (but not limited to) the following:
+<p>
+<XMP>
+    Scalar Value
+    Array Value
+    Hash Value
+    File Handle
+    Directory Handle
+    Format
+    Subroutine
+
+</XMP>
+<p>Perl stores various stashes in a separate GV structure (for global
+variable) but represents them with an HV structure.  The keys in this
+larger GV are the various package names; the values are the <CODE>GV*</CODE>s
+which are stashes.  It may help to think of a stash purely as an HV,
+and that the term ``GV'' means the global variable hash.
+<p>To get the stash pointer for a particular package, use the function:
+<p>
+<XMP>
+    HV*  gv_stashpv(char* name, I32 create)
+    HV*  gv_stashsv(SV*, I32 create)
+
+</XMP>
+<p>The first function takes a literal string, the second uses the string stored
+in the SV.  Remember that a stash is just a hash table, so you get back an
+<CODE>HV*</CODE>.  The <CODE>create</CODE> flag will create a new package if it is set.
+<p>The name that <CODE>gv_stash*v</CODE> wants is the name of the package whose symbol table
+you want.  The default package is called <CODE>main</CODE>.  If you have multiply nested
+packages, pass their names to <CODE>gv_stash*v</CODE>, separated by <CODE>::</CODE> as in the Perl
+language itself.
+<p>Alternately, if you have an SV that is a blessed reference, you can find
+out the stash pointer by using:
+<p>
+<XMP>
+    HV*  SvSTASH(SvRV(SV*));
+
+</XMP>
+<p>then use the following to get the package name itself:
+<p>
+<XMP>
+    char*  HvNAME(HV* stash);
+
+</XMP>
+<p>If you need to return a blessed value to your Perl script, you can use the
+following function:
+<p>
+<XMP>
+    SV*  sv_bless(SV*, HV* stash)
+
+</XMP>
+<p>where the first argument, an <CODE>SV*</CODE>, must be a reference, and the second
+argument is a stash.  The returned <CODE>SV*</CODE> can now be used in the same way
+as any other SV.
+<p>For more information on references and blessings, consult the <EM>perlref</EM>  manpage
+.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_magic_0">
+Magic</A>
+</H1>
+[This section still under construction.  Ignore everything here.  Post no
+bills.  Everything not permitted is forbidden.]
+<p>Any SV may be magical, that is, it has special features that a normal
+SV does not have.  These features are stored in the SV structure in a
+linked list of <CODE>struct magic</CODE>s, typedef'ed to <CODE>MAGIC</CODE>.
+<p>
+<XMP>
+    struct magic {
+        MAGIC*      mg_moremagic;
+        MGVTBL*     mg_virtual;
+        U16         mg_private;
+        char        mg_type;
+        U8          mg_flags;
+        SV*         mg_obj;
+        char*       mg_ptr;
+        I32         mg_len;
+    };
+
+</XMP>
+<p>Note this is current as of patchlevel 0, and could change at any time.
+<p>
+<H2> 
+<A NAME="perlguts_assigning_0">
+Assigning Magic</A>
+</H2>
+Perl adds magic to an SV using the sv_magic function:
+<p>
+<XMP>
+    void sv_magic(SV* sv, SV* obj, int how, char* name, I32 namlen);
+
+</XMP>
+<p>The <CODE>sv</CODE> argument is a pointer to the SV that is to acquire a new magical
+feature.
+<p>If <CODE>sv</CODE> is not already magical, Perl uses the 
+<A HREF="perlguts.html#perlguts_svupgrade_0">SvUPGRADE</A>
+ macro to
+set the 
+<A HREF="perlguts.html#perlguts_svt_pvmg_0">SVt_PVMG</A>
+ flag for the <CODE>sv</CODE>.  Perl then continues by adding
+it to the beginning of the linked list of magical features.  Any prior
+entry of the same type of magic is deleted.  Note that this can be
+overridden, and multiple instances of the same type of magic can be
+associated with an SV.
+<p>The <CODE>name</CODE> and <CODE>namlem</CODE> arguments are used to associate a string with
+the magic, typically the name of a variable. <CODE>namlem</CODE> is stored in the
+
+<A HREF="perlguts.html#perlguts_mg_len_0">mg_len</A>
+ field and if <CODE>name</CODE> is non-null and <CODE>namlem</CODE> &gt;= 0 a malloc'd
+copy of the name is stored in <CODE>mg_ptr</CODE> field.
+<p>The sv_magic function uses <CODE>how</CODE> to determine which, if any, predefined
+``Magic Virtual Table'' should be assigned to the <CODE>mg_virtual</CODE> field.
+See the ``Magic Virtual Table'' section below.  The <CODE>how</CODE> argument is also
+stored in the <CODE>mg_type</CODE> field.
+<p>The <CODE>obj</CODE> argument is stored in the <CODE>mg_obj</CODE> field of the <CODE>MAGIC</CODE>
+structure.  If it is not the same as the <CODE>sv</CODE> argument, the reference
+count of the <CODE>obj</CODE> object is incremented.  If it is the same, or if
+the <CODE>how</CODE> argument is ``#'', or if it is a null pointer, then <CODE>obj</CODE> is
+merely stored, without the reference count being incremented.
+<p>There is also a function to add magic to an <CODE>HV</CODE>:
+<p>
+<XMP>
+    void hv_magic(HV *hv, GV *gv, int how);
+
+</XMP>
+<p>This simply calls 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+ and coerces the <CODE>gv</CODE> argument into an <CODE>SV</CODE>.
+<p>To remove the magic from an SV, call the function sv_unmagic:
+<p>
+<XMP>
+    void sv_unmagic(SV *sv, int type);
+
+</XMP>
+<p>The <CODE>type</CODE> argument should be equal to the <CODE>how</CODE> value when the <CODE>SV</CODE>
+was initially made magical.
+<p>
+<H2> 
+<A NAME="perlguts_magic_1">
+Magic Virtual Tables</A>
+</H2>
+The <CODE>mg_virtual</CODE> field in the <CODE>MAGIC</CODE> structure is a pointer to a
+<CODE>MGVTBL</CODE>, which is a structure of function pointers and stands for
+``Magic Virtual Table'' to handle the various operations that might be
+applied to that variable.
+<p>The <CODE>MGVTBL</CODE> has five pointers to the following routine types:
+<p>
+<XMP>
+    int  (*svt_get)(SV* sv, MAGIC* mg);
+    int  (*svt_set)(SV* sv, MAGIC* mg);
+    U32  (*svt_len)(SV* sv, MAGIC* mg);
+    int  (*svt_clear)(SV* sv, MAGIC* mg);
+    int  (*svt_free)(SV* sv, MAGIC* mg);
+
+</XMP>
+<p>This MGVTBL structure is set at compile-time in <CODE>perl.h</CODE> and there are
+currently 19 types (or 21 with overloading turned on).  These different
+structures contain pointers to various routines that perform additional
+actions depending on which function is being called.
+<p>
+<XMP>
+    Function pointer    Action taken
+    ----------------    ------------
+    svt_get             Do something after the value of the SV is retrieved.
+    svt_set             Do something after the SV is assigned a value.
+    svt_len             Report on the SV's length.
+    svt_clear           Clear something the SV represents.
+    svt_free            Free any extra storage associated with the SV.
+
+</XMP>
+<p>For instance, the MGVTBL structure called <CODE>vtbl_sv</CODE> (which corresponds
+to an <CODE>mg_type</CODE> of '\0') contains:
+<p>
+<XMP>
+    { magic_get, magic_set, magic_len, 0, 0 }
+
+</XMP>
+<p>Thus, when an SV is determined to be magical and of type '\0', if a get
+operation is being performed, the routine <CODE>magic_get</CODE> is called.  All
+the various routines for the various magical types begin with <CODE>magic_</CODE>.
+<p>The current kinds of Magic Virtual Tables are:
+<p>
+<XMP>
+    mg_type  MGVTBL              Type of magicalness
+    -------  ------              -------------------
+    \0       vtbl_sv             Regexp???
+    A        vtbl_amagic         Operator Overloading
+    a        vtbl_amagicelem     Operator Overloading
+    c        0                   Used in Operator Overloading
+    B        vtbl_bm             Boyer-Moore???
+    E        vtbl_env            %ENV hash
+    e        vtbl_envelem        %ENV hash element
+    g        vtbl_mglob          Regexp /g flag???
+    I        vtbl_isa            @ISA array
+    i        vtbl_isaelem        @ISA array element
+    L        0 (but sets RMAGICAL)     Perl Module/Debugger???
+    l        vtbl_dbline         Debugger?
+    P        vtbl_pack           Tied Array or Hash
+    p        vtbl_packelem       Tied Array or Hash element
+    q        vtbl_packelem       Tied Scalar or Handle
+    S        vtbl_sig            Signal Hash
+    s        vtbl_sigelem        Signal Hash element
+    t        vtbl_taint          Taintedness
+    U        vtbl_uvar           ???
+    v        vtbl_vec            Vector
+    x        vtbl_substr         Substring???
+    *        vtbl_glob           GV???
+    #        vtbl_arylen         Array Length
+    .        vtbl_pos            $. scalar variable
+    ~        Reserved for extensions, but multiple extensions may clash
+
+</XMP>
+<p>When an upper-case and lower-case letter both exist in the table, then the
+upper-case letter is used to represent some kind of composite type (a list
+or a hash), and the lower-case letter is used to represent an element of
+that composite type.
+<p>
+<H2> 
+<A NAME="perlguts_finding_0">
+Finding Magic</A>
+</H2>
+
+<XMP>
+    MAGIC* mg_find(SV*, int type); /* Finds the magic pointer of that type */
+
+</XMP>
+<p>This routine returns a pointer to the <CODE>MAGIC</CODE> structure stored in the SV.
+If the SV does not have that magical feature, <CODE>NULL</CODE> is returned.  Also,
+if the SV is not of type SVt_PVMG, Perl may core-dump.
+<p>
+<XMP>
+    int mg_copy(SV* sv, SV* nsv, char* key, STRLEN klen);
+
+</XMP>
+<p>This routine checks to see what types of magic <CODE>sv</CODE> has.  If the mg_type
+field is an upper-case letter, then the mg_obj is copied to <CODE>nsv</CODE>, but
+the mg_type field is changed to be the lower-case letter.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_double_typed_0">
+Double-Typed SVs</A>
+</H1>
+Scalar variables normally contain only one type of value, an integer,
+double, pointer, or reference.  Perl will automatically convert the
+actual scalar data from the stored type into the requested type.
+<p>Some scalar variables contain more than one type of scalar data.  For
+example, the variable <CODE>$!</CODE> contains either the numeric value of <CODE>errno</CODE>
+or its string equivalent from either <CODE>strerror</CODE> or <CODE>sys_errlist[]</CODE>.
+<p>To force multiple data values into an SV, you must do two things: use the
+<CODE>sv_set*v</CODE> routines to add the additional scalar type, then set a flag
+so that Perl will believe it contains more than one type of data.  The
+four macros to set the flags are:
+<p>
+<XMP>
+        SvIOK_on
+        SvNOK_on
+        SvPOK_on
+        SvROK_on
+
+</XMP>
+<p>The particular macro you must use depends on which <CODE>sv_set*v</CODE> routine
+you called first.  This is because every <CODE>sv_set*v</CODE> routine turns on
+only the bit for the particular type of data being set, and turns off
+all the rest.
+<p>For example, to create a new Perl variable called ``dberror'' that contains
+both the numeric and descriptive string error values, you could use the
+following code:
+<p>
+<XMP>
+    extern int  dberror;
+    extern char *dberror_list;
+    SV* sv = perl_get_sv("dberror", TRUE);
+    sv_setiv(sv, (IV) dberror);
+    sv_setpv(sv, dberror_list[dberror]);
+    SvIOK_on(sv);
+
+</XMP>
+<p>If the order of 
+<A HREF="perlguts.html#perlguts_sv_setiv_0">sv_setiv</A>
+ and 
+<A HREF="perlguts.html#perlguts_sv_setpv_0">sv_setpv</A>
+ had been reversed, then the
+macro 
+<A HREF="perlguts.html#perlguts_svpok_on_0">SvPOK_on</A>
+ would need to be called instead of 
+<A HREF="perlguts.html#perlguts_sviok_on_0">SvIOK_on</A>
+.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_calling_0">
+Calling Perl Routines from within C Programs</A>
+</H1>
+There are four routines that can be used to call a Perl subroutine from
+within a C program.  These four are:
+<p>
+<XMP>
+    I32  perl_call_sv(SV*, I32);
+    I32  perl_call_pv(char*, I32);
+    I32  perl_call_method(char*, I32);
+    I32  perl_call_argv(char*, I32, register char**);
+
+</XMP>
+<p>The routine most often used is 
+<A HREF="perlguts.html#perlguts_perl_call_sv_0">perl_call_sv</A>
+.  The <CODE>SV*</CODE> argument
+contains either the name of the Perl subroutine to be called, or a
+reference to the subroutine.  The second argument consists of flags
+that control the context in which the subroutine is called, whether
+or not the subroutine is being passed arguments, how errors should be
+trapped, and how to treat return values.
+<p>All four routines return the number of arguments that the subroutine returned
+on the Perl stack.
+<p>When using any of these routines (except 
+<A HREF="perlguts.html#perlguts_perl_call_argv_0">perl_call_argv</A>
+), the programmer
+must manipulate the Perl stack.  These include the following macros and
+functions:
+<p>
+<XMP>
+    dSP
+    PUSHMARK()
+    PUTBACK
+    SPAGAIN
+    ENTER
+    SAVETMPS
+    FREETMPS
+    LEAVE
+    XPUSH*()
+    POP*()
+
+</XMP>
+<p>For more information, consult the <EM>perlcall</EM>  manpage
+.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_memory_0">
+Memory Allocation</A>
+</H1>
+It is strongly suggested that you use the version of malloc that is distributed
+with Perl.  It keeps pools of various sizes of unallocated memory in order to
+more quickly satisfy allocation requests.
+However, on some platforms, it may cause spurious malloc or free errors.
+<p>
+<XMP>
+    New(x, pointer, number, type);
+    Newc(x, pointer, number, type, cast);
+    Newz(x, pointer, number, type);
+
+</XMP>
+<p>These three macros are used to initially allocate memory.  The first argument
+<CODE>x</CODE> was a ``magic cookie'' that was used to keep track of who called the macro,
+to help when debugging memory problems.  However, the current code makes no
+use of this feature (Larry has switched to using a run-time memory checker),
+so this argument can be any number.
+<p>The second argument <CODE>pointer</CODE> will point to the newly allocated memory.
+The third and fourth arguments <CODE>number</CODE> and <CODE>type</CODE> specify how many of
+the specified type of data structure should be allocated.  The argument
+<CODE>type</CODE> is passed to <CODE>sizeof</CODE>.  The final argument to 
+<A HREF="perlguts.html#perlguts_newc_0">Newc</A>
+, <CODE>cast</CODE>,
+should be used if the <CODE>pointer</CODE> argument is different from the <CODE>type</CODE>
+argument.
+<p>Unlike the 
+<A HREF="perlguts.html#perlguts_new_0">New</A>
+ and 
+<A HREF="perlguts.html#perlguts_newc_0">Newc</A>
+ macros, the 
+<A HREF="perlguts.html#perlguts_newz_0">Newz</A>
+ macro calls <CODE>memzero</CODE>
+to zero out all the newly allocated memory.
+<p>
+<XMP>
+    Renew(pointer, number, type);
+    Renewc(pointer, number, type, cast);
+    Safefree(pointer)
+
+</XMP>
+<p>These three macros are used to change a memory buffer size or to free a
+piece of memory no longer needed.  The arguments to 
+<A HREF="perlguts.html#perlguts_renew_0">Renew</A>
+ and 
+<A HREF="perlguts.html#perlguts_renewc_0">Renewc</A>
+
+match those of 
+<A HREF="perlguts.html#perlguts_new_0">New</A>
+ and 
+<A HREF="perlguts.html#perlguts_newc_0">Newc</A>
+ with the exception of not needing the
+``magic cookie'' argument.
+<p>
+<XMP>
+    Move(source, dest, number, type);
+    Copy(source, dest, number, type);
+    Zero(dest, number, type);
+
+</XMP>
+<p>These three macros are used to move, copy, or zero out previously allocated
+memory.  The <CODE>source</CODE> and <CODE>dest</CODE> arguments point to the source and
+destination starting points.  Perl will move, copy, or zero out <CODE>number</CODE>
+instances of the size of the <CODE>type</CODE> data structure (using the <CODE>sizeof</CODE>
+function).
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_api_0">
+API LISTING</A>
+</H1>
+This is a listing of functions, macros, flags, and variables that may be
+useful to extension writers or that may be found while reading other
+extensions.
+<p>
+<DL COMPACT>
+<DT><STRONG>
+
+<A NAME="perlguts_avfill_0">
+AvFILL</A>
+
+</STRONG>
+<DD>
+See 
+<A HREF="perlguts.html#perlguts_av_len_0">av_len</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_clear_0">
+av_clear</A>
+
+</STRONG>
+<DD>
+Clears an array, making it empty.
+<p><UL><LI>	void	av_clear _((AV* ar));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_extend_0">
+av_extend</A>
+
+</STRONG>
+<DD>
+Pre-extend an array.  The <CODE>key</CODE> is the index to which the array should be
+extended.
+<p><UL><LI>	void	av_extend _((AV* ar, I32 key));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_fetch_0">
+av_fetch</A>
+
+</STRONG>
+<DD>
+Returns the SV at the specified index in the array.  The <CODE>key</CODE> is the
+index.  If <CODE>lval</CODE> is set then the fetch will be part of a store.  Check
+that the return value is non-null before dereferencing it to a <CODE>SV*</CODE>.
+<p>
+<XMP>
+        SV**    av_fetch _((AV* ar, I32 key, I32 lval));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_len_0">
+av_len</A>
+
+</STRONG>
+<DD>
+Returns the highest index in the array.  Returns -1 if the array is empty.
+<p><UL><LI>	I32	av_len _((AV* ar));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_make_0">
+av_make</A>
+
+</STRONG>
+<DD>
+Creates a new AV and populates it with a list of SVs.  The SVs are copied
+into the array, so they may be freed after the call to av_make.  The new AV
+will have a refcount of 1.
+<p>
+<XMP>
+        AV*     av_make _((I32 size, SV** svp));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_pop_0">
+av_pop</A>
+
+</STRONG>
+<DD>
+Pops an SV off the end of the array.  Returns <CODE>&amp;sv_undef</CODE> if the array is
+empty.
+<p>
+<XMP>
+        SV*     av_pop _((AV* ar));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_push_0">
+av_push</A>
+
+</STRONG>
+<DD>
+Pushes an SV onto the end of the array.  The array will grow automatically
+to accommodate the addition.
+<p><UL><LI>	void	av_push _((AV* ar, SV* val));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_shift_0">
+av_shift</A>
+
+</STRONG>
+<DD>
+Shifts an SV off the beginning of the array.
+<p>
+<XMP>
+        SV*     av_shift _((AV* ar));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_store_0">
+av_store</A>
+
+</STRONG>
+<DD>
+Stores an SV in an array.  The array index is specified as <CODE>key</CODE>.  The
+return value will be null if the operation failed, otherwise it can be
+dereferenced to get the original <CODE>SV*</CODE>.
+<p>
+<XMP>
+        SV**    av_store _((AV* ar, I32 key, SV* val));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_undef_0">
+av_undef</A>
+
+</STRONG>
+<DD>
+Undefines the array.
+<p><UL><LI>	void	av_undef _((AV* ar));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_av_unshift_0">
+av_unshift</A>
+
+</STRONG>
+<DD>
+Unshift an SV onto the beginning of the array.  The array will grow
+automatically to accommodate the addition.
+<p><UL><LI>	void	av_unshift _((AV* ar, I32 num));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_class_0">
+CLASS</A>
+
+</STRONG>
+<DD>
+Variable which is setup by <CODE>xsubpp</CODE> to indicate the class name for a C++ XS
+constructor.  This is always a <CODE>char*</CODE>.  See 
+<A HREF="perlguts.html#perlguts_this_0">THIS</A>
+ and
+<EM>``Using XS With C++''</EM>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_copy_0">
+Copy</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>memcpy</CODE> function.  The <CODE>s</CODE> is the
+source, <CODE>d</CODE> is the destination, <CODE>n</CODE> is the number of items, and <CODE>t</CODE> is
+the type.
+<p>
+<XMP>
+        (void) Copy( s, d, n, t );
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_croak_0">
+croak</A>
+
+</STRONG>
+<DD>
+This is the XSUB-writer's interface to Perl's <CODE>die</CODE> function.  Use this
+function the same way you use the C <CODE>printf</CODE> function.  See 
+<A HREF="perlguts.html#perlguts_warn_0">warn</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_cvstash_0">
+CvSTASH</A>
+
+</STRONG>
+<DD>
+Returns the stash of the CV.
+<p>
+<XMP>
+        HV * CvSTASH( SV* sv )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dbsingle_0">
+DBsingle</A>
+
+</STRONG>
+<DD>
+When Perl is run in debugging mode, with the <STRONG>-d</STRONG> switch, this SV is a
+boolean which indicates whether subs are being single-stepped.
+Single-stepping is automatically turned on after every step.  This is the C
+variable which corresponds to Perl's <STRONG>$DB::single</STRONG> variable.  See 
+<A HREF="perlguts.html#perlguts_dbsub_0">DBsub</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dbsub_0">
+DBsub</A>
+
+</STRONG>
+<DD>
+When Perl is run in debugging mode, with the <STRONG>-d</STRONG> switch, this GV contains
+the SV which holds the name of the sub being debugged.  This is the C
+variable which corresponds to Perl's <STRONG>$DB::sub</STRONG> variable.  See 
+<A HREF="perlguts.html#perlguts_dbsingle_0">DBsingle</A>
+.
+The sub name can be found by
+<p>
+<XMP>
+        SvPV( GvSV( DBsub ), na )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dbtrace_0">
+DBtrace</A>
+
+</STRONG>
+<DD>
+Trace variable used when Perl is run in debugging mode, with the <STRONG>-d</STRONG>
+switch.  This is the C variable which corresponds to Perl's <STRONG>$DB::trace</STRONG>
+variable.  See 
+<A HREF="perlguts.html#perlguts_dbsingle_0">DBsingle</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dmark_0">
+dMARK</A>
+
+</STRONG>
+<DD>
+Declare a stack marker variable, <CODE>mark</CODE>, for the XSUB.  See 
+<A HREF="perlguts.html#perlguts_mark_0">MARK</A>
+ and
+
+<A HREF="perlguts.html#perlguts_dorigmark_0">dORIGMARK</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dorigmark_0">
+dORIGMARK</A>
+
+</STRONG>
+<DD>
+Saves the original stack mark for the XSUB.  See 
+<A HREF="perlguts.html#perlguts_origmark_0">ORIGMARK</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dowarn_0">
+dowarn</A>
+
+</STRONG>
+<DD>
+The C variable which corresponds to Perl's <STRONG>$^</STRONG>W warning variable.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dsp_0">
+dSP</A>
+
+</STRONG>
+<DD>
+Declares a stack pointer variable, <CODE>sp</CODE>, for the XSUB.  See 
+<A HREF="perlguts.html#perlguts_sp_0">SP</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dxsargs_0">
+dXSARGS</A>
+
+</STRONG>
+<DD>
+Sets up stack and mark pointers for an XSUB, calling dSP and dMARK.  This is
+usually handled automatically by <CODE>xsubpp</CODE>.  Declares the 
+<A HREF="perlguts.html#perlguts_items_0">items</A>
+ variable
+to indicate the number of items on the stack.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dxsi_0">
+dXSI32</A>
+
+</STRONG>
+<DD>
+Sets up the 
+<A HREF="perlguts.html#perlguts_ix_0">ix</A>
+ variable for an XSUB which has aliases.  This is usually
+handled automatically by <CODE>xsubpp</CODE>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_dxsi_0">
+dXSI32</A>
+
+</STRONG>
+<DD>
+Sets up the 
+<A HREF="perlguts.html#perlguts_ix_0">ix</A>
+ variable for an XSUB which has aliases.  This is usually
+handled automatically by <CODE>xsubpp</CODE>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_enter_0">
+ENTER</A>
+
+</STRONG>
+<DD>
+Opening bracket on a callback.  See 
+<A HREF="perlguts.html#perlguts_leave_0">LEAVE</A>
+ and the <EM>perlcall</EM>  manpage
+.
+<p>
+<XMP>
+        ENTER;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_extend_0">
+EXTEND</A>
+
+</STRONG>
+<DD>
+Used to extend the argument stack for an XSUB's return values.
+<p>
+<XMP>
+        EXTEND( sp, int x );
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_freetmps_0">
+FREETMPS</A>
+
+</STRONG>
+<DD>
+Closing bracket for temporaries on a callback.  See 
+<A HREF="perlguts.html#perlguts_savetmps_0">SAVETMPS</A>
+ and
+the <EM>perlcall</EM>  manpage
+.
+<p>
+<XMP>
+        FREETMPS;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_g_array_0">
+G_ARRAY</A>
+
+</STRONG>
+<DD>
+Used to indicate array context.  See 
+<A HREF="perlguts.html#perlguts_gimme_0">GIMME</A>
+ and the <EM>perlcall</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_g_discard_0">
+G_DISCARD</A>
+
+</STRONG>
+<DD>
+Indicates that arguments returned from a callback should be discarded.  See
+the <EM>perlcall</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_g_eval_0">
+G_EVAL</A>
+
+</STRONG>
+<DD>
+Used to force a Perl <CODE>eval</CODE> wrapper around a callback.  See the <EM>perlcall</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_gimme_0">
+GIMME</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's equivalent to Perl's <CODE>wantarray</CODE>.  Returns 
+<A HREF="perlguts.html#perlguts_g_scalar_0">G_SCALAR</A>
+ or
+
+<A HREF="perlguts.html#perlguts_g_array_0">G_ARRAY</A>
+ for scalar or array context.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_g_noargs_0">
+G_NOARGS</A>
+
+</STRONG>
+<DD>
+Indicates that no arguments are being sent to a callback.  See the <EM>perlcall</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_g_scalar_0">
+G_SCALAR</A>
+
+</STRONG>
+<DD>
+Used to indicate scalar context.  See 
+<A HREF="perlguts.html#perlguts_gimme_0">GIMME</A>
+ and the <EM>perlcall</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_gv_stashpv_0">
+gv_stashpv</A>
+
+</STRONG>
+<DD>
+Returns a pointer to the stash for a specified package.  If <CODE>create</CODE> is set
+then the package will be created if it does not already exist.  If <CODE>create</CODE>
+is not set and the package does not exist then NULL is returned.
+<p>
+<XMP>
+        HV*     gv_stashpv _((char* name, I32 create));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_gv_stashsv_0">
+gv_stashsv</A>
+
+</STRONG>
+<DD>
+Returns a pointer to the stash for a specified package.  See 
+<A HREF="perlguts.html#perlguts_gv_stashpv_0">gv_stashpv</A>
+.
+<p>
+<XMP>
+        HV*     gv_stashsv _((SV* sv, I32 create));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_gvsv_0">
+GvSV</A>
+
+</STRONG>
+<DD>
+Return the SV from the GV.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_he_free_0">
+he_free</A>
+
+</STRONG>
+<DD>
+Releases a hash entry from an iterator.  See 
+<A HREF="perlguts.html#perlguts_hv_iternext_0">hv_iternext</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_clear_0">
+hv_clear</A>
+
+</STRONG>
+<DD>
+Clears a hash, making it empty.
+<p><UL><LI>	void	hv_clear _((HV* tb));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_delete_0">
+hv_delete</A>
+
+</STRONG>
+<DD>
+Deletes a key/value pair in the hash.  The value SV is removed from the hash
+and returned to the caller.  The <CODE>klen</CODE> is the length of the key.  The
+<CODE>flags</CODE> value will normally be zero; if set to G_DISCARD then null will be
+returned.
+<p>
+<XMP>
+        SV*     hv_delete _((HV* tb, char* key, U32 klen, I32 flags));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_exists_0">
+hv_exists</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the specified hash key exists.  The
+<CODE>klen</CODE> is the length of the key.
+<p><UL><LI>	bool	hv_exists _((HV* tb, char* key, U32 klen));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_fetch_0">
+hv_fetch</A>
+
+</STRONG>
+<DD>
+Returns the SV which corresponds to the specified key in the hash.  The
+<CODE>klen</CODE> is the length of the key.  If <CODE>lval</CODE> is set then the fetch will be
+part of a store.  Check that the return value is non-null before
+dereferencing it to a <CODE>SV*</CODE>.
+<p>
+<XMP>
+        SV**    hv_fetch _((HV* tb, char* key, U32 klen, I32 lval));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_iterinit_0">
+hv_iterinit</A>
+
+</STRONG>
+<DD>
+Prepares a starting point to traverse a hash table.
+<p><UL><LI>	I32	hv_iterinit _((HV* tb));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_iterkey_0">
+hv_iterkey</A>
+
+</STRONG>
+<DD>
+Returns the key from the current position of the hash iterator.  See
+
+<A HREF="perlguts.html#perlguts_hv_iterinit_0">hv_iterinit</A>
+.
+<p>
+<XMP>
+        char*   hv_iterkey _((HE* entry, I32* retlen));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_iternext_0">
+hv_iternext</A>
+
+</STRONG>
+<DD>
+Returns entries from a hash iterator.  See 
+<A HREF="perlguts.html#perlguts_hv_iterinit_0">hv_iterinit</A>
+.
+<p>
+<XMP>
+        HE*     hv_iternext _((HV* tb));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_iternextsv_0">
+hv_iternextsv</A>
+
+</STRONG>
+<DD>
+Performs an 
+<A HREF="perlguts.html#perlguts_hv_iternext_0">hv_iternext</A>
+, 
+<A HREF="perlguts.html#perlguts_hv_iterkey_0">hv_iterkey</A>
+, and 
+<A HREF="perlguts.html#perlguts_hv_iterval_0">hv_iterval</A>
+ in one
+operation.
+<p>
+<XMP>
+        SV *    hv_iternextsv _((HV* hv, char** key, I32* retlen));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_iterval_0">
+hv_iterval</A>
+
+</STRONG>
+<DD>
+Returns the value from the current position of the hash iterator.  See
+
+<A HREF="perlguts.html#perlguts_hv_iterkey_0">hv_iterkey</A>
+.
+<p>
+<XMP>
+        SV*     hv_iterval _((HV* tb, HE* entry));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_magic_0">
+hv_magic</A>
+
+</STRONG>
+<DD>
+Adds magic to a hash.  See 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+.
+<p><UL><LI>	void	hv_magic _((HV* hv, GV* gv, int how));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hvname_0">
+HvNAME</A>
+
+</STRONG>
+<DD>
+Returns the package name of a stash.  See 
+<A HREF="perlguts.html#perlguts_svstash_0">SvSTASH</A>
+, 
+<A HREF="perlguts.html#perlguts_cvstash_0">CvSTASH</A>
+.
+<p>
+<XMP>
+        char *HvNAME (HV* stash)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_store_0">
+hv_store</A>
+
+</STRONG>
+<DD>
+Stores an SV in a hash.  The hash key is specified as <CODE>key</CODE> and <CODE>klen</CODE> is
+the length of the key.  The <CODE>hash</CODE> parameter is the pre-computed hash
+value; if it is zero then Perl will compute it.  The return value will be
+null if the operation failed, otherwise it can be dereferenced to get the
+original <CODE>SV*</CODE>.
+<p>
+<XMP>
+        SV**    hv_store _((HV* tb, char* key, U32 klen, SV* val, U32 hash));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_hv_undef_0">
+hv_undef</A>
+
+</STRONG>
+<DD>
+Undefines the hash.
+<p><UL><LI>	void	hv_undef _((HV* tb));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_isalnum_0">
+isALNUM</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the C <CODE>char</CODE> is an ascii alphanumeric
+character.
+<p>
+<XMP>
+        int isALNUM (char c)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_isalpha_0">
+isALPHA</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the C <CODE>char</CODE> is an ascii alphabetic
+character.
+<p>
+<XMP>
+        int isALPHA (char c)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_isdigit_0">
+isDIGIT</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the C <CODE>char</CODE> is an ascii digit.
+<p>
+<XMP>
+        int isDIGIT (char c)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_islower_0">
+isLOWER</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the C <CODE>char</CODE> is a lowercase character.
+<p>
+<XMP>
+        int isLOWER (char c)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_isspace_0">
+isSPACE</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the C <CODE>char</CODE> is whitespace.
+<p>
+<XMP>
+        int isSPACE (char c)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_isupper_0">
+isUPPER</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the C <CODE>char</CODE> is an uppercase character.
+<p>
+<XMP>
+        int isUPPER (char c)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_items_0">
+items</A>
+
+</STRONG>
+<DD>
+Variable which is setup by <CODE>xsubpp</CODE> to indicate the number of items on the
+stack.  See <EM>``Variable-length Parameter Lists''</EM>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_ix_0">
+ix</A>
+
+</STRONG>
+<DD>
+Variable which is setup by <CODE>xsubpp</CODE> to indicate which of an XSUB's aliases
+was used to invoke it.  See <EM>``The ALIAS: Keyword''</EM>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_leave_0">
+LEAVE</A>
+
+</STRONG>
+<DD>
+Closing bracket on a callback.  See 
+<A HREF="perlguts.html#perlguts_enter_0">ENTER</A>
+ and the <EM>perlcall</EM>  manpage
+.
+<p>
+<XMP>
+        LEAVE;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_mark_0">
+MARK</A>
+
+</STRONG>
+<DD>
+Stack marker variable for the XSUB.  See 
+<A HREF="perlguts.html#perlguts_dmark_0">dMARK</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_mg_clear_0">
+mg_clear</A>
+
+</STRONG>
+<DD>
+Clear something magical that the SV represents.  See 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+.
+<p><UL><LI>	int	mg_clear _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_mg_copy_0">
+mg_copy</A>
+
+</STRONG>
+<DD>
+Copies the magic from one SV to another.  See 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+.
+<p><UL><LI>	int	mg_copy _((SV *, SV *, char *, STRLEN));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_mg_find_0">
+mg_find</A>
+
+</STRONG>
+<DD>
+Finds the magic pointer for type matching the SV.  See 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+.
+<p>
+<XMP>
+        MAGIC*  mg_find _((SV* sv, int type));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_mg_free_0">
+mg_free</A>
+
+</STRONG>
+<DD>
+Free any magic storage used by the SV.  See 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+.
+<p><UL><LI>	int	mg_free _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_mg_get_0">
+mg_get</A>
+
+</STRONG>
+<DD>
+Do magic after a value is retrieved from the SV.  See 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+.
+<p><UL><LI>	int	mg_get _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_mg_len_0">
+mg_len</A>
+
+</STRONG>
+<DD>
+Report on the SV's length.  See 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+.
+<p><UL><LI>	U32	mg_len _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_mg_magical_0">
+mg_magical</A>
+
+</STRONG>
+<DD>
+Turns on the magical status of an SV.  See 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+.
+<p><UL><LI>	void	mg_magical _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_mg_set_0">
+mg_set</A>
+
+</STRONG>
+<DD>
+Do magic after a value is assigned to the SV.  See 
+<A HREF="perlguts.html#perlguts_sv_magic_0">sv_magic</A>
+.
+<p><UL><LI>	int	mg_set _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_move_0">
+Move</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>memmove</CODE> function.  The <CODE>s</CODE> is the
+source, <CODE>d</CODE> is the destination, <CODE>n</CODE> is the number of items, and <CODE>t</CODE> is
+the type.
+<p>
+<XMP>
+        (void) Move( s, d, n, t );
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_na_0">
+na</A>
+
+</STRONG>
+<DD>
+A variable which may be used with 
+<A HREF="perlguts.html#perlguts_svpv_0">SvPV</A>
+ to tell Perl to calculate the
+string length.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_new_0">
+New</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>malloc</CODE> function.
+<p>
+<XMP>
+        void * New( x, void *ptr, int size, type )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newc_0">
+Newc</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>malloc</CODE> function, with cast.
+<p>
+<XMP>
+        void * Newc( x, void *ptr, int size, type, cast )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newz_0">
+Newz</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>malloc</CODE> function.  The allocated
+memory is zeroed with <CODE>memzero</CODE>.
+<p>
+<XMP>
+        void * Newz( x, void *ptr, int size, type )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newav_0">
+newAV</A>
+
+</STRONG>
+<DD>
+Creates a new AV.  The refcount is set to 1.
+<p>
+<XMP>
+        AV*     newAV _((void));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newhv_0">
+newHV</A>
+
+</STRONG>
+<DD>
+Creates a new HV.  The refcount is set to 1.
+<p>
+<XMP>
+        HV*     newHV _((void));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newrv_0">
+newRV</A>
+
+</STRONG>
+<DD>
+Creates an RV wrapper for an SV.  The refcount for the original SV is
+incremented.
+<p>
+<XMP>
+        SV*     newRV _((SV* ref));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newsv_0">
+newSV</A>
+
+</STRONG>
+<DD>
+Creates a new SV.  The <CODE>len</CODE> parameter indicates the number of bytes of
+pre-allocated string space the SV should have.  The refcount for the new SV
+is set to 1.
+<p>
+<XMP>
+        SV*     newSV _((STRLEN len));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newsviv_0">
+newSViv</A>
+
+</STRONG>
+<DD>
+Creates a new SV and copies an integer into it.  The refcount for the SV is
+set to 1.
+<p>
+<XMP>
+        SV*     newSViv _((IV i));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newsvnv_0">
+newSVnv</A>
+
+</STRONG>
+<DD>
+Creates a new SV and copies a double into it.  The refcount for the SV is
+set to 1.
+<p>
+<XMP>
+        SV*     newSVnv _((NV i));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newsvpv_0">
+newSVpv</A>
+
+</STRONG>
+<DD>
+Creates a new SV and copies a string into it.  The refcount for the SV is
+set to 1.  If <CODE>len</CODE> is zero then Perl will compute the length.
+<p>
+<XMP>
+        SV*     newSVpv _((char* s, STRLEN len));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newsvrv_0">
+newSVrv</A>
+
+</STRONG>
+<DD>
+Creates a new SV for the RV, <CODE>rv</CODE>, to point to.  If <CODE>rv</CODE> is not an RV then
+it will be upgraded to one.  If <CODE>classname</CODE> is non-null then the new SV will
+be blessed in the specified package.  The new SV is returned and its
+refcount is 1.
+<p>
+<XMP>
+        SV*     newSVrv _((SV* rv, char* classname));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newsvsv_0">
+newSVsv</A>
+
+</STRONG>
+<DD>
+Creates a new SV which is an exact duplicate of the original SV.
+<p>
+<XMP>
+        SV*     newSVsv _((SV* old));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newxs_0">
+newXS</A>
+
+</STRONG>
+<DD>
+Used by <CODE>xsubpp</CODE> to hook up XSUBs as Perl subs.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_newxsproto_0">
+newXSproto</A>
+
+</STRONG>
+<DD>
+Used by <CODE>xsubpp</CODE> to hook up XSUBs as Perl subs.  Adds Perl prototypes to
+the subs.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_nullav_0">
+Nullav</A>
+
+</STRONG>
+<DD>
+Null AV pointer.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_nullch_0">
+Nullch</A>
+
+</STRONG>
+<DD>
+Null character pointer.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_nullcv_0">
+Nullcv</A>
+
+</STRONG>
+<DD>
+Null CV pointer.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_nullhv_0">
+Nullhv</A>
+
+</STRONG>
+<DD>
+Null HV pointer.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_nullsv_0">
+Nullsv</A>
+
+</STRONG>
+<DD>
+Null SV pointer.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_origmark_0">
+ORIGMARK</A>
+
+</STRONG>
+<DD>
+The original stack mark for the XSUB.  See 
+<A HREF="perlguts.html#perlguts_dorigmark_0">dORIGMARK</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_alloc_0">
+perl_alloc</A>
+
+</STRONG>
+<DD>
+Allocates a new Perl interpreter.  See the <EM>perlembed</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_call_argv_0">
+perl_call_argv</A>
+
+</STRONG>
+<DD>
+Performs a callback to the specified Perl sub.  See the <EM>perlcall</EM>  manpage
+.
+<p><UL><LI>	I32	perl_call_argv _((char* subname, I32 flags, char** argv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_call_method_0">
+perl_call_method</A>
+
+</STRONG>
+<DD>
+Performs a callback to the specified Perl method.  The blessed object must
+be on the stack.  See the <EM>perlcall</EM>  manpage
+.
+<p><UL><LI>	I32	perl_call_method _((char* methname, I32 flags));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_call_pv_0">
+perl_call_pv</A>
+
+</STRONG>
+<DD>
+Performs a callback to the specified Perl sub.  See the <EM>perlcall</EM>  manpage
+.
+<p><UL><LI>	I32	perl_call_pv _((char* subname, I32 flags));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_call_sv_0">
+perl_call_sv</A>
+
+</STRONG>
+<DD>
+Performs a callback to the Perl sub whose name is in the SV.  See
+the <EM>perlcall</EM>  manpage
+.
+<p><UL><LI>	I32	perl_call_sv _((SV* sv, I32 flags));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_construct_0">
+perl_construct</A>
+
+</STRONG>
+<DD>
+Initializes a new Perl interpreter.  See the <EM>perlembed</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_destruct_0">
+perl_destruct</A>
+
+</STRONG>
+<DD>
+Shuts down a Perl interpreter.  See the <EM>perlembed</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_eval_sv_0">
+perl_eval_sv</A>
+
+</STRONG>
+<DD>
+Tells Perl to <CODE>eval</CODE> the string in the SV.
+<p><UL><LI>	I32	perl_eval_sv _((SV* sv, I32 flags));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_free_0">
+perl_free</A>
+
+</STRONG>
+<DD>
+Releases a Perl interpreter.  See the <EM>perlembed</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_get_av_0">
+perl_get_av</A>
+
+</STRONG>
+<DD>
+Returns the AV of the specified Perl array.  If <CODE>create</CODE> is set and the
+Perl variable does not exist then it will be created.  If <CODE>create</CODE> is not
+set and the variable does not exist then null is returned.
+<p>
+<XMP>
+        AV*     perl_get_av _((char* name, I32 create));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_get_cv_0">
+perl_get_cv</A>
+
+</STRONG>
+<DD>
+Returns the CV of the specified Perl sub.  If <CODE>create</CODE> is set and the Perl
+variable does not exist then it will be created.  If <CODE>create</CODE> is not
+set and the variable does not exist then null is returned.
+<p>
+<XMP>
+        CV*     perl_get_cv _((char* name, I32 create));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_get_hv_0">
+perl_get_hv</A>
+
+</STRONG>
+<DD>
+Returns the HV of the specified Perl hash.  If <CODE>create</CODE> is set and the Perl
+variable does not exist then it will be created.  If <CODE>create</CODE> is not
+set and the variable does not exist then null is returned.
+<p>
+<XMP>
+        HV*     perl_get_hv _((char* name, I32 create));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_get_sv_0">
+perl_get_sv</A>
+
+</STRONG>
+<DD>
+Returns the SV of the specified Perl scalar.  If <CODE>create</CODE> is set and the
+Perl variable does not exist then it will be created.  If <CODE>create</CODE> is not
+set and the variable does not exist then null is returned.
+<p>
+<XMP>
+        SV*     perl_get_sv _((char* name, I32 create));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_parse_0">
+perl_parse</A>
+
+</STRONG>
+<DD>
+Tells a Perl interpreter to parse a Perl script.  See the <EM>perlembed</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_require_pv_0">
+perl_require_pv</A>
+
+</STRONG>
+<DD>
+Tells Perl to <CODE>require</CODE> a module.
+<p><UL><LI>	void	perl_require_pv _((char* pv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_perl_run_0">
+perl_run</A>
+
+</STRONG>
+<DD>
+Tells a Perl interpreter to run.  See the <EM>perlembed</EM>  manpage
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_popi_0">
+POPi</A>
+
+</STRONG>
+<DD>
+Pops an integer off the stack.
+<p>
+<XMP>
+        int POPi();
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_popl_0">
+POPl</A>
+
+</STRONG>
+<DD>
+Pops a long off the stack.
+<p>
+<XMP>
+        long POPl();
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_popp_0">
+POPp</A>
+
+</STRONG>
+<DD>
+Pops a string off the stack.
+<p>
+<XMP>
+        char * POPp();
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_popn_0">
+POPn</A>
+
+</STRONG>
+<DD>
+Pops a double off the stack.
+<p>
+<XMP>
+        double POPn();
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_pops_0">
+POPs</A>
+
+</STRONG>
+<DD>
+Pops an SV off the stack.
+<p>
+<XMP>
+        SV* POPs();
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_pushmark_0">
+PUSHMARK</A>
+
+</STRONG>
+<DD>
+Opening bracket for arguments on a callback.  See 
+<A HREF="perlguts.html#perlguts_putback_0">PUTBACK</A>
+ and the <EM>perlcall</EM>  manpage
+.
+<p>
+<XMP>
+        PUSHMARK(p)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_pushi_0">
+PUSHi</A>
+
+</STRONG>
+<DD>
+Push an integer onto the stack.  The stack must have room for this element.
+See 
+<A HREF="perlguts.html#perlguts_xpushi_0">XPUSHi</A>
+.
+<p>
+<XMP>
+        PUSHi(int d)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_pushn_0">
+PUSHn</A>
+
+</STRONG>
+<DD>
+Push a double onto the stack.  The stack must have room for this element.
+See 
+<A HREF="perlguts.html#perlguts_xpushn_0">XPUSHn</A>
+.
+<p>
+<XMP>
+        PUSHn(double d)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_pushp_0">
+PUSHp</A>
+
+</STRONG>
+<DD>
+Push a string onto the stack.  The stack must have room for this element.
+The <CODE>len</CODE> indicates the length of the string.  See 
+<A HREF="perlguts.html#perlguts_xpushp_0">XPUSHp</A>
+.
+<p>
+<XMP>
+        PUSHp(char *c, int len )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_pushs_0">
+PUSHs</A>
+
+</STRONG>
+<DD>
+Push an SV onto the stack.  The stack must have room for this element.  See
+
+<A HREF="perlguts.html#perlguts_xpushs_0">XPUSHs</A>
+.
+<p>
+<XMP>
+        PUSHs(sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_putback_0">
+PUTBACK</A>
+
+</STRONG>
+<DD>
+Closing bracket for XSUB arguments.  This is usually handled by <CODE>xsubpp</CODE>.
+See 
+<A HREF="perlguts.html#perlguts_pushmark_0">PUSHMARK</A>
+ and the <EM>perlcall</EM>  manpage
+ for other uses.
+<p>
+<XMP>
+        PUTBACK;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_renew_0">
+Renew</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>realloc</CODE> function.
+<p>
+<XMP>
+        void * Renew( void *ptr, int size, type )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_renewc_0">
+Renewc</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>realloc</CODE> function, with cast.
+<p>
+<XMP>
+        void * Renewc( void *ptr, int size, type, cast )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_retval_0">
+RETVAL</A>
+
+</STRONG>
+<DD>
+Variable which is setup by <CODE>xsubpp</CODE> to hold the return value for an XSUB.
+This is always the proper type for the XSUB.
+See <EM>``The RETVAL Variable''</EM>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_safefree_0">
+safefree</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>free</CODE> function.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_safemalloc_0">
+safemalloc</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>malloc</CODE> function.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_saferealloc_0">
+saferealloc</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>realloc</CODE> function.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_savepv_0">
+savepv</A>
+
+</STRONG>
+<DD>
+Copy a string to a safe spot.  This does not use an SV.
+<p>
+<XMP>
+        char*   savepv _((char* sv));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_savepvn_0">
+savepvn</A>
+
+</STRONG>
+<DD>
+Copy a string to a safe spot.  The <CODE>len</CODE> indicates number of bytes to
+copy.  This does not use an SV.
+<p>
+<XMP>
+        char*   savepvn _((char* sv, I32 len));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_savetmps_0">
+SAVETMPS</A>
+
+</STRONG>
+<DD>
+Opening bracket for temporaries on a callback.  See 
+<A HREF="perlguts.html#perlguts_freetmps_0">FREETMPS</A>
+ and
+the <EM>perlcall</EM>  manpage
+.
+<p>
+<XMP>
+        SAVETMPS;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sp_0">
+SP</A>
+
+</STRONG>
+<DD>
+Stack pointer.  This is usually handled by <CODE>xsubpp</CODE>.  See 
+<A HREF="perlguts.html#perlguts_dsp_0">dSP</A>
+ and
+
+<A HREF="perlguts.html#perlguts_spagain_0">SPAGAIN</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_spagain_0">
+SPAGAIN</A>
+
+</STRONG>
+<DD>
+Refetch the stack pointer.  Used after a callback.  See the <EM>perlcall</EM>  manpage
+.
+<p>
+<XMP>
+        SPAGAIN;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_st_0">
+ST</A>
+
+</STRONG>
+<DD>
+Used to access elements on the XSUB's stack.
+<p>
+<XMP>
+        SV* ST(int x)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_streq_0">
+strEQ</A>
+
+</STRONG>
+<DD>
+Test two strings to see if they are equal.  Returns true or false.
+<p>
+<XMP>
+        int strEQ( char *s1, char *s2 )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_strge_0">
+strGE</A>
+
+</STRONG>
+<DD>
+Test two strings to see if the first, <CODE>s1</CODE>, is greater than or equal to the
+second, <CODE>s2</CODE>.  Returns true or false.
+<p>
+<XMP>
+        int strGE( char *s1, char *s2 )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_strgt_0">
+strGT</A>
+
+</STRONG>
+<DD>
+Test two strings to see if the first, <CODE>s1</CODE>, is greater than the second,
+<CODE>s2</CODE>.  Returns true or false.
+<p>
+<XMP>
+        int strGT( char *s1, char *s2 )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_strle_0">
+strLE</A>
+
+</STRONG>
+<DD>
+Test two strings to see if the first, <CODE>s1</CODE>, is less than or equal to the
+second, <CODE>s2</CODE>.  Returns true or false.
+<p>
+<XMP>
+        int strLE( char *s1, char *s2 )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_strlt_0">
+strLT</A>
+
+</STRONG>
+<DD>
+Test two strings to see if the first, <CODE>s1</CODE>, is less than the second,
+<CODE>s2</CODE>.  Returns true or false.
+<p>
+<XMP>
+        int strLT( char *s1, char *s2 )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_strne_0">
+strNE</A>
+
+</STRONG>
+<DD>
+Test two strings to see if they are different.  Returns true or false.
+<p>
+<XMP>
+        int strNE( char *s1, char *s2 )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_strneq_0">
+strnEQ</A>
+
+</STRONG>
+<DD>
+Test two strings to see if they are equal.  The <CODE>len</CODE> parameter indicates
+the number of bytes to compare.  Returns true or false.
+<p>
+<XMP>
+        int strnEQ( char *s1, char *s2 )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_strnne_0">
+strnNE</A>
+
+</STRONG>
+<DD>
+Test two strings to see if they are different.  The <CODE>len</CODE> parameter
+indicates the number of bytes to compare.  Returns true or false.
+<p>
+<XMP>
+        int strnNE( char *s1, char *s2, int len )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_mortal_0">
+sv_2mortal</A>
+
+</STRONG>
+<DD>
+Marks an SV as mortal.  The SV will be destroyed when the current context
+ends.
+<p>
+<XMP>
+        SV*     sv_2mortal _((SV* sv));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_bless_0">
+sv_bless</A>
+
+</STRONG>
+<DD>
+Blesses an SV into a specified package.  The SV must be an RV.  The package
+must be designated by its stash (see 
+<A HREF="perlguts.html#perlguts_gv_stashpv_0">
+<A HREF="perlguts.html#perlguts_gv_stashpv_0">gv_stashpv()</A>
+</A>
+).  The refcount of the
+SV is unaffected.
+<p>
+<XMP>
+        SV*     sv_bless _((SV* sv, HV* stash));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_catpv_0">
+sv_catpv</A>
+
+</STRONG>
+<DD>
+Concatenates the string onto the end of the string which is in the SV.
+<p><UL><LI>	void	sv_catpv _((SV* sv, char* ptr));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_catpvn_0">
+sv_catpvn</A>
+
+</STRONG>
+<DD>
+Concatenates the string onto the end of the string which is in the SV.  The
+<CODE>len</CODE> indicates number of bytes to copy.
+<p><UL><LI>	void	sv_catpvn _((SV* sv, char* ptr, STRLEN len));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_catsv_0">
+sv_catsv</A>
+
+</STRONG>
+<DD>
+Concatenates the string from SV <CODE>ssv</CODE> onto the end of the string in SV
+<CODE>dsv</CODE>.
+<p><UL><LI>	void	sv_catsv _((SV* dsv, SV* ssv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_cmp_0">
+sv_cmp</A>
+
+</STRONG>
+<DD>
+Compares the strings in two SVs.  Returns -1, 0, or 1 indicating whether the
+string in <CODE>sv1</CODE> is less than, equal to, or greater than the string in
+<CODE>sv2</CODE>.
+<p><UL><LI>	I32	sv_cmp _((SV* sv1, SV* sv2));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_cmp_0">
+sv_cmp</A>
+
+</STRONG>
+<DD>
+Compares the strings in two SVs.  Returns -1, 0, or 1 indicating whether the
+string in <CODE>sv1</CODE> is less than, equal to, or greater than the string in
+<CODE>sv2</CODE>.
+<p><UL><LI>	I32	sv_cmp _((SV* sv1, SV* sv2));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svcur_0">
+SvCUR</A>
+
+</STRONG>
+<DD>
+Returns the length of the string which is in the SV.  See 
+<A HREF="perlguts.html#perlguts_svlen_0">SvLEN</A>
+.
+<p>
+<XMP>
+        int SvCUR (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svcur_set_0">
+SvCUR_set</A>
+
+</STRONG>
+<DD>
+Set the length of the string which is in the SV.  See 
+<A HREF="perlguts.html#perlguts_svcur_0">SvCUR</A>
+.
+<p>
+<XMP>
+        SvCUR_set (SV* sv, int val )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_dec_0">
+sv_dec</A>
+
+</STRONG>
+<DD>
+Autodecrement of the value in the SV.
+<p><UL><LI>	void	sv_dec _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_dec_0">
+sv_dec</A>
+
+</STRONG>
+<DD>
+Autodecrement of the value in the SV.
+<p><UL><LI>	void	sv_dec _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svend_0">
+SvEND</A>
+
+</STRONG>
+<DD>
+Returns a pointer to the last character in the string which is in the SV.
+See 
+<A HREF="perlguts.html#perlguts_svcur_0">SvCUR</A>
+.  Access the character as
+<p>
+<XMP>
+        *SvEND(sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_eq_0">
+sv_eq</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the strings in the two SVs are
+identical.
+<p><UL><LI>	I32	sv_eq _((SV* sv1, SV* sv2));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svgrow_0">
+SvGROW</A>
+
+</STRONG>
+<DD>
+Expands the character buffer in the SV.  Calls 
+<A HREF="perlguts.html#perlguts_sv_grow_0">sv_grow</A>
+ to perform the
+expansion if necessary.  Returns a pointer to the character buffer.
+<p>
+<XMP>
+        char * SvGROW( SV* sv, int len )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_grow_0">
+sv_grow</A>
+
+</STRONG>
+<DD>
+Expands the character buffer in the SV.  This will use 
+<A HREF="perlguts.html#perlguts_sv_unref_0">sv_unref</A>
+ and will
+upgrade the SV to 
+<A HREF="perlguts.html#perlguts_svt_pv_0">SVt_PV</A>
+.  Returns a pointer to the character buffer.
+Use 
+<A HREF="perlguts.html#perlguts_svgrow_0">SvGROW</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_inc_0">
+sv_inc</A>
+
+</STRONG>
+<DD>
+Autoincrement of the value in the SV.
+<p><UL><LI>	void	sv_inc _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sviok_0">
+SvIOK</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV contains an integer.
+<p>
+<XMP>
+        int SvIOK (SV* SV)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sviok_off_0">
+SvIOK_off</A>
+
+</STRONG>
+<DD>
+Unsets the IV status of an SV.
+<p>
+<XMP>
+        SvIOK_off (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sviok_on_0">
+SvIOK_on</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is an integer.
+<p>
+<XMP>
+        SvIOK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sviok_only_0">
+SvIOK_only</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is an integer and disables all other OK bits.
+<p>
+<XMP>
+        SvIOK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sviok_only_0">
+SvIOK_only</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is an integer and disables all other OK bits.
+<p>
+<XMP>
+        SvIOK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sviokp_0">
+SvIOKp</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV contains an integer.  Checks the
+<STRONG>private</STRONG> setting.  Use 
+<A HREF="perlguts.html#perlguts_sviok_0">SvIOK</A>
+.
+<p>
+<XMP>
+        int SvIOKp (SV* SV)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_isa_0">
+sv_isa</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV is blessed into the specified
+class.  This does not know how to check for subtype, so it doesn't work in
+an inheritance relationship.
+<p><UL><LI>	int	sv_isa _((SV* sv, char* name));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sviv_0">
+SvIV</A>
+
+</STRONG>
+<DD>
+Returns the integer which is in the SV.
+<p>
+<XMP>
+        int SvIV (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_isobject_0">
+sv_isobject</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV is an RV pointing to a blessed
+object.  If the SV is not an RV, or if the object is not blessed, then this
+will return false.
+<p><UL><LI>	int	sv_isobject _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svivx_0">
+SvIVX</A>
+
+</STRONG>
+<DD>
+Returns the integer which is stored in the SV.
+<p>
+<XMP>
+        int  SvIVX (SV* sv);
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svlen_0">
+SvLEN</A>
+
+</STRONG>
+<DD>
+Returns the size of the string buffer in the SV.  See 
+<A HREF="perlguts.html#perlguts_svcur_0">SvCUR</A>
+.
+<p>
+<XMP>
+        int SvLEN (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_len_0">
+sv_len</A>
+
+</STRONG>
+<DD>
+Returns the length of the string in the SV.  Use 
+<A HREF="perlguts.html#perlguts_svcur_0">SvCUR</A>
+.
+<p><UL><LI>	STRLEN	sv_len _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_len_0">
+sv_len</A>
+
+</STRONG>
+<DD>
+Returns the length of the string in the SV.  Use 
+<A HREF="perlguts.html#perlguts_svcur_0">SvCUR</A>
+.
+<p><UL><LI>	STRLEN	sv_len _((SV* sv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_magic_0">
+sv_magic</A>
+
+</STRONG>
+<DD>
+Adds magic to an SV.
+<p><UL><LI>	void	sv_magic _((SV* sv, SV* obj, int how, char* name, I32 namlen));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_mortalcopy_0">
+sv_mortalcopy</A>
+
+</STRONG>
+<DD>
+Creates a new SV which is a copy of the original SV.  The new SV is marked
+as mortal.
+<p>
+<XMP>
+        SV*     sv_mortalcopy _((SV* oldsv));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svok_0">
+SvOK</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the value is an SV.
+<p>
+<XMP>
+        int SvOK (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_newmortal_0">
+sv_newmortal</A>
+
+</STRONG>
+<DD>
+Creates a new SV which is mortal.  The refcount of the SV is set to 1.
+<p>
+<XMP>
+        SV*     sv_newmortal _((void));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_no_0">
+sv_no</A>
+
+</STRONG>
+<DD>
+This is the <CODE>false</CODE> SV.  See 
+<A HREF="perlguts.html#perlguts_sv_yes_0">sv_yes</A>
+.  Always refer to this as <CODE>&amp;sv_no</CODE>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svniok_0">
+SvNIOK</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV contains a number, integer or
+double.
+<p>
+<XMP>
+        int SvNIOK (SV* SV)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svniok_off_0">
+SvNIOK_off</A>
+
+</STRONG>
+<DD>
+Unsets the NV/IV status of an SV.
+<p>
+<XMP>
+        SvNIOK_off (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svniokp_0">
+SvNIOKp</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV contains a number, integer or
+double.  Checks the <STRONG>private</STRONG> setting.  Use 
+<A HREF="perlguts.html#perlguts_svniok_0">SvNIOK</A>
+.
+<p>
+<XMP>
+        int SvNIOKp (SV* SV)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svnok_0">
+SvNOK</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV contains a double.
+<p>
+<XMP>
+        int SvNOK (SV* SV)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svnok_off_0">
+SvNOK_off</A>
+
+</STRONG>
+<DD>
+Unsets the NV status of an SV.
+<p>
+<XMP>
+        SvNOK_off (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svnok_on_0">
+SvNOK_on</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is a double.
+<p>
+<XMP>
+        SvNOK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svnok_only_0">
+SvNOK_only</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is a double and disables all other OK bits.
+<p>
+<XMP>
+        SvNOK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svnok_only_0">
+SvNOK_only</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is a double and disables all other OK bits.
+<p>
+<XMP>
+        SvNOK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svnokp_0">
+SvNOKp</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV contains a double.  Checks the
+<STRONG>private</STRONG> setting.  Use 
+<A HREF="perlguts.html#perlguts_svnok_0">SvNOK</A>
+.
+<p>
+<XMP>
+        int SvNOKp (SV* SV)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svnv_0">
+SvNV</A>
+
+</STRONG>
+<DD>
+Returns the double which is stored in the SV.
+<p>
+<XMP>
+        double SvNV (SV* sv);
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svnvx_0">
+SvNVX</A>
+
+</STRONG>
+<DD>
+Returns the double which is stored in the SV.
+<p>
+<XMP>
+        double SvNVX (SV* sv);
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svpok_0">
+SvPOK</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV contains a character string.
+<p>
+<XMP>
+        int SvPOK (SV* SV)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svpok_off_0">
+SvPOK_off</A>
+
+</STRONG>
+<DD>
+Unsets the PV status of an SV.
+<p>
+<XMP>
+        SvPOK_off (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svpok_on_0">
+SvPOK_on</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is a string.
+<p>
+<XMP>
+        SvPOK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svpok_only_0">
+SvPOK_only</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is a string and disables all other OK bits.
+<p>
+<XMP>
+        SvPOK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svpok_only_0">
+SvPOK_only</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is a string and disables all other OK bits.
+<p>
+<XMP>
+        SvPOK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svpokp_0">
+SvPOKp</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether the SV contains a character string.
+Checks the <STRONG>private</STRONG> setting.  Use 
+<A HREF="perlguts.html#perlguts_svpok_0">SvPOK</A>
+.
+<p>
+<XMP>
+        int SvPOKp (SV* SV)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svpv_0">
+SvPV</A>
+
+</STRONG>
+<DD>
+Returns a pointer to the string in the SV, or a stringified form of the SV
+if the SV does not contain a string.  If <CODE>len</CODE> is 
+<A HREF="perlguts.html#perlguts_na_0">na</A>
+ then Perl will
+handle the length on its own.
+<p>
+<XMP>
+        char * SvPV (SV* sv, int len )
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svpvx_0">
+SvPVX</A>
+
+</STRONG>
+<DD>
+Returns a pointer to the string in the SV.  The SV must contain a string.
+<p>
+<XMP>
+        char * SvPVX (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svrefcnt_0">
+SvREFCNT</A>
+
+</STRONG>
+<DD>
+Returns the value of the object's refcount.
+<p>
+<XMP>
+        int SvREFCNT (SV* sv);
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svrefcnt_dec_0">
+SvREFCNT_dec</A>
+
+</STRONG>
+<DD>
+Decrements the refcount of the given SV.
+<p>
+<XMP>
+        void SvREFCNT_dec (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svrefcnt_inc_0">
+SvREFCNT_inc</A>
+
+</STRONG>
+<DD>
+Increments the refcount of the given SV.
+<p>
+<XMP>
+        void SvREFCNT_inc (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svrok_0">
+SvROK</A>
+
+</STRONG>
+<DD>
+Tests if the SV is an RV.
+<p>
+<XMP>
+        int SvROK (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svrok_off_0">
+SvROK_off</A>
+
+</STRONG>
+<DD>
+Unsets the RV status of an SV.
+<p>
+<XMP>
+        SvROK_off (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svrok_on_0">
+SvROK_on</A>
+
+</STRONG>
+<DD>
+Tells an SV that it is an RV.
+<p>
+<XMP>
+        SvROK_on (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svrv_0">
+SvRV</A>
+
+</STRONG>
+<DD>
+Dereferences an RV to return the SV.
+<p>
+<XMP>
+        SV*     SvRV (SV* sv);
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_setiv_0">
+sv_setiv</A>
+
+</STRONG>
+<DD>
+Copies an integer into the given SV.
+<p><UL><LI>	void	sv_setiv _((SV* sv, IV num));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_setnv_0">
+sv_setnv</A>
+
+</STRONG>
+<DD>
+Copies a double into the given SV.
+<p><UL><LI>	void	sv_setnv _((SV* sv, double num));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_setpv_0">
+sv_setpv</A>
+
+</STRONG>
+<DD>
+Copies a string into an SV.  The string must be null-terminated.
+<p><UL><LI>	void	sv_setpv _((SV* sv, char* ptr));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_setpvn_0">
+sv_setpvn</A>
+
+</STRONG>
+<DD>
+Copies a string into an SV.  The <CODE>len</CODE> parameter indicates the number of
+bytes to be copied.
+<p><UL><LI>	void	sv_setpvn _((SV* sv, char* ptr, STRLEN len));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_setref_iv_0">
+sv_setref_iv</A>
+
+</STRONG>
+<DD>
+Copies an integer into a new SV, optionally blessing the SV.  The <CODE>rv</CODE>
+argument will be upgraded to an RV.  That RV will be modified to point to
+the new SV.  The <CODE>classname</CODE> argument indicates the package for the
+blessing.  Set <CODE>classname</CODE> to 
+<A HREF="perlguts.html#perlguts_nullch_0">Nullch</A>
+ to avoid the blessing.  The new SV
+will be returned and will have a refcount of 1.
+<p>
+<XMP>
+        SV*     sv_setref_iv _((SV *rv, char *classname, IV iv));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_setref_nv_0">
+sv_setref_nv</A>
+
+</STRONG>
+<DD>
+Copies a double into a new SV, optionally blessing the SV.  The <CODE>rv</CODE>
+argument will be upgraded to an RV.  That RV will be modified to point to
+the new SV.  The <CODE>classname</CODE> argument indicates the package for the
+blessing.  Set <CODE>classname</CODE> to 
+<A HREF="perlguts.html#perlguts_nullch_0">Nullch</A>
+ to avoid the blessing.  The new SV
+will be returned and will have a refcount of 1.
+<p>
+<XMP>
+        SV*     sv_setref_nv _((SV *rv, char *classname, double nv));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_setref_pv_0">
+sv_setref_pv</A>
+
+</STRONG>
+<DD>
+Copies a pointer into a new SV, optionally blessing the SV.  The <CODE>rv</CODE>
+argument will be upgraded to an RV.  That RV will be modified to point to
+the new SV.  If the <CODE>pv</CODE> argument is NULL then 
+<A HREF="perlguts.html#perlguts_sv_undef_0">sv_undef</A>
+ will be placed
+into the SV.  The <CODE>classname</CODE> argument indicates the package for the
+blessing.  Set <CODE>classname</CODE> to 
+<A HREF="perlguts.html#perlguts_nullch_0">Nullch</A>
+ to avoid the blessing.  The new SV
+will be returned and will have a refcount of 1.
+<p>
+<XMP>
+        SV*     sv_setref_pv _((SV *rv, char *classname, void* pv));
+
+</XMP>
+<p>Do not use with integral Perl types such as HV, AV, SV, CV, because those
+objects will become corrupted by the pointer copy process.
+<p>Note that 
+<A HREF="perlguts.html#perlguts_sv_setref_pvn_0">sv_setref_pvn</A>
+ copies the string while this copies the pointer.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_setref_pvn_0">
+sv_setref_pvn</A>
+
+</STRONG>
+<DD>
+Copies a string into a new SV, optionally blessing the SV.  The length of the
+string must be specified with <CODE>n</CODE>.  The <CODE>rv</CODE> argument will be upgraded to
+an RV.  That RV will be modified to point to the new SV.  The <CODE>classname</CODE>
+argument indicates the package for the blessing.  Set <CODE>classname</CODE> to
+
+<A HREF="perlguts.html#perlguts_nullch_0">Nullch</A>
+ to avoid the blessing.  The new SV will be returned and will have
+a refcount of 1.
+<p>
+<XMP>
+        SV*     sv_setref_pvn _((SV *rv, char *classname, char* pv, I32 n));
+
+</XMP>
+<p>Note that 
+<A HREF="perlguts.html#perlguts_sv_setref_pv_0">sv_setref_pv</A>
+ copies the pointer while this copies the string.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_setsv_0">
+sv_setsv</A>
+
+</STRONG>
+<DD>
+Copies the contents of the source SV <CODE>ssv</CODE> into the destination SV <CODE>dsv</CODE>.
+The source SV may be destroyed if it is mortal.
+<p><UL><LI>	void	sv_setsv _((SV* dsv, SV* ssv));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svstash_0">
+SvSTASH</A>
+
+</STRONG>
+<DD>
+Returns the stash of the SV.
+<p>
+<XMP>
+        HV * SvSTASH (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svt_iv_0">
+SVt_IV</A>
+
+</STRONG>
+<DD>
+Integer type flag for scalars.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svt_pv_0">
+SVt_PV</A>
+
+</STRONG>
+<DD>
+Pointer type flag for scalars.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svt_pvav_0">
+SVt_PVAV</A>
+
+</STRONG>
+<DD>
+Type flag for arrays.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svt_pvcv_0">
+SVt_PVCV</A>
+
+</STRONG>
+<DD>
+Type flag for code refs.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svt_pvhv_0">
+SVt_PVHV</A>
+
+</STRONG>
+<DD>
+Type flag for hashes.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svt_pvmg_0">
+SVt_PVMG</A>
+
+</STRONG>
+<DD>
+Type flag for blessed scalars.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svt_nv_0">
+SVt_NV</A>
+
+</STRONG>
+<DD>
+Double type flag for scalars.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svtrue_0">
+SvTRUE</A>
+
+</STRONG>
+<DD>
+Returns a boolean indicating whether Perl would evaluate the SV as true or
+false, defined or undefined.
+<p>
+<XMP>
+        int SvTRUE (SV* sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svtype_0">
+SvTYPE</A>
+
+</STRONG>
+<DD>
+Returns the type of the SV.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p><UL><LI>	svtype	SvTYPE (SV* sv)</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svtype_1">
+svtype</A>
+
+</STRONG>
+<DD>
+An enum of flags for Perl types.  These are found in the file <STRONG>sv.h</STRONG> in the
+
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+ enum.  Test these flags with the 
+<A HREF="perlguts.html#perlguts_svtype_0">SvTYPE</A>
+ macro.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_svupgrade_0">
+SvUPGRADE</A>
+
+</STRONG>
+<DD>
+Used to upgrade an SV to a more complex form.  Uses 
+<A HREF="perlguts.html#perlguts_sv_upgrade_0">sv_upgrade</A>
+ to perform
+the upgrade if necessary.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p>
+<XMP>
+        bool    SvUPGRADE _((SV* sv, svtype mt));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_upgrade_0">
+sv_upgrade</A>
+
+</STRONG>
+<DD>
+Upgrade an SV to a more complex form.  Use 
+<A HREF="perlguts.html#perlguts_svupgrade_0">SvUPGRADE</A>
+.  See 
+<A HREF="perlguts.html#perlguts_svtype_1">svtype</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_undef_0">
+sv_undef</A>
+
+</STRONG>
+<DD>
+This is the <CODE>undef</CODE> SV.  Always refer to this as <CODE>&amp;sv_undef</CODE>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_unref_0">
+sv_unref</A>
+
+</STRONG>
+<DD>
+Unsets the RV status of the SV, and decrements the refcount of whatever was
+being referenced by the RV.  This can almost be thought of as a reversal of
+
+<A HREF="perlguts.html#perlguts_newsvrv_0">newSVrv</A>
+.  See 
+<A HREF="perlguts.html#perlguts_svrok_off_0">SvROK_off</A>
+.
+<p>
+<XMP>
+        void    sv_unref _((SV* sv));
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_usepvn_0">
+sv_usepvn</A>
+
+</STRONG>
+<DD>
+Tells an SV to use <CODE>ptr</CODE> to find its string value.  Normally the string is
+stored inside the SV but sv_usepvn allows the SV to use an outside string.
+The <CODE>ptr</CODE> should point to memory that was allocated by <CODE>malloc</CODE>.  The
+string length, <CODE>len</CODE>, must be supplied.  This function will realloc the
+memory pointed to by <CODE>ptr</CODE>, so that pointer should not be freed or used by
+the programmer after giving it to sv_usepvn.
+<p><UL><LI>	void	sv_usepvn _((SV* sv, char* ptr, STRLEN len));</LI>
+</UL>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_sv_yes_0">
+sv_yes</A>
+
+</STRONG>
+<DD>
+This is the <CODE>true</CODE> SV.  See 
+<A HREF="perlguts.html#perlguts_sv_no_0">sv_no</A>
+.  Always refer to this as <CODE>&amp;sv_yes</CODE>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_this_0">
+THIS</A>
+
+</STRONG>
+<DD>
+Variable which is setup by <CODE>xsubpp</CODE> to designate the object in a C++ XSUB.
+This is always the proper type for the C++ object.  See 
+<A HREF="perlguts.html#perlguts_class_0">CLASS</A>
+ and
+<EM>``Using XS With C++''</EM>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_tolower_0">
+toLOWER</A>
+
+</STRONG>
+<DD>
+Converts the specified character to lowercase.
+<p>
+<XMP>
+        int toLOWER (char c)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_toupper_0">
+toUPPER</A>
+
+</STRONG>
+<DD>
+Converts the specified character to uppercase.
+<p>
+<XMP>
+        int toUPPER (char c)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_warn_0">
+warn</A>
+
+</STRONG>
+<DD>
+This is the XSUB-writer's interface to Perl's 
+<A HREF="perlguts.html#perlguts_warn_0">warn</A>
+ function.  Use this
+function the same way you use the C <CODE>printf</CODE> function.  See 
+<A HREF="perlguts.html#perlguts_croak_0">
+<A HREF="perlguts.html#perlguts_croak_0">croak()</A>
+</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xpushi_0">
+XPUSHi</A>
+
+</STRONG>
+<DD>
+Push an integer onto the stack, extending the stack if necessary.  See
+
+<A HREF="perlguts.html#perlguts_pushi_0">PUSHi</A>
+.
+<p>
+<XMP>
+        XPUSHi(int d)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xpushn_0">
+XPUSHn</A>
+
+</STRONG>
+<DD>
+Push a double onto the stack, extending the stack if necessary.  See
+
+<A HREF="perlguts.html#perlguts_pushn_0">PUSHn</A>
+.
+<p>
+<XMP>
+        XPUSHn(double d)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xpushp_0">
+XPUSHp</A>
+
+</STRONG>
+<DD>
+Push a string onto the stack, extending the stack if necessary.  The <CODE>len</CODE>
+indicates the length of the string.  See 
+<A HREF="perlguts.html#perlguts_pushp_0">PUSHp</A>
+.
+<p>
+<XMP>
+        XPUSHp(char *c, int len)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xpushs_0">
+XPUSHs</A>
+
+</STRONG>
+<DD>
+Push an SV onto the stack, extending the stack if necessary.  See 
+<A HREF="perlguts.html#perlguts_pushs_0">PUSHs</A>
+.
+<p>
+<XMP>
+        XPUSHs(sv)
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xs_0">
+XS</A>
+
+</STRONG>
+<DD>
+Macro to declare an XSUB and its C parameter list.  This is handled by
+<CODE>xsubpp</CODE>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xsreturn_0">
+XSRETURN</A>
+
+</STRONG>
+<DD>
+Return from XSUB, indicating number of items on the stack.  This is usually
+handled by <CODE>xsubpp</CODE>.
+<p>
+<XMP>
+        XSRETURN(int x);
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xsreturn_empty_0">
+XSRETURN_EMPTY</A>
+
+</STRONG>
+<DD>
+Return an empty list from an XSUB immediately.
+<p>
+<XMP>
+        XSRETURN_EMPTY;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xsreturn_iv_0">
+XSRETURN_IV</A>
+
+</STRONG>
+<DD>
+Return an integer from an XSUB immediately.  Uses 
+<A HREF="perlguts.html#perlguts_xst_miv_0">XST_mIV</A>
+.
+<p>
+<XMP>
+        XSRETURN_IV(IV v);
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xsreturn_no_0">
+XSRETURN_NO</A>
+
+</STRONG>
+<DD>
+Return <CODE>&amp;sv_no</CODE> from an XSUB immediately.  Uses 
+<A HREF="perlguts.html#perlguts_xst_mno_0">XST_mNO</A>
+.
+<p>
+<XMP>
+        XSRETURN_NO;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xsreturn_nv_0">
+XSRETURN_NV</A>
+
+</STRONG>
+<DD>
+Return an double from an XSUB immediately.  Uses 
+<A HREF="perlguts.html#perlguts_xst_mnv_0">XST_mNV</A>
+.
+<p>
+<XMP>
+        XSRETURN_NV(NV v);
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xsreturn_pv_0">
+XSRETURN_PV</A>
+
+</STRONG>
+<DD>
+Return a copy of a string from an XSUB immediately.  Uses 
+<A HREF="perlguts.html#perlguts_xst_mpv_0">XST_mPV</A>
+.
+<p>
+<XMP>
+        XSRETURN_PV(char *v);
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xsreturn_undef_0">
+XSRETURN_UNDEF</A>
+
+</STRONG>
+<DD>
+Return <CODE>&amp;sv_undef</CODE> from an XSUB immediately.  Uses 
+<A HREF="perlguts.html#perlguts_xst_mundef_0">XST_mUNDEF</A>
+.
+<p>
+<XMP>
+        XSRETURN_UNDEF;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xsreturn_yes_0">
+XSRETURN_YES</A>
+
+</STRONG>
+<DD>
+Return <CODE>&amp;sv_yes</CODE> from an XSUB immediately.  Uses 
+<A HREF="perlguts.html#perlguts_xst_myes_0">XST_mYES</A>
+.
+<p>
+<XMP>
+        XSRETURN_YES;
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xst_miv_0">
+XST_mIV</A>
+
+</STRONG>
+<DD>
+Place an integer into the specified position <CODE>i</CODE> on the stack.  The value is
+stored in a new mortal SV.
+<p>
+<XMP>
+        XST_mIV( int i, IV v );
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xst_mnv_0">
+XST_mNV</A>
+
+</STRONG>
+<DD>
+Place a double into the specified position <CODE>i</CODE> on the stack.  The value is
+stored in a new mortal SV.
+<p>
+<XMP>
+        XST_mNV( int i, NV v );
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xst_mno_0">
+XST_mNO</A>
+
+</STRONG>
+<DD>
+Place <CODE>&amp;sv_no</CODE> into the specified position <CODE>i</CODE> on the stack.
+<p>
+<XMP>
+        XST_mNO( int i );
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xst_mpv_0">
+XST_mPV</A>
+
+</STRONG>
+<DD>
+Place a copy of a string into the specified position <CODE>i</CODE> on the stack.  The
+value is stored in a new mortal SV.
+<p>
+<XMP>
+        XST_mPV( int i, char *v );
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xst_mundef_0">
+XST_mUNDEF</A>
+
+</STRONG>
+<DD>
+Place <CODE>&amp;sv_undef</CODE> into the specified position <CODE>i</CODE> on the stack.
+<p>
+<XMP>
+        XST_mUNDEF( int i );
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xst_myes_0">
+XST_mYES</A>
+
+</STRONG>
+<DD>
+Place <CODE>&amp;sv_yes</CODE> into the specified position <CODE>i</CODE> on the stack.
+<p>
+<XMP>
+        XST_mYES( int i );
+
+</XMP>
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xs_version_0">
+XS_VERSION</A>
+
+</STRONG>
+<DD>
+The version identifier for an XS module.  This is usually handled
+automatically by <CODE>ExtUtils::MakeMaker</CODE>.  See 
+<A HREF="perlguts.html#perlguts_xs_version_bootcheck_0">XS_VERSION_BOOTCHECK</A>
+.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_xs_version_bootcheck_0">
+XS_VERSION_BOOTCHECK</A>
+
+</STRONG>
+<DD>
+Macro to verify that a PM module's <STRONG>$VERSION</STRONG> variable matches the XS module's
+
+<A HREF="perlguts.html#perlguts_xs_version_0">XS_VERSION</A>
+ variable.  This is usually handled automatically by
+<CODE>xsubpp</CODE>.  See <EM>``The VERSIONCHECK: Keyword''</EM>.
+<p>
+<DT><STRONG>
+
+<A NAME="perlguts_zero_0">
+Zero</A>
+
+</STRONG>
+<DD>
+The XSUB-writer's interface to the C <CODE>memzero</CODE> function.  The <CODE>d</CODE> is the
+destination, <CODE>n</CODE> is the number of items, and <CODE>t</CODE> is the type.
+<p>
+<XMP>
+        (void) Zero( d, n, t );
+
+</XMP>
+<p>
+</DL>
+<p><hr>
+
+<H1> 
+<A NAME="perlguts_author_0">
+AUTHOR</A>
+</H1>
+Jeff Okamoto &lt;<EM><A HREF="MAILTO:okamoto@corp.hp.com">okamoto@corp.hp.com</A></EM>&gt;
+<p>With lots of help and suggestions from Dean Roehrich, Malcolm Beattie,
+Andreas Koenig, Paul Hudson, Ilya Zakharevich, Paul Marquess, Neil
+Bowers, Matthew Green, Tim Bunce, and Spider Boardman.
+<p>API Listing by Dean Roehrich &lt;<EM><A HREF="MAILTO:roehrich@cray.com">roehrich@cray.com</A></EM>&gt;.
+<p><p><hr>
+
+<H1> 
+<A NAME="perlguts_date_0">
+DATE</A>
+</H1>
+Version 22: 1996/9/23
+<p>
+</BODY>
+</HTML>

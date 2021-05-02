@@ -1,0 +1,146 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import java.util.Vector;
+
+public class mainFrame extends JFrame {
+  JPanel contentPane;
+  JMenuBar jMenuBar1 = new JMenuBar();
+  JMenu jMenuFile = new JMenu();
+  JMenuItem jMenuFileExit = new JMenuItem();
+  JMenu jMenuHelp = new JMenu();
+  JMenuItem jMenuHelpAbout = new JMenuItem();
+  JLabel statusBar = new JLabel();
+  BorderLayout borderLayout1 = new BorderLayout();
+  JMenuItem jMenuPlanErstellen = new JMenuItem();
+  TitledBorder titledBorder1;
+  Vector allEatables_;
+  JPanel myJPanelEingabeWerte;
+  //Construct the frame
+  public mainFrame() {
+    enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+  public mainFrame(Vector allEatables) {
+    enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+    try {
+      jbInit();
+      allEatables_=allEatables;
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+  public void closechild(int jPanel)
+  {
+    if (jPanel==1)
+    {
+
+      myJPanelEingabeWerte = new JPanelAuswahl();
+      contentPane.remove(1);
+      contentPane.add(myJPanelEingabeWerte, BorderLayout.CENTER,1);
+      this.validate();
+
+
+    }
+
+  }
+
+
+  //Component initialization
+  private void jbInit() throws Exception  {
+    contentPane = (JPanel) this.getContentPane();
+    titledBorder1 = new TitledBorder("");
+    contentPane.setLayout(borderLayout1);
+    this.getContentPane().setBackground(SystemColor.control);
+    this.setSize(new Dimension(800, 600));
+    this.setTitle("Frame Title");
+    statusBar.setText(" ");
+    jMenuFile.setText("Diätplanung");
+    jMenuFileExit.setText("Exit");
+    jMenuFileExit.addActionListener(new mainFrame_jMenuFileExit_ActionAdapter(this));
+    jMenuHelp.setText("Help");
+    jMenuHelpAbout.setText("About");
+    jMenuHelpAbout.addActionListener(new mainFrame_jMenuHelpAbout_ActionAdapter(this));
+    contentPane.setMaximumSize(new Dimension(2147483647, 2147483647));
+    contentPane.setMinimumSize(new Dimension(640, 480));
+    contentPane.setPreferredSize(new Dimension(640, 180));
+    jMenuPlanErstellen.setText("Plan Erstellen");
+    jMenuPlanErstellen.addActionListener(new mainFrame_jMenuPlanErstellen_actionAdapter(this));
+    jMenuFile.add(jMenuPlanErstellen);
+    jMenuFile.add(jMenuFileExit);
+    jMenuHelp.add(jMenuHelpAbout);
+    jMenuBar1.add(jMenuFile);
+    jMenuBar1.add(jMenuHelp);
+    contentPane.add(statusBar, BorderLayout.SOUTH);
+    this.setJMenuBar(jMenuBar1);
+  }
+  //File | Exit action performed
+  public void jMenuFileExit_actionPerformed(ActionEvent e) {
+    System.exit(0);
+  }
+  //Help | About action performed
+  public void jMenuHelpAbout_actionPerformed(ActionEvent e) {
+  }
+  //Overridden so we can exit when window is closed
+  protected void processWindowEvent(WindowEvent e) {
+    super.processWindowEvent(e);
+    if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+      jMenuFileExit_actionPerformed(null);
+    }
+  }
+
+  void jMenuPlanErstellen_actionPerformed(ActionEvent e) {
+
+
+    myJPanelEingabeWerte = new JPanelWerte(this);
+    contentPane.add(myJPanelEingabeWerte, BorderLayout.CENTER);
+    this.validate();
+
+
+  }
+
+
+
+
+
+}
+
+class mainFrame_jMenuFileExit_ActionAdapter implements java.awt.event.ActionListener {
+  mainFrame adaptee;
+
+  mainFrame_jMenuFileExit_ActionAdapter(mainFrame adaptee) {
+    this.adaptee = adaptee;
+  }
+  public void actionPerformed(ActionEvent e) {
+    adaptee.jMenuFileExit_actionPerformed(e);
+  }
+}
+
+class mainFrame_jMenuHelpAbout_ActionAdapter implements java.awt.event.ActionListener {
+  mainFrame adaptee;
+
+  mainFrame_jMenuHelpAbout_ActionAdapter(mainFrame adaptee) {
+    this.adaptee = adaptee;
+  }
+  public void actionPerformed(ActionEvent e) {
+    adaptee.jMenuHelpAbout_actionPerformed(e);
+  }
+}
+
+class mainFrame_jMenuPlanErstellen_actionAdapter implements java.awt.event.ActionListener {
+  mainFrame adaptee;
+
+  mainFrame_jMenuPlanErstellen_actionAdapter(mainFrame adaptee) {
+    this.adaptee = adaptee;
+  }
+  public void actionPerformed(ActionEvent e) {
+    adaptee.jMenuPlanErstellen_actionPerformed(e);
+  }
+}

@@ -1,0 +1,2 @@
+defauldPeriode=60
+LPsolvePath=\\Neptun\Lehre\besf\solver\lp_solve\exec\lp_solve.exe
